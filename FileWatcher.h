@@ -1,5 +1,5 @@
 //
-//  MainController.h
+//  FileWatcher.h
 //  Captured
 //
 //  Created by Christopher Sexton on 1/13/11.
@@ -9,12 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface MainController : NSObject {
-    IBOutlet NSMenu *statusMenu;
-    NSStatusItem * statusItem;
-    NSImage * statusIcon;
+@interface FileWatcher : NSObject {
 
 }
-
 
 @end

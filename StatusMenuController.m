@@ -3,14 +3,14 @@
 //  Captured
 //
 //  Created by Christopher Sexton on 1/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Codeography. All rights reserved.
 //
 #import "ImgurController.h"
 
-#import "MainController.h"
+#import "StatusMenuController.h"
 
 
-@implementation MainController
+@implementation StatusMenuController
 
 -(void) awakeFromNib
 {
@@ -28,6 +28,8 @@
 */
 	
 	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
+	statusIconColor = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconColor" ofType:@"png"]] retain];
+	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
 
 	
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];

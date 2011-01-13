@@ -3,7 +3,7 @@
 //  Captured
 //
 //  Created by Christopher Sexton on 1/13/11.
-//  Copyright __MyCompanyName__ 2011 . All rights reserved.
+//  Copyright Codeography 2011 . All rights reserved.
 //
 
 #import "Captured_AppDelegate.h"
