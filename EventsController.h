@@ -31,7 +31,7 @@
 #import <Foundation/Foundation.h>
 #import "SCEventListenerProtocol.h"
 
-@interface Controller : NSObject <SCEventListenerProtocol>
+@interface EventsController : NSObject <SCEventListenerProtocol>
 
 - (void)setupEventListener;
 

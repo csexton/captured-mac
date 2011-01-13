@@ -28,11 +28,11 @@
  *  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "Controller.h"
+#import "EventsController.h"
 #import "SCEvents.h"
 #import "SCEvent.h"
 
-@implementation Controller
+@implementation EventsController
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.

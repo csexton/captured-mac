@@ -12,10 +12,9 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		B52AAE7312DF98E000609367 /* FileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAE7212DF98E000609367 /* FileWatcher.m */; };
 		B52AAEA812DFAC7600609367 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEA312DFAC7600609367 /* SCEvent.m */; };
 		B52AAEA912DFAC7600609367 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEA612DFAC7600609367 /* SCEvents.m */; };
-		B52AAEB512DFADEB00609367 /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* Controller.m */; };
+		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
@@ -47,15 +46,13 @@
 		77C8280C06725ACE000B614F /* Captured_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captured_AppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured_Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Captured_Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B52AAE7112DF98E000609367 /* FileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileWatcher.h; sourceTree = "<group>"; };
-		B52AAE7212DF98E000609367 /* FileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileWatcher.m; sourceTree = "<group>"; };
 		B52AAEA212DFAC7600609367 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = SCEvents/SCEvent.h; sourceTree = "<group>"; };
 		B52AAEA312DFAC7600609367 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = SCEvents/SCEvent.m; sourceTree = "<group>"; };
 		B52AAEA412DFAC7600609367 /* SCEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEventListenerProtocol.h; path = SCEvents/SCEventListenerProtocol.h; sourceTree = "<group>"; };
 		B52AAEA512DFAC7600609367 /* SCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvents.h; path = SCEvents/SCEvents.h; sourceTree = "<group>"; };
 		B52AAEA612DFAC7600609367 /* SCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvents.m; path = SCEvents/SCEvents.m; sourceTree = "<group>"; };
-		B52AAEB312DFADEB00609367 /* Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
-		B52AAEB412DFADEB00609367 /* Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		B52AAEB312DFADEB00609367 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
+		B52AAEB412DFADEB00609367 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
@@ -113,8 +110,6 @@
 				77C8280C06725ACE000B614F /* Captured_AppDelegate.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
 				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
-				B52AAE7112DF98E000609367 /* FileWatcher.h */,
-				B52AAE7212DF98E000609367 /* FileWatcher.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -148,8 +143,8 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
-				B52AAEB312DFADEB00609367 /* Controller.h */,
-				B52AAEB412DFADEB00609367 /* Controller.m */,
+				B52AAEB312DFADEB00609367 /* EventsController.h */,
+				B52AAEB412DFADEB00609367 /* EventsController.m */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -316,10 +311,9 @@
 				B5E9017C12DEC38E004F71B6 /* ASINetworkQueue.m in Sources */,
 				B5E9018312DEC3B6004F71B6 /* ImgurController.m in Sources */,
 				B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */,
-				B52AAE7312DF98E000609367 /* FileWatcher.m in Sources */,
 				B52AAEA812DFAC7600609367 /* SCEvent.m in Sources */,
 				B52AAEA912DFAC7600609367 /* SCEvents.m in Sources */,
-				B52AAEB512DFADEB00609367 /* Controller.m in Sources */,
+				B52AAEB512DFADEB00609367 /* EventsController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
