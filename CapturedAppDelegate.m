@@ -1,8 +1,8 @@
-#import "Captured_AppDelegate.h"
+#import "CapturedAppDelegate.h"
 #import "SCEvents.h"
 #import "EventsController.h"
 
-@implementation Captured_AppDelegate
+@implementation CapturedAppDelegate
 
 @synthesize window;
 
