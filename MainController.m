@@ -18,15 +18,25 @@
 	//NSImage *image = [[NSImage alloc] initWithContentsOfFile: @"/Users/csexton/Desktop/horsehead-nebula.jpg"];
 	
 	//NSString *filename = @"/Users/csexton/Desktop/horsehead-nebula.jpg";
-	NSString *filename = @"/Users/csexton/Desktop/screen.png";
-
 	
+/*	
+    NSString *filename = @"/Users/csexton/Desktop/screen.png";
     NSData *data;
     data = [NSData dataWithContentsOfFile: filename];
-
-
 	ImgurController *controller = [[ImgurController alloc] init];
 	[controller uploadImage:data];
+*/
+	
+	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
+
+	
+	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
+	[statusItem setMenu:statusMenu];
+	//[statusItem setTitle:@"Status"];
+	[statusItem setImage:statusIcon];
+	[statusItem setHighlightMode:YES];
+	
+	
 
 }
 

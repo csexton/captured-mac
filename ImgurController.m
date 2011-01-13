@@ -11,9 +11,8 @@
 - (void) uploadImage: (NSData *) data; {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
                                                         object:self];
-	
 	imageSelectionData = data;
-    	
+	
     NSURL *imgurURL = [NSURL URLWithString:@"http://imgur.com/api/upload"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:imgurURL];
     [request setDelegate:self];

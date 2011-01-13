@@ -13,6 +13,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
@@ -42,6 +43,7 @@
 		77C8280C06725ACE000B614F /* Captured_AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Captured_AppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured-Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = "Captured-Info.plist"; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -150,6 +152,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */,
 				B5E902D412DECC85004F71B6 /* Captured-Icon.icns */,
 				8D1107310486CEB800E47090 /* Captured-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -256,6 +259,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				2F7446990DB6B7EA00F9684A /* MainMenu.xib in Resources */,
 				B5E902D512DECC85004F71B6 /* Captured-Icon.icns in Resources */,
+				B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

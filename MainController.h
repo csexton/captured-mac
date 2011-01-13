@@ -10,7 +10,11 @@
 
 
 @interface MainController : NSObject {
+    IBOutlet NSMenu *statusMenu;
+    NSStatusItem * statusItem;
+    NSImage * statusIcon;
 
 }
+
 
 @end
