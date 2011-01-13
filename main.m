@@ -7,6 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SCEvents.h"
+#import "Controller.h"
 
 int main(int argc, char *argv[])
 {

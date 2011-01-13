@@ -16,10 +16,8 @@
     NSURL *imgurURL = [NSURL URLWithString:@"http://imgur.com/api/upload"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:imgurURL];
     [request setDelegate:self];
-    [request setPostValue:[NSString stringWithString:API_KEY]
-                   forKey:@"key"];
-    [request setData:imageSelectionData
-              forKey:@"image"]; 
+    [request setPostValue:[NSString stringWithString:API_KEY] forKey:@"key"];
+    [request setData:imageSelectionData  forKey:@"image"]; 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploadStarting"
                                                         object:self];
     [request startAsynchronous];

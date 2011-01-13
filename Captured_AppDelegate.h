@@ -8,21 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Captured_AppDelegate : NSObject 
-{
+@interface Captured_AppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
-    
-    NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
 }
 
-@property (nonatomic, retain) IBOutlet NSWindow *window;
 
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (assign) IBOutlet NSWindow *window;
 
-- (IBAction)saveAction:sender;
+- (void)initEventsController;
+
 
 @end
