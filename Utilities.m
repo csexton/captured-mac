@@ -42,4 +42,13 @@
 	return prefix;
 }
 
++(void)copyToPasteboard:(NSString*)str
+{
+	NSLog(@"Copy to clipboard %@", str);
+    NSPasteboard *pb = [NSPasteboard generalPasteboard];
+    NSArray *types = [NSArray arrayWithObjects:NSStringPboardType, nil];
+    [pb declareTypes:types owner:self];
+    [pb setString: str forType:NSStringPboardType];
+}
+
 @end

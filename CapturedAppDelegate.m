@@ -5,6 +5,7 @@
 @implementation CapturedAppDelegate
 
 @synthesize window;
+@synthesize statusMenuController;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
@@ -21,4 +22,19 @@
     [super dealloc];
 }
 
+- (void)setStatusProcessing {
+	[statusMenuController setStatusProcessing];
+}
+
+- (void)setStatusNormal {
+	[statusMenuController setStatusNormal];
+}
+
++ (void)statusProcessing {
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusProcessing];
+}
+
++ (void)statusNormal {
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusNormal];
+}
 @end

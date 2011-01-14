@@ -12,6 +12,26 @@
 
 @implementation StatusMenuController
 
+-(void) setStatusIcon: (NSImage*)icon {
+	// Seems that a crash occurs if you try to set the menu title from a thread other than the main thread.
+	if ([NSThread isMainThread])
+	{
+		[statusItem setImage:icon];
+	}
+	else
+	{
+		[self performSelectorOnMainThread:@selector(setAltMenuStatus:) withObject:nil waitUntilDone:YES];
+	}
+}
+
+-(void) setStatusNormal {
+	[self setStatusIcon: statusIcon];
+}
+
+-(void) setStatusProcessing {
+	[self setStatusIcon: statusIconColor];
+}
+
 -(void) awakeFromNib
 {
 	NSLog(@"I am awake!");

@@ -1,5 +1,7 @@
 #import "ASIFormDataRequest.h"
 #import "ImgurController.h"
+#import "Utilities.h"
+#import "CapturedAppDelegate.h"
 
 #define API_KEY @"f4fa5e1e9974405c62117a8a84fbde46"
 
@@ -49,6 +51,15 @@ didStartElement:(NSString *)elementName
 - (void) parser:(NSXMLParser *)parser
 foundCharacters:(NSString *)string {
     ;   
+}
+
+- (void) processFile:(NSString*)filename {
+
+	[CapturedAppDelegate statusProcessing];
+	NSData* data = [NSData dataWithContentsOfFile: filename];
+	[self uploadImage:data];
+	[Utilities copyToPasteboard:filename]; // XXX
+	[CapturedAppDelegate statusNormal];
 }
 
 @end

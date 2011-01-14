@@ -32,6 +32,8 @@
 #import "Utilities.h"
 #import "DirEvents.h"
 #import "DirEvent.h"
+#import "CapturedAppDelegate.h"
+#import "ImgurController.h"
 
 @implementation EventsController
 
@@ -76,12 +78,16 @@
  */
 - (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
 {
-    //NSLog(@"%@", event);
 	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
 	
 	for (NSString *path in list) {
-		NSLog(@" --- %@", path);
+		[self processFile:path];
 	}
+}
+
+- (void)processFile: (NSString*)file {
+	ImgurController *controller = [[ImgurController alloc] init];
+	[controller processFile:file];
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{

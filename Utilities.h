@@ -16,5 +16,6 @@
 +(NSDictionary*)screenCapturePrefs;
 +(NSString*)screenCaptureDir;
 +(NSString*)screenCapturePrefix;
++(void)copyToPasteboard:(NSString*)str;
 
 @end

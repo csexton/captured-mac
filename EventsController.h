@@ -29,7 +29,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "SCEventListenerProtocol.h"
+#import "DirEventListenerProtocol.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
@@ -43,6 +43,7 @@
 
 
 - (void)setupEventListener;
+- (void)processFile: (NSString*)file;
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath;
 
 @end

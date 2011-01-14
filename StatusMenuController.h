@@ -18,5 +18,10 @@
 
 }
 
+-(void) setStatusProcessing;
+-(void) setStatusNormal;
+-(void) setStatusIcon: (NSImage*)icon;
+
+
 
 @end
