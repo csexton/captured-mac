@@ -29,10 +29,15 @@
  */
 
 #import "EventsController.h"
+#import "Utilities.h"
 #import "SCEvents.h"
 #import "SCEvent.h"
 
 @implementation EventsController
+
+@synthesize screenCapturePrefix;
+@synthesize screenCaptureDir;
+@synthesize history;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -41,18 +46,20 @@
  */
 - (void)setupEventListener
 {
+	// Load this into a member var so we don't have to read the plist every time the 
+	// event gets fired	
+	screenCapturePrefix = [Utilities screenCapturePrefix];
+	screenCaptureDir = [Utilities screenCaptureDir];
+	history = [[NSMutableSet alloc] init]; 
+
+	
     SCEvents *events = [SCEvents sharedPathWatcher];
     
     [events setDelegate:self];
-    
-	//NSArray * desktopDirs = NSSearchPathForDirectoriesInDomains (NSDesktopDirectory, NSUserDomainMask, YES);
-	//NSString * desktopDirectory = [desktopDirs objectAtIndex:0];
-    //NSMutableArray *paths = [NSMutableArray arrayWithObject:desktopDirectory];
-	NSMutableArray *paths = [NSMutableArray arrayWithObject:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]];
-    NSMutableArray *excludePaths = [NSMutableArray arrayWithObject:[NSHomeDirectory() stringByAppendingPathComponent:@"Downloads"]];
-    
-	// Set the paths to be excluded
-	[events setExcludedPaths:excludePaths];
+	    
+	NSMutableArray *paths = [NSMutableArray arrayWithObject:screenCaptureDir];
+
+
 	
 	// Start receiving events
 	[events startWatchingPaths:paths];
@@ -69,7 +76,73 @@
  */
 - (void)pathWatcher:(SCEvents *)pathWatcher eventOccurred:(SCEvent *)event
 {
-    NSLog(@"%@", event);
+    //NSLog(@"%@", event);
+	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
+	
+	for (NSString *path in list) {
+		NSLog(@" --- %@", path);
+	}
 }
 
+- (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{
+	
+	NSMutableArray *list = [[NSMutableArray alloc] init]; 
+
+
+	// Iterate through all files at that path
+	NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:basepath error:nil];
+	for (NSString *fileName in files)
+	{
+		// if there's a file that matches the prefix
+		if ([fileName hasPrefix:prefix])
+		{
+			NSString *path = [basepath stringByAppendingPathComponent:fileName];
+
+			NSError* error = nil; // XXX
+			NSDictionary* info = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error ]; 
+			NSDate* picDate = [info objectForKey:NSFileModificationDate]; 
+			if (error) { // XXX why is this a string???
+				NSLog(@"Error %@, %@", error, [error userInfo]);//[NSApp presentError:error]; 
+			}    
+			
+			
+			
+			// Extract the date string and use natural language matching to get its date
+			//NSString *datestring = [[[[[fileName stringByDeletingPathExtension] substringFromIndex:8] stringByReplacingOccurrencesOfString:@" at" withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@":"] stringByAppendingString:@" -0600"];
+			//NSDate *picDate = [NSDate dateWithNaturalLanguageString:datestring];
+			
+			// Determine the length of time since the screen was shot.
+			NSTimeInterval t = [[NSDate date] timeIntervalSinceDate:picDate];
+			
+			// Proceed if the time interval lies within 10 seconds
+			// New extra time is to allow for better screen shot layout
+			if (t < 10.0f)
+			{
+				if (![history containsObject:fileName]) {
+					[history addObject:fileName]; // XXX This might grow a bit too big given enough time.
+					
+					// Get the full path and the actual image
+					NSString *path = [basepath stringByAppendingPathComponent:fileName];
+					NSLog(@"I want to upload %@", path);
+					[list addObject:path];
+					//NSImage *image = [[[NSImage alloc]  initWithContentsOfFile:path] autorelease];
+					//
+					//// Convert the image to jpeg (use "NSPNGFileType" for PNG)
+					//NSArray *representations = [image representations];
+					//NSData * bitmapData = [NSBitmapImageRep representationOfImageRepsInArray:representations usingType:NSJPEGFileType properties:nil];
+					//[bitmapData writeToFile:@"/tmp/foo.jpg" atomically:YES];
+					//
+					//// Upload the image
+					//UploadOperation *op = [[[UploadOperation alloc] init] autorelease];
+					//op.path = @"/tmp/foo.jpg";
+					//op.delegate = self;
+					//[op start];
+				}
+			}
+		}
+	}
+	
+	return list;
+	
+}
 @end

@@ -33,7 +33,6 @@
 @implementation SCEvent
 
 @synthesize eventId;
-@synthesize eventDate;
 @synthesize eventPath;
 @synthesize eventFlag;
 
@@ -41,19 +40,18 @@
  * Returns an initialized instance of SCEvent using the supplied event ID, path 
  * and flag.
  */
-+ (SCEvent *)eventWithEventId:(NSUInteger)identifier eventDate:(NSDate *)date eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
++ (SCEvent *)eventWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
 {
-    return [[[SCEvent alloc] initWithEventId:identifier eventDate:date eventPath:path eventFlag:flag] autorelease];
+    return [[[SCEvent alloc] initWithEventId:identifier eventPath:path eventFlag:flag] autorelease];
 }
 
 /**
  * Initializes an instance of SCEvent using the supplied event ID, path and flag.
  */
-- (id)initWithEventId:(NSUInteger)identifier eventDate:(NSDate *)date eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
+- (id)initWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
 {
     if ((self = [super init])) {
         [self setEventId:identifier];
-        [self setEventDate:date];
         [self setEventPath:path];
         [self setEventFlag:flag];
     }
@@ -74,9 +72,7 @@
  * dealloc
  */
 - (void)dealloc
-{
-    [eventDate release], eventDate = nil;
-	
+{	
     [super dealloc];
 }
 

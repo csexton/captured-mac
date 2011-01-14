@@ -24,6 +24,7 @@
 		B52AB03C12DFBC4A00609367 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB03412DFBC4A00609367 /* ASINetworkQueue.m */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
+		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
@@ -73,6 +74,8 @@
 		B52AB03512DFBC4A00609367 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
+		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
@@ -112,6 +115,8 @@
 				77C8280C06725ACE000B614F /* CapturedAppDelegate.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
 				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
+				B5A437C712E0C820007D2A2D /* Utilities.h */,
+				B5A437C812E0C820007D2A2D /* Utilities.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				B52AB03A12DFBC4A00609367 /* ASIHTTPRequest.m in Sources */,
 				B52AB03B12DFBC4A00609367 /* ASIInputStream.m in Sources */,
 				B52AB03C12DFBC4A00609367 /* ASINetworkQueue.m in Sources */,
+				B5A437C912E0C820007D2A2D /* Utilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

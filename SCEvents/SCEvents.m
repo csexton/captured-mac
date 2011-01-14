@@ -73,7 +73,7 @@ static SCEvents *_sharedPathWatcher = nil;
     @synchronized(self) {
         if (_sharedPathWatcher == nil) {
             _sharedPathWatcher = [super allocWithZone:zone];
-            
+
             return _sharedPathWatcher;
         }
     }
@@ -257,7 +257,7 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
     BOOL shouldIgnore = NO;
     
     SCEvents *pathWatcher = (SCEvents *)clientCallBackInfo;
-    
+	    
     for (i = 0; i < numEvents; i++) 
 	{
         /* Please note that we are estimating the date for when the event occurred 
@@ -278,11 +278,19 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
         
         NSString *eventPath = [((NSArray *)eventPaths) objectAtIndex:i];
 		
-		NSString *watchPath = [[pathWatcher watchedPaths] objectAtIndex:0];
-		if(![eventPath isEqualToString:watchPath]){
-			shouldIgnore = YES;
+		// If present remove the path's trailing slash
+		if ([eventPath hasSuffix:@"/"]) {
+			eventPath = [eventPath substringToIndex:([[((NSArray *)eventPaths) objectAtIndex:i] length] - 1)];
 		}
 		
+		if (![[pathWatcher watchedPaths] containsObject:eventPath]) {
+			shouldIgnore = YES;
+		}
+//		NSString *watchPath = [[pathWatcher watchedPaths] objectAtIndex:0];
+//		if(![eventPath isEqualToString:watchPath]){
+//			shouldIgnore = YES;
+//		}
+	
 //        NSMutableArray *excludedPaths = [pathWatcher excludedPaths];
 //        
 //        //Check to see if the event should be ignored if it's path is in the exclude list
@@ -304,12 +312,7 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
     
         if (!shouldIgnore) {
 			
-			// If present remove the path's trailing slash
-			if ([eventPath hasSuffix:@"/"]) {
-				eventPath = [eventPath substringToIndex:([[((NSArray *)eventPaths) objectAtIndex:i] length] - 1)];
-			}
-            
-            SCEvent *event = [SCEvent eventWithEventId:eventIds[i] eventDate:[NSDate date] eventPath:eventPath eventFlag:eventFlags[i]];
+            SCEvent *event = [SCEvent eventWithEventId:eventIds[i] eventPath:eventPath eventFlag:eventFlags[i]];
                 
             if ([[pathWatcher delegate] conformsToProtocol:@protocol(SCEventListenerProtocol)]) {
                 [[pathWatcher delegate] pathWatcher:pathWatcher eventOccurred:event];
