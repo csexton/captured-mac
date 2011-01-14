@@ -31,7 +31,7 @@
 #import <Foundation/Foundation.h>
 #import "SCEventListenerProtocol.h"
 
-@interface EventsController : NSObject <SCEventListenerProtocol> {
+@interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;

@@ -1,5 +1,5 @@
 /*
- *  $Id: SCEvent.h 36 2009-09-08 21:36:02Z stuart $
+ *  $Id: SCEventListenerProtocol.h 34 2009-09-01 00:42:14Z stuart $
  *
  *  SCEvents
  *
@@ -28,22 +28,15 @@
  *  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <Foundation/Foundation.h>
-#import <CoreServices/CoreServices.h>
+@class DirEvents, DirEvent;
 
-@interface SCEvent : NSObject 
-{
-    NSUInteger eventId;
-    NSString *eventPath;
-    FSEventStreamEventFlags eventFlag;
-}
+@protocol DirEventListenerProtocol
 
-@property (readwrite, assign) NSUInteger eventId;
-@property (readwrite, retain) NSString *eventPath;
-@property (readwrite, assign) FSEventStreamEventFlags eventFlag;
-
-+ (SCEvent *)eventWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag;
-
-- (id)initWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag;
+/**
+ * Conforming objects' implementation of this method will be called whenever an
+ * event occurs. The instance of SCEvents which received the event and the event
+ * itself are passed as parameters.
+ */
+- (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event;
 
 @end

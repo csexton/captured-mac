@@ -1,5 +1,5 @@
 #import "CapturedAppDelegate.h"
-#import "SCEvents.h"
+#import "DirEvents.h"
 #import "EventsController.h"
 
 @implementation CapturedAppDelegate

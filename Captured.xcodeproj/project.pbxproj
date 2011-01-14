@@ -12,8 +12,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		B52AAEA812DFAC7600609367 /* SCEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEA312DFAC7600609367 /* SCEvent.m */; };
-		B52AAEA912DFAC7600609367 /* SCEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEA612DFAC7600609367 /* SCEvents.m */; };
 		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
 		B52AB03612DFBC4A00609367 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB02612DFBC4A00609367 /* ASIDataCompressor.m */; };
 		B52AB03712DFBC4A00609367 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB02812DFBC4A00609367 /* ASIDataDecompressor.m */; };
@@ -25,6 +23,8 @@
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
+		B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F112E0ECF3007D2A2D /* DirEvent.m */; };
+		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
@@ -47,11 +47,6 @@
 		77C8280C06725ACE000B614F /* CapturedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured_Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Captured_Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B52AAEA212DFAC7600609367 /* SCEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvent.h; path = SCEvents/SCEvent.h; sourceTree = "<group>"; };
-		B52AAEA312DFAC7600609367 /* SCEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvent.m; path = SCEvents/SCEvent.m; sourceTree = "<group>"; };
-		B52AAEA412DFAC7600609367 /* SCEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEventListenerProtocol.h; path = SCEvents/SCEventListenerProtocol.h; sourceTree = "<group>"; };
-		B52AAEA512DFAC7600609367 /* SCEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SCEvents.h; path = SCEvents/SCEvents.h; sourceTree = "<group>"; };
-		B52AAEA612DFAC7600609367 /* SCEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SCEvents.m; path = SCEvents/SCEvents.m; sourceTree = "<group>"; };
 		B52AAEB312DFADEB00609367 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
 		B52AAEB412DFADEB00609367 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
 		B52AB02412DFBC4A00609367 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -76,6 +71,11 @@
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		B5A438F012E0ECF3007D2A2D /* DirEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvent.h; path = DirEvents/DirEvent.h; sourceTree = "<group>"; };
+		B5A438F112E0ECF3007D2A2D /* DirEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirEvent.m; path = DirEvents/DirEvent.m; sourceTree = "<group>"; };
+		B5A438F212E0ECF3007D2A2D /* DirEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEventListenerProtocol.h; path = DirEvents/DirEventListenerProtocol.h; sourceTree = "<group>"; };
+		B5A438F312E0ECF3007D2A2D /* DirEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvents.h; path = DirEvents/DirEvents.h; sourceTree = "<group>"; };
+		B5A438F412E0ECF3007D2A2D /* DirEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirEvents.m; path = DirEvents/DirEvents.m; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
@@ -107,7 +107,7 @@
 			children = (
 				B52AAEB312DFADEB00609367 /* EventsController.h */,
 				B52AAEB412DFADEB00609367 /* EventsController.m */,
-				B52AAEAA12DFAC7D00609367 /* SCEvents */,
+				B52AAEAA12DFAC7D00609367 /* DirEvents */,
 				B5E9018112DEC3B6004F71B6 /* ImgurController.h */,
 				B5E9018212DEC3B6004F71B6 /* ImgurController.m */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
@@ -202,16 +202,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		B52AAEAA12DFAC7D00609367 /* SCEvents */ = {
+		B52AAEAA12DFAC7D00609367 /* DirEvents */ = {
 			isa = PBXGroup;
 			children = (
-				B52AAEA212DFAC7600609367 /* SCEvent.h */,
-				B52AAEA312DFAC7600609367 /* SCEvent.m */,
-				B52AAEA412DFAC7600609367 /* SCEventListenerProtocol.h */,
-				B52AAEA512DFAC7600609367 /* SCEvents.h */,
-				B52AAEA612DFAC7600609367 /* SCEvents.m */,
+				B5A438F012E0ECF3007D2A2D /* DirEvent.h */,
+				B5A438F112E0ECF3007D2A2D /* DirEvent.m */,
+				B5A438F212E0ECF3007D2A2D /* DirEventListenerProtocol.h */,
+				B5A438F312E0ECF3007D2A2D /* DirEvents.h */,
+				B5A438F412E0ECF3007D2A2D /* DirEvents.m */,
 			);
-			name = SCEvents;
+			name = DirEvents;
 			sourceTree = "<group>";
 		};
 		B5E9016312DEC36E004F71B6 /* HTTPRequest */ = {
@@ -309,8 +309,6 @@
 				77C8280E06725ACE000B614F /* CapturedAppDelegate.m in Sources */,
 				B5E9018312DEC3B6004F71B6 /* ImgurController.m in Sources */,
 				B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */,
-				B52AAEA812DFAC7600609367 /* SCEvent.m in Sources */,
-				B52AAEA912DFAC7600609367 /* SCEvents.m in Sources */,
 				B52AAEB512DFADEB00609367 /* EventsController.m in Sources */,
 				B52AB03612DFBC4A00609367 /* ASIDataCompressor.m in Sources */,
 				B52AB03712DFBC4A00609367 /* ASIDataDecompressor.m in Sources */,
@@ -320,6 +318,8 @@
 				B52AB03B12DFBC4A00609367 /* ASIInputStream.m in Sources */,
 				B52AB03C12DFBC4A00609367 /* ASINetworkQueue.m in Sources */,
 				B5A437C912E0C820007D2A2D /* Utilities.m in Sources */,
+				B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */,
+				B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -28,20 +28,20 @@
  *  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "SCEvents.h"
-#import "SCEvent.h"
+#import "DirEvents.h"
+#import "DirEvent.h"
 #import "SCEventListenerProtocol.h"
 
-@interface SCEvents (PrivateAPI)
+@interface DirEvents (PrivateAPI)
 
 - (void)_setupEventsStream;
 static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[]);
 
 @end
 
-static SCEvents *_sharedPathWatcher = nil;
+static DirEvents *_sharedPathWatcher = nil;
 
-@implementation SCEvents
+@implementation DirEvents
 
 @synthesize delegate;
 @synthesize isWatchingPaths;
@@ -224,7 +224,7 @@ static SCEvents *_sharedPathWatcher = nil;
 
 @end
 
-@implementation SCEvents (PrivateAPI)
+@implementation DirEvents (PrivateAPI)
 
 /**
  * Constructs the events stream.
@@ -256,7 +256,7 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
     NSUInteger i;
     BOOL shouldIgnore = NO;
     
-    SCEvents *pathWatcher = (SCEvents *)clientCallBackInfo;
+    DirEvents *pathWatcher = (DirEvents *)clientCallBackInfo;
 	    
     for (i = 0; i < numEvents; i++) 
 	{
@@ -312,9 +312,9 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
     
         if (!shouldIgnore) {
 			
-            SCEvent *event = [SCEvent eventWithEventId:eventIds[i] eventPath:eventPath eventFlag:eventFlags[i]];
+            DirEvent *event = [DirEvent eventWithEventId:eventIds[i] eventPath:eventPath eventFlag:eventFlags[i]];
                 
-            if ([[pathWatcher delegate] conformsToProtocol:@protocol(SCEventListenerProtocol)]) {
+            if ([[pathWatcher delegate] conformsToProtocol:@protocol(DirEventListenerProtocol)]) {
                 [[pathWatcher delegate] pathWatcher:pathWatcher eventOccurred:event];
             }
                 

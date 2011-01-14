@@ -30,8 +30,8 @@
 
 #import "EventsController.h"
 #import "Utilities.h"
-#import "SCEvents.h"
-#import "SCEvent.h"
+#import "DirEvents.h"
+#import "DirEvent.h"
 
 @implementation EventsController
 
@@ -53,7 +53,7 @@
 	history = [[NSMutableSet alloc] init]; 
 
 	
-    SCEvents *events = [SCEvents sharedPathWatcher];
+    DirEvents *events = [DirEvents sharedPathWatcher];
     
     [events setDelegate:self];
 	    
@@ -74,7 +74,7 @@
  * This is the only method to be implemented to conform to the SCEventListenerProtocol.
  * As this is only an example the event received is simply printed to the console.
  */
-- (void)pathWatcher:(SCEvents *)pathWatcher eventOccurred:(SCEvent *)event
+- (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
 {
     //NSLog(@"%@", event);
 	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];

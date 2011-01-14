@@ -28,9 +28,9 @@
  *  OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import "SCEvent.h"
+#import "DirEvent.h"
 
-@implementation SCEvent
+@implementation DirEvent
 
 @synthesize eventId;
 @synthesize eventPath;
@@ -40,9 +40,9 @@
  * Returns an initialized instance of SCEvent using the supplied event ID, path 
  * and flag.
  */
-+ (SCEvent *)eventWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
++ (DirEvent *)eventWithEventId:(NSUInteger)identifier eventPath:(NSString *)path eventFlag:(FSEventStreamEventFlags)flag
 {
-    return [[[SCEvent alloc] initWithEventId:identifier eventPath:path eventFlag:flag] autorelease];
+    return [[[DirEvent alloc] initWithEventId:identifier eventPath:path eventFlag:flag] autorelease];
 }
 
 /**
