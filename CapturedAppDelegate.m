@@ -18,8 +18,8 @@
 	
 	// XXX
 	// If I call it here I get a bad exec when the callback tries the delegate	
-//	EventsController *eventsController = [[[EventsController alloc] init] autorelease];
-//	[eventsController setupEventListener];
+	EventsController *eventsController = [[[EventsController alloc] init] autorelease];
+	[eventsController setupEventListener];
 	
 
 }
