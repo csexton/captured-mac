@@ -102,6 +102,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B52AAEB312DFADEB00609367 /* EventsController.h */,
+				B52AAEB412DFADEB00609367 /* EventsController.m */,
 				B52AAEAA12DFAC7D00609367 /* SCEvents */,
 				B5E9018112DEC3B6004F71B6 /* ImgurController.h */,
 				B5E9018212DEC3B6004F71B6 /* ImgurController.m */,
@@ -143,8 +145,6 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
-				B52AAEB312DFADEB00609367 /* EventsController.h */,
-				B52AAEB412DFADEB00609367 /* EventsController.m */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -347,7 +347,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -364,7 +363,6 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_ENABLE_OBJC_GC = supported;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Captured_Prefix.pch;

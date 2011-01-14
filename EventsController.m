@@ -56,6 +56,8 @@
 	
 	// Start receiving events
 	[events startWatchingPaths:paths];
+	
+	events.ignoreEventsFromSubDirs = YES;
 
 	// Display a description of the stream
 	NSLog(@"%@", [events streamDescription]);	

@@ -7,9 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "EventsController.h"
+
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
+	EventsController *eventsController;
 }
 
 

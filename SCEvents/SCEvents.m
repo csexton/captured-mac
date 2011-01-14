@@ -277,24 +277,30 @@ static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallB
          */
         
         NSString *eventPath = [((NSArray *)eventPaths) objectAtIndex:i];
-        NSMutableArray *excludedPaths = [pathWatcher excludedPaths];
-        
-        // Check to see if the event should be ignored if it's path is in the exclude list
-        if ([excludedPaths containsObject:eventPath]) {
-            shouldIgnore = YES;
-        }
-        else {
-            // If we did not find an exact match in the exclude list and we are to ignore events from
-            // sub-directories then see if the exclude paths match as a prefix of the event path.
-            if ([pathWatcher ignoreEventsFromSubDirs]) {
-                for (NSString *path in [pathWatcher excludedPaths]) {
-                    if ([[(NSArray *)eventPaths objectAtIndex:i] hasPrefix:path]) {
-                        shouldIgnore = YES;
-                        break;
-                    }
-                }
-            }
-        }
+		
+		NSString *watchPath = [[pathWatcher watchedPaths] objectAtIndex:0];
+		if(![eventPath isEqualToString:watchPath]){
+			shouldIgnore = YES;
+		}
+		
+//        NSMutableArray *excludedPaths = [pathWatcher excludedPaths];
+//        
+//        //Check to see if the event should be ignored if it's path is in the exclude list
+//        if ([excludedPaths containsObject:eventPath]) {
+//            shouldIgnore = YES;
+//        }
+//        else {
+//            // If we did not find an exact match in the exclude list and we are to ignore events from
+//            // sub-directories then see if the exclude paths match as a prefix of the event path.
+//            if ([pathWatcher ignoreEventsFromSubDirs]) {
+//                for (NSString *path in [pathWatcher excludedPaths]) {
+//                    if ([[(NSArray *)eventPaths objectAtIndex:i] hasPrefix:path]) {
+//                        shouldIgnore = YES;
+//                        break;
+//                    }
+//                }
+//            }
+//        }
     
         if (!shouldIgnore) {
 			

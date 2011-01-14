@@ -8,20 +8,17 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
-	
-
 	[self initEventsController];
-	
 }
 
 - (void)initEventsController {
-	
-	// XXX
-	// If I call it here I get a bad exec when the callback tries the delegate	
-	EventsController *eventsController = [[[EventsController alloc] init] autorelease];
+	eventsController = [[EventsController alloc] init]; //This used to be autorelease, but I would get a crash. So now I think I need to do something to release the memory
 	[eventsController setupEventListener];
-	
+}
 
+- (void)dealloc {
+	[eventsController release], eventsController = nil;   
+    [super dealloc];
 }
 
 @end
