@@ -102,10 +102,10 @@
 		{
 			NSString *path = [basepath stringByAppendingPathComponent:fileName];
 
-			NSError* error = nil; // XXX
+			NSError* error = nil; 
 			NSDictionary* info = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:&error ]; 
 			NSDate* picDate = [info objectForKey:NSFileModificationDate]; 
-			if (error) { // XXX why is this a string???
+			if (error) { 
 				NSLog(@"Error %@, %@", error, [error userInfo]);//[NSApp presentError:error]; 
 			}    
 			

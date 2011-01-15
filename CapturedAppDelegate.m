@@ -11,11 +11,15 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application 
 	[self initEventsController];
+	
+	// XXX  -  DO THIS!!!
+	// http://stackoverflow.com/questions/620841/how-to-hide-the-dock-icon
 }
 
 - (void)initEventsController {
 	eventsController = [[EventsController alloc] init]; //This used to be autorelease, but I would get a crash. So now I think I need to do something to release the memory
 	[eventsController setupEventListener];
+	
 }
 
 - (void)dealloc {
