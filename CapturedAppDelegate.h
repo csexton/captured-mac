@@ -29,8 +29,9 @@
 + (void)statusProcessing;
 - (void)setStatusProcessing;
 
-+ (void)statusNormal;
-- (void)setStatusNormal;
+// May not need this since I have uploadSuccess/uploadFailure
+//+ (void)statusNormal;
+//- (void)setStatusNormal;
 
 - (void)initEventsController;
 

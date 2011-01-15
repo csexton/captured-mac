@@ -34,12 +34,12 @@
 	[statusMenuController setStatusProcessing];
 }
 
-+ (void)statusNormal {
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusNormal];
-}
-- (void)setStatusNormal {
-	[statusMenuController setStatusNormal];
-}
+//+ (void)statusNormal {
+//	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusNormal];
+//}
+//- (void)setStatusNormal {
+//	[statusMenuController setStatusNormal];
+//}
 
 + (void)uploadSuccess: (NSString *) url {
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadSuccess:url];
