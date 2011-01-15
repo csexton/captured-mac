@@ -45,8 +45,10 @@
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadSuccess:url];
 }
 - (void)setUploadSuccess: (NSString *) url {
-	[statusMenuController setStatusNormal];
+	[statusMenuController setStatusSuccess];
 	[Utilities copyToPasteboard:url];
+	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+
 
 }
 
@@ -55,7 +57,7 @@
 }
 - (void)setUploadFailure {
 	[statusMenuController setStatusFailure];
-	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 3.0];
+	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
 
 

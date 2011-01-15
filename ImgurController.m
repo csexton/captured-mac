@@ -4,7 +4,8 @@
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
 
-#define API_KEY @"f4fa5e1e9974405c62117a8a84fbde46"
+#define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
+//#define API_KEY @"f4fa5e1e9974405c62117a8a84fbde46" // Captured.rb API Key
 
 @implementation ImgurController
 

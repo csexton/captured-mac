@@ -27,6 +27,7 @@
 		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
 		B5A43A0112E14C15007D2A2D /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A43A0012E14C15007D2A2D /* XMLReader.m */; };
 		B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */; };
+		B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
@@ -81,6 +82,7 @@
 		B5A439FF12E14C15007D2A2D /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
 		B5A43A0012E14C15007D2A2D /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconError.png; path = Resources/StatusMenuIconError.png; sourceTree = "<group>"; };
+		B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSuccess.png; path = Resources/StatusMenuIconSuccess.png; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
@@ -179,6 +181,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */,
 				B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */,
 				B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */,
 				B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */,
@@ -304,6 +307,7 @@
 				B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */,
 				B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */,
 				B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */,
+				B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
