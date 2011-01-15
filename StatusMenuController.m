@@ -35,6 +35,12 @@
 -(void) awakeFromNib
 {
 	NSLog(@"I am awake!");
+	
+	ImgurController *controller = [[ImgurController alloc] init];
+
+	[controller parseResponseForURL:@""];
+	
+	
 	//NSImage *image = [[NSImage alloc] initWithContentsOfFile: @"/Users/csexton/Desktop/horsehead-nebula.jpg"];
 	
 	//NSString *filename = @"/Users/csexton/Desktop/horsehead-nebula.jpg";

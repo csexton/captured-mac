@@ -21,11 +21,17 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 
++ (void)uploadSuccess: (NSString *)url;
+- (void)setUploadSuccess: (NSString *) url;
+
+//+ (void)uploadFailed: (NSString *)errorMsg;
 
 + (void)statusProcessing;
-+ (void)statusNormal;
 - (void)setStatusProcessing;
+
++ (void)statusNormal;
 - (void)setStatusNormal;
+
 - (void)initEventsController;
 
 

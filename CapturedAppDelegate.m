@@ -1,4 +1,5 @@
 #import "CapturedAppDelegate.h"
+#import "Utilities.h"
 #import "DirEvents.h"
 #import "EventsController.h"
 
@@ -22,19 +23,31 @@
     [super dealloc];
 }
 
-- (void)setStatusProcessing {
-	[statusMenuController setStatusProcessing];
-}
-
-- (void)setStatusNormal {
-	[statusMenuController setStatusNormal];
-}
-
 + (void)statusProcessing {
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusProcessing];
+}
+- (void)setStatusProcessing {
+	[statusMenuController setStatusProcessing];
 }
 
 + (void)statusNormal {
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusNormal];
 }
+- (void)setStatusNormal {
+	[statusMenuController setStatusNormal];
+}
+
++ (void)uploadSuccess: (NSString *) url {
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadSuccess:url];
+}
+- (void)setUploadSuccess: (NSString *) url {
+	[statusMenuController setStatusNormal];
+	[Utilities copyToPasteboard:url];
+
+}
+
+
+
+
+
 @end

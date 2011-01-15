@@ -852,7 +852,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{63, 575}, {480, 360}}</string>
 					<integer value="1"/>
-					<boolean value="YES"/>
+					<boolean value="NO"/>
 					<integer value="1"/>
 					<string>{213, 107}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

@@ -28,5 +28,6 @@
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 
 - (void) processFile:(NSString*)filename;
+- (NSString *) parseResponseForURL:(NSString*)str;
 
 @end

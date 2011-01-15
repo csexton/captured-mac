@@ -60,8 +60,6 @@
     [events setDelegate:self];
 	    
 	NSMutableArray *paths = [NSMutableArray arrayWithObject:screenCaptureDir];
-
-
 	
 	// Start receiving events
 	[events startWatchingPaths:paths];
