@@ -24,7 +24,8 @@
 + (void)uploadSuccess: (NSString *)url;
 - (void)setUploadSuccess: (NSString *) url;
 
-//+ (void)uploadFailed: (NSString *)errorMsg;
++ (void)uploadFailure;
+- (void)setUploadFailure;
 
 + (void)statusProcessing;
 - (void)setStatusProcessing;

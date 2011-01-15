@@ -50,6 +50,14 @@
 
 }
 
++ (void)uploadFailure {
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadFailure];
+}
+- (void)setUploadFailure {
+	[statusMenuController setStatusFailure];
+	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 3.0];
+}
+
 
 
 

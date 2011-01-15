@@ -20,7 +20,7 @@
 	}
 	else
 	{
-		[self performSelectorOnMainThread:@selector(setAltMenuStatus:) withObject:nil waitUntilDone:YES];
+		[self performSelectorOnMainThread:@selector(setStatusIcon:) withObject:icon waitUntilDone:YES];
 	}
 }
 
@@ -30,6 +30,9 @@
 
 -(void) setStatusProcessing {
 	[self setStatusIcon: statusIconColor];
+}
+-(void) setStatusFailure {
+	[self setStatusIcon: statusIconError];
 }
 
 -(void) awakeFromNib
@@ -56,6 +59,7 @@
 	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
 	statusIconColor = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconColor" ofType:@"png"]] retain];
 	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
+	statusIconError = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconError" ofType:@"png"]] retain];
 
 	
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];

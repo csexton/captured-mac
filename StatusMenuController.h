@@ -15,10 +15,12 @@
     NSImage * statusIcon;
     NSImage * statusIconColor;
     NSImage * statusIconDisabled;
+    NSImage * statusIconError;
 
 }
 
 -(void) setStatusProcessing;
+-(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
 

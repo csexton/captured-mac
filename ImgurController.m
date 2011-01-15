@@ -33,18 +33,25 @@
 #pragma mark ASIFormData Delegate Methods
 - (void) requestFinished: (ASIFormDataRequest *) request {
 	NSData * myData = [request rawResponseData];
-	NSLog(@"my Data: %.*s", [myData length], [myData bytes]);
 	
-	NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
-	
-	NSString *url = [self parseResponseForURL:body];
-	
-	[CapturedAppDelegate uploadSuccess:url];
+	if (request.responseStatusCode != 200) {
+		NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
+		[self requestFailed:nil];
+	}
+	else{
+		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+		
+		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
+		
+		NSString *url = [self parseResponseForURL:body];
+		
+		[CapturedAppDelegate uploadSuccess:url];
+	}
 	
 }
 
 - (void) requestFailed: (ASIFormDataRequest *) request {
-    ;       
+	[CapturedAppDelegate uploadFailure];
 }
 
 #pragma mark NSXMLParser Delegate Methods
