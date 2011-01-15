@@ -76,6 +76,12 @@
 
 }
 
+-(IBAction) quitItemAction:(id) sender
+{
+	NSLog(@"%@", @"Exiting");
+	[[NSApplication sharedApplication] terminate:self];	
+}
+
 
 
 

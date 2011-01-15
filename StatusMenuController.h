@@ -26,6 +26,8 @@
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
 
+-(IBAction) quitItemAction:(id) sender;
+
 
 
 @end
