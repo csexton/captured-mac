@@ -43,12 +43,9 @@
 
 -(void) awakeFromNib
 {
-	NSLog(@"I am awake!");
-	
-	ImgurController *controller = [[ImgurController alloc] init];
+	//ImgurController *controller = [[ImgurController alloc] init];
 
-	[controller parseResponseForURL:@""];
-	
+	//[controller parseResponseForURL:@""];
 	
 	//NSImage *image = [[NSImage alloc] initWithContentsOfFile: @"/Users/csexton/Desktop/horsehead-nebula.jpg"];
 	
@@ -68,14 +65,11 @@
 	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
 	statusIconError = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconError" ofType:@"png"]] retain];
 
-	
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setMenu:statusMenu];
 	//[statusItem setTitle:@"Status"];
 	[statusItem setImage:statusIcon];
 	[statusItem setHighlightMode:YES];
-	
-	
 
 }
 

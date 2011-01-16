@@ -46,13 +46,14 @@
 		
 		NSString *url = [self parseResponseForURL:body];
 		
-		[CapturedAppDelegate uploadSuccess:url];
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:url];
+
 	}
 	
 }
 
 - (void) requestFailed: (ASIFormDataRequest *) request {
-	[CapturedAppDelegate uploadFailure];
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 }
 
 #pragma mark NSXMLParser Delegate Methods
@@ -71,7 +72,7 @@ foundCharacters:(NSString *)string {
 
 - (void) processFile:(NSString*)filename {
 
-	[CapturedAppDelegate statusProcessing];
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
 	NSData* data = [NSData dataWithContentsOfFile: filename];
 	[self uploadImage:data];
 }

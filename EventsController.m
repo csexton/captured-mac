@@ -67,7 +67,7 @@
 	events.ignoreEventsFromSubDirs = YES;
 
 	// Display a description of the stream
-	NSLog(@"%@", [events streamDescription]);	
+	//NSLog(@"%@", [events streamDescription]);	
 }
 
 /**

@@ -12,6 +12,7 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B51A1FCD12E393EB006C7840 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = B51A1FCC12E393EB006C7840 /* Credits.html */; };
 		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
 		B52AB03612DFBC4A00609367 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB02612DFBC4A00609367 /* ASIDataCompressor.m */; };
 		B52AB03712DFBC4A00609367 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB02812DFBC4A00609367 /* ASIDataDecompressor.m */; };
@@ -50,6 +51,7 @@
 		77C8280C06725ACE000B614F /* CapturedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured_Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Captured_Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B51A1FCC12E393EB006C7840 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		B52AAEB312DFADEB00609367 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
 		B52AAEB412DFADEB00609367 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
 		B52AB02412DFBC4A00609367 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B51A1FCC12E393EB006C7840 /* Credits.html */,
 				B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */,
 				B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */,
 				B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */,
@@ -308,6 +311,7 @@
 				B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */,
 				B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */,
 				B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */,
+				B51A1FCD12E393EB006C7840 /* Credits.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,11 +414,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Christopher Sexton";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};

@@ -18,13 +18,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	
-
-		
 	// Insert code here to initialize your application 
 	[self initEventsController];
 	
-	// XXX  -  DO THIS!!!
-	// http://stackoverflow.com/questions/620841/how-to-hide-the-dock-icon
+	// XXX - Should this be a user option?
+	//     - This means the main menu will not appear
+	//     - It also means we can't drag and drop to the dock icon (which we don't do. Yet...)
 	if (NO) {
 		ProcessSerialNumber psn = { 0, kCurrentProcess };
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
@@ -42,42 +41,25 @@
     [super dealloc];
 }
 
-+ (void)statusProcessing {
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusProcessing];
-}
-- (void)setStatusProcessing {
+- (void)statusProcessing {
 	[statusMenuController setStatusProcessing];
 }
 
-//+ (void)statusNormal {
-//	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStatusNormal];
-//}
-//- (void)setStatusNormal {
-//	[statusMenuController setStatusNormal];
-//}
-
-+ (void)uploadSuccess: (NSString *) url {
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadSuccess:url];
-}
-- (void)setUploadSuccess: (NSString *) url {
+- (void)uploadSuccess: (NSString *) url {
+	NSLog(@"Upload succeeded: %@", url);
 	[statusMenuController setStatusSuccess];
 	[Utilities copyToPasteboard:url];
 	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
-
-
 }
 
-+ (void)uploadFailure {
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadFailure];
-}
-- (void)setUploadFailure {
+- (void)uploadFailure {
+	NSLog(@"Upload Failed.");
 	[statusMenuController setStatusFailure];
 	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
 
-
 - (BOOL)uploadsEnabled {
-	NSLog(@"The value of the bool is %@\n", (uploadsEnabled ? @"YES" : @"NO"));
+	//NSLog(@"The value of the bool is %@\n", (uploadsEnabled ? @"YES" : @"NO"));
 	return uploadsEnabled;
 }
 - (void)setUploadsEnabled: (BOOL)enabled {

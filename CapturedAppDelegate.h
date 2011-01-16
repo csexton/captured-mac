@@ -24,14 +24,9 @@
 @property BOOL uploadsEnabled;
 
 
-+ (void)uploadSuccess: (NSString *)url;
-- (void)setUploadSuccess: (NSString *) url;
-
-+ (void)uploadFailure;
-- (void)setUploadFailure;
-
-+ (void)statusProcessing;
-- (void)setStatusProcessing;
+- (void)uploadSuccess: (NSString *) url;
+- (void)uploadFailure;
+- (void)statusProcessing;
 
 - (void)initEventsController;
 

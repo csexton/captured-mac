@@ -10,8 +10,12 @@
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
 	<string>Captured_Icon</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>© 2011, Christopher Sexton</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.codeography.captured-mac</string>
 	<key>CFBundleInfoDictionaryVersion</key>

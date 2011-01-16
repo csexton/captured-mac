@@ -30,12 +30,12 @@
 
 #import "DirEvents.h"
 #import "DirEvent.h"
-#import "SCEventListenerProtocol.h"
+#import "DirEventListenerProtocol.h"
 
 @interface DirEvents (PrivateAPI)
 
 - (void)_setupEventsStream;
-static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[]);
+static void _DirEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[]);
 
 @end
 
@@ -65,9 +65,6 @@ static DirEvents *_sharedPathWatcher = nil;
     return _sharedPathWatcher;
 }
 
-/**
- * allocWithZone:
- */
 + (id)allocWithZone:(NSZone *)zone
 {
     @synchronized(self) {
@@ -82,9 +79,6 @@ static DirEvents *_sharedPathWatcher = nil;
     return nil;
 }
 
-/**
- * Initializes an instance of SCEvents setting its default values.
- */
 - (id)init
 {
     if ((self = [super init])) {
@@ -241,7 +235,7 @@ static DirEvents *_sharedPathWatcher = nil;
 	
 	if (eventStream) FSEventStreamRelease(eventStream);
     
-    eventStream = FSEventStreamCreate(kCFAllocatorDefault, &_SCEventsCallBack, &callbackInfo, ((CFArrayRef)watchedPaths), kFSEventStreamEventIdSinceNow, notificationLatency, kFSEventStreamCreateFlagUseCFTypes | kFSEventStreamCreateFlagWatchRoot);
+    eventStream = FSEventStreamCreate(kCFAllocatorDefault, &_DirEventsCallBack, &callbackInfo, ((CFArrayRef)watchedPaths), kFSEventStreamEventIdSinceNow, notificationLatency, kFSEventStreamCreateFlagUseCFTypes | kFSEventStreamCreateFlagWatchRoot);
 }
 
 /**
@@ -251,7 +245,7 @@ static DirEvents *_sharedPathWatcher = nil;
  * called with more than one event and so multiple instances of SCEvent are created
  * and the delegate notified.
  */
-static void _SCEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[])
+static void _DirEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCallBackInfo, size_t numEvents, void *eventPaths, const FSEventStreamEventFlags eventFlags[], const FSEventStreamEventId eventIds[])
 {
     NSUInteger i;
     BOOL shouldIgnore = NO;

@@ -44,7 +44,7 @@
 
 +(void)copyToPasteboard:(NSString*)str
 {
-	NSLog(@"Copy to clipboard %@", str);
+	NSLog(@"Image URL copied to clipboard %@", str);
     NSPasteboard *pb = [NSPasteboard generalPasteboard];
     NSArray *types = [NSArray arrayWithObjects:NSStringPboardType, nil];
     [pb declareTypes:types owner:self];
