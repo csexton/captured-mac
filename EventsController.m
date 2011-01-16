@@ -76,10 +76,12 @@
  */
 - (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
 {
-	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
+	if ([(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled]) {
+			NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
 	
 	for (NSString *path in list) {
 		[self processFile:path];
+	}
 	}
 }
 

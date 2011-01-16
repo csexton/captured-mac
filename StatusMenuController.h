@@ -11,6 +11,8 @@
 
 @interface StatusMenuController : NSObject {
     IBOutlet NSMenu *statusMenu;
+    IBOutlet BOOL *startAtLogin;
+	
     NSStatusItem * statusItem;
     NSImage * statusIcon;
     NSImage * statusIconColor;
@@ -20,6 +22,9 @@
 
 }
 
+@property BOOL startAtLogin;
+
+-(void) setStatusDisabled;
 -(void) setStatusProcessing;
 -(void) setStatusSuccess;
 -(void) setStatusFailure;
@@ -27,6 +32,7 @@
 -(void) setStatusIcon: (NSImage*)icon;
 
 -(IBAction) quitItemAction:(id) sender;
+
 
 
 

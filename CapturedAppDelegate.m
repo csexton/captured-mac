@@ -7,13 +7,28 @@
 
 @synthesize window;
 @synthesize statusMenuController;
+//@synthesize uploadsEnabled;
+
+-(id)init {
+    if ( self = [super init] ) {
+		uploadsEnabled = YES;
+    }
+    return self;
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+	
+
+		
 	// Insert code here to initialize your application 
 	[self initEventsController];
 	
 	// XXX  -  DO THIS!!!
 	// http://stackoverflow.com/questions/620841/how-to-hide-the-dock-icon
+	if (NO) {
+		ProcessSerialNumber psn = { 0, kCurrentProcess };
+		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+	}
 }
 
 - (void)initEventsController {
@@ -59,6 +74,23 @@
 	[statusMenuController setStatusFailure];
 	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
+
+
+- (BOOL)uploadsEnabled {
+	NSLog(@"The value of the bool is %@\n", (uploadsEnabled ? @"YES" : @"NO"));
+	return uploadsEnabled;
+}
+- (void)setUploadsEnabled: (BOOL)enabled {
+	if (enabled) {
+		[statusMenuController setStatusNormal];
+	}
+	else {
+		[statusMenuController setStatusDisabled];
+	}
+
+	uploadsEnabled = enabled;
+}
+ 
 
 
 
