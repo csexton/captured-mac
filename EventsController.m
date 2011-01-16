@@ -76,12 +76,10 @@
  */
 - (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
 {
-	if ([(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled]) {
-			NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
+	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
 	
 	for (NSString *path in list) {
 		[self processFile:path];
-	}
 	}
 }
 
@@ -127,10 +125,17 @@
 				if (![history containsObject:fileName]) {
 					[history addObject:fileName]; // XXX This might grow a bit too big given enough time.
 					
+					// Cannot check if uploads are enabled until after we add the filename to the history
+					// array because if someone disables uploads, takes a screen capture, then reneables them
+					// within 10 seconds captured will upload it anyway.
+					if ([(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled]) {
+
+					
 					// Get the full path and the actual image
 					NSString *path = [basepath stringByAppendingPathComponent:fileName];
 					NSLog(@"I want to upload %@", path);
 					[list addObject:path];
+						
 					//NSImage *image = [[[NSImage alloc]  initWithContentsOfFile:path] autorelease];
 					//
 					//// Convert the image to jpeg (use "NSPNGFileType" for PNG)
@@ -143,6 +148,7 @@
 					//op.path = @"/tmp/foo.jpg";
 					//op.delegate = self;
 					//[op start];
+					}
 				}
 			}
 		}

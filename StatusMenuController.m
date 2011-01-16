@@ -106,6 +106,7 @@
     return (BOOL)foundIt;
 }
 
+// Might need to use SMLoginItemSetEnabled instead
 + (void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled
 {
     //OSStatus status;
