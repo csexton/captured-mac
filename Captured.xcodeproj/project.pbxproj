@@ -400,7 +400,7 @@
 				INFOPLIST_FILE = Captured_Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_CFLAGS = (
-					"-DUSE_SAMPLE_RECEIPT",
+					"-DDONT_VALIDATE_RECEIPT",
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
 				);
 				OTHER_LDFLAGS = "-lcrypto";

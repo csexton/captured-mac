@@ -13,15 +13,17 @@
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
+#ifdef DONT_VALIDATE_RECEIPT
+#warning *** DOES NOT VALITATE RECEIPT! DO NOT RELEASE TO STORE! ***
+#else
 	// put the example receipt on the desktop (or change that path)
-	//NSString * pathToReceipt = @"~/Desktop/receipt";
+	//NSString * pathToReceipt = @"~/src/Captured/receipt";
 	NSString * pathToReceipt = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/_MASReceipt/receipt"];
-
 	if (!validateReceiptAtPath(pathToReceipt)) { 
 		exit(173); 
 	}
-	
-    NSLog(@"Hello, correctly validated World!");
+#endif	
+
 	int ret = NSApplicationMain(argc,  (const char **) argv);
     [pool drain];
     return ret;
