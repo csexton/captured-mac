@@ -23,6 +23,9 @@
 		B52AB03C12DFBC4A00609367 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AB03412DFBC4A00609367 /* ASINetworkQueue.m */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
+		B5665DCE12E54D2D0024ADEF /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B5665DCD12E54D2D0024ADEF /* validatereceipt.m */; };
+		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
+		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
 		B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F112E0ECF3007D2A2D /* DirEvent.m */; };
 		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
@@ -74,6 +77,10 @@
 		B52AB03512DFBC4A00609367 /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
+		B5665DCC12E54D2D0024ADEF /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
+		B5665DCD12E54D2D0024ADEF /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
+		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		B5A438F012E0ECF3007D2A2D /* DirEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvent.h; path = DirEvents/DirEvent.h; sourceTree = "<group>"; };
@@ -105,6 +112,8 @@
 				B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */,
 				B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */,
 				B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */,
+				B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */,
+				B5665DD212E54D520024ADEF /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +123,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B5665DCB12E54D130024ADEF /* ValidateReceipt */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
 				B5A439FF12E14C15007D2A2D /* XMLReader.h */,
 				B5A43A0012E14C15007D2A2D /* XMLReader.m */,
@@ -205,6 +215,8 @@
 				B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				B5665DCF12E54D490024ADEF /* IOKit.framework */,
+				B5665DD112E54D520024ADEF /* Security.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,6 +238,15 @@
 				B5A438F412E0ECF3007D2A2D /* DirEvents.m */,
 			);
 			name = DirEvents;
+			sourceTree = "<group>";
+		};
+		B5665DCB12E54D130024ADEF /* ValidateReceipt */ = {
+			isa = PBXGroup;
+			children = (
+				B5665DCC12E54D2D0024ADEF /* validatereceipt.h */,
+				B5665DCD12E54D2D0024ADEF /* validatereceipt.m */,
+			);
+			name = ValidateReceipt;
 			sourceTree = "<group>";
 		};
 		B5E9016312DEC36E004F71B6 /* HTTPRequest */ = {
@@ -338,6 +359,7 @@
 				B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */,
 				B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */,
 				B5A43A0112E14C15007D2A2D /* XMLReader.m in Sources */,
+				B5665DCE12E54D2D0024ADEF /* validatereceipt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +399,11 @@
 				GCC_PREFIX_HEADER = Captured_Prefix.pch;
 				INFOPLIST_FILE = Captured_Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = (
+					"-DUSE_SAMPLE_RECEIPT",
+					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
+				);
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
 				WRAPPER_EXTENSION = app;
 			};
@@ -392,6 +419,8 @@
 				GCC_PREFIX_HEADER = Captured_Prefix.pch;
 				INFOPLIST_FILE = Captured_Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
+				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
 				WRAPPER_EXTENSION = app;
 			};
