@@ -47,9 +47,7 @@
 
 - (void)uploadSuccess: (NSString *) url {
 	NSLog(@"Upload succeeded: %@", url);
-	[statusMenuController setStatusSuccess];
-	[Utilities copyToPasteboard:url];
-	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+	[statusMenuController setStatusSuccess: url];
 }
 
 - (void)uploadFailure {
@@ -72,10 +70,5 @@
 
 	uploadsEnabled = enabled;
 }
- 
-
-
-
-
 
 @end

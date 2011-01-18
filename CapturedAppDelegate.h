@@ -18,23 +18,13 @@
 	BOOL uploadsEnabled;
 }
 
-
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property BOOL uploadsEnabled;
 
-
 - (void)uploadSuccess: (NSString *) url;
 - (void)uploadFailure;
 - (void)statusProcessing;
-
 - (void)initEventsController;
-
-// May not need this since I have uploadSuccess/uploadFailure
-//+ (void)statusNormal;
-//- (void)setStatusNormal;
-
-
-
 
 @end

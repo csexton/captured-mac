@@ -36,24 +36,25 @@
 	NSData * myData = [request rawResponseData];
 	
 	if (request.responseStatusCode != 200) {
+		NSLog(@"Upload Failed");
 		NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
+		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
 		[self requestFailed:nil];
 	}
 	else{
 		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
-		
 		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
-		
 		NSString *url = [self parseResponseForURL:body];
-		
 		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:url];
-
 	}
-	
 }
 
 - (void) requestFailed: (ASIFormDataRequest *) request {
+	NSData * myData = [request rawResponseData];
+	NSLog(@"Upload Failed");
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+	NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
+	NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
 }
 
 #pragma mark NSXMLParser Delegate Methods

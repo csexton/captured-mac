@@ -84,13 +84,14 @@
 }
 
 - (void)processFile: (NSString*)file {
-	ImgurController *controller = [[ImgurController alloc] init];
+	ImgurController *controller = [[ImgurController alloc] init]; //Leak?
 	[controller processFile:file];
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{
 	
-	NSMutableArray *list = [[NSMutableArray alloc] init]; 
+//	NSMutableArray *list = [[NSMutableArray alloc] init]; 
+	NSMutableArray *list = [NSMutableArray array]; 
 
 
 	// Iterate through all files at that path

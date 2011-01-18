@@ -14,24 +14,33 @@
     IBOutlet BOOL *startAtLogin;
 	
     NSStatusItem * statusItem;
+	IBOutlet NSMenuItem *copyURLMenuItem;
+	NSString *lastUploadedURL;
+
     NSImage * statusIcon;
     NSImage * statusIconColor;
 	NSImage * statusIconSuccess;
     NSImage * statusIconDisabled;
     NSImage * statusIconError;
 
+
 }
 
 @property BOOL startAtLogin;
+@property (readwrite, retain) NSString *lastUploadedURL;
+@property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
+
+-(BOOL) isURLAvaliable;
 
 -(void) setStatusDisabled;
 -(void) setStatusProcessing;
--(void) setStatusSuccess;
+-(void) setStatusSuccess: (NSString*)url;
 -(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
 
 -(IBAction) quitItemAction:(id) sender;
+-(IBAction) copyURLItemAction:(id) sender;
 
 
 

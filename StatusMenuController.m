@@ -9,9 +9,12 @@
 
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"
-
+#import "Utilities.h"
 
 @implementation StatusMenuController
+@synthesize lastUploadedURL;
+@synthesize copyURLMenuItem;
+
 
 -(void) setStatusIcon: (NSImage*)icon {
 	// Seems that a crash occurs if you try to set the menu title from a thread other than the main thread.
@@ -37,8 +40,12 @@
 -(void) setStatusFailure {
 	[self setStatusIcon: statusIconError];
 }
--(void) setStatusSuccess {
+-(void) setStatusSuccess: (NSString*)url {
 	[self setStatusIcon: statusIconSuccess];
+	self.lastUploadedURL = [NSString stringWithString:url];;
+	[copyURLMenuItem setEnabled:YES];
+	[Utilities copyToPasteboard:url];
+	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
 
 -(void) awakeFromNib
@@ -77,6 +84,11 @@
 {
 	NSLog(@"%@", @"Exiting");
 	[[NSApplication sharedApplication] terminate:self];	
+}
+
+-(IBAction) copyURLItemAction:(id) sender
+{
+	[self setStatusSuccess:lastUploadedURL];
 }
 
 
@@ -158,6 +170,15 @@
     [self willChangeValueForKey:@"startAtLogin"];
     [StatusMenuController setStartAtLogin:[self appURL] enabled:enabled];
     [self didChangeValueForKey:@"startAtLogin"];
+}
+
+-(BOOL) isURLAvaliable
+{
+	if ([self.lastUploadedURL length] == 0) {
+		return NO;
+	} else {
+		return YES;
+	}
 }
 
 @end
