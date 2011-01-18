@@ -419,7 +419,10 @@
 				GCC_PREFIX_HEADER = Captured_Prefix.pch;
 				INFOPLIST_FILE = Captured_Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
+				OTHER_CFLAGS = (
+					"-DDONT_VALIDATE_RECEIPT",
+					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
+				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
 				WRAPPER_EXTENSION = app;
@@ -454,6 +457,37 @@
 			};
 			name = Release;
 		};
+		B5665E6212E5DDAE0024ADEF /* App Store Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Christopher Sexton";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.6;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = "App Store Release";
+		};
+		B5665E6312E5DDAE0024ADEF /* App Store Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Captured_Prefix.pch;
+				INFOPLIST_FILE = Captured_Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
+				OTHER_LDFLAGS = "-lcrypto";
+				PRODUCT_NAME = Captured;
+				WRAPPER_EXTENSION = app;
+			};
+			name = "App Store Release";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -462,18 +496,20 @@
 			buildConfigurations = (
 				26FC0A850875C7B200E6366F /* Debug */,
 				26FC0A860875C7B200E6366F /* Release */,
+				B5665E6312E5DDAE0024ADEF /* App Store Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "App Store Release";
 		};
 		26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "Captured" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				26FC0A890875C7B200E6366F /* Debug */,
 				26FC0A8A0875C7B200E6366F /* Release */,
+				B5665E6212E5DDAE0024ADEF /* App Store Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "App Store Release";
 		};
 /* End XCConfigurationList section */
 	};
