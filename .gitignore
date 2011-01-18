@@ -11,6 +11,7 @@ Makefile
 build/*
 *.pbxuser
 *.mode1v3
+*.pkg
 
 # old skool
 .svn
