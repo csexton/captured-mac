@@ -114,9 +114,16 @@ foundCharacters:(NSString *)string {
 	}
 	 */
 	
-	 
+	
+	// This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
+	// I only need the one setting so this seems stupid simple
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"imgur_page",  @"ImgurKey",	nil]];
+	NSString * imgurKey = [defaults stringForKey:@"ImgurKey"];
+
+	return [[[dictionary objectForKey:@"rsp"] valueForKey:imgurKey]  valueForKey:@"text"];
 	//return [[[dictionary objectForKey:@"rsp"] valueForKey:@"imgur_page"]  valueForKey:@"text"];
-	return [[[dictionary objectForKey:@"rsp"] valueForKey:@"original_image"]  valueForKey:@"text"];
+	//return [[[dictionary objectForKey:@"rsp"] valueForKey:@"original_image"]  valueForKey:@"text"];
 }
 
 @end

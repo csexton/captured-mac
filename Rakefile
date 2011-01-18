@@ -1,4 +1,4 @@
-
+require 'fileutils'
 
 desc "Build the test installer package"
 task :package do 
@@ -11,20 +11,12 @@ task :install_package do
   system %{sudo installer -store -pkg ./captured.pkg -target /}
 end
 
-desc "Upload the Debug"
-task :scp_debug do
-  system %{scp build/Debug/Captured.zip captured.codeography.com:captured.codeography.com/captured-debug.zip}
-  system %{echo "http://captured.codeography.com/captured-debug.zip" | pbcopy}
-end
-
-desc "Upload the Release"
-task :scp_release do
-  # XXX This needs to cd to the right dir so we dont' make nested folders in
-  # the zip
-  #
-  # cd build/Release
-  system %{zip -r build/Release/Captured.zip build/Release/Captured.app}
-  # cd ../..
+desc "Upload the Release to codeography.com"
+task :upload do
+  puts org_dir = FileUtils.pwd
+  FileUtils.cd "build/Release"
+  system %{zip -r Captured.zip Captured.app}
+  FileUtils.cd org_dir
   system %{scp build/Release/Captured.zip captured.codeography.com:captured.codeography.com/captured.zip}
   system %{echo "http://captured.codeography.com/captured.zip" | pbcopy}
 end

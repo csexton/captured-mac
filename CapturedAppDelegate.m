@@ -7,7 +7,6 @@
 
 @synthesize window;
 @synthesize statusMenuController;
-//@synthesize uploadsEnabled;
 
 -(id)init {
     if ( self = [super init] ) {
@@ -17,7 +16,6 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-	
 	// Insert code here to initialize your application 
 	[self initEventsController];
 	
