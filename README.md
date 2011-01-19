@@ -10,4 +10,4 @@ Notes
 
 Get the original image instead of the Imgur page:
 
-    defaults write com.codeography.captured-mac ImgurKey original_image
+    defaults write com.codeography.captured-mac ImgurKey original

@@ -17,10 +17,12 @@
                                                         object:self];
 	imageSelectionData = data;
 	
-    NSURL *imgurURL = [NSURL URLWithString:@"http://imgur.com/api/upload"];
+    NSURL *imgurURL = [NSURL URLWithString:@"http://api.imgur.com/2/upload.xml"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:imgurURL];
     [request setDelegate:self];
     [request setPostValue:[NSString stringWithString:API_KEY] forKey:@"key"];
+    [request setPostValue:[NSString stringWithString:@"Uploaded by Captured for Mac"] forKey:@"caption"];
+    [request setPostValue:[NSString stringWithString:@"Screen Capture"] forKey:@"title"];
     [request setData:imageSelectionData  forKey:@"image"]; 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploadStarting"
                                                         object:self];
@@ -79,51 +81,82 @@ foundCharacters:(NSString *)string {
 }
 
 - (NSString *) parseResponseForURL: (NSString*)str {
-	//str = @"<rfsp stat=\"ok\"><image_hash>h179y</image_hash><delete_hash>x5GiPOfeD2Vi3t5</delete_hash><original_image>http://i.imgur.com/h179y.png</original_image><large_thumbnail>http://i.imgur.com/h179yl.jpg</large_thumbnail><small_thumbnail>http://i.imgur.com/h179ys.jpg</small_thumbnail><imgur_page>http://imgur.com/h179y</imgur_page><delete_page>http://imgur.com/delete/x5GiPOfeD2Vi3t5</delete_page></rsp>";
-	
+	/*
+	 Imgur API V2:
+		<?xml version="1.0"?>
+		<upload>
+		  <image>
+			<name/>
+			<title/>
+			<caption/>
+			<hash>Vyutl</hash>
+			<deletehash>r9XaxqTVloHazYz</deletehash>
+			<datetime>2011-01-19 19:08:12</datetime>
+			<type>image/png</type>
+			<animated>false</animated>
+			<width>170</width>
+			<height>143</height>
+			<size>10209</size>
+			<views>0</views>
+			<bandwidth>0</bandwidth>
+		  </image>
+		  <links>
+			<original>http://imgur.com/Vyutl.png</original>
+			<imgur_page>http://imgur.com/Vyutl</imgur_page>
+			<delete_page>http://imgur.com/delete/8COe0BicrWO80nk</delete_page>
+			<small_square>http://imgur.com/Vyutls.jpg</small_square>
+			<large_thumbnail>http://imgur.com/Vyutll.jpg</large_thumbnail>
+		  </links>
+		</upload>
+	 */
+
 	NSError *error = nil;
 	NSDictionary* dictionary = [XMLReader dictionaryForXMLString:str error:&error];
 	
 	// This looks something like this:
 	/*
-	 {
-		rsp =     {
-			"delete_hash" =         {
-				text = x5GiPOfeD2Vi3t5;
+		{
+		  upload = {
+			image = {
+			  animated = { text = false; };
+			  bandwidth = { text = 0; };
+			  caption = { };
+			  datetime = { text = "2011-01-19 19:13:07"; };
+			  deletehash = { text = ; };
+			  hash = { text = 4DOIa; };
+			  height = { text = 48; };
+			  name = { };
+			  size = { text = 17042; };
+			  title = { };
+			  type = { text = "image/png"; };
+			  views = { text = 0; };
+			  width = { text = 423; };
 			};
-			"delete_page" =         {
-				text = "http://imgur.com/delete/x5GiPOfeD2Vi3t5";
+			links = {
+			  "delete_page" = { text = "http://imgur.com/delete/IwUTdDHnzRtht4u"; };
+			  "imgur_page" = { text = "http://imgur.com/4DOIa"; };
+			  "large_thumbnail" = { text = "http://imgur.com/4DOIal.jpg"; };
+			  original = { text = "http://imgur.com/4DOIa.png"; };
+			  "small_square" = { text = "http://imgur.com/4DOIas.jpg"; };
 			};
-			"image_hash" =         {
-				text = h179y;
-			};
-			"imgur_page" =         {
-				text = "http://imgur.com/h179y";
-			};
-			"large_thumbnail" =         {
-				text = "http://i.imgur.com/h179yl.jpg";
-			};
-			"original_image" =         {
-				text = "http://i.imgur.com/h179y.png";
-			};
-			"small_thumbnail" =         {
-				text = "http://i.imgur.com/h179ys.jpg";
-			};
-			stat = ok;
-		};
-	}
+		  };
+		}
+
 	 */
 	
-	
+
 	// This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
 	// I only need the one setting so this seems stupid simple
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"imgur_page",  @"ImgurKey",	nil]];
 	NSString * imgurKey = [defaults stringForKey:@"ImgurKey"];
 
-	return [[[dictionary objectForKey:@"rsp"] valueForKey:imgurKey]  valueForKey:@"text"];
-	//return [[[dictionary objectForKey:@"rsp"] valueForKey:@"imgur_page"]  valueForKey:@"text"];
-	//return [[[dictionary objectForKey:@"rsp"] valueForKey:@"original_image"]  valueForKey:@"text"];
+	NSDictionary *upload = [dictionary objectForKey:@"upload"];
+	//NSDictionary *image = [upload valueForKey:@"image"];
+	NSDictionary *links = [upload valueForKey:@"links"];
+	
+	return [[links valueForKey:imgurKey]  valueForKey:@"text"];
+
 }
 
 @end
