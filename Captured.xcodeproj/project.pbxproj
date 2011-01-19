@@ -36,7 +36,7 @@
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
-		B5E9018312DEC3B6004F71B6 /* ImgurController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9018212DEC3B6004F71B6 /* ImgurController.m */; };
+		B5E9018312DEC3B6004F71B6 /* Imgur.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9018212DEC3B6004F71B6 /* Imgur.m */; };
 		B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9024C12DEC480004F71B6 /* StatusMenuController.m */; };
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
 /* End PBXBuildFile section */
@@ -96,8 +96,8 @@
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B5E9018112DEC3B6004F71B6 /* ImgurController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurController.h; sourceTree = "<group>"; };
-		B5E9018212DEC3B6004F71B6 /* ImgurController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurController.m; sourceTree = "<group>"; };
+		B5E9018112DEC3B6004F71B6 /* Imgur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imgur.h; sourceTree = "<group>"; };
+		B5E9018212DEC3B6004F71B6 /* Imgur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Imgur.m; sourceTree = "<group>"; };
 		B5E9024B12DEC480004F71B6 /* StatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMenuController.h; sourceTree = "<group>"; };
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
@@ -130,8 +130,8 @@
 				B52AAEB312DFADEB00609367 /* EventsController.h */,
 				B52AAEB412DFADEB00609367 /* EventsController.m */,
 				B52AAEAA12DFAC7D00609367 /* DirEvents */,
-				B5E9018112DEC3B6004F71B6 /* ImgurController.h */,
-				B5E9018212DEC3B6004F71B6 /* ImgurController.m */,
+				B5E9018112DEC3B6004F71B6 /* Imgur.h */,
+				B5E9018212DEC3B6004F71B6 /* Imgur.m */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
 				77C8280C06725ACE000B614F /* CapturedAppDelegate.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
@@ -345,7 +345,7 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				77C8280E06725ACE000B614F /* CapturedAppDelegate.m in Sources */,
-				B5E9018312DEC3B6004F71B6 /* ImgurController.m in Sources */,
+				B5E9018312DEC3B6004F71B6 /* Imgur.m in Sources */,
 				B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */,
 				B52AAEB512DFADEB00609367 /* EventsController.m in Sources */,
 				B52AB03612DFBC4A00609367 /* ASIDataCompressor.m in Sources */,

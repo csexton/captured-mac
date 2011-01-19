@@ -33,7 +33,7 @@
 #import "DirEvents.h"
 #import "DirEvent.h"
 #import "CapturedAppDelegate.h"
-#import "ImgurController.h"
+#import "Imgur.h"
 
 @implementation EventsController
 
@@ -84,7 +84,7 @@
 }
 
 - (void)processFile: (NSString*)file {
-	ImgurController *controller = [[ImgurController alloc] init]; //Leak?
+	Imgur *controller = [[Imgur alloc] init]; //Leak?
 	[controller processFile:file];
 }
 

@@ -11,7 +11,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface ImgurController : NSObject {
+@interface Imgur : NSObject {
 	NSData *imageSelection;
     NSData *imageSelectionData;
 	NSData *xmlResponseData;
