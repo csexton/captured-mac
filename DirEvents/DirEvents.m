@@ -187,7 +187,10 @@ static DirEvents *_sharedPathWatcher = nil;
 {
 	if (!isWatchingPaths) return @"The event stream is not running. Start it by calling: startWatchingPaths:";
 	
-	return (NSString *)FSEventStreamCopyDescription(eventStream);
+	NSString *desc = (NSString *)FSEventStreamCopyDescription(eventStream);
+	NSString *ret = [NSString stringWithString:desc];
+	[desc release]; // Added because Instruments compalined about leak. Otherwise I would just return desc
+	return ret;
 }
 
 /**
