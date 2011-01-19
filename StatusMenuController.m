@@ -5,7 +5,7 @@
 //  Created by Christopher Sexton on 1/13/11.
 //  Copyright 2011 Codeography. All rights reserved.
 //
-#import "ImgurController.h"
+#import "Imgur.h"
 
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"

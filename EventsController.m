@@ -40,6 +40,7 @@
 @synthesize screenCapturePrefix;
 @synthesize screenCaptureDir;
 @synthesize history;
+@synthesize imgur;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -50,11 +51,12 @@
 {
 	// Load this into a member var so we don't have to read the plist every time the 
 	// event gets fired	
-	screenCapturePrefix = [Utilities screenCapturePrefix];
-	screenCaptureDir = [Utilities screenCaptureDir];
-	history = [[NSMutableSet alloc] init]; 
+	self.screenCapturePrefix = [Utilities screenCapturePrefix];
+	self.screenCaptureDir = [Utilities screenCaptureDir];
+	self.history = [[NSMutableSet alloc] init]; 
+	self.imgur = [[Imgur alloc] init]; //Leak?
 
-	
+
     DirEvents *events = [DirEvents sharedPathWatcher];
     
     [events setDelegate:self];
@@ -84,8 +86,7 @@
 }
 
 - (void)processFile: (NSString*)file {
-	Imgur *controller = [[Imgur alloc] init]; //Leak?
-	[controller processFile:file];
+	[imgur processFile:file];
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{

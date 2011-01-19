@@ -30,16 +30,20 @@
 
 #import <Foundation/Foundation.h>
 #import "DirEventListenerProtocol.h"
+#import "Imgur.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
+	Imgur *imgur;
+
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
+@property (readwrite, retain) Imgur *imgur;
 
 
 - (void)setupEventListener;
