@@ -278,7 +278,8 @@ static void _DirEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCall
 		// If present remove the path's trailing slash
 		if ([eventPath hasSuffix:@"/"]) {
 			eventPath = [eventPath substringToIndex:([eventPath length] - 1)];
-		}
+		} 
+
 		
 		if (![[pathWatcher watchedPaths] containsObject:eventPath]) {
 			shouldIgnore = YES;
@@ -319,7 +320,6 @@ static void _DirEventsCallBack(ConstFSEventStreamRef streamRef, void *clientCall
                 [pathWatcher setLastEvent:event];
             }
         }
-		[eventPath release];
     }
 }
 
