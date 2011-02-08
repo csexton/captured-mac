@@ -69,4 +69,19 @@
 	uploadsEnabled = enabled;
 }
 
+-(IBAction) takeScreenCaptureAction:(id) sender
+{
+	NSLog(@"%@", @"Start Capture Screen");
+	
+	// Get temp directory
+	NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	NSString* cacheDir = [paths objectAtIndex:0];
+	// Get the screen capture
+	//int returnCode = system("/usr/sbin/screencapture");
+	
+	// Upload the screen capture
+	//[eventsController processFile: @"/tmp/com.codeography.captured.png"];
+
+}
+
 @end

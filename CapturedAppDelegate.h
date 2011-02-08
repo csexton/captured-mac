@@ -26,5 +26,7 @@
 - (void)uploadFailure;
 - (void)statusProcessing;
 - (void)initEventsController;
+- (IBAction)takeScreenCaptureAction:(id) sender;
+
 
 @end
