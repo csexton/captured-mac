@@ -51,4 +51,36 @@
     [pb setString: str forType:NSStringPboardType];
 }
 
++(NSString*)invokeScreenCapture:(NSString*)option
+{
+	NSLog(@"%@", @"Start Capture Screen");
+	
+	// Get temp directory
+	//NSArray* paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+	//NSString* cacheDir = [paths objectAtIndex:0];
+	
+	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
+	NSDate *now = [[NSDate alloc] init];
+	NSString *timestamp = [dateFormat stringFromDate:now];
+	
+	NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
+	
+	NSLog(@"Saving to temp path: %@", path);
+	NSTask *task;
+	task = [[NSTask alloc] init];
+	[task setLaunchPath: @"/usr/sbin/screencapture"];
+	
+	NSArray *arguments;
+	arguments = [NSArray arrayWithObjects:option, path, nil];
+	[task setArguments: arguments];
+	
+	[task launch];
+	[task waitUntilExit];
+	
+	[task release];
+	
+	return path;
+}
+
 @end

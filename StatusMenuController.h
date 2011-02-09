@@ -41,6 +41,7 @@
 
 -(IBAction) quitItemAction:(id) sender;
 -(IBAction) copyURLItemAction:(id) sender;
+-(IBAction) openURLInBrowserAction:(id) sender;
 
 
 

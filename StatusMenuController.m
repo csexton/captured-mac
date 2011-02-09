@@ -91,6 +91,11 @@
 	[self setStatusSuccess:lastUploadedURL];
 }
 
+-(IBAction) openURLInBrowserAction:(id) sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedURL]];
+}
+
 
 + (BOOL) willStartAtLogin:(NSURL *)itemURL
 {

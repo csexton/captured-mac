@@ -322,6 +322,15 @@
 						<reference key="NSOnImage" ref="893455832"/>
 						<reference key="NSMixedImage" ref="424226900"/>
 					</object>
+					<object class="NSMenuItem" id="923559104">
+						<reference key="NSMenu" ref="424847978"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<string key="NSTitle">Open URL in Browser...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="893455832"/>
+						<reference key="NSMixedImage" ref="424226900"/>
+					</object>
 					<object class="NSMenuItem" id="850422188">
 						<reference key="NSMenu" ref="424847978"/>
 						<bool key="NSIsDisabled">YES</bool>
@@ -334,7 +343,7 @@
 					</object>
 					<object class="NSMenuItem" id="61477332">
 						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Select Area to Capture</string>
+						<string key="NSTitle">Select Area to Capture...</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="893455832"/>
@@ -342,7 +351,17 @@
 					</object>
 					<object class="NSMenuItem" id="796794054">
 						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Select Window to Capture</string>
+						<string key="NSTitle">Select Window to Capture...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="893455832"/>
+						<reference key="NSMixedImage" ref="424226900"/>
+					</object>
+					<object class="NSMenuItem" id="790270708">
+						<reference key="NSMenu" ref="424847978"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<string key="NSTitle"/>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="893455832"/>
@@ -619,6 +638,38 @@
 					</object>
 					<int key="connectionID">573</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">takeScreenCaptureWindowAction:</string>
+						<reference key="source" ref="612578685"/>
+						<reference key="destination" ref="796794054"/>
+					</object>
+					<int key="connectionID">575</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openURLInBrowserAction:</string>
+						<reference key="source" ref="56102586"/>
+						<reference key="destination" ref="923559104"/>
+					</object>
+					<int key="connectionID">578</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: isURLAvaliable</string>
+						<reference key="source" ref="923559104"/>
+						<reference key="destination" ref="56102586"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="923559104"/>
+							<reference key="NSDestination" ref="56102586"/>
+							<string key="NSLabel">enabled: isURLAvaliable</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">isURLAvaliable</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">594</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -864,6 +915,8 @@
 							<reference ref="850422188"/>
 							<reference ref="61477332"/>
 							<reference ref="796794054"/>
+							<reference ref="790270708"/>
+							<reference ref="923559104"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -925,6 +978,16 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">574</int>
 						<reference key="object" ref="796794054"/>
+						<reference key="parent" ref="424847978"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">576</int>
+						<reference key="object" ref="790270708"/>
+						<reference key="parent" ref="424847978"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">577</int>
+						<reference key="object" ref="923559104"/>
 						<reference key="parent" ref="424847978"/>
 					</object>
 				</object>
@@ -1007,6 +1070,8 @@
 					<string>57.ImportedFromIB2</string>
 					<string>572.IBPluginDependency</string>
 					<string>574.IBPluginDependency</string>
+					<string>576.IBPluginDependency</string>
+					<string>577.IBPluginDependency</string>
 					<string>58.IBPluginDependency</string>
 					<string>58.ImportedFromIB2</string>
 				</object>
@@ -1068,7 +1133,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{852, 912}, {226, 183}}</string>
+					<string>{{852, 882}, {239, 213}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1084,6 +1149,8 @@
 					<string>{{345, 912}, {198, 183}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1106,7 +1173,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">574</int>
+			<int key="maxID">597</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1115,14 +1182,35 @@
 					<string key="className">CapturedAppDelegate</string>
 					<string key="superclassName">NSObject</string>
 					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">takeScreenCaptureAction:</string>
-						<string key="NS.object.0">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>takeScreenCaptureAction:</string>
+							<string>takeScreenCaptureWindowAction:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+						</object>
 					</object>
 					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">takeScreenCaptureAction:</string>
-						<object class="IBActionInfo" key="NS.object.0">
-							<string key="name">takeScreenCaptureAction:</string>
-							<string key="candidateClassName">id</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>takeScreenCaptureAction:</string>
+							<string>takeScreenCaptureWindowAction:</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">takeScreenCaptureAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">takeScreenCaptureWindowAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="outlets">
@@ -1178,10 +1266,12 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLItemAction:</string>
+							<string>openURLInBrowserAction:</string>
 							<string>quitItemAction:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -1191,12 +1281,17 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLItemAction:</string>
+							<string>openURLInBrowserAction:</string>
 							<string>quitItemAction:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">copyURLItemAction:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">openURLInBrowserAction:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

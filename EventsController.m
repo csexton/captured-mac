@@ -86,7 +86,9 @@
 }
 
 - (void)processFile: (NSString*)file {
-	[imgur processFile:file];
+	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
+	  [imgur processFile:file];
+	}
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{
