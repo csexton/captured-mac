@@ -32,15 +32,32 @@
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
 
-    welcomeWindowController = [[WelcomeWindowController alloc] init];
 
+    if ([self isFirstRun])
+    {
+        [self showWelcomeWindow];
+    }
+    
+}
+
+- (BOOL)isFirstRun {
+    
+    // This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
+	// I only need the one setting so this seems stupid simple
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"YES",  @"FirstRun",	nil]];
+    
+    [defaults setValue:@"NO" forKey:@"firstRun"]; // Go ahead and set this for next time
+	
+    return [defaults boolForKey:@"FirstRun"];
+    
+}
+
+- (void)showWelcomeWindow {
+    welcomeWindowController = [[WelcomeWindowController alloc] init];
     if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-       // [welcomeWindowController makeKeyAndOrderFront: self];
-        NSLog(@"Loading Nib for Welcome!");
     }
-
-    
 }
 
 - (void)initEventsController {

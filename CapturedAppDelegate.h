@@ -34,6 +34,8 @@
 - (void)initEventsController;
 - (IBAction)takeScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;
+- (BOOL)isFirstRun;
+- (void)showWelcomeWindow;
 
 
 @end
