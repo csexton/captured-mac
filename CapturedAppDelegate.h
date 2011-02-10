@@ -13,15 +13,18 @@
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
+    IBOutlet BOOL *startAtLogin;
 	EventsController *eventsController;
 	StatusMenuController *statusMenuController;
     WelcomeWindowController *welcomeWindowController;
 	BOOL uploadsEnabled;
 }
 
+@property BOOL startAtLogin;
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
+
 
 @property BOOL uploadsEnabled;
 

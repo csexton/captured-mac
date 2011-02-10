@@ -574,22 +574,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: startAtLogin</string>
-						<reference key="source" ref="916200837"/>
-						<reference key="destination" ref="56102586"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="916200837"/>
-							<reference key="NSDestination" ref="56102586"/>
-							<string key="NSLabel">value: startAtLogin</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">startAtLogin</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">554</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: uploadsEnabled</string>
 						<reference key="source" ref="454266034"/>
 						<reference key="destination" ref="612578685"/>
@@ -675,6 +659,22 @@
 						</object>
 					</object>
 					<int key="connectionID">594</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: startAtLogin</string>
+						<reference key="source" ref="916200837"/>
+						<reference key="destination" ref="612578685"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="916200837"/>
+							<reference key="NSDestination" ref="612578685"/>
+							<string key="NSLabel">value: startAtLogin</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">startAtLogin</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">601</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1180,7 +1180,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">599</int>
+			<int key="maxID">601</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

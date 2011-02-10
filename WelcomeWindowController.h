@@ -11,11 +11,16 @@
 
 @interface WelcomeWindowController : NSObject <NSWindowDelegate>{
     NSWindow *window;
+    NSButton *startCheckBox;
+
 @private
     
 }
 
+@property BOOL startAtLogin;
 @property (assign) IBOutlet NSWindow *window;
+@property (assign) IBOutlet NSButton *startCheckBox;
+
 
 
 @end

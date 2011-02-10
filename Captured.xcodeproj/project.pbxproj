@@ -37,6 +37,7 @@
 		B5C564581304310E00E396E6 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C564571304310E00E396E6 /* WelcomeWindow.xib */; };
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
 		B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */; };
+		B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C56460130470F500E396E6 /* NSButton+TextColor.m */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
@@ -103,6 +104,8 @@
 		B5C5645A1304317100E396E6 /* WelcomeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeWindowController.h; sourceTree = "<group>"; };
 		B5C5645B1304317100E396E6 /* WelcomeWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeWindowController.m; sourceTree = "<group>"; };
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
+		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
+		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -151,6 +154,8 @@
 				B5A437C812E0C820007D2A2D /* Utilities.m */,
 				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
 				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
+				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
+				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				B50909D912E7915B00A32F5E /* validatereceipt.m in Sources */,
 				B5C5645613042BBE00E396E6 /* ViewBackground.m in Sources */,
 				B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */,
+				B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,7 +36,7 @@
 
     if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-        [welcomeWindowController makeKeyAndOrderFront: self];
+       // [welcomeWindowController makeKeyAndOrderFront: self];
         NSLog(@"Loading Nib for Welcome!");
     }
 
@@ -50,7 +50,8 @@
 }
 
 - (void)dealloc {
-	[eventsController release], eventsController = nil;   
+	[eventsController release];
+    eventsController = (EventsController*)nil;   
     [super dealloc];
 }
 
@@ -94,5 +95,17 @@
 {	
 	NSString *path = [Utilities invokeScreenCapture: @"-w"];
 	[eventsController processFile: path];
+}
+
+- (BOOL)startAtLogin
+{
+    return [Utilities willStartAtLogin:[Utilities appURL]];
+}
+
+- (void)setStartAtLogin:(BOOL)enabled
+{
+    [statusMenuController willChangeValueForKey:@"startAtLogin"];
+    [Utilities setStartAtLogin:[Utilities appURL] enabled:enabled];
+    [statusMenuController didChangeValueForKey:@"startAtLogin"];
 }
 @end
