@@ -7,6 +7,8 @@
 
 @synthesize window;
 @synthesize statusMenuController;
+@synthesize welcomeWindowController;
+
 
 -(id)init {
     self = [super init];
@@ -28,7 +30,17 @@
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 	}
     
-    [window makeKeyAndOrderFront:nil];
+//    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
+
+    welcomeWindowController = [[WelcomeWindowController alloc] init];
+
+    if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
+        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+        [welcomeWindowController makeKeyAndOrderFront: self];
+        NSLog(@"Loading Nib for Welcome!");
+    }
+
+    
 }
 
 - (void)initEventsController {

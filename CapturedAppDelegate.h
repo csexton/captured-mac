@@ -9,17 +9,20 @@
 #import <Cocoa/Cocoa.h>
 #import "EventsController.h"
 #import "StatusMenuController.h"
-
+#import "WelcomeWindowController.h"
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     NSWindow *window;
 	EventsController *eventsController;
 	StatusMenuController *statusMenuController;
+    WelcomeWindowController *welcomeWindowController;
 	BOOL uploadsEnabled;
 }
 
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
+@property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
+
 @property BOOL uploadsEnabled;
 
 - (void)uploadSuccess: (NSString *) url;
