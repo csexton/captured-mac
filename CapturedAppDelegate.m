@@ -9,7 +9,8 @@
 @synthesize statusMenuController;
 
 -(id)init {
-    if ( self = [super init] ) {
+    self = [super init];
+    if ( self ) {
 		uploadsEnabled = YES;
     }
     return self;
@@ -26,6 +27,8 @@
 		ProcessSerialNumber psn = { 0, kCurrentProcess };
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 	}
+    
+    [window makeKeyAndOrderFront:nil];
 }
 
 - (void)initEventsController {

@@ -21,4 +21,5 @@ build/*
 profile
 shared/version.h
 *.xcodeproj/*.perspectivev3
-
+*.xcodeproj/xcuserdata
+*.xcodeproj/project.xcworkspace
