@@ -32,7 +32,6 @@
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
 
-
     if ([self isFirstRun])
     {
         [self showWelcomeWindow];
@@ -47,14 +46,18 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"YES",  @"FirstRun",	nil]];
     
-    [defaults setValue:@"NO" forKey:@"firstRun"]; // Go ahead and set this for next time
+    BOOL ret = [defaults boolForKey:@"FirstRun"];
+
+    [defaults setValue:@"NO" forKey:@"FirstRun"]; // Go ahead and set this for next time
 	
-    return [defaults boolForKey:@"FirstRun"];
+    return ret;
     
 }
 
 - (void)showWelcomeWindow {
     welcomeWindowController = [[WelcomeWindowController alloc] init];
+    NSRect loc = [statusMenuController statusItemFrame];
+    [welcomeWindowController setLocationNear: loc];
     if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
     }

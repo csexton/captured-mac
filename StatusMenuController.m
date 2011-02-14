@@ -77,8 +77,13 @@
 	//[statusItem setTitle:@"Status"];
 	[statusItem setImage:statusIcon];
 	[statusItem setHighlightMode:YES];
-
 }
+
+- (NSRect)statusItemFrame 
+{
+    return [[[statusItem view] window] frame];
+}
+
 
 -(IBAction) quitItemAction:(id) sender
 {

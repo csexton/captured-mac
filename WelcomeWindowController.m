@@ -63,6 +63,11 @@
     [self didChangeValueForKey:@"startAtLogin"];
 }
 
+-(void) setLocationNear: (NSRect)loc;
+{
+#warning Set the locaiton to be near the status item
+}
+
 
 
 

@@ -38,6 +38,7 @@
 -(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
+-(NSRect) statusItemFrame;
 
 -(IBAction) quitItemAction:(id) sender;
 -(IBAction) copyURLItemAction:(id) sender;

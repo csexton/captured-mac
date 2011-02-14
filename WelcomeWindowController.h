@@ -21,6 +21,8 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet NSButton *startCheckBox;
 
+-(void) setLocationNear: (NSRect)loc;
+
 
 
 @end
