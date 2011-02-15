@@ -47,7 +47,7 @@
 				<int key="NSWindowStyleMask">257</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{737, 510}, {480, 270}}</string>
-				<int key="NSWTFlags">544739328</int>
+				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle"/>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
@@ -115,7 +115,7 @@
 						<object class="NSTextField" id="109823070">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">264</int>
-							<string key="NSFrame">{{37, 233}, {406, 44}}</string>
+							<string key="NSFrame">{{70, 226}, {341, 44}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="882558139"/>
@@ -126,7 +126,7 @@
 								<string key="NSContents">Welcome to Captured</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande-Bold</string>
-									<double key="NSSize">36</double>
+									<double key="NSSize">30</double>
 									<int key="NSfFlags">16</int>
 								</object>
 								<reference key="NSControlView" ref="109823070"/>
@@ -352,11 +352,11 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="866674158"/>
 							<reference ref="791387987"/>
-							<reference ref="109823070"/>
 							<reference ref="882558139"/>
 							<reference ref="862982118"/>
 							<reference ref="359732195"/>
 							<reference ref="236015655"/>
+							<reference ref="109823070"/>
 						</object>
 						<reference key="parent" ref="1005"/>
 					</object>
