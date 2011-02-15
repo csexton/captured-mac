@@ -56,8 +56,6 @@
 
 - (void)showWelcomeWindow {
     welcomeWindowController = [[WelcomeWindowController alloc] init];
-    NSRect loc = [statusMenuController statusItemFrame];
-    [welcomeWindowController setLocationNear: loc];
     if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
     }
