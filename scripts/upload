@@ -1,0 +1,9 @@
+#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby
+
+require 'fileutils'
+puts org_dir = FileUtils.pwd
+FileUtils.cd "build/Release"
+system %{zip -r Captured.zip Captured.app}
+FileUtils.cd org_dir
+system %{scp build/Release/Captured.zip captured.codeography.com:captured.codeography.com/captured.zip}
+system %{echo "http://captured.codeography.com/captured.zip" | pbcopy}
