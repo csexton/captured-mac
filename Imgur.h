@@ -6,9 +6,10 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
-#import "ASIFormDataRequest.h"
-
 #import <Cocoa/Cocoa.h>
+
+#import "ASIFormDataRequest.h"
+#import "ImgurURL.h"
 
 
 @interface Imgur : NSObject {
@@ -28,6 +29,6 @@
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 
 - (void) processFile:(NSString*)filename;
-- (NSString *) parseResponseForURL:(NSString*)str;
+- (ImgurURL *) parseResponseForURL:(NSString*)str;
 
 @end

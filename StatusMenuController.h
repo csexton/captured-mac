@@ -15,7 +15,7 @@
 	
     NSStatusItem * statusItem;
 	IBOutlet NSMenuItem *copyURLMenuItem;
-	NSString *lastUploadedURL;
+	ImgurURL *lastUploadedURL;
 
     NSImage * statusIcon;
     NSImage * statusIconColor;
@@ -27,14 +27,14 @@
 }
 
 @property BOOL startAtLogin;
-@property (readwrite, retain) NSString *lastUploadedURL;
+@property (readwrite, retain) ImgurURL *lastUploadedURL;
 @property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
 
 -(BOOL) isURLAvaliable;
 
 -(void) setStatusDisabled;
 -(void) setStatusProcessing;
--(void) setStatusSuccess: (NSString*)url;
+-(void) setStatusSuccess: (ImgurURL*)url;
 -(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;

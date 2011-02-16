@@ -77,8 +77,8 @@
 	[statusMenuController setStatusProcessing];
 }
 
-- (void)uploadSuccess: (NSString *) url {
-	NSLog(@"Upload succeeded: %@", url);
+- (void)uploadSuccess: (ImgurURL *) url {
+	NSLog(@"Upload succeeded: %@", url.imageURL);
 	[statusMenuController setStatusSuccess: url];
 }
 

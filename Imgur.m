@@ -3,6 +3,8 @@
 #import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
+#import "ImgurURL.h"
+
 
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
@@ -45,7 +47,7 @@
 	else{
 		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
 		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
-		NSString *url = [self parseResponseForURL:body];
+		ImgurURL *url = [self parseResponseForURL:body];
 		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:url];
 	}
 }
@@ -79,7 +81,7 @@ foundCharacters:(NSString *)string {
 	[self uploadImage:data];
 }
 
-- (NSString *) parseResponseForURL: (NSString*)str {
+- (ImgurURL *) parseResponseForURL: (NSString*)str {
 	/*
 	 Imgur API V2:
 		<?xml version="1.0"?>
@@ -153,8 +155,12 @@ foundCharacters:(NSString *)string {
 	NSDictionary *upload = [dictionary objectForKey:@"upload"];
 	//NSDictionary *image = [upload valueForKey:@"image"];
 	NSDictionary *links = [upload valueForKey:@"links"];
+    
+    ImgurURL *imgFile = [[ImgurURL alloc] init];
+    imgFile.imageURL = [[links valueForKey:imgurKey]  valueForKey:@"text"];
+    imgFile.imageDeleteURL = [[links valueForKey:@"delete_page"] valueForKey:@"text"];
 	
-	return [[links valueForKey:imgurKey]  valueForKey:@"text"];
+	return imgFile;
 
 }
 

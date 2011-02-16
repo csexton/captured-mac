@@ -40,11 +40,11 @@
 -(void) setStatusFailure {
 	[self setStatusIcon: statusIconError];
 }
--(void) setStatusSuccess: (NSString*)url {
+-(void) setStatusSuccess: (ImgurURL*)url {
 	[self setStatusIcon: statusIconSuccess];
-	self.lastUploadedURL = [NSString stringWithString:url];;
+	self.lastUploadedURL = url; // XXX: do I need to make a copy here?
 	[copyURLMenuItem setEnabled:YES];
-	[Utilities copyToPasteboard:url];
+	[Utilities copyToPasteboard:url.imageURL];
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
 
@@ -93,7 +93,7 @@
 
 -(IBAction) openURLInBrowserAction:(id) sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedURL]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedURL.imageURL]];
 }
 
 
@@ -111,11 +111,14 @@
 
 -(BOOL) isURLAvaliable
 {
-	if ([self.lastUploadedURL length] == 0) {
-		return NO;
-	} else {
-		return YES;
-	}
+    if (self.lastUploadedURL) {
+        if ([self.lastUploadedURL.imageURL length] != 0) {
+            
+            return YES;
+        }
+    }
+    return NO;
+
 }
 
 @end
