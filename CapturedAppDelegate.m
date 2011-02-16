@@ -2,8 +2,11 @@
 #import "Utilities.h"
 #import "DirEvents.h"
 #import "EventsController.h"
+#import "DDHotKeyCenter.h"
+
 
 @implementation CapturedAppDelegate
+
 
 @synthesize window;
 @synthesize statusMenuController;
@@ -29,6 +32,9 @@
 		ProcessSerialNumber psn = { 0, kCurrentProcess };
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 	}
+    
+    [self registerGlobalHotKey];
+
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
 
@@ -125,5 +131,27 @@
     [statusMenuController willChangeValueForKey:@"startAtLogin"];
     [Utilities setStartAtLogin:[Utilities appURL] enabled:enabled];
     [statusMenuController didChangeValueForKey:@"startAtLogin"];
+}
+
+- (void) hotkeyWithEvent:(NSEvent *)hkEvent {
+    //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+	//NSLog(@"Hotkey event: %@", hkEvent);
+    [self takeScreenCaptureAction:nil];
+}
+
+- (void) registerGlobalHotKey
+{
+    DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
+    // 
+    // The keycode was found in 
+    // /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
+    // 
+    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_5*/0x17 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil]) {
+        NSLog(@"Unable to register global keyboard shortcut");
+    } else {
+        NSLog(@"Registered global keyboard shortcut for Shift-Command-5");
+        //NSLog(@"Registered: %@", [c registeredHotKeys]);
+    }
+    [c release];
 }
 @end

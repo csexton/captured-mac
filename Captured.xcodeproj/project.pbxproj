@@ -23,6 +23,8 @@
 		B50909D912E7915B00A32F5E /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D812E7915B00A32F5E /* validatereceipt.m */; };
 		B51A1FCD12E393EB006C7840 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = B51A1FCC12E393EB006C7840 /* Credits.html */; };
 		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
+		B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */; };
+		B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52ADBA6130C2DA700C7A531 /* Carbon.framework */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
 		B5447752130B719700EA5653 /* ImgurURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B5447751130B719700EA5653 /* ImgurURL.m */; };
@@ -85,6 +87,9 @@
 		B51A1FCC12E393EB006C7840 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		B52AAEB312DFADEB00609367 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
 		B52AAEB412DFADEB00609367 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
+		B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
+		B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDHotKeyCenter.m; sourceTree = "<group>"; };
+		B52ADBA6130C2DA700C7A531 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5447750130B719700EA5653 /* ImgurURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurURL.h; sourceTree = "<group>"; };
@@ -124,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */,
 				B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */,
@@ -139,6 +145,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
+				B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */,
 				B50909D612E7915B00A32F5E /* ValidateReceipt */,
 				B50909D112E7910C00A32F5E /* XMLReader */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
@@ -194,6 +202,7 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -408,6 +417,7 @@
 				B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */,
 				B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */,
 				B5447752130B719700EA5653 /* ImgurURL.m in Sources */,
+				B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
