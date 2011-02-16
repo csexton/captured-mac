@@ -6,6 +6,7 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 #import "Imgur.h"
+#import "ImgurURL.h"
 
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"
@@ -13,6 +14,7 @@
 
 @implementation StatusMenuController
 @synthesize lastUploadedURL;
+@synthesize lastUploadedDeleteURL;
 @synthesize copyURLMenuItem;
 
 
@@ -42,9 +44,11 @@
 }
 -(void) setStatusSuccess: (ImgurURL*)url {
 	[self setStatusIcon: statusIconSuccess];
-	self.lastUploadedURL = url; // XXX: do I need to make a copy here?
+	self.lastUploadedURL = [NSString stringWithString:url.imageURL];;
+	self.lastUploadedDeleteURL = [NSString stringWithString:url.imageDeleteURL];;
+
 	[copyURLMenuItem setEnabled:YES];
-	[Utilities copyToPasteboard:url.imageURL];
+	[Utilities copyToPasteboard:self.lastUploadedURL];
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
 }
 
@@ -88,14 +92,19 @@
 
 -(IBAction) copyURLItemAction:(id) sender
 {
-	[self setStatusSuccess:lastUploadedURL];
+	[Utilities copyToPasteboard:self.lastUploadedURL];
 }
+
 
 -(IBAction) openURLInBrowserAction:(id) sender
 {
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedURL.imageURL]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedURL]];
 }
 
+-(IBAction) openDeleteURLInBrowserAction:(id) sender
+{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:lastUploadedDeleteURL]];
+}
 
 - (BOOL)startAtLogin
 {
@@ -111,14 +120,12 @@
 
 -(BOOL) isURLAvaliable
 {
-    if (self.lastUploadedURL) {
-        if ([self.lastUploadedURL.imageURL length] != 0) {
-            
-            return YES;
-        }
+    if ([self.lastUploadedURL length] == 0) {
+        return NO;
+    } else {
+        
+        return YES;
     }
-    return NO;
-
 }
 
 @end

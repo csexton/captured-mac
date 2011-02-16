@@ -15,7 +15,8 @@
 	
     NSStatusItem * statusItem;
 	IBOutlet NSMenuItem *copyURLMenuItem;
-	ImgurURL *lastUploadedURL;
+	NSString *lastUploadedURL;
+	NSString *lastUploadedDeleteURL;
 
     NSImage * statusIcon;
     NSImage * statusIconColor;
@@ -27,7 +28,8 @@
 }
 
 @property BOOL startAtLogin;
-@property (readwrite, retain) ImgurURL *lastUploadedURL;
+@property (readwrite, retain) NSString *lastUploadedURL;
+@property (readwrite, retain) NSString *lastUploadedDeleteURL;
 @property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
 
 -(BOOL) isURLAvaliable;
@@ -42,6 +44,7 @@
 -(IBAction) quitItemAction:(id) sender;
 -(IBAction) copyURLItemAction:(id) sender;
 -(IBAction) openURLInBrowserAction:(id) sender;
+-(IBAction) openDeleteURLInBrowserAction:(id) sender;
 
 
 
