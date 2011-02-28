@@ -69,7 +69,7 @@
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
     
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Successfully Uploaded Screenshot and copied the URL on the Clipboard"
+                                description:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"
                            notificationName:@"Upload Finished"
                                    iconData:nil
                                    priority:0
