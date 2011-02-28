@@ -75,6 +75,9 @@
                                    priority:0
                                    isSticky:NO
                                clickContext:[NSDate date]];
+
+    //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
+	//[systemSound play];
 }
 
 -(void) awakeFromNib

@@ -12,7 +12,6 @@
 	</array>
     <key>DefaultNotifications</key>
 	<array>
-		<string>Upload Started</string>
 		<string>Upload Finished</string>
 		<string>Upload Failed</string>
 	</array>
