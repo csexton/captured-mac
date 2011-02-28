@@ -7,9 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Growl/Growl.h>
 
 
-@interface StatusMenuController : NSObject {
+@interface StatusMenuController : NSObject <GrowlApplicationBridgeDelegate> {
     IBOutlet NSMenu *statusMenu;
     IBOutlet BOOL *startAtLogin;
 	

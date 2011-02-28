@@ -5,6 +5,8 @@
 //  Created by Christopher Sexton on 1/13/11.
 //  Copyright 2011 Codeography. All rights reserved.
 //
+
+#import <Growl/Growl.h>
 #import "Imgur.h"
 #import "ImgurURL.h"
 
@@ -38,9 +40,24 @@
 }
 -(void) setStatusProcessing {
 	[self setStatusIcon: statusIconColor];
+    [GrowlApplicationBridge notifyWithTitle:@"Captured"
+                                description:@"Upload Started"
+                           notificationName:@"Upload Started"
+                                   iconData:nil
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:[NSDate date]];
 }
 -(void) setStatusFailure {
 	[self setStatusIcon: statusIconError];
+    
+    [GrowlApplicationBridge notifyWithTitle:@"Captured"
+                                description:@"Failed to Upload Screenshot"
+                           notificationName:@"Upload Failed"
+                                   iconData:nil
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:[NSDate date]];
 }
 -(void) setStatusSuccess: (ImgurURL*)url {
 	[self setStatusIcon: statusIconSuccess];
@@ -50,10 +67,42 @@
 	[copyURLMenuItem setEnabled:YES];
 	[Utilities copyToPasteboard:self.lastUploadedURL];
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+    
+    [GrowlApplicationBridge notifyWithTitle:@"Captured"
+                                description:@"Successfully Uploaded Screenshot"
+                           notificationName:@"Upload Finished"
+                                   iconData:nil
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:[NSDate date]];
 }
 
 -(void) awakeFromNib
 {
+    
+    
+    NSBundle *myBundle = [NSBundle bundleForClass:[CapturedAppDelegate class]];
+	NSString *growlPath = [[myBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
+	NSBundle *growlBundle = [NSBundle bundleWithPath:growlPath];
+    
+	if (growlBundle && [growlBundle load]) {
+		// Register ourselves as a Growl delegate
+		[GrowlApplicationBridge setGrowlDelegate:self];
+	}
+	else {
+		NSLog(@"ERROR: Could not load Growl.framework");
+	}
+    
+//    [GrowlApplicationBridge
+//      notifyWithTitle:@"title"
+//      description:@"description"
+//      notificationName:@"UploadFailed"
+//      //iconData:(NSData *)iconData
+//      //priority:0
+//      //isSticky:false
+//      //clickContext:(id)clickContext
+//     ];        
+        
 	//ImgurController *controller = [[ImgurController alloc] init];
 
 	//[controller parseResponseForURL:@""];

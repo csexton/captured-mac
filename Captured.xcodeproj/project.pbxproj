@@ -12,6 +12,8 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
+		B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */; };
 		B50909C812E790BF00A32F5E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909B812E790BF00A32F5E /* ASIDataCompressor.m */; };
 		B50909C912E790BF00A32F5E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BA12E790BF00A32F5E /* ASIDataDecompressor.m */; };
 		B50909CA12E790BF00A32F5E /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BC12E790BF00A32F5E /* ASIDownloadCache.m */; };
@@ -36,6 +38,7 @@
 		B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */; };
 		B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
+		B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
 		B5C5645613042BBE00E396E6 /* ViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645513042BBE00E396E6 /* ViewBackground.m */; };
 		B5C564581304310E00E396E6 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C564571304310E00E396E6 /* WelcomeWindow.xib */; };
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
@@ -48,6 +51,19 @@
 		B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9024C12DEC480004F71B6 /* StatusMenuController.m */; };
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B5B34205131B53DD000D7D92 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -62,6 +78,8 @@
 		77C8280C06725ACE000B614F /* CapturedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured_Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Captured_Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5015B10131B51B900E7FA35 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
+		B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		B50909B612E790BF00A32F5E /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = HTTPRequest/ASICacheDelegate.h; sourceTree = "<group>"; };
 		B50909B712E790BF00A32F5E /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataCompressor.h; path = HTTPRequest/ASIDataCompressor.h; sourceTree = "<group>"; };
 		B50909B812E790BF00A32F5E /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataCompressor.m; path = HTTPRequest/ASIDataCompressor.m; sourceTree = "<group>"; };
@@ -129,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */,
 				B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */,
@@ -202,6 +221,7 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
@@ -226,6 +246,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */,
 				B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */,
 				B51A1FCC12E393EB006C7840 /* Credits.html */,
 				B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */,
@@ -335,6 +356,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				B5B34205131B53DD000D7D92 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -386,6 +408,7 @@
 				B51A1FCD12E393EB006C7840 /* Credits.html in Resources */,
 				B5C564581304310E00E396E6 /* WelcomeWindow.xib in Resources */,
 				B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */,
+				B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +471,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -472,6 +499,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -534,6 +565,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Frameworks\"",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
