@@ -221,8 +221,6 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
-				B5015B10131B51B900E7FA35 /* Growl.framework */,
-				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -264,6 +262,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5015B10131B51B900E7FA35 /* Growl.framework */,
+				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5E9015512DEC349004F71B6 /* CoreServices.framework */,
 				B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */,
 				B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */,

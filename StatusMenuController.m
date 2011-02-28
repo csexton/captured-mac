@@ -41,7 +41,7 @@
 -(void) setStatusProcessing {
 	[self setStatusIcon: statusIconColor];
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Upload Started"
+                                description:@"Uploading Screenshot"
                            notificationName:@"Upload Started"
                                    iconData:nil
                                    priority:0
@@ -69,7 +69,7 @@
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
     
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Successfully Uploaded Screenshot"
+                                description:@"Successfully Uploaded Screenshot and copied the URL on the Clipboard"
                            notificationName:@"Upload Finished"
                                    iconData:nil
                                    priority:0
