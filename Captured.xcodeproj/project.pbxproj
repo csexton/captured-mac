@@ -49,9 +49,10 @@
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
 		B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9024C12DEC480004F71B6 /* StatusMenuController.m */; };
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
+		CF1742B113273F890021D91B /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
+		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CF5E64EB13256B1400197B8F /* filetransfer.cc in Sources */ = {isa = PBXBuildFile; fileRef = CF5E64E913256B1400197B8F /* filetransfer.cc */; };
 		CFFCA58C132575CF004BE557 /* Imgur.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* Imgur.mm */; };
-		CFFCA601132713F7004BE557 /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFCA600132713F7004BE557 /* libcurl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
 				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,10 +143,10 @@
 		B5E9024B12DEC480004F71B6 /* StatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMenuController.h; sourceTree = "<group>"; };
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
+		CF1742B013273F890021D91B /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Frameworks/libcurl.framework; sourceTree = "<group>"; };
 		CF5E64E913256B1400197B8F /* filetransfer.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = filetransfer.cc; sourceTree = "<group>"; };
 		CF5E64EA13256B1400197B8F /* filetransfer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filetransfer.h; sourceTree = "<group>"; };
 		CFFCA58B132575CF004BE557 /* Imgur.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Imgur.mm; sourceTree = "<group>"; };
-		CFFCA600132713F7004BE557 /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Frameworks/libcurl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +162,7 @@
 				B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */,
 				B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */,
 				B5665DD212E54D520024ADEF /* Security.framework in Frameworks */,
-				CFFCA601132713F7004BE557 /* libcurl.framework in Frameworks */,
+				CF1742B113273F890021D91B /* libcurl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,7 +272,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CFFCA600132713F7004BE557 /* libcurl.framework */,
 				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5E9015512DEC349004F71B6 /* CoreServices.framework */,
@@ -280,6 +281,7 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				B5665DCF12E54D490024ADEF /* IOKit.framework */,
 				B5665DD112E54D520024ADEF /* Security.framework */,
+				CF1742B013273F890021D91B /* libcurl.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
