@@ -84,7 +84,7 @@ int file_transfer::send_file(const std::string& username, const std::string& pas
 	if (stat(srcfile.c_str(), &st) != 0)
 	{
 		fclose(fp);
-		return -4;
+		return -3;
 	}
 	
 	// now set the file size for the request
