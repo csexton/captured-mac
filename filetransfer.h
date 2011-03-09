@@ -9,15 +9,13 @@ public:
 	file_transfer();
 	~file_transfer();
 	
-	enum protocol { protocol_scp, protocol_sftp };
-	
 private:
 	// don't allow this object to be copied...probably being lazy here, but i can think of a good reason to allow it
 	file_transfer(const file_transfer&);
 	file_transfer& operator=(const file_transfer&);
 
 public:
-	int send_file(protocol proto, const std::string& username, const std::string& password, const std::string& host, const std::string& targetdir, const std::string& srcfile);
+	int send_file(const std::string& username, const std::string& password, const std::string& host, const std::string& targetdir, const std::string& srcfile);
 
 private:
 	CURL* handle;

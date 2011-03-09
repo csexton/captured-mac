@@ -22,7 +22,7 @@ file_transfer::~file_transfer()
 		curl_global_cleanup();
 }
 
-int file_transfer::send_file(protocol proto, const std::string& username, const std::string& password, const std::string& host, const std::string& targetdir, const std::string& srcfile)
+int file_transfer::send_file(const std::string& username, const std::string& password, const std::string& host, const std::string& targetdir, const std::string& srcfile)
 {
 	CURLcode rc = CURLE_OK;
 	
@@ -58,18 +58,7 @@ int file_transfer::send_file(protocol proto, const std::string& username, const 
 	}
 	
 	// set the host
-	std::string url;
-	if (proto == protocol_scp)
-		url.assign("scp://");
-	else if (proto == protocol_sftp)
-		url.assign("sftp://");
-	else
-	{
-		// should never happen, since we're using enumerated type
-		fclose(fp);
-		return -3;
-	}
-	url += host + "/";
+	std::string url = "sftp://" + host + "/";
 	if (targetdir.length() == 0)
 		url += "~/";
 	else
