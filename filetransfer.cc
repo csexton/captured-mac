@@ -29,6 +29,7 @@ int file_transfer::send_file(const std::string& username, const std::string& pas
 	// make sure we have a valid handle
 	if (handle == NULL)
 		return -1;
+	curl_easy_reset(handle);
 	
 	// make sure we can open the file
 	FILE* fp = fopen(srcfile.c_str(), "rb");
