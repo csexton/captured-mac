@@ -38,7 +38,7 @@
 	mkstemp(tempNam);
 	
 	// format the url
-	NSString* url = [NSString stringWithFormat:@"sftp://%s/%s/%s", host, targetDir, tempNam];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%s", host, targetDir, tempNam];
 
 	// reset the handle
 	curl_easy_reset(handle);
@@ -49,6 +49,9 @@
 	// set the username and password
 	rc = curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
 	rc = curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
+	
+	// tell libcurl we're doing an upload
+	rc = curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	
 	// get a FILE* to pass to libcurl
 	FILE* fp = fopen([sourceFile UTF8String], "rb");
