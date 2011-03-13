@@ -96,7 +96,26 @@
 
 - (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password
 {
-	return 0;
+	CURLcode rc = CURLE_OK;
+	
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/~", host];
+	
+	curl_easy_reset(handle);
+	
+	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
+	if (rc != CURLE_OK)
+		return rc;
+	
+	rc = curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
+	if (rc != CURLE_OK)
+		return rc;
+	rc = curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
+	if (rc != CURLE_OK)
+		return rc;
+
+	rc = curl_easy_perform(handle);
+	
+	return rc;
 }
 
 @end
