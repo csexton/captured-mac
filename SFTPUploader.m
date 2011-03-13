@@ -1,9 +1,9 @@
 //
 //  SFTPUploader.m
-//  Captured
+//  Captured for Mac
 //
 //  Created by Jorge Velázquez on 3/11/11.
-//  Copyright 2011 Christopher Sexton. All rights reserved.
+//  Copyright 2011 Codeography. All rights reserved.
 //
 
 #import "SFTPUploader.h"
@@ -32,6 +32,11 @@
 {
 	CURLcode rc = CURLE_OK;
 	
+	// first thing we do is make sure we have a file to read
+	FILE* fp = fopen([sourceFile UTF8String], "rb");
+	if (fp == NULL)
+		return -1;
+	
 	// generate a unique filename
 	char tempNam[16];
 	strcpy(tempNam, "XXXXX");
@@ -45,18 +50,41 @@
 	
 	// set the url
 	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
+	if (rc != CURLE_OK)
+	{
+		fclose(fp);
+		return rc;
+	}
 	
 	// set the username and password
 	rc = curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
+	if (rc != CURLE_OK)
+	{
+		fclose(fp);
+		return rc;
+	}
 	rc = curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
+	if (rc != CURLE_OK)
+	{
+		fclose(fp);
+		return rc;
+	}
 	
 	// tell libcurl we're doing an upload
 	rc = curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
+	if (rc != CURLE_OK)
+	{
+		fclose(fp);
+		return rc;
+	}
 	
 	// get a FILE* to pass to libcurl
-	FILE* fp = fopen([sourceFile UTF8String], "rb");
-	if (fp != NULL)
-		rc = curl_easy_setopt(handle, CURLOPT_READDATA, fp);
+	rc = curl_easy_setopt(handle, CURLOPT_READDATA, fp);
+	if (rc != CURLE_OK)
+	{
+		fclose(fp);
+		return rc;
+	}
 	
 	// do the upload
 	rc = curl_easy_perform(handle);
@@ -64,6 +92,11 @@
 	fclose(fp);
 	
 	return rc;
+}
+
+- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password
+{
+	return 0;
 }
 
 @end

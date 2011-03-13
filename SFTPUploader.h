@@ -1,9 +1,9 @@
 //
 //  SFTPUploader.h
-//  Captured
+//  Captured for Mac
 //
 //  Created by Jorge Velázquez on 3/11/11.
-//  Copyright 2011 Christopher Sexton. All rights reserved.
+//  Copyright 2011 Codeography. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,6 +16,7 @@
 @property CURL* handle;
 
 - (int)uploadFile:(NSString*)sourceFile host:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir;
+- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password;
 - (CURL*)handle;
 
 @end
