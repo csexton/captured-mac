@@ -94,11 +94,11 @@
 	return rc;
 }
 
-- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password
+- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
 {
 	CURLcode rc = CURLE_OK;
 	
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/~", host];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];
 	
 	curl_easy_reset(handle);
 	

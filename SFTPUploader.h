@@ -16,7 +16,7 @@
 @property CURL* handle;
 
 - (int)uploadFile:(NSString*)sourceFile host:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir;
-- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password;
+- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir;
 - (CURL*)handle;
 
 @end
