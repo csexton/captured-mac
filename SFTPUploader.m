@@ -28,7 +28,7 @@
 	curl_easy_cleanup(handle);
 }
 
-- (int)uploadFile:(NSString*)sourceFile host:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
+- (NSInteger)uploadFile:(NSString*)sourceFile host:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
 {
 	CURLcode rc = CURLE_OK;
 	
@@ -94,7 +94,7 @@
 	return rc;
 }
 
-- (int)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
+- (NSInteger)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
 {
 	CURLcode rc = CURLE_OK;
 	

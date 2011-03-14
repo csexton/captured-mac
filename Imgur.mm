@@ -33,7 +33,7 @@
                                                         object:self];
 	
 //	SFTPUploader* uploader = [[SFTPUploader alloc] init];
-//	int rc = [uploader testConnection:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
+//	NSInteger rc = [uploader testConnection:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
 //	[uploader release];
 	
 }
