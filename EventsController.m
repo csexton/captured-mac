@@ -91,7 +91,7 @@
 - (void)processFile: (NSString*)file {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
 	  [imgur processFile:file];
-//		NSInteger rc = [sftpUploader testConnection:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
+//		NSInteger rc = [sftpUploader uploadFile:file host:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
 	}
 }
 
