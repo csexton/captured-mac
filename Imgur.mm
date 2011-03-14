@@ -4,7 +4,6 @@
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
 #import "ImgurURL.h"
-//#import "SFTPUploader.h"
 
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
@@ -31,11 +30,6 @@
 	
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
                                                         object:self];
-	
-//	SFTPUploader* uploader = [[SFTPUploader alloc] init];
-//	NSInteger rc = [uploader testConnection:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
-//	[uploader release];
-	
 }
 
 #pragma mark ASIFormData Delegate Methods

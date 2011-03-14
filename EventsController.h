@@ -31,19 +31,21 @@
 #import <Foundation/Foundation.h>
 #import "DirEventListenerProtocol.h"
 #import "Imgur.h"
+#import "SFTPUploader.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
 	Imgur *imgur;
-
+	SFTPUploader* sftpUploader;
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
 @property (readwrite, retain) Imgur *imgur;
+@property (readwrite, retain) SFTPUploader* sftpUploader;
 
 
 - (void)setupEventListener;
