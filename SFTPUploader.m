@@ -39,8 +39,8 @@
 	
 	// generate a unique filename
 	char tempNam[16];
-	strcpy(tempNam, "XXXXX");
-	mkstemp(tempNam);
+	strcpy(tempNam, "XXXXX.png");
+	mkstemps(tempNam, 4);
 	
 	// format the url
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%s", host, targetDir, tempNam];
