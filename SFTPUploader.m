@@ -100,9 +100,15 @@
 	return rc;
 }
 
-- (NSInteger)testConnection:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
+- (NSInteger)testConnection
 {
 	CURLcode rc = CURLE_OK;
+	
+	// get host, username, password and target directory options from user preferences
+	NSString* host = @"ec2-72-44-55-243.compute-1.amazonaws.com";
+	NSString* username = @"ec2-user";
+	NSString* password = @"";
+	NSString* targetDir = @"~";
 	
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];
 	
