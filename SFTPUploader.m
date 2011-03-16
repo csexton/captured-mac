@@ -28,7 +28,7 @@
 	curl_easy_cleanup(handle);
 }
 
-- (NSInteger)uploadFile:(NSString*)sourceFile host:(NSString*)host username:(NSString*)username password:(NSString*)password targetDir:(NSString*)targetDir
+- (NSInteger)uploadFile:(NSString*)sourceFile
 {
 	CURLcode rc = CURLE_OK;
 	
@@ -41,6 +41,12 @@
 	char tempNam[16];
 	strcpy(tempNam, "XXXXX.png");
 	mkstemps(tempNam, 4);
+	
+	// get host, username, password and target directory options from user preferences
+	NSString* host = @"ec2-72-44-55-243.compute-1.amazonaws.com";
+	NSString* username = @"ec2-user";
+	NSString* password = @"";
+	NSString* targetDir = @"~";
 	
 	// format the url
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%s", host, targetDir, tempNam];
