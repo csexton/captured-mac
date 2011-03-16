@@ -43,6 +43,7 @@
 @synthesize history;
 @synthesize imgur;
 @synthesize sftpUploader;
+@synthesize s3Uploader;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -58,6 +59,7 @@
 	self.history = [[NSMutableSet alloc] init]; 
 	self.imgur = [[Imgur alloc] init]; //Leak?
 	self.sftpUploader = [[SFTPUploader alloc] init];
+	self.s3Uploader = [[S3Uploader alloc] init];
 
 
     DirEvents *events = [DirEvents sharedPathWatcher];
@@ -91,7 +93,7 @@
 - (void)processFile: (NSString*)file {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
 	  [imgur processFile:file];
-//		NSInteger rc = [sftpUploader uploadFile:file host:@"ec2-72-44-55-243.compute-1.amazonaws.com" username:@"ec2-user" password:@"" targetDir:@"~"];
+//		NSInteger rc = [s3Uploader uploadFile:file];
 	}
 }
 
