@@ -66,7 +66,6 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	}
 	
 	// tell libcurl we're doing an upload
-	rc = curl_easy_setopt(handle, CURLOPT_VERBOSE, 1);
 	rc = curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	if (rc != CURLE_OK)
 	{
