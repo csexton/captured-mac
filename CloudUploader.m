@@ -152,9 +152,9 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	
 	// do the upload
 	rc = curl_easy_perform(handle);
+	curl_slist_free_all(slist);
 	if (rc == CURLE_OK)
 	{
-		curl_slist_free_all(slist);
 		long response_code;
 		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
 		if (rc == CURLE_OK && response_code == 200)
