@@ -121,7 +121,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
-	NSString* stringToSign = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\nx-amz-acl:public-read\n", httpVerb, base64md5, contentType, timestamp];
+	NSString* stringToSign = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\nx-amz-acl:public-read\nx-amz-storage-class:REDUCED_REDUNDANCY\n", httpVerb, base64md5, contentType, timestamp];
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%s", bucket, tempNam];
 	NSData* dataToSign = [stringToSign dataUsingEncoding:NSASCIIStringEncoding];
 
@@ -148,6 +148,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	slist = curl_slist_append(slist, [dateHeader UTF8String]);
 	slist = curl_slist_append(slist, [authHeader UTF8String]);
 	slist = curl_slist_append(slist, "x-amz-acl: public-read");
+	slist = curl_slist_append(slist, "x-amz-storage-class: REDUCED_REDUNDANCY");
 	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
 	
 	// do the upload
