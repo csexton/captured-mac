@@ -1,5 +1,5 @@
 //
-//  S3Uploader.m
+//  CloudUploader.m
 //  Captured for Mac
 //
 //  Created by Jorge Velázquez on 3/15/11.
@@ -8,11 +8,11 @@
 
 #import <CommonCrypto/CommonHMAC.h>
 
-#import "S3Uploader.h"
+#import "CloudUploader.h"
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-@implementation S3Uploader
+@implementation CloudUploader
 
 @synthesize handle;
 
@@ -158,7 +158,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 		long response_code;
 		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
 		if (rc == CURLE_OK && response_code == 200)
-			NSLog(@"File successfully uploaded to S3 and accessible at %@", url);
+			NSLog(@"File successfully uploaded to cloud storage and accessible at %@", url);
 	}
 	
 	fclose(fp);

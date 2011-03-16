@@ -32,7 +32,7 @@
 #import "DirEventListenerProtocol.h"
 #import "Imgur.h"
 #import "SFTPUploader.h"
-#import "S3Uploader.h"
+#import "CloudUploader.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
@@ -47,7 +47,7 @@
 @property (readwrite, retain) NSMutableSet *history;
 @property (readwrite, retain) Imgur *imgur;
 @property (readwrite, retain) SFTPUploader* sftpUploader;
-@property (readwrite, retain) S3Uploader* s3Uploader;
+@property (readwrite, retain) CloudUploader* cloudUploader;
 
 
 - (void)setupEventListener;

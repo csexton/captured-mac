@@ -52,7 +52,7 @@
 		CF1742B113273F890021D91B /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB327DF132B125400B388E0 /* SFTPUploader.m */; };
-		CFD6D67C132FFA490065567C /* S3Uploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD6D67B132FFA490065567C /* S3Uploader.m */; };
+		CFD6D67F133157930065567C /* CloudUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD6D67E133157930065567C /* CloudUploader.m */; };
 		CFFCA58C132575CF004BE557 /* Imgur.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* Imgur.mm */; };
 /* End PBXBuildFile section */
 
@@ -147,8 +147,8 @@
 		CF1742B013273F890021D91B /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Frameworks/libcurl.framework; sourceTree = "<group>"; };
 		CFB327DE132B125400B388E0 /* SFTPUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTPUploader.h; sourceTree = "<group>"; };
 		CFB327DF132B125400B388E0 /* SFTPUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTPUploader.m; sourceTree = "<group>"; };
-		CFD6D67A132FFA490065567C /* S3Uploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = S3Uploader.h; sourceTree = "<group>"; };
-		CFD6D67B132FFA490065567C /* S3Uploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = S3Uploader.m; sourceTree = "<group>"; };
+		CFD6D67D133157930065567C /* CloudUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudUploader.h; sourceTree = "<group>"; };
+		CFD6D67E133157930065567C /* CloudUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudUploader.m; sourceTree = "<group>"; };
 		CFFCA58B132575CF004BE557 /* Imgur.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Imgur.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -175,6 +175,8 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				CFD6D67D133157930065567C /* CloudUploader.h */,
+				CFD6D67E133157930065567C /* CloudUploader.m */,
 				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
 				B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */,
 				B50909D612E7915B00A32F5E /* ValidateReceipt */,
@@ -199,8 +201,6 @@
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
 				B5447750130B719700EA5653 /* ImgurURL.h */,
 				B5447751130B719700EA5653 /* ImgurURL.m */,
-				CFD6D67A132FFA490065567C /* S3Uploader.h */,
-				CFD6D67B132FFA490065567C /* S3Uploader.m */,
 				CFB327DE132B125400B388E0 /* SFTPUploader.h */,
 				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
 			);
@@ -458,7 +458,7 @@
 				B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */,
 				CFFCA58C132575CF004BE557 /* Imgur.mm in Sources */,
 				CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */,
-				CFD6D67C132FFA490065567C /* S3Uploader.m in Sources */,
+				CFD6D67F133157930065567C /* CloudUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

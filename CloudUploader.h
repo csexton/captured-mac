@@ -1,5 +1,5 @@
 //
-//  S3Uploader.h
+//  CloudUploader.h
 //  Captured for Mac
 //
 //  Created by Jorge Velázquez on 3/15/11.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #include <curl/curl.h>
 
-@interface S3Uploader : NSObject {
+@interface CloudUploader : NSObject {
 	CURL* handle;
 }
 
