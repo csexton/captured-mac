@@ -34,6 +34,7 @@
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
 		B59D6F8E13319FC800FAA935 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */; };
+		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
 		B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F112E0ECF3007D2A2D /* DirEvent.m */; };
 		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
@@ -122,9 +123,10 @@
 		B5447751130B719700EA5653 /* ImgurURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurURL.m; sourceTree = "<group>"; };
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PreferencesController.h; sourceTree = "<group>"; };
+		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B59D6F8B13319FAC00FAA935 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
+		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
 		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		B5A438F012E0ECF3007D2A2D /* DirEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvent.h; path = DirEvents/DirEvent.h; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				B5E902D412DECC85004F71B6 /* Captured_Icon.icns */,
 				8D1107310486CEB800E47090 /* Captured_Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				B59D6F941331CF4100FAA935 /* Defaults.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */,
 				B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */,
 				B59D6F8E13319FC800FAA935 /* PreferencesWindow.xib in Resources */,
+				B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

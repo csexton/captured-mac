@@ -15,6 +15,8 @@
 @synthesize uploaderBox;
 @synthesize sftpPreferences;
 @synthesize s3Preferences;
+@synthesize imgurPreferences;
+@synthesize dropboxPreferences;
 
 - (id)init
 {
@@ -33,35 +35,47 @@
 
 -(void) awakeFromNib
 {
-    [uploaderBox addSubview:sftpPreferences];
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	//[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"Imgur",  @"UploadType",	nil]];
+	NSString * type = [defaults stringForKey:@"UploadType"];
+
+    [self selectUploaderViewWithType:type];
 }
+
 
 -(IBAction) selectUploader:(id) sender
 {
     NSComboBox *combo = (NSComboBox*)sender;
     NSString* type = [combo stringValue];
-    NSView *currentView = [[uploaderBox subviews] objectAtIndex:0];
-
-    [uploaderBox setTitle:  [NSString stringWithFormat: @"%@ Settings", type]];
+    //NSView *currentView = [[uploaderBox subviews] objectAtIndex:0];
 
     //Deletes all subviews
     //[uploaderBox setSubviews:[NSArray array]];
+    
+    [self selectUploaderViewWithType: type];
 
+}
+
+-(void) selectUploaderViewWithType: (NSString *) type {
+    
+    [uploaderBox setTitle:  [NSString stringWithFormat: @"%@ Settings", type]];
+    
     if ([type isEqualToString: @"Imgur"]) {
-        NSLog(@"Using type imgur");
+        [uploaderBox setContentView:imgurPreferences];
     }
     if ([type isEqualToString: @"SFTP"]) {
-        [uploaderBox replaceSubview:currentView with:sftpPreferences];
+        [uploaderBox setContentView:sftpPreferences];
     }
     if ([type isEqualToString: @"Amazon S3"]) {
-        //Y U NO CHANGE THE VIEW?
-        [uploaderBox replaceSubview:currentView with:s3Preferences];
+        [uploaderBox setContentView:s3Preferences];
+        
     }
-
-
-
-
-
+    if ([type isEqualToString: @"Amazon S3"]) {
+        [uploaderBox setContentView:s3Preferences];
+    }
+    if ([type isEqualToString: @"Dropbox"]) {
+        [uploaderBox setContentView:dropboxPreferences];
+    }
 }
 
 

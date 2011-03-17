@@ -15,6 +15,8 @@
     NSBox *uploaderBox;
     NSView *sftpPreferences;
     NSView *s3Preferences;
+    NSView *imgurPreferences;
+    NSView *dropboxPreferences;
 
 @private
 
@@ -25,7 +27,11 @@
 @property (assign) IBOutlet NSBox *uploaderBox;
 @property (assign) IBOutlet NSView *sftpPreferences;
 @property (assign) IBOutlet NSView *s3Preferences;
+@property (assign) IBOutlet NSView *imgurPreferences;
+@property (assign) IBOutlet NSView *dropboxPreferences;
 
 -(IBAction) selectUploader:(id) sender;
+-(void) selectUploaderViewWithType: (NSString *) type;
+
 
 @end
