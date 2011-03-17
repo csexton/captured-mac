@@ -62,13 +62,24 @@
                                clickContext:[NSDate date]];
 }
 -(void) setStatusSuccess: (NSDictionary*)dict {
+
+    // Update the icon
+
 	[self setStatusIcon: statusIconSuccess];
+	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+    
+    // Save the last url (TODO: not needed b/c of history?)
 	self.lastUploadedURL = [NSString stringWithString:[dict valueForKey:@"ImageURL"]];
 	self.lastUploadedDeleteURL = [NSString stringWithString:[dict valueForKey:@"DeleteImageURL"]];
 
+    // Copy url to clipboard
+    
 	[copyURLMenuItem setEnabled:YES];
 	[Utilities copyToPasteboard:self.lastUploadedURL];
-	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+    
+
+    
+    // Send growl notification
     
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
                                 description:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"
@@ -77,19 +88,13 @@
                                    priority:0
                                    isSticky:NO
                                clickContext:[NSDate date]];
-    
-//    NSDate *today = [NSDate date];
-//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//    //[dateFormat setDateFormat:@"MM/dd/yyyy hh:mma"];
-//    [dateFormat setDateStyle:NSDateFormatterLongStyle];
-    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0
-                                                              locale:[NSLocale currentLocale]];
+   
+    // Create history menu item
+
+    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0 locale:[NSLocale currentLocale]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:formatString];
-    
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    
-    NSLog(@"date: %@", dateString);
     [dateFormatter release];
     
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
@@ -102,15 +107,14 @@
     [historyMenu addItem:menuItem];
     [menuItem release];
                           
+    // Play a sound
                         
     //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
 	//[systemSound play];
 }
 -(IBAction) historyMenuItemAction: (id) sender{
     MenuItemWithDict *item = (MenuItemWithDict *) sender;
-   
     NSString *url = [item.dict valueForKey:@"ImageURL"];
-    
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
 }
 
