@@ -35,6 +35,7 @@
 		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
 		B59D6F8E13319FC800FAA935 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */; };
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
+		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
 		B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F112E0ECF3007D2A2D /* DirEvent.m */; };
 		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
@@ -127,6 +128,8 @@
 		B59D6F8B13319FAC00FAA935 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
+		B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemWithDict.h; sourceTree = "<group>"; };
+		B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemWithDict.m; sourceTree = "<group>"; };
 		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		B5A438F012E0ECF3007D2A2D /* DirEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvent.h; path = DirEvents/DirEvent.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
 				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
+				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
+				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -479,6 +484,7 @@
 				CFD6D67F133157930065567C /* CloudUploader.m in Sources */,
 				CFD6D682133171CB0065567C /* DropboxUploader.m in Sources */,
 				B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */,
+				B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

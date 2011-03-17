@@ -24,6 +24,8 @@
 	NSImage * statusIconSuccess;
     NSImage * statusIconDisabled;
     NSImage * statusIconError;
+    
+    NSMenu * historyMenu;
 
 
 }
@@ -32,12 +34,13 @@
 @property (readwrite, retain) NSString *lastUploadedURL;
 @property (readwrite, retain) NSString *lastUploadedDeleteURL;
 @property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
+@property (assign) IBOutlet NSMenu *historyMenu;
 
 -(BOOL) isURLAvaliable;
 
 -(void) setStatusDisabled;
 -(void) setStatusProcessing;
--(void) setStatusSuccess: (ImgurURL*)url;
+-(void) setStatusSuccess: (NSDictionary*)dict;
 -(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
@@ -46,6 +49,8 @@
 -(IBAction) copyURLItemAction:(id) sender;
 -(IBAction) openURLInBrowserAction:(id) sender;
 -(IBAction) openDeleteURLInBrowserAction:(id) sender;
+-(IBAction) historyMenuItemAction: (id) sender;
+
 
 
 

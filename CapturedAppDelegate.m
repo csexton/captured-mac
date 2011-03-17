@@ -75,9 +75,10 @@
 	[statusMenuController setStatusProcessing];
 }
 
-- (void)uploadSuccess: (ImgurURL *) url {
-	NSLog(@"Upload succeeded: %@", url.imageURL);
-	[statusMenuController setStatusSuccess: url];
+- (void)uploadSuccess: (NSDictionary *) dict {
+    NSString *url = [dict valueForKey:@"ImageURL"];
+	NSLog(@"Upload succeeded: %@", url);
+	[statusMenuController setStatusSuccess: dict];
 }
 
 - (void)uploadFailure {

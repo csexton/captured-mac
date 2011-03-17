@@ -13,11 +13,13 @@
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"
 #import "Utilities.h"
+#import "MenuItemWithDict.h"
 
 @implementation StatusMenuController
 @synthesize lastUploadedURL;
 @synthesize lastUploadedDeleteURL;
 @synthesize copyURLMenuItem;
+@synthesize historyMenu;
 
 
 -(void) setStatusIcon: (NSImage*)icon {
@@ -59,10 +61,10 @@
                                    isSticky:NO
                                clickContext:[NSDate date]];
 }
--(void) setStatusSuccess: (ImgurURL*)url {
+-(void) setStatusSuccess: (NSDictionary*)dict {
 	[self setStatusIcon: statusIconSuccess];
-	self.lastUploadedURL = [NSString stringWithString:url.imageURL];;
-	self.lastUploadedDeleteURL = [NSString stringWithString:url.imageDeleteURL];;
+	self.lastUploadedURL = [NSString stringWithString:[dict valueForKey:@"ImageURL"]];
+	self.lastUploadedDeleteURL = [NSString stringWithString:[dict valueForKey:@"DeleteImageURL"]];
 
 	[copyURLMenuItem setEnabled:YES];
 	[Utilities copyToPasteboard:self.lastUploadedURL];
@@ -75,9 +77,41 @@
                                    priority:0
                                    isSticky:NO
                                clickContext:[NSDate date]];
-
+    
+//    NSDate *today = [NSDate date];
+//    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//    //[dateFormat setDateFormat:@"MM/dd/yyyy hh:mma"];
+//    [dateFormat setDateStyle:NSDateFormatterLongStyle];
+    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0
+                                                              locale:[NSLocale currentLocale]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatString];
+    
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    
+    NSLog(@"date: %@", dateString);
+    [dateFormatter release];
+    
+    MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
+                            initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
+                            action:@selector(historyMenuItemAction:) 
+                            keyEquivalent:@""];
+    
+    [menuItem setTarget:self];
+    menuItem.dict = dict;
+    [historyMenu addItem:menuItem];
+    [menuItem release];
+                          
+                        
     //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
 	//[systemSound play];
+}
+-(IBAction) historyMenuItemAction: (id) sender{
+    MenuItemWithDict *item = (MenuItemWithDict *) sender;
+   
+    NSString *url = [item.dict valueForKey:@"ImageURL"];
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
 }
 
 -(void) awakeFromNib

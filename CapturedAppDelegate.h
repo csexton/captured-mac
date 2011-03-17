@@ -33,7 +33,7 @@
 
 @property BOOL uploadsEnabled;
 
-- (void)uploadSuccess: (ImgurURL *) url;
+- (void)uploadSuccess: (NSDictionary *) url;
 - (void)uploadFailure;
 - (void)statusProcessing;
 - (void)initEventsController;
