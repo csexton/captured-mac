@@ -104,6 +104,7 @@
     
     [menuItem setTarget:self];
     menuItem.dict = dict;
+    [menuItem setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]]];
     [historyMenu addItem:menuItem];
     [menuItem release];
                           
