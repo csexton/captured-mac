@@ -38,8 +38,8 @@
 	
 	if (request.responseStatusCode != 200) {
 		NSLog(@"Upload Failed");
-		NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
-		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+		NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
+		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 		[self requestFailed:nil];
 	}
 	else{
@@ -54,8 +54,8 @@
 	NSData * myData = [request rawResponseData];
 	NSLog(@"Upload Failed");
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
-	NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
-	NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+	NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
+	NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 }
 
 #pragma mark NSXMLParser Delegate Methods
