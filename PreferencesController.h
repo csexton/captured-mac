@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface PreferencesController  : NSObject <NSWindowDelegate> {
+@interface PreferencesController  : NSViewController <NSWindowDelegate> {
 
     NSWindow *window;
     NSBox *uploaderBox;
@@ -34,7 +34,6 @@
 -(IBAction) selectUploader:(id) sender;
 -(IBAction) showpreferencesWindow: (id) sender;
 -(void) selectUploaderViewWithType: (NSString *) type;
--(void) loadNib;
 
 
 @end

@@ -9,6 +9,8 @@
 @synthesize statusMenuController;
 @synthesize welcomeWindowController;
 @synthesize preferencesController;
+@synthesize window;
+
 
 -(id)init {
     self = [super init];
@@ -33,9 +35,8 @@
     [self registerGlobalHotKey];
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
-    
-    preferencesController = [[PreferencesController alloc] init];
-    [preferencesController loadNib];
+        
+    preferencesController = [[PreferencesController alloc] initWithNibName:@"PreferencesWindow" bundle:nil];
 
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
@@ -124,6 +125,8 @@
 //    [[preferencesController window] makeKeyAndOrderFront:sender];
 //    [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
     [preferencesController showpreferencesWindow:self];
+    //[NSApp activateIgnoringOtherApps: YES];
+	//[window makeKeyAndOrderFront:self];
 
 }
 

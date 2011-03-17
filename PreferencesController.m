@@ -33,12 +33,6 @@
     [super dealloc];
 }
 
--(void) loadNib {
-    if (![NSBundle loadNibNamed:@"PreferencesWindow" owner:self]) {
-        NSLog(@"Unable to load PreferencesWindow Nib");
-    }
-}
-
 -(void) awakeFromNib
 {
     isWindowOpen = YES;
