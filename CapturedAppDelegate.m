@@ -8,9 +8,9 @@
 @implementation CapturedAppDelegate
 
 
-@synthesize window;
 @synthesize statusMenuController;
 @synthesize welcomeWindowController;
+@synthesize preferencesController;
 
 
 -(id)init {
@@ -119,6 +119,14 @@
 {	
 	NSString *path = [Utilities invokeScreenCapture: @"-w"];
 	[eventsController processFile: path];
+}
+
+-(IBAction) showPreferencesWindow:(id)sender
+{
+    preferencesController = [[PreferencesController alloc] init];
+    if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
+        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    }
 }
 
 - (BOOL)startAtLogin

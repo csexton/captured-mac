@@ -10,20 +10,21 @@
 #import "EventsController.h"
 #import "StatusMenuController.h"
 #import "WelcomeWindowController.h"
+#import "PreferencesController.h"
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
-    NSWindow *window;
     IBOutlet BOOL *startAtLogin;
 	EventsController *eventsController;
 	StatusMenuController *statusMenuController;
     WelcomeWindowController *welcomeWindowController;
+    PreferencesController *preferencesController;
 	BOOL uploadsEnabled;
 }
 
 @property BOOL startAtLogin;
-@property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
+@property (assign) IBOutlet PreferencesController *preferencesController;
 
 
 @property BOOL uploadsEnabled;
@@ -34,6 +35,8 @@
 - (void)initEventsController;
 - (IBAction)takeScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;
+- (IBAction)showPreferencesWindow:(id) sender;
+
 - (BOOL)isFirstRun;
 - (void)showWelcomeWindow;
 
