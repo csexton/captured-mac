@@ -24,7 +24,7 @@
 @property BOOL startAtLogin;
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
-@property (assign) IBOutlet PreferencesController *preferencesController;
+@property (retain) IBOutlet PreferencesController *preferencesController;
 
 
 @property BOOL uploadsEnabled;

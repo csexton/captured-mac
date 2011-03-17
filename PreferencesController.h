@@ -17,21 +17,24 @@
     NSView *s3Preferences;
     NSView *imgurPreferences;
     NSView *dropboxPreferences;
+    BOOL isWindowOpen;
 
 @private
 
 
 }
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSBox *uploaderBox;
-@property (assign) IBOutlet NSView *sftpPreferences;
-@property (assign) IBOutlet NSView *s3Preferences;
-@property (assign) IBOutlet NSView *imgurPreferences;
-@property (assign) IBOutlet NSView *dropboxPreferences;
+@property (retain) IBOutlet NSWindow *window;
+@property (retain) IBOutlet NSBox *uploaderBox;
+@property (retain) IBOutlet NSView *sftpPreferences;
+@property (retain) IBOutlet NSView *s3Preferences;
+@property (retain) IBOutlet NSView *imgurPreferences;
+@property (retain) IBOutlet NSView *dropboxPreferences;
 
 -(IBAction) selectUploader:(id) sender;
+-(IBAction) showpreferencesWindow: (id) sender;
 -(void) selectUploaderViewWithType: (NSString *) type;
+-(void) loadNib;
 
 
 @end

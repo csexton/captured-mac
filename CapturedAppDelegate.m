@@ -34,8 +34,12 @@
     
     [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
     
-//    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
+    preferencesController = [[PreferencesController alloc] init];
+    [preferencesController loadNib];
 
+    
+//    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
+    
     if ([self isFirstRun])
     {
         [self showWelcomeWindow];
@@ -110,11 +114,17 @@
 }
 
 -(IBAction) showPreferencesWindow:(id)sender
-{
-    preferencesController = [[PreferencesController alloc] init];
-    if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
-        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    }
+{    
+//    if (preferencesController==nil) {
+//        preferencesController = [[PreferencesController alloc] init];
+//        if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
+//            [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+//        }
+//    }
+//    [[preferencesController window] makeKeyAndOrderFront:sender];
+//    [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    [preferencesController showpreferencesWindow:self];
+
 }
 
 - (BOOL)startAtLogin
