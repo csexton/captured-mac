@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface WelcomeWindowController : NSObject <NSWindowDelegate>{
+@interface WelcomeWindowController : NSObject <NSWindowDelegate, NSAnimationDelegate>{
     NSWindow *window;
     NSButton *startCheckBox;
 

@@ -29,6 +29,6 @@
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 
 - (void) processFile:(NSString*)filename;
-- (ImgurURL *) parseResponseForURL:(NSString*)str;
+- (NSDictionary*) parseResponseForURL:(NSString*)str;
 
 @end

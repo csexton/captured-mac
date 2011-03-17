@@ -47,6 +47,7 @@
 
 -(IBAction) closeWindowAction:(id) sender
 {
+    //[[window animator] setAlphaValue:0.0];
     [window close];
 }
 

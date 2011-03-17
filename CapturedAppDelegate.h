@@ -19,17 +19,21 @@
     WelcomeWindowController *welcomeWindowController;
     PreferencesController *preferencesController;
 	BOOL uploadsEnabled;
+    NSWindow *window;
+
 }
 
 @property BOOL startAtLogin;
+@property (retain) IBOutlet NSWindow *window;
+
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
-@property (assign) IBOutlet PreferencesController *preferencesController;
+@property (retain) IBOutlet PreferencesController *preferencesController;
 
 
 @property BOOL uploadsEnabled;
 
-- (void)uploadSuccess: (ImgurURL *) url;
+- (void)uploadSuccess: (NSDictionary *) url;
 - (void)uploadFailure;
 - (void)statusProcessing;
 - (void)initEventsController;

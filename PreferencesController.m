@@ -35,10 +35,22 @@
 
 -(void) awakeFromNib
 {
+    isWindowOpen = YES;
+
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString * type = [defaults stringForKey:@"UploadType"];
 
     [self selectUploaderViewWithType:type];
+}
+
+-(IBAction) showpreferencesWindow: (id) sender {
+    [NSApp activateIgnoringOtherApps: YES];
+	[window makeKeyAndOrderFront:self];
+}
+
+
+-(void) windowWillClose:(NSNotification *)notification {
+	isWindowOpen = NO;
 }
 
 

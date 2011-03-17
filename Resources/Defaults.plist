@@ -8,5 +8,7 @@
 	<string>Imgur</string>
 	<key>FirstRun</key>
 	<true/>
+	<key>ImgurLinkType</key>
+	<string>Copy URL to Webpage</string>
 </dict>
 </plist>

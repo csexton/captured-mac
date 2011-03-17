@@ -3,7 +3,6 @@
 #import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
-#import "ImgurURL.h"
 
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
@@ -43,10 +42,10 @@
 		[self requestFailed:nil];
 	}
 	else{
-		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
-		ImgurURL *url = [self parseResponseForURL:body];
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:url];
+		NSDictionary *dict = [self parseResponseForURL:body];
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
 	}
 }
 
@@ -79,7 +78,7 @@ foundCharacters:(NSString *)string {
 	[self uploadImage:data];
 }
 
-- (ImgurURL *) parseResponseForURL: (NSString*)str {
+- (NSDictionary *) parseResponseForURL: (NSString*)str {
 	/*
 	 Imgur API V2:
 		<?xml version="1.0"?>
@@ -147,17 +146,25 @@ foundCharacters:(NSString *)string {
 	// This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
 	// I only need the one setting so this seems stupid simple
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString * imgurKey = [defaults stringForKey:@"ImgurKey"];
-
+	NSString * linkType = [defaults stringForKey:@"ImgurLinkType"];
+    NSString * imgurKey = @"imgur_page";
+    if ([linkType isEqualToString:@"Copy URL to Direct Image"]) {
+        imgurKey = @"original";
+    }
+         
 	NSDictionary *upload = [dictionary objectForKey:@"upload"];
 	//NSDictionary *image = [upload valueForKey:@"image"];
 	NSDictionary *links = [upload valueForKey:@"links"];
     
-    ImgurURL *imgFile = [[ImgurURL alloc] init];
-    imgFile.imageURL = [[links valueForKey:imgurKey]  valueForKey:@"text"];
-    imgFile.imageDeleteURL = [[links valueForKey:@"delete_page"] valueForKey:@"text"];
+    NSString *imageURL = [[links valueForKey:imgurKey]  valueForKey:@"text"];
+    NSString *imageDeleteURL = [[links valueForKey:@"delete_page"] valueForKey:@"text"];
+    
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          imageURL, @"ImageURL", 
+                          imageDeleteURL, @"DeleteImageURL", 
+                          nil];
 	
-	return imgFile;
+	return dict;
 
 }
 

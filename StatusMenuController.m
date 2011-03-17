@@ -13,11 +13,13 @@
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"
 #import "Utilities.h"
+#import "MenuItemWithDict.h"
 
 @implementation StatusMenuController
 @synthesize lastUploadedURL;
 @synthesize lastUploadedDeleteURL;
 @synthesize copyURLMenuItem;
+@synthesize historyMenu;
 
 
 -(void) setStatusIcon: (NSImage*)icon {
@@ -59,14 +61,25 @@
                                    isSticky:NO
                                clickContext:[NSDate date]];
 }
--(void) setStatusSuccess: (ImgurURL*)url {
-	[self setStatusIcon: statusIconSuccess];
-	self.lastUploadedURL = [NSString stringWithString:url.imageURL];;
-	self.lastUploadedDeleteURL = [NSString stringWithString:url.imageDeleteURL];;
+-(void) setStatusSuccess: (NSDictionary*)dict {
 
+    // Update the icon
+
+	[self setStatusIcon: statusIconSuccess];
+	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+    
+    // Save the last url (TODO: not needed b/c of history?)
+	self.lastUploadedURL = [NSString stringWithString:[dict valueForKey:@"ImageURL"]];
+	self.lastUploadedDeleteURL = [NSString stringWithString:[dict valueForKey:@"DeleteImageURL"]];
+
+    // Copy url to clipboard
+    
 	[copyURLMenuItem setEnabled:YES];
 	[Utilities copyToPasteboard:self.lastUploadedURL];
-	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
+    
+
+    
+    // Send growl notification
     
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
                                 description:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"
@@ -75,9 +88,35 @@
                                    priority:0
                                    isSticky:NO
                                clickContext:[NSDate date]];
+   
+    // Create history menu item
 
+    NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0 locale:[NSLocale currentLocale]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatString];
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+    [dateFormatter release];
+    
+    MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
+                            initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
+                            action:@selector(historyMenuItemAction:) 
+                            keyEquivalent:@""];
+    
+    [menuItem setTarget:self];
+    menuItem.dict = dict;
+    [menuItem setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]]];
+    [historyMenu addItem:menuItem];
+    [menuItem release];
+                          
+    // Play a sound
+                        
     //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
 	//[systemSound play];
+}
+-(IBAction) historyMenuItemAction: (id) sender{
+    MenuItemWithDict *item = (MenuItemWithDict *) sender;
+    NSString *url = [item.dict valueForKey:@"ImageURL"];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:url]];
 }
 
 -(void) awakeFromNib

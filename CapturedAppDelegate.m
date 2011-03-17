@@ -9,11 +9,14 @@
 @synthesize statusMenuController;
 @synthesize welcomeWindowController;
 @synthesize preferencesController;
+@synthesize window;
+
 
 -(id)init {
     self = [super init];
     if ( self ) {
 		uploadsEnabled = YES;
+        [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
     }
     return self;
 }
@@ -31,11 +34,12 @@
 	}
     
     [self registerGlobalHotKey];
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+        
+    preferencesController = [[PreferencesController alloc] initWithNibName:@"PreferencesWindow" bundle:nil];
+
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
-
+    
     if ([self isFirstRun])
     {
         [self showWelcomeWindow];
@@ -71,9 +75,10 @@
 	[statusMenuController setStatusProcessing];
 }
 
-- (void)uploadSuccess: (ImgurURL *) url {
-	NSLog(@"Upload succeeded: %@", url.imageURL);
-	[statusMenuController setStatusSuccess: url];
+- (void)uploadSuccess: (NSDictionary *) dict {
+    NSString *url = [dict valueForKey:@"ImageURL"];
+	NSLog(@"Upload succeeded: %@", url);
+	[statusMenuController setStatusSuccess: dict];
 }
 
 - (void)uploadFailure {
@@ -110,11 +115,18 @@
 }
 
 -(IBAction) showPreferencesWindow:(id)sender
-{
-    preferencesController = [[PreferencesController alloc] init];
-    if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
-        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    }
+{    
+//    if (preferencesController==nil) {
+//        preferencesController = [[PreferencesController alloc] init];
+//        if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
+//            [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+//        }
+//    }
+//    [[preferencesController window] makeKeyAndOrderFront:sender];
+//    [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    //[preferencesController showpreferencesWindow:self];
+    [NSApp activateIgnoringOtherApps: YES];
+	[window makeKeyAndOrderFront:self];
 }
 
 - (BOOL)startAtLogin
