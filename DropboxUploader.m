@@ -60,22 +60,10 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 	NSString* oauthNonce = [self genRandStringLength:16 seed:oauthTimestamp];
 	
 	// format the signature base string
-	NSString* sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%s&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", tempNam, oauthConsumerKey, oauthNonce, oauthTimestamp, token];
-    CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
-	NSString* escapedUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
-    NSString* escapedPath = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) sigBaseString, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
-	sigBaseString = [NSString stringWithFormat:@"POST&%@&%@", escapedUrl, escapedPath];
- 	NSData* dataToSign = [sigBaseString dataUsingEncoding:NSASCIIStringEncoding];
+	NSString* sigBaseString = [self genSigBaseString:url method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
 	// build the signature
-	CCHmacContext context;
-	unsigned char digestRaw[CC_SHA1_DIGEST_LENGTH];
-	NSString* keyToSign = [NSString stringWithFormat:@"%s&%@", oauthConsumerSecretKey, secret];
-	CCHmacInit(&context, kCCHmacAlgSHA1, [keyToSign cStringUsingEncoding:NSASCIIStringEncoding], [keyToSign length]);
-	CCHmacUpdate(&context, [dataToSign bytes], [dataToSign length]);
-	CCHmacFinal(&context, digestRaw);
-	NSData *digestData = [NSData dataWithBytes:digestRaw length:CC_SHA1_DIGEST_LENGTH];
-	NSString* oauthSignature = [digestData base64EncodedString];;
+	NSString* oauthSignature = [self genOAuthSig:sigBaseString consumerSecret:oauthConsumerSecretKey userSecret:secret];
 	
 	// set up the body
 	CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -135,7 +123,7 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 	NSString* contentTypeHeader = [NSString stringWithFormat:@"Content-Type: multipart/form-data; boundary=%@", stringBoundary];
 	
 	// add the custom headers
-	struct curl_slist *slist= NULL;
+	struct curl_slist *slist = NULL;
 	slist = curl_slist_append(slist, [contentTypeHeader UTF8String]);
 	slist = curl_slist_append(slist, [authHeader UTF8String]);
 	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
@@ -157,7 +145,10 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 		long response_code;
 		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
 		if (rc == CURLE_OK && response_code == 200)
-			NSLog(@"File successfully uploaded to Dropbox and accessible at ");
+		{
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/%s", @"3893484", tempNam];
+			NSLog(@"File successfully uploaded to Dropbox and accessible at %@", publicLink);
+		}
 	}
 	
 	[[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
@@ -173,6 +164,28 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 	rc = curl_easy_perform(handle);
 	
 	return rc;
+}
+
+- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(const char*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+	NSString* sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%s&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
+    CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
+	NSString* escapedUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
+    NSString* escapedPath = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) sigBaseString, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
+	sigBaseString = [NSString stringWithFormat:@"%@&%@&%@", method, escapedUrl, escapedPath];
+	
+	return sigBaseString;
+}
+
+- (NSString*)genOAuthSig:(NSString*)sigBaseString consumerSecret:(const char*)consumerSecret userSecret:(NSString*)userSecret {
+ 	NSData* dataToSign = [sigBaseString dataUsingEncoding:NSASCIIStringEncoding];
+	CCHmacContext context;
+	unsigned char digestRaw[CC_SHA1_DIGEST_LENGTH];
+	NSString* keyToSign = [NSString stringWithFormat:@"%s&%@", consumerSecret, userSecret];
+	CCHmacInit(&context, kCCHmacAlgSHA1, [keyToSign cStringUsingEncoding:NSASCIIStringEncoding], [keyToSign length]);
+	CCHmacUpdate(&context, [dataToSign bytes], [dataToSign length]);
+	CCHmacFinal(&context, digestRaw);
+	NSData *digestData = [NSData dataWithBytes:digestRaw length:CC_SHA1_DIGEST_LENGTH];
+	return [digestData base64EncodedString];;
 }
 
 -(NSString*)genRandStringLength:(int)len seed:(unsigned long)seed {

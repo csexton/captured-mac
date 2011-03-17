@@ -18,6 +18,8 @@
 - (NSInteger)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
 - (NSString*)genRandStringLength:(int)len seed:(unsigned long)seed;
+- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(const char*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
+- (NSString*)genOAuthSig:(NSString*)sigBaseString consumerSecret:(const char*)consumerSecret userSecret:(NSString*)userSecret;
 - (CURL*)handle;
 
 @end
