@@ -4,14 +4,11 @@
 #import "EventsController.h"
 #import "DDHotKeyCenter.h"
 
-
 @implementation CapturedAppDelegate
 
-
-@synthesize window;
 @synthesize statusMenuController;
 @synthesize welcomeWindowController;
-
+@synthesize preferencesController;
 
 -(id)init {
     self = [super init];
@@ -34,7 +31,8 @@
 	}
     
     [self registerGlobalHotKey];
-
+    
+    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
     
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
 
@@ -42,22 +40,13 @@
     {
         [self showWelcomeWindow];
     }
-    
 }
 
 - (BOOL)isFirstRun {
-    
-    // This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
-	// I only need the one setting so this seems stupid simple
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"YES",  @"FirstRun",	nil]];
-    
     BOOL ret = [defaults boolForKey:@"FirstRun"];
-
     [defaults setValue:@"NO" forKey:@"FirstRun"]; // Go ahead and set this for next time
-	
     return ret;
-    
 }
 
 - (void)showWelcomeWindow {
@@ -70,7 +59,6 @@
 - (void)initEventsController {
 	eventsController = [[EventsController alloc] init]; //This used to be autorelease, but I would get a crash. So now I think I need to do something to release the memory
 	[eventsController setupEventListener];
-	
 }
 
 - (void)dealloc {
@@ -119,6 +107,14 @@
 {	
 	NSString *path = [Utilities invokeScreenCapture: @"-w"];
 	[eventsController processFile: path];
+}
+
+-(IBAction) showPreferencesWindow:(id)sender
+{
+    preferencesController = [[PreferencesController alloc] init];
+    if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
+        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    }
 }
 
 - (BOOL)startAtLogin

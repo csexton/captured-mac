@@ -38,8 +38,8 @@
 	
 	if (request.responseStatusCode != 200) {
 		NSLog(@"Upload Failed");
-		NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
-		NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+		NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
+		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 		[self requestFailed:nil];
 	}
 	else{
@@ -54,8 +54,8 @@
 	NSData * myData = [request rawResponseData];
 	NSLog(@"Upload Failed");
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
-	NSLog(@"Imagur responseStatusCode: %d", request.responseStatusCode);
-	NSLog(@"Imagur Response: %.*s", [myData length], [myData bytes]);
+	NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
+	NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 }
 
 #pragma mark NSXMLParser Delegate Methods
@@ -147,7 +147,6 @@ foundCharacters:(NSString *)string {
 	// This should probably be moved somewhere to a common instance of NSUserDefaults, but right now
 	// I only need the one setting so this seems stupid simple
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"imgur_page",  @"ImgurKey",	nil]];
 	NSString * imgurKey = [defaults stringForKey:@"ImgurKey"];
 
 	NSDictionary *upload = [dictionary objectForKey:@"upload"];
