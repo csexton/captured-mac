@@ -16,6 +16,7 @@
     self = [super init];
     if ( self ) {
 		uploadsEnabled = YES;
+        [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
     }
     return self;
 }
@@ -33,8 +34,6 @@
 	}
     
     [self registerGlobalHotKey];
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
         
     preferencesController = [[PreferencesController alloc] initWithNibName:@"PreferencesWindow" bundle:nil];
 
@@ -124,10 +123,9 @@
 //    }
 //    [[preferencesController window] makeKeyAndOrderFront:sender];
 //    [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    [preferencesController showpreferencesWindow:self];
-    //[NSApp activateIgnoringOtherApps: YES];
-	//[window makeKeyAndOrderFront:self];
-
+    //[preferencesController showpreferencesWindow:self];
+    [NSApp activateIgnoringOtherApps: YES];
+	[window makeKeyAndOrderFront:self];
 }
 
 - (BOOL)startAtLogin
