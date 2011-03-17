@@ -6,7 +6,6 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
-#import "DropboxSDK.h"
 #import "DropboxUploader.h"
 
 @implementation DropboxUploader
