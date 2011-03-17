@@ -17,6 +17,7 @@
 
 - (NSInteger)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
+- (NSString*)genRandStringLength:(int)len seed:(unsigned long)seed;
 - (CURL*)handle;
 
 @end

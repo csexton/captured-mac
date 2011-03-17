@@ -11,9 +11,12 @@
 #import "CloudUploader.h"
 #import "DropboxUploader.h"
 
-// this is our Dropbox API key, keep it safe
-static char oauthConsumerKey[] = "bpsv3nx35j5hua7";
-static char oauthConsumerSecretKey[] = "qa9tvwoivvspknm";
+// these are the Dropbox API keys, keep them safe
+static char* oauthConsumerKey = "bpsv3nx35j5hua7";
+static char* oauthConsumerSecretKey = "qa9tvwoivvspknm";
+
+// characters suitable for generating a unique nonce
+static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 @implementation DropboxUploader
 
@@ -44,6 +47,7 @@ static char oauthConsumerSecretKey[] = "qa9tvwoivvspknm";
 	strcpy(tempNam, "XXXXX.png");
 	mkstemps(tempNam, 4);
 	
+	// user tokens, these will need to be
 	NSString* token = @"nx7s0yvpe6654x6";
 	NSString* secret = @"zspeub00bk58qlr";
 	
@@ -51,9 +55,11 @@ static char oauthConsumerSecretKey[] = "qa9tvwoivvspknm";
 	NSString* url = @"https://api-content.dropbox.com/0/files/dropbox/Public";
 	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
 	
-	// format the signature base string
-	NSString* oauthNonce = @"8difj10iad3zwj23";
+	// generate a unique nonce for this request
 	time_t oauthTimestamp = time(NULL);
+	NSString* oauthNonce = [self genRandStringLength:16 seed:oauthTimestamp];
+	
+	// format the signature base string
 	NSString* sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%s&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", tempNam, oauthConsumerKey, oauthNonce, oauthTimestamp, token];
     CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
 	NSString* escapedUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
@@ -144,7 +150,6 @@ static char oauthConsumerSecretKey[] = "qa9tvwoivvspknm";
 	rc = curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, size);
 
 	// do the upload
-	rc = curl_easy_setopt(handle, CURLOPT_VERBOSE, 1);
 	rc = curl_easy_perform(handle);
 	curl_slist_free_all(slist);
 	if (rc == CURLE_OK)
@@ -170,4 +175,15 @@ static char oauthConsumerSecretKey[] = "qa9tvwoivvspknm";
 	return rc;
 }
 
+-(NSString*)genRandStringLength:(int)len seed:(unsigned long)seed {
+	NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+	
+	srand(seed);
+	for (int i=0; i<len; i++) {
+		[randomString appendFormat: @"%c", nonceChars[rand() % strlen(nonceChars)]];
+	}
+		 
+	return randomString;
+}
+		 
 @end
