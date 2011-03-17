@@ -36,7 +36,6 @@
 -(void) awakeFromNib
 {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	//[defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys: @"Imgur",  @"UploadType",	nil]];
 	NSString * type = [defaults stringForKey:@"UploadType"];
 
     [self selectUploaderViewWithType:type];

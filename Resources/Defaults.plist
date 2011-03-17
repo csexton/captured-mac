@@ -3,8 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>ImgurKey</key>
-	<string>original</string>
+	<string>imgur_page</string>
 	<key>UploadType</key>
-	<string>Amazon S3</string>
+	<string>Imgur</string>
+	<key>FirstRun</key>
+	<true/>
 </dict>
 </plist>
