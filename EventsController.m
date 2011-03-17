@@ -35,6 +35,8 @@
 #import "CapturedAppDelegate.h"
 #import "Imgur.h"
 #import "SFTPUploader.h"
+#import "CloudUploader.h"
+#import "DropboxUploader.h"
 
 @implementation EventsController
 
@@ -44,6 +46,7 @@
 @synthesize imgur;
 @synthesize sftpUploader;
 @synthesize cloudUploader;
+@synthesize dropboxUploader;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -58,9 +61,9 @@
 	self.screenCaptureDir = [Utilities screenCaptureDir];
 	self.history = [[NSMutableSet alloc] init]; 
 	self.imgur = [[Imgur alloc] init]; //Leak?
-	self.sftpUploader = [[SFTPUploader alloc] init];
-	self.cloudUploader = [[CloudUploader alloc] init];
-
+	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
+	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
+	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];
 
     DirEvents *events = [DirEvents sharedPathWatcher];
     
@@ -94,6 +97,7 @@
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
 	  [imgur processFile:file];
 //		NSInteger rc = [cloudUploader uploadFile:file];
+//		NSInteger rc = [dropboxUploader uploadFile:file];
 	}
 }
 
