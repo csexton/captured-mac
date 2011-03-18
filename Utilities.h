@@ -21,7 +21,7 @@
 + (NSURL *)appURL;
 +(BOOL) willStartAtLogin:(NSURL *)itemURL;
 +(void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
-+ (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)size;
++ (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize;
 
 
 @end

@@ -152,7 +152,7 @@
     }       
 }
 
-+ (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)size {
++ (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
     NSImage *sourceImage;
     NSImage *smallImage;
     
@@ -162,15 +162,26 @@
     if (![sourceImage isValid]) {
         NSLog(@"Invalid Image");
     } else {
-        smallImage = [[[NSImage alloc] initWithSize:size] autorelease];
+        
+        NSSize smallSize = [sourceImage size];
+        float rx, ry, r;
+        rx = newSize.width / smallSize.width;
+        ry = newSize.height / smallSize.height;
+        r = rx < ry ? rx : ry;
+        smallSize.width *= r;
+        smallSize.height *= r;
+        
+        
+        smallImage = [[[NSImage alloc] initWithSize:smallSize] autorelease];
         [smallImage lockFocus];
+        //[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
         [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
-        [sourceImage setSize:size];
+        [sourceImage setScalesWhenResized:YES];
+        [sourceImage setSize:smallSize];
         [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
         [smallImage unlockFocus];
     }
     return smallImage;
 }
-
 
 @end
