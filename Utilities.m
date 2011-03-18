@@ -152,5 +152,25 @@
     }       
 }
 
++ (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)size {
+    NSImage *sourceImage;
+    NSImage *smallImage;
+    
+    sourceImage = [[[NSImage alloc] initWithContentsOfFile:path] autorelease];
+    
+    // Report an error if the source isn't a valid image
+    if (![sourceImage isValid]) {
+        NSLog(@"Invalid Image");
+    } else {
+        smallImage = [[[NSImage alloc] initWithSize:size] autorelease];
+        [smallImage lockFocus];
+        [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+        [sourceImage setSize:size];
+        [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+        [smallImage unlockFocus];
+    }
+    return smallImage;
+}
+
 
 @end

@@ -100,6 +100,11 @@
     //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]];
     NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
     [img setSize: NSMakeSize(16, 16)];
+    
+    
+    
+    
+    img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
 
     
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]

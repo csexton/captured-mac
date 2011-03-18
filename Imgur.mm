@@ -8,7 +8,7 @@
 
 @implementation Imgur
 
-@synthesize imageSelection, imageSelectionData, xmlResponseData;
+@synthesize imageSelection, imageSelectionData, xmlResponseData, filePathName;
 
 #pragma mark  Imgur API Access Method
 - (void) uploadImage: (NSData *) data; {
@@ -74,6 +74,7 @@ foundCharacters:(NSString *)string {
 - (void) processFile:(NSString*)filename {
 
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+    self.filePathName = filename;
 	NSData* data = [NSData dataWithContentsOfFile: filename];
 	[self uploadImage:data];
 }
@@ -160,9 +161,10 @@ foundCharacters:(NSString *)string {
                           @"Imgur", @"Type",
                           [[links valueForKey:imgurKey]  valueForKey:@"text"], @"ImageURL", 
                           [[links valueForKey:@"delete_page"] valueForKey:@"text"], @"DeleteImageURL", 
-                          [[links valueForKey:@"small_square"] valueForKey:@"text"], @"ImgurSmallSquareURL", 
-                          [[links valueForKey:@"large_thumbnail"]  valueForKey:@"text"], @"ImgurLargeThumbnailURL", 
-                          [[links valueForKey:@"original"]  valueForKey:@"text"], @"ImgurOriginalURL", 
+                          [[links valueForKey:@"small_square"] valueForKey:@"text"], @"SmallSquareURL", 
+                          [[links valueForKey:@"large_thumbnail"]  valueForKey:@"text"], @"LargeThumbnailURL", 
+                          [[links valueForKey:@"original"]  valueForKey:@"text"], @"OriginalURL", 
+                          self.filePathName, @"FilePath", 
                           nil];
 	
 	return dict;

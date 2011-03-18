@@ -16,12 +16,14 @@
 	NSData *imageSelection;
     NSData *imageSelectionData;
 	NSData *xmlResponseData;
+    NSString *filePathName;
 
 }
 
 @property (retain) NSData *imageSelection;
 @property (retain) NSData *imageSelectionData;
 @property (retain) NSData *xmlResponseData;
+@property (retain) NSString *filePathName;
 
 - (void) uploadImage: (NSData *) image;
 - (void) requestFinished: (ASIFormDataRequest *) request;
