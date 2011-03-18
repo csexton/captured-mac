@@ -9,6 +9,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 
 #import "CloudUploader.h"
+#import "JSON/JSON.h"
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
@@ -21,6 +22,8 @@ NSString* secret = @"zspeub00bk58qlr";
 
 // characters suitable for generating a unique nonce
 static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 @implementation DropboxUploader
 
@@ -151,7 +154,7 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 		if (rc == CURLE_OK && response_code == 200)
 		{
 			// if we got back 200 from the server, format the link for sharing
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%@/%s", [self getAccountId], tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
 			NSLog(@"File successfully uploaded to Dropbox and accessible at %@", publicLink);
 		}
 	}
@@ -242,6 +245,7 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 
 - (NSUInteger)getAccountId {
 	CURLcode rc = CURLE_OK;
+	int uid = 0;
 	
 	// reset the curl handle for this request
 	curl_easy_reset(handle);
@@ -266,11 +270,38 @@ static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
 	slist = curl_slist_append(slist, [authHeader UTF8String]);
 	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
 	
+	// collect the response
+	char* data = malloc(4096); // should be plenty of room for the response
+	data[0] = 0;
+	rc = curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_func);
+	rc = curl_easy_setopt(handle, CURLOPT_WRITEDATA, data);
+	
 	// make the request
 	rc = curl_easy_perform(handle);
 	curl_slist_free_all(slist);
+	NSString* response = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
+	free(data);
+	if (rc == CURLE_OK)
+	{
+		long status_code;
+		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &status_code);
+		if (rc == CURLE_OK && status_code == 200)
+		{
+			// parse out the account id from the response
+			uid = [[[response JSONValue] valueForKey:@"uid"] intValue];
+		}
+	}
 	
-	return 0;
+	
+	return uid;
 }
 
 @end
+
+size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata)
+{
+	size_t bytes = size * nmemb;
+	strncat(userdata, ptr, bytes);
+	
+	return bytes;
+}
