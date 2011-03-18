@@ -89,8 +89,7 @@
                                    isSticky:NO
                                clickContext:[NSDate date]];
    
-
-    //[self performSelector: @selector(createHistoryMenuItem:) withObject: dict];
+    // Jump to the background thread to do the resizing
     [self performSelectorInBackground: @selector(createHistoryMenuItem:) withObject: dict];
     
 
@@ -125,10 +124,8 @@
     [menuItem setTarget:self];
     menuItem.dict = dict;
     [menuItem setImage:img];
-//Jump back the main thread to add the menu item to the history menu
+    // Jump back the main thread to add the menu item to the history menu
     [self performSelectorOnMainThread:@selector(addHistoryMenuItem:) withObject:menuItem waitUntilDone:YES];
-//    [historyMenu performSelectorOnMainThread:@selector(addItem:) withObject:menuItem waitUntilDone:YES];
-
     //[historyMenu addItem:menuItem];
     [menuItem release];
 }
