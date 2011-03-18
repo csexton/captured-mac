@@ -155,13 +155,14 @@ foundCharacters:(NSString *)string {
 	NSDictionary *upload = [dictionary objectForKey:@"upload"];
 	//NSDictionary *image = [upload valueForKey:@"image"];
 	NSDictionary *links = [upload valueForKey:@"links"];
-    
-    NSString *imageURL = [[links valueForKey:imgurKey]  valueForKey:@"text"];
-    NSString *imageDeleteURL = [[links valueForKey:@"delete_page"] valueForKey:@"text"];
-    
+        
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          imageURL, @"ImageURL", 
-                          imageDeleteURL, @"DeleteImageURL", 
+                          @"Imgur", @"Type",
+                          [[links valueForKey:imgurKey]  valueForKey:@"text"], @"ImageURL", 
+                          [[links valueForKey:@"delete_page"] valueForKey:@"text"], @"DeleteImageURL", 
+                          [[links valueForKey:@"small_square"] valueForKey:@"text"], @"ImgurSmallSquareURL", 
+                          [[links valueForKey:@"large_thumbnail"]  valueForKey:@"text"], @"ImgurLargeThumbnailURL", 
+                          [[links valueForKey:@"original"]  valueForKey:@"text"], @"ImgurOriginalURL", 
                           nil];
 	
 	return dict;

@@ -97,6 +97,11 @@
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     [dateFormatter release];
     
+    //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]];
+    NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
+    [img setSize: NSMakeSize(16, 16)];
+
+    
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
                             initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
                             action:@selector(historyMenuItemAction:) 
@@ -104,7 +109,7 @@
     
     [menuItem setTarget:self];
     menuItem.dict = dict;
-    [menuItem setImage:[[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]]];
+    [menuItem setImage:img];
     [historyMenu addItem:menuItem];
     [menuItem release];
                           
