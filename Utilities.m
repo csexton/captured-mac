@@ -153,6 +153,7 @@
 }
 
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
+    NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;
     NSImage *smallImage;
     
@@ -170,17 +171,17 @@
         r = rx < ry ? rx : ry;
         smallSize.width *= r;
         smallSize.height *= r;
-        
-        
+
         smallImage = [[[NSImage alloc] initWithSize:smallSize] autorelease];
         [smallImage lockFocus];
-        //[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
         [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
         [sourceImage setScalesWhenResized:YES];
         [sourceImage setSize:smallSize];
         [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
         [smallImage unlockFocus];
     }
+    NSLog(@"Finished resizing image for history menu thumbnail");
+
     return smallImage;
 }
 

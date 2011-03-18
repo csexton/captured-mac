@@ -50,6 +50,7 @@
 -(IBAction) openURLInBrowserAction:(id) sender;
 -(IBAction) openDeleteURLInBrowserAction:(id) sender;
 -(IBAction) historyMenuItemAction: (id) sender;
+-(void) createHistoryMenuItem: (NSDictionary *) dict;
 
 
 

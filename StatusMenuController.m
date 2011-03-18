@@ -89,8 +89,20 @@
                                    isSticky:NO
                                clickContext:[NSDate date]];
    
-    // Create history menu item
 
+    //[self performSelector: @selector(createHistoryMenuItem:) withObject: dict];
+    [self performSelectorInBackground: @selector(createHistoryMenuItem:) withObject: dict];
+    
+
+                          
+    // Play a sound
+                        
+    //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
+	//[systemSound play];
+}
+-(void) createHistoryMenuItem: (NSDictionary *) dict {
+    // Create history menu item
+    
     NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0 locale:[NSLocale currentLocale]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:formatString];
@@ -98,31 +110,33 @@
     [dateFormatter release];
     
     //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]];
-    NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
-    [img setSize: NSMakeSize(16, 16)];
+    //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
+    //[img setSize: NSMakeSize(16, 16)];
     
     
+    NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
     
-    
-    img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
-
     
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
-                            initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
-                            action:@selector(historyMenuItemAction:) 
-                            keyEquivalent:@""];
+                                  initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
+                                  action:@selector(historyMenuItemAction:) 
+                                  keyEquivalent:@""];
     
     [menuItem setTarget:self];
     menuItem.dict = dict;
     [menuItem setImage:img];
-    [historyMenu addItem:menuItem];
+//Jump back the main thread to add the menu item to the history menu
+    [self performSelectorOnMainThread:@selector(addHistoryMenuItem:) withObject:menuItem waitUntilDone:YES];
+//    [historyMenu performSelectorOnMainThread:@selector(addItem:) withObject:menuItem waitUntilDone:YES];
+
+    //[historyMenu addItem:menuItem];
     [menuItem release];
-                          
-    // Play a sound
-                        
-    //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
-	//[systemSound play];
 }
+-(void)addHistoryMenuItem:(NSMenuItem*) menuItem{
+    [historyMenu addItem:menuItem];
+}
+
+
 -(IBAction) historyMenuItemAction: (id) sender{
     MenuItemWithDict *item = (MenuItemWithDict *) sender;
     NSString *url = [item.dict valueForKey:@"ImageURL"];
