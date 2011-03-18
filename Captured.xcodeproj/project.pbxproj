@@ -33,7 +33,6 @@
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
-		B59D6F8E13319FC800FAA935 /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */; };
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
@@ -135,7 +134,6 @@
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B59D6F8B13319FAC00FAA935 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
-		B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
 		B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemWithDict.h; sourceTree = "<group>"; };
 		B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemWithDict.m; sourceTree = "<group>"; };
@@ -382,7 +380,6 @@
 			children = (
 				B5C564571304310E00E396E6 /* WelcomeWindow.xib */,
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
-				B59D6F8D13319FC800FAA935 /* PreferencesWindow.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -501,7 +498,6 @@
 				B5C564581304310E00E396E6 /* WelcomeWindow.xib in Resources */,
 				B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */,
 				B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */,
-				B59D6F8E13319FC800FAA935 /* PreferencesWindow.xib in Resources */,
 				B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
