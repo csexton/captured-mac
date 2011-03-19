@@ -43,13 +43,18 @@
 	mkstemps(tempNam, 4);
 	
 	// get host, username, password and target directory options from user preferences
-	NSString* host = @"ec2-72-44-55-243.compute-1.amazonaws.com";
-	NSString* username = @"ec2-user";
-	NSString* password = @"";
-	NSString* targetDir = @"~";
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* host = [defaults stringForKey:@"SFTPHost"];
+	NSString* username = [defaults stringForKey:@"SFTPUser"];
+	NSString* password = [defaults stringForKey:@"SFTPPassword"];
+	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
+	NSString* uploadUrl = [defaults stringForKey:@"SFTPURL"];
+	if ([targetDir length] == 0)
+		targetDir = @"~";
 	
-	// format the url
+	// format the urls
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%s", host, targetDir, tempNam];
+	uploadUrl = [NSString stringWithFormat:@"%@/%s", uploadUrl, tempNam];
 
 	// reset the handle
 	curl_easy_reset(handle);
@@ -94,6 +99,10 @@
 	
 	// do the upload
 	rc = curl_easy_perform(handle);
+	if (rc == CURLE_OK)
+	{
+		NSLog(@"File successfully uploaded to cloud storage and accessible at %@", uploadUrl);
+	}
 	
 	fclose(fp);
 	
@@ -105,10 +114,13 @@
 	CURLcode rc = CURLE_OK;
 	
 	// get host, username, password and target directory options from user preferences
-	NSString* host = @"ec2-72-44-55-243.compute-1.amazonaws.com";
-	NSString* username = @"ec2-user";
-	NSString* password = @"";
-	NSString* targetDir = @"~";
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* host = [defaults stringForKey:@"SFTPHost"];
+	NSString* username = [defaults stringForKey:@"SFTPUser"];
+	NSString* password = [defaults stringForKey:@"SFTPPassword"];
+	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
+	if ([targetDir length] == 0)
+		targetDir = @"~";
 	
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];
 	
