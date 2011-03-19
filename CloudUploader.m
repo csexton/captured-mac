@@ -46,10 +46,11 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	strcpy(tempNam, "XXXXX.png");
 	mkstemps(tempNam, 4);
 	
-	// get the aws keys and bucket name from the keychain
-	NSString* bucket = @"jvshared";
-	NSString* accessKey = @"0975GDRPMF0HZWXJK702";
-	NSString* secretKey = @"i3aLgYHk3Oo8d3/3NJXUjNlLryqdoGNyerYCBbna";
+	// get the aws keys and bucket name from the defaults
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* bucket = [defaults stringForKey:@"S3URL"];
+	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
+	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	
 	// format the url
 	NSString* url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%s", bucket, tempNam];
@@ -73,7 +74,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 		return rc;
 	}
 	
-	// get a FILE* to pass to libcurl
+	// pass file pointer to libcurl
 	rc = curl_easy_setopt(handle, CURLOPT_READDATA, fp);
 	if (rc != CURLE_OK)
 	{
