@@ -217,21 +217,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B588DD251336873C00221E3D /* Uploaders */,
 				CFDD04221332D89300C8160E /* JSON */,
-				CFD6D67D133157930065567C /* CloudUploader.h */,
-				CFD6D67E133157930065567C /* CloudUploader.m */,
+				B50909D112E7910C00A32F5E /* XMLReader */,
 				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
 				B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */,
-				CFD6D680133171CB0065567C /* DropboxUploader.h */,
-				CFD6D681133171CB0065567C /* DropboxUploader.m */,
 				B50909D612E7915B00A32F5E /* ValidateReceipt */,
-				B50909D112E7910C00A32F5E /* XMLReader */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
 				B52AAEAA12DFAC7D00609367 /* DirEvents */,
 				B52AAEB312DFADEB00609367 /* EventsController.h */,
 				B52AAEB412DFADEB00609367 /* EventsController.m */,
-				CFFCA58B132575CF004BE557 /* Imgur.m */,
-				B5E9018112DEC3B6004F71B6 /* Imgur.h */,
 				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
 				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
@@ -246,8 +241,6 @@
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
 				B5447750130B719700EA5653 /* ImgurURL.h */,
 				B5447751130B719700EA5653 /* ImgurURL.m */,
-				CFB327DE132B125400B388E0 /* SFTPUploader.h */,
-				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
 				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
 				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
@@ -378,6 +371,21 @@
 				B5A438F412E0ECF3007D2A2D /* DirEvents.m */,
 			);
 			name = DirEvents;
+			sourceTree = "<group>";
+		};
+		B588DD251336873C00221E3D /* Uploaders */ = {
+			isa = PBXGroup;
+			children = (
+				CFD6D67D133157930065567C /* CloudUploader.h */,
+				CFD6D67E133157930065567C /* CloudUploader.m */,
+				CFD6D680133171CB0065567C /* DropboxUploader.h */,
+				CFD6D681133171CB0065567C /* DropboxUploader.m */,
+				CFFCA58B132575CF004BE557 /* Imgur.m */,
+				B5E9018112DEC3B6004F71B6 /* Imgur.h */,
+				CFB327DE132B125400B388E0 /* SFTPUploader.h */,
+				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
+			);
+			name = Uploaders;
 			sourceTree = "<group>";
 		};
 		B5C564591304312300E396E6 /* Views */ = {
