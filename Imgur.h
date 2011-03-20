@@ -9,7 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ASIFormDataRequest.h"
-#import "ImgurURL.h"
 
 
 @interface Imgur : NSObject {

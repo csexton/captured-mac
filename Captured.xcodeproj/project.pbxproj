@@ -29,7 +29,6 @@
 		B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52ADBA6130C2DA700C7A531 /* Carbon.framework */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
-		B5447752130B719700EA5653 /* ImgurURL.m in Sources */ = {isa = PBXBuildFile; fileRef = B5447751130B719700EA5653 /* ImgurURL.m */; };
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
@@ -129,8 +128,6 @@
 		B52ADBA6130C2DA700C7A531 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
-		B5447750130B719700EA5653 /* ImgurURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurURL.h; sourceTree = "<group>"; };
-		B5447751130B719700EA5653 /* ImgurURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurURL.m; sourceTree = "<group>"; };
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
@@ -239,8 +236,6 @@
 				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
-				B5447750130B719700EA5653 /* ImgurURL.h */,
-				B5447751130B719700EA5653 /* ImgurURL.m */,
 				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
 				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
@@ -541,7 +536,6 @@
 				B5C5645613042BBE00E396E6 /* ViewBackground.m in Sources */,
 				B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */,
 				B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */,
-				B5447752130B719700EA5653 /* ImgurURL.m in Sources */,
 				B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */,
 				CFFCA58C132575CF004BE557 /* Imgur.m in Sources */,
 				CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */,
