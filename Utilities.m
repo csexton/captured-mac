@@ -161,7 +161,11 @@
     
     // Report an error if the source isn't a valid image
     if (![sourceImage isValid]) {
-        NSLog(@"Invalid Image");
+        @throw [NSException
+                exceptionWithName:@"FileNotFoundException"
+                reason:@"Original image was not valid, the uploader may not have set the FilePath key"
+                userInfo:nil];
+        return sourceImage; // Why do we get here?
     } else {
         
         NSSize smallSize = [sourceImage size];
@@ -180,7 +184,6 @@
         [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
         [smallImage unlockFocus];
     }
-    NSLog(@"Finished resizing image for history menu thumbnail");
 
     return smallImage;
 }

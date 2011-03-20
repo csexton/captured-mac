@@ -64,7 +64,6 @@
 -(void) setStatusSuccess: (NSDictionary*)dict {
 
     // Update the icon
-
 	[self setStatusIcon: statusIconSuccess];
 	[self performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];
     
@@ -73,14 +72,10 @@
 	self.lastUploadedDeleteURL = [NSString stringWithString:[dict valueForKey:@"DeleteImageURL"]];
 
     // Copy url to clipboard
-    
 	[copyURLMenuItem setEnabled:YES];
 	[Utilities copyToPasteboard:self.lastUploadedURL];
     
-
-    
     // Send growl notification
-    
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
                                 description:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"
                            notificationName:@"Upload Finished"
@@ -91,13 +86,9 @@
    
     // Jump to the background thread to do the resizing
     [self performSelectorInBackground: @selector(createHistoryMenuItem:) withObject: dict];
-    
-
-                          
+                              
     // Play a sound
-                        
-    //NSSound *systemSound = [NSSound soundNamed:@"Pop"];
-	//[systemSound play];
+	//[[NSSound soundNamed:@"Pop"] play];
 }
 -(void) createHistoryMenuItem: (NSDictionary *) dict {
     // Create history menu item
@@ -111,19 +102,28 @@
     //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]];
     //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
     //[img setSize: NSMakeSize(16, 16)];
-    
-    
-    NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
-    
-    
+
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
                                   initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
                                   action:@selector(historyMenuItemAction:) 
                                   keyEquivalent:@""];
     
+    // Add the dict from the uploader
     [menuItem setTarget:self];
     menuItem.dict = dict;
-    [menuItem setImage:img];
+    
+    // Create the tnumbnail
+    @try {
+        NSString *imageFilePath = [dict valueForKey:@"FilePath"];
+        if (imageFilePath != nil){
+            NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
+            [menuItem setImage:img];
+        }
+    }
+    @catch ( NSException *e ) {
+        NSLog(@"Unable to create thumbnail for history item: %@", e);
+    }
+   
     // Jump back the main thread to add the menu item to the history menu
     [self performSelectorOnMainThread:@selector(addHistoryMenuItem:) withObject:menuItem waitUntilDone:YES];
     //[historyMenu addItem:menuItem];
