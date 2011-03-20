@@ -22,8 +22,15 @@
 	// build and execute the request
 	NSURL* url = [NSURL URLWithString:path];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url];
-	NSURLResponse* response;	
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+	NSURLResponse* response;
+	NSError* error;
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	if (error)
+	{
+		// we failed to shorten, better to return the original URL than nothing at all
+		NSLog(@"Error while calling URL shortener: %@", [error description]);
+		return longUrl;
+	}
 	
 	// parse out the json response and return the short url
 	NSString* json = [NSString stringWithUTF8String:[data bytes]];
