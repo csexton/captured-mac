@@ -95,7 +95,7 @@
 
 - (void)processFile: (NSString*)file {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
-        NSString * uploadType = [[NSUserDefaults standardUserDefaults stringForKey:@"UploadType"]];
+        NSString * uploadType = [[NSUserDefaults standardUserDefaults] stringForKey:@"UploadType"];
         
         if ([uploadType isEqualToString:@"Imgur"]){
             [imgurUploader uploadFile:file];
