@@ -11,7 +11,7 @@
 
 @implementation UrlShortener
 
-- (NSString*)shorten:(NSString*)longUrl {
++ (NSString*)shorten:(NSString*)longUrl {
 	// need to url-encode the url we want shortened
     CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
 	NSString* escapedLongUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) longUrl, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
