@@ -94,7 +94,7 @@
 												<object class="NSButtonCell" key="NSCell" id="299184438">
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
-													<string key="NSContents">Captured is Enabled</string>
+													<string key="NSContents">Enable Captured</string>
 													<object class="NSFont" key="NSSupport" id="596719216">
 														<string key="NSName">LucidaGrande</string>
 														<double key="NSSize">13</double>
@@ -122,7 +122,7 @@
 												<string key="NSFrame">{{173, 240}, {107, 18}}</string>
 												<reference key="NSSuperview" ref="156721243"/>
 												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="184027122"/>
+												<reference key="NSNextKeyView" ref="221015337"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="119832906">
 													<int key="NSCellFlags">-2080244224</int>
@@ -140,20 +140,20 @@
 													<int key="NSPeriodicInterval">25</int>
 												</object>
 											</object>
-											<object class="NSButton" id="184027122">
+											<object class="NSButton" id="221015337">
 												<reference key="NSNextResponder" ref="156721243"/>
 												<int key="NSvFlags">268</int>
-												<string key="NSFrame">{{173, 208}, {172, 18}}</string>
+												<string key="NSFrame">{{173, 211}, {172, 18}}</string>
 												<reference key="NSSuperview" ref="156721243"/>
 												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView"/>
 												<bool key="NSEnabled">YES</bool>
-												<object class="NSButtonCell" key="NSCell" id="910944468">
+												<object class="NSButtonCell" key="NSCell" id="527861486">
 													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">0</int>
 													<string key="NSContents">Shorten URLs with Bit.ly</string>
 													<reference key="NSSupport" ref="596719216"/>
-													<reference key="NSControlView" ref="184027122"/>
+													<reference key="NSControlView" ref="221015337"/>
 													<int key="NSButtonFlags">1211912703</int>
 													<int key="NSButtonFlags2">2</int>
 													<reference key="NSNormalImage" ref="963217742"/>
@@ -1963,10 +1963,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.UseURLShortener</string>
-						<reference key="source" ref="184027122"/>
+						<reference key="source" ref="221015337"/>
 						<reference key="destination" ref="602120982"/>
 						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="184027122"/>
+							<reference key="NSSource" ref="221015337"/>
 							<reference key="NSDestination" ref="602120982"/>
 							<string key="NSLabel">value: values.UseURLShortener</string>
 							<string key="NSBinding">value</string>
@@ -2700,7 +2700,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="961551715"/>
 							<reference ref="555031018"/>
-							<reference ref="184027122"/>
+							<reference ref="221015337"/>
 						</object>
 						<reference key="parent" ref="960691074"/>
 					</object>
@@ -2784,17 +2784,17 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">746</int>
-						<reference key="object" ref="184027122"/>
+						<reference key="object" ref="221015337"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="910944468"/>
+							<reference ref="527861486"/>
 						</object>
 						<reference key="parent" ref="156721243"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">747</int>
-						<reference key="object" ref="910944468"/>
-						<reference key="parent" ref="184027122"/>
+						<reference key="object" ref="527861486"/>
+						<reference key="parent" ref="221015337"/>
 					</object>
 				</object>
 			</object>
