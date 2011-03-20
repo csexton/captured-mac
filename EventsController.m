@@ -97,6 +97,9 @@
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
         NSString * uploadType = [[NSUserDefaults standardUserDefaults] stringForKey:@"UploadType"];
         
+        // To make this simple, these keys must match the values in the GUI exactly. If you want 
+        // to add a type, add it in the MainMenu.xib's UploadType combobox
+        
         if ([uploadType isEqualToString:@"Imgur"]){
             [imgurUploader uploadFile:file];
         } 
