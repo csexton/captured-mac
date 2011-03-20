@@ -11,7 +11,7 @@
 @synthesize imageSelection, imageSelectionData, xmlResponseData, filePathName;
 
 #pragma mark  Imgur API Access Method
-- (void) uploadImage: (NSData *) data; {
+- (void) performUpload: (NSData *) data; {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
                                                         object:self];
 	imageSelectionData = data;
@@ -71,12 +71,12 @@ foundCharacters:(NSString *)string {
     ;   
 }
 
-- (void) processFile:(NSString*)filename {
+- (void) uploadFile:(NSString*)filename {
 
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
     self.filePathName = filename;
 	NSData* data = [NSData dataWithContentsOfFile: filename];
-	[self uploadImage:data];
+	[self performUpload:data];
 }
 
 - (NSDictionary *) parseResponseForURL: (NSString*)str {

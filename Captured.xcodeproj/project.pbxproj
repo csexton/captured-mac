@@ -67,7 +67,7 @@
 		CFDD043C1332D89300C8160E /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04311332D89300C8160E /* SBJsonStreamWriterState.m */; };
 		CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04331332D89300C8160E /* SBJsonTokeniser.m */; };
 		CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04351332D89300C8160E /* SBJsonWriter.m */; };
-		CFFCA58C132575CF004BE557 /* Imgur.mm in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* Imgur.mm */; };
+		CFFCA58C132575CF004BE557 /* Imgur.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* Imgur.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -191,7 +191,7 @@
 		CFDD04331332D89300C8160E /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
 		CFDD04341332D89300C8160E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		CFDD04351332D89300C8160E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		CFFCA58B132575CF004BE557 /* Imgur.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Imgur.mm; sourceTree = "<group>"; };
+		CFFCA58B132575CF004BE557 /* Imgur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Imgur.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,7 +230,7 @@
 				B52AAEAA12DFAC7D00609367 /* DirEvents */,
 				B52AAEB312DFADEB00609367 /* EventsController.h */,
 				B52AAEB412DFADEB00609367 /* EventsController.m */,
-				CFFCA58B132575CF004BE557 /* Imgur.mm */,
+				CFFCA58B132575CF004BE557 /* Imgur.m */,
 				B5E9018112DEC3B6004F71B6 /* Imgur.h */,
 				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
 				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
@@ -535,7 +535,7 @@
 				B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */,
 				B5447752130B719700EA5653 /* ImgurURL.m in Sources */,
 				B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */,
-				CFFCA58C132575CF004BE557 /* Imgur.mm in Sources */,
+				CFFCA58C132575CF004BE557 /* Imgur.m in Sources */,
 				CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */,
 				CFD6D67F133157930065567C /* CloudUploader.m in Sources */,
 				CFD6D682133171CB0065567C /* DropboxUploader.m in Sources */,

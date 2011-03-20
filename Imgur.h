@@ -25,12 +25,12 @@
 @property (retain) NSData *xmlResponseData;
 @property (retain) NSString *filePathName;
 
-- (void) uploadImage: (NSData *) image;
+- (void) performUpload: (NSData *) image;
 - (void) requestFinished: (ASIFormDataRequest *) request;
 - (void) requestFailed: (ASIFormDataRequest *) request;
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
 
-- (void) processFile:(NSString*)filename;
+- (void) uploadFile:(NSString*)filename;
 - (NSDictionary*) parseResponseForURL:(NSString*)str;
 
 @end

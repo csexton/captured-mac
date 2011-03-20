@@ -95,7 +95,7 @@
 
 - (void)processFile: (NSString*)file {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
-	  [imgur processFile:file];
+	  [imgur uploadFile:file];
 //		NSInteger rc = [cloudUploader uploadFile:file];
 //		NSInteger rc = [dropboxUploader uploadFile:file];
 	}
