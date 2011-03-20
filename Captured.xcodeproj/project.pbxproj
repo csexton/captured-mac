@@ -54,6 +54,7 @@
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
 		CF1742B113273F890021D91B /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
+		CF368800133523A7003703C7 /* UrlShortener.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3687FF133523A7003703C7 /* UrlShortener.m */; };
 		CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB327DF132B125400B388E0 /* SFTPUploader.m */; };
 		CFD6D67F133157930065567C /* CloudUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD6D67E133157930065567C /* CloudUploader.m */; };
 		CFD6D682133171CB0065567C /* DropboxUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD6D681133171CB0065567C /* DropboxUploader.m */; };
@@ -163,6 +164,8 @@
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
 		CF1742B013273F890021D91B /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Frameworks/libcurl.framework; sourceTree = "<group>"; };
+		CF3687FE133523A6003703C7 /* UrlShortener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlShortener.h; sourceTree = "<group>"; };
+		CF3687FF133523A7003703C7 /* UrlShortener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlShortener.m; sourceTree = "<group>"; };
 		CFB327DE132B125400B388E0 /* SFTPUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTPUploader.h; sourceTree = "<group>"; };
 		CFB327DF132B125400B388E0 /* SFTPUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTPUploader.m; sourceTree = "<group>"; };
 		CFD6D67D133157930065567C /* CloudUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudUploader.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
 				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
 				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
+				CF3687FE133523A6003703C7 /* UrlShortener.h */,
+				CF3687FF133523A7003703C7 /* UrlShortener.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -545,6 +550,7 @@
 				CFDD043C1332D89300C8160E /* SBJsonStreamWriterState.m in Sources */,
 				CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */,
 				CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */,
+				CF368800133523A7003703C7 /* UrlShortener.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
