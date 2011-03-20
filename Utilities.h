@@ -17,6 +17,7 @@
 +(NSString*)screenCaptureDir;
 +(NSString*)screenCapturePrefix;
 +(void)copyToPasteboard:(NSString*)str;
++(void)copyUrlToPasteboard:(NSString*)str shouldShorten:(BOOL)shouldShorten;
 +(NSString*)invokeScreenCapture:(NSString*)option;
 + (NSURL *)appURL;
 +(BOOL) willStartAtLogin:(NSURL *)itemURL;

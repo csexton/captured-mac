@@ -7,7 +7,7 @@
 //
 
 #import "Utilities.h"
-
+#import "UrlShortener.h"
 
 @implementation Utilities
 
@@ -50,6 +50,14 @@
     [pb declareTypes:types owner:self];
     [pb setString: str forType:NSStringPboardType];
 }
++(void)copyUrlToPasteboard:(NSString*)str shouldShorten:(BOOL)likesItStumpy {
+    
+    if (likesItStumpy) {
+        str = [[[UrlShortener alloc] init] shorten:str];
+    }
+    return [Utilities copyToPasteboard:str];
+}
+
 
 +(NSString*)invokeScreenCapture:(NSString*)option
 {

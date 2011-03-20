@@ -73,7 +73,8 @@
 
     // Copy url to clipboard
 	[copyURLMenuItem setEnabled:YES];
-	[Utilities copyToPasteboard:self.lastUploadedURL];
+    BOOL useShort = [[[NSUserDefaults standardUserDefaults] objectForKey:@"UseURLShortener"] boolValue];
+	[Utilities copyUrlToPasteboard:[dict valueForKey:@"ImageURL"] shouldShorten:useShort];
     
     // Send growl notification
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
