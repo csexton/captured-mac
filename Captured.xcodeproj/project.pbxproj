@@ -66,7 +66,7 @@
 		CFDD043C1332D89300C8160E /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04311332D89300C8160E /* SBJsonStreamWriterState.m */; };
 		CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04331332D89300C8160E /* SBJsonTokeniser.m */; };
 		CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04351332D89300C8160E /* SBJsonWriter.m */; };
-		CFFCA58C132575CF004BE557 /* Imgur.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* Imgur.m */; };
+		CFFCA58C132575CF004BE557 /* ImgurUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* ImgurUploader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -156,7 +156,7 @@
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B5E9018112DEC3B6004F71B6 /* Imgur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imgur.h; sourceTree = "<group>"; };
+		B5E9018112DEC3B6004F71B6 /* ImgurUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ImgurUploader.h; sourceTree = "<group>"; };
 		B5E9024B12DEC480004F71B6 /* StatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMenuController.h; sourceTree = "<group>"; };
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 		CFDD04331332D89300C8160E /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
 		CFDD04341332D89300C8160E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		CFDD04351332D89300C8160E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		CFFCA58B132575CF004BE557 /* Imgur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Imgur.m; sourceTree = "<group>"; };
+		CFFCA58B132575CF004BE557 /* ImgurUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurUploader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,34 +214,34 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				B588DD251336873C00221E3D /* Uploaders */,
-				CFDD04221332D89300C8160E /* JSON */,
-				B50909D112E7910C00A32F5E /* XMLReader */,
-				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
-				B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */,
-				B50909D612E7915B00A32F5E /* ValidateReceipt */,
-				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
 				B52AAEAA12DFAC7D00609367 /* DirEvents */,
-				B52AAEB312DFADEB00609367 /* EventsController.h */,
-				B52AAEB412DFADEB00609367 /* EventsController.m */,
-				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
-				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
+				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
+				CFDD04221332D89300C8160E /* JSON */,
+				B588DD251336873C00221E3D /* Uploaders */,
+				B50909D112E7910C00A32F5E /* XMLReader */,
+				B50909D612E7915B00A32F5E /* ValidateReceipt */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
 				77C8280C06725ACE000B614F /* CapturedAppDelegate.m */,
-				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
-				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
-				B5A437C712E0C820007D2A2D /* Utilities.h */,
-				B5A437C812E0C820007D2A2D /* Utilities.m */,
-				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
-				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
+				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
+				B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */,
+				B52AAEB312DFADEB00609367 /* EventsController.h */,
+				B52AAEB412DFADEB00609367 /* EventsController.m */,
+				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
+				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
 				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
-				B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */,
-				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
+				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
+				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
 				CF3687FE133523A6003703C7 /* UrlShortener.h */,
 				CF3687FF133523A7003703C7 /* UrlShortener.m */,
+				B5A437C712E0C820007D2A2D /* Utilities.h */,
+				B5A437C812E0C820007D2A2D /* Utilities.m */,
+				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
+				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
+				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
+				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -375,8 +375,8 @@
 				CFD6D67E133157930065567C /* CloudUploader.m */,
 				CFD6D680133171CB0065567C /* DropboxUploader.h */,
 				CFD6D681133171CB0065567C /* DropboxUploader.m */,
-				CFFCA58B132575CF004BE557 /* Imgur.m */,
-				B5E9018112DEC3B6004F71B6 /* Imgur.h */,
+				CFFCA58B132575CF004BE557 /* ImgurUploader.m */,
+				B5E9018112DEC3B6004F71B6 /* ImgurUploader.h */,
 				CFB327DE132B125400B388E0 /* SFTPUploader.h */,
 				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
 			);
@@ -537,7 +537,7 @@
 				B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */,
 				B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */,
 				B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */,
-				CFFCA58C132575CF004BE557 /* Imgur.m in Sources */,
+				CFFCA58C132575CF004BE557 /* ImgurUploader.m in Sources */,
 				CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */,
 				CFD6D67F133157930065567C /* CloudUploader.m in Sources */,
 				CFD6D682133171CB0065567C /* DropboxUploader.m in Sources */,

@@ -1,12 +1,12 @@
 #import "ASIFormDataRequest.h"
-#import "Imgur.h"
+#import "ImgurUploader.h"
 #import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
 
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
-@implementation Imgur
+@implementation ImgurUploader
 
 @synthesize imageSelection, imageSelectionData, xmlResponseData, filePathName;
 

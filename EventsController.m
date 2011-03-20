@@ -33,7 +33,7 @@
 #import "DirEvents.h"
 #import "DirEvent.h"
 #import "CapturedAppDelegate.h"
-#import "Imgur.h"
+#import "ImgurUploader.h"
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "DropboxUploader.h"
@@ -60,7 +60,7 @@
 	self.screenCapturePrefix = [Utilities screenCapturePrefix];
 	self.screenCaptureDir = [Utilities screenCaptureDir];
 	self.history = [[NSMutableSet alloc] init]; 
-	self.imgur = [[Imgur alloc] init]; //Leak?
+	self.imgur = [[ImgurUploader alloc] init]; //Leak?
 	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
 	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
 	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];

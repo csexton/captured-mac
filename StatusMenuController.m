@@ -7,7 +7,7 @@
 //
 
 #import <Growl/Growl.h>
-#import "Imgur.h"
+#import "ImgurUploader.h"
 
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"

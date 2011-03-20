@@ -30,7 +30,7 @@
 
 #import <Foundation/Foundation.h>
 #import "DirEventListenerProtocol.h"
-#import "Imgur.h"
+#import "ImgurUploader.h"
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "DropboxUploader.h"
@@ -39,7 +39,7 @@
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
-	Imgur *imgur;
+	ImgurUploader *imgur;
 	SFTPUploader* sftpUploader;
 	CloudUploader* cloudUploader;
 	DropboxUploader* dropboxUploader;
@@ -48,7 +48,7 @@
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
-@property (readwrite, retain) Imgur *imgur;
+@property (readwrite, retain) ImgurUploader *imgur;
 @property (readwrite, retain) SFTPUploader* sftpUploader;
 @property (readwrite, retain) CloudUploader* cloudUploader;
 @property (readwrite, retain) DropboxUploader* dropboxUploader;

@@ -11,7 +11,7 @@
 #import "ASIFormDataRequest.h"
 
 
-@interface Imgur : NSObject {
+@interface ImgurUploader : NSObject {
 	NSData *imageSelection;
     NSData *imageSelectionData;
 	NSData *xmlResponseData;
