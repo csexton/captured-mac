@@ -113,17 +113,27 @@
     //[img setSize: NSMakeSize(16, 16)];
     
     
-    NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
+    NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(400, 400)];
     
     
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
                                   initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
                                   action:@selector(historyMenuItemAction:) 
                                   keyEquivalent:@""];
+    NSMenu *submenu = [[NSMenu alloc] init];
+    //[submenu addItemWithTitle:@"Sub item" action:nil keyEquivalent:@""];
+    NSMenuItem *subMenuItem = [[NSMenuItem alloc]
+                               initWithTitle:@""
+                                  action:@selector(historyMenuItemAction:) 
+                                  keyEquivalent:@""];
+
+    
+    [menuItem setSubmenu:submenu];
     
     [menuItem setTarget:self];
     menuItem.dict = dict;
-    [menuItem setImage:img];
+    [subMenuItem setImage:img];
+    [submenu addItem:subMenuItem];
     // Jump back the main thread to add the menu item to the history menu
     [self performSelectorOnMainThread:@selector(addHistoryMenuItem:) withObject:menuItem waitUntilDone:YES];
     //[historyMenu addItem:menuItem];
