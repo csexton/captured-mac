@@ -43,7 +43,7 @@
 @synthesize screenCapturePrefix;
 @synthesize screenCaptureDir;
 @synthesize history;
-@synthesize imgur;
+@synthesize imgurUploader;
 @synthesize sftpUploader;
 @synthesize cloudUploader;
 @synthesize dropboxUploader;
@@ -60,7 +60,7 @@
 	self.screenCapturePrefix = [Utilities screenCapturePrefix];
 	self.screenCaptureDir = [Utilities screenCaptureDir];
 	self.history = [[NSMutableSet alloc] init]; 
-	self.imgur = [[ImgurUploader alloc] init]; //Leak?
+	self.imgurUploader = [[ImgurUploader alloc] init]; //Leak?
 	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
 	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
 	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];
@@ -95,10 +95,29 @@
 
 - (void)processFile: (NSString*)file {
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
-	  [imgur uploadFile:file];
-//		NSInteger rc = [cloudUploader uploadFile:file];
-//		NSInteger rc = [dropboxUploader uploadFile:file];
-	}
+        NSString * uploadType = [[NSUserDefaults standardUserDefaults stringForKey:@"UploadType"]];
+        
+        if ([uploadType isEqualToString:@"Imgur"]){
+            [imgurUploader uploadFile:file];
+        } 
+        else if ([uploadType isEqualToString:@"Amazon S3"])
+        {
+            NSInteger rc = [cloudUploader uploadFile:file];
+        } 
+        else if ([uploadType isEqualToString:@"Dropbox"])
+        {
+            NSInteger rc = [dropboxUploader uploadFile:file];
+        } 
+        else if ([uploadType isEqualToString:@"SFTP"]) 
+        {
+            NSInteger rc = [sftpUploader uploadFile:file];
+        } 
+        else 
+        { // Fallback to Imgur
+            NSLog(@"Unknown upload type '%@', using Imgur", uploadType);
+            [imgurUploader uploadFile:file];
+        }
+    }
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{

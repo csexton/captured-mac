@@ -39,19 +39,19 @@
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
-	ImgurUploader *imgur;
-	SFTPUploader* sftpUploader;
-	CloudUploader* cloudUploader;
-	DropboxUploader* dropboxUploader;
+	ImgurUploader *imgurUploader;
+	SFTPUploader *sftpUploader;
+	CloudUploader *cloudUploader;
+	DropboxUploader *dropboxUploader;
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
-@property (readwrite, retain) ImgurUploader *imgur;
-@property (readwrite, retain) SFTPUploader* sftpUploader;
-@property (readwrite, retain) CloudUploader* cloudUploader;
-@property (readwrite, retain) DropboxUploader* dropboxUploader;
+@property (readwrite, retain) ImgurUploader *imgurUploader;
+@property (readwrite, retain) SFTPUploader *sftpUploader;
+@property (readwrite, retain) CloudUploader *cloudUploader;
+@property (readwrite, retain) DropboxUploader *dropboxUploader;
 
 - (void)setupEventListener;
 - (void)processFile: (NSString*)file;
