@@ -64,7 +64,8 @@
 								<object class="NSMenuItem" id="743093781">
 									<reference key="NSMenu" ref="123765298"/>
 									<string key="NSTitle">About Captured</string>
-									<string key="NSKeyEquiv"/>
+									<string key="NSKeyEquiv">,</string>
+									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="893455832"/>
 									<reference key="NSMixedImage" ref="424226900"/>
@@ -166,6 +167,51 @@
 									<bool key="NSIsSeparator">YES</bool>
 									<string key="NSTitle"/>
 									<string key="NSKeyEquiv"/>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="893455832"/>
+									<reference key="NSMixedImage" ref="424226900"/>
+								</object>
+								<object class="NSMenuItem" id="15423638">
+									<reference key="NSMenu" ref="123765298"/>
+									<string key="NSTitle">Close</string>
+									<string key="NSKeyEquiv">w</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="893455832"/>
+									<reference key="NSMixedImage" ref="424226900"/>
+								</object>
+								<object class="NSMenuItem" id="517388337">
+									<reference key="NSMenu" ref="123765298"/>
+									<string key="NSTitle">Copy</string>
+									<string key="NSKeyEquiv">c</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="893455832"/>
+									<reference key="NSMixedImage" ref="424226900"/>
+								</object>
+								<object class="NSMenuItem" id="7637469">
+									<reference key="NSMenu" ref="123765298"/>
+									<string key="NSTitle">Paste</string>
+									<string key="NSKeyEquiv">v</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="893455832"/>
+									<reference key="NSMixedImage" ref="424226900"/>
+								</object>
+								<object class="NSMenuItem" id="765038108">
+									<reference key="NSMenu" ref="123765298"/>
+									<string key="NSTitle">Cut</string>
+									<string key="NSKeyEquiv">x</string>
+									<int key="NSKeyEquivModMask">1048576</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="893455832"/>
+									<reference key="NSMixedImage" ref="424226900"/>
+								</object>
+								<object class="NSMenuItem" id="108822263">
+									<reference key="NSMenu" ref="123765298"/>
+									<string key="NSTitle">Select All</string>
+									<string key="NSKeyEquiv">a</string>
 									<int key="NSKeyEquivModMask">1048576</int>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="893455832"/>
@@ -394,51 +440,6 @@
 						<bool key="NSIsSeparator">YES</bool>
 						<string key="NSTitle"/>
 						<string key="NSKeyEquiv"/>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="893455832"/>
-						<reference key="NSMixedImage" ref="424226900"/>
-					</object>
-					<object class="NSMenuItem" id="15423638">
-						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Close</string>
-						<string key="NSKeyEquiv">w</string>
-						<int key="NSKeyEquivModMask">1048576</int>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="893455832"/>
-						<reference key="NSMixedImage" ref="424226900"/>
-					</object>
-					<object class="NSMenuItem" id="108822263">
-						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Select All</string>
-						<string key="NSKeyEquiv">a</string>
-						<int key="NSKeyEquivModMask">1048576</int>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="893455832"/>
-						<reference key="NSMixedImage" ref="424226900"/>
-					</object>
-					<object class="NSMenuItem" id="7637469">
-						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Paste</string>
-						<string key="NSKeyEquiv">v</string>
-						<int key="NSKeyEquivModMask">1048576</int>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="893455832"/>
-						<reference key="NSMixedImage" ref="424226900"/>
-					</object>
-					<object class="NSMenuItem" id="517388337">
-						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Copy</string>
-						<string key="NSKeyEquiv">c</string>
-						<int key="NSKeyEquivModMask">1048576</int>
-						<int key="NSMnemonicLoc">2147483647</int>
-						<reference key="NSOnImage" ref="893455832"/>
-						<reference key="NSMixedImage" ref="424226900"/>
-					</object>
-					<object class="NSMenuItem" id="765038108">
-						<reference key="NSMenu" ref="424847978"/>
-						<string key="NSTitle">Cut</string>
-						<string key="NSKeyEquiv">x</string>
-						<int key="NSKeyEquivModMask">1048576</int>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<reference key="NSOnImage" ref="893455832"/>
 						<reference key="NSMixedImage" ref="424226900"/>
@@ -740,6 +741,14 @@
 					</object>
 					<int key="connectionID">757</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectAll:</string>
+						<reference key="source" ref="909243075"/>
+						<reference key="destination" ref="108822263"/>
+					</object>
+					<int key="connectionID">758</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -807,6 +816,11 @@
 							<reference ref="901869444"/>
 							<reference ref="163840636"/>
 							<reference ref="791044830"/>
+							<reference ref="15423638"/>
+							<reference ref="517388337"/>
+							<reference ref="7637469"/>
+							<reference ref="765038108"/>
+							<reference ref="108822263"/>
 						</object>
 						<reference key="parent" ref="376192112"/>
 					</object>
@@ -972,11 +986,6 @@
 							<reference ref="923559104"/>
 							<reference ref="150145932"/>
 							<reference ref="548996235"/>
-							<reference ref="15423638"/>
-							<reference ref="108822263"/>
-							<reference ref="7637469"/>
-							<reference ref="517388337"/>
-							<reference ref="765038108"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1065,27 +1074,27 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">542</int>
 						<reference key="object" ref="15423638"/>
-						<reference key="parent" ref="424847978"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">751</int>
-						<reference key="object" ref="108822263"/>
-						<reference key="parent" ref="424847978"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">752</int>
-						<reference key="object" ref="7637469"/>
-						<reference key="parent" ref="424847978"/>
+						<reference key="parent" ref="123765298"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">754</int>
 						<reference key="object" ref="517388337"/>
-						<reference key="parent" ref="424847978"/>
+						<reference key="parent" ref="123765298"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">752</int>
+						<reference key="object" ref="7637469"/>
+						<reference key="parent" ref="123765298"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">756</int>
 						<reference key="object" ref="765038108"/>
-						<reference key="parent" ref="424847978"/>
+						<reference key="parent" ref="123765298"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">751</int>
+						<reference key="object" ref="108822263"/>
+						<reference key="parent" ref="123765298"/>
 					</object>
 				</object>
 			</object>
@@ -1274,7 +1283,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">757</int>
+			<int key="maxID">758</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1325,7 +1334,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>preferencesController</string>
 							<string>startAtLogin</string>
 							<string>statusMenuController</string>
 							<string>welcomeWindowController</string>
@@ -1333,7 +1341,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>PreferencesController</string>
 							<string>BOOL</string>
 							<string>StatusMenuController</string>
 							<string>WelcomeWindowController</string>
@@ -1344,7 +1351,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>preferencesController</string>
 							<string>startAtLogin</string>
 							<string>statusMenuController</string>
 							<string>welcomeWindowController</string>
@@ -1352,10 +1358,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">preferencesController</string>
-								<string key="candidateClassName">PreferencesController</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">startAtLogin</string>
 								<string key="candidateClassName">BOOL</string>
@@ -1377,106 +1379,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/CapturedAppDelegate.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PreferencesController</string>
-					<string key="superclassName">NSViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>selectUploader:</string>
-							<string>showpreferencesWindow:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>selectUploader:</string>
-							<string>showpreferencesWindow:</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">selectUploader:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">showpreferencesWindow:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>dropboxPreferences</string>
-							<string>imgurPreferences</string>
-							<string>s3Preferences</string>
-							<string>sftpPreferences</string>
-							<string>uploaderBox</string>
-							<string>window</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>NSView</string>
-							<string>NSView</string>
-							<string>NSView</string>
-							<string>NSView</string>
-							<string>NSBox</string>
-							<string>NSWindow</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>dropboxPreferences</string>
-							<string>imgurPreferences</string>
-							<string>s3Preferences</string>
-							<string>sftpPreferences</string>
-							<string>uploaderBox</string>
-							<string>window</string>
-						</object>
-						<object class="NSMutableArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dropboxPreferences</string>
-								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">imgurPreferences</string>
-								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">s3Preferences</string>
-								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">sftpPreferences</string>
-								<string key="candidateClassName">NSView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">uploaderBox</string>
-								<string key="candidateClassName">NSBox</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">window</string>
-								<string key="candidateClassName">NSWindow</string>
-							</object>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PreferencesController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">

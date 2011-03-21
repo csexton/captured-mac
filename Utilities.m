@@ -197,6 +197,7 @@
     return smallImage;
 }
 + (void) growlError:(NSString*) str{
+    NSLog(@"Notifying user of error: '%@'", str);
     [GrowlApplicationBridge notifyWithTitle:@"Captured had a Problem"
                                 description:str
                            notificationName:@"Error"
