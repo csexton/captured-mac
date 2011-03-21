@@ -10,7 +10,6 @@
 #import "EventsController.h"
 #import "StatusMenuController.h"
 #import "WelcomeWindowController.h"
-#import "PreferencesController.h"
 #import "Preferences.h"
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
@@ -18,7 +17,6 @@
 	EventsController *eventsController;
 	StatusMenuController *statusMenuController;
     WelcomeWindowController *welcomeWindowController;
-    PreferencesController *preferencesController; // DELETE
 	BOOL uploadsEnabled;
     NSWindow *window;
 
@@ -29,7 +27,6 @@
 
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
-@property (retain) IBOutlet PreferencesController *preferencesController;
 
 @property (assign) IBOutlet NSWindow *window;
 

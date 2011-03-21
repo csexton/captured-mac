@@ -37,7 +37,6 @@
 		B588DD361336DB6800221E3D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B588DD321336DB6800221E3D /* Preferences.xib */; };
 		B588DD391336DCB500221E3D /* Colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD371336DCB500221E3D /* Colors.tiff */; };
 		B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD381336DCB500221E3D /* Updates.tiff */; };
-		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
@@ -146,8 +145,6 @@
 		B588DD321336DB6800221E3D /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		B588DD371336DCB500221E3D /* Colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colors.tiff; sourceTree = "<group>"; };
 		B588DD381336DCB500221E3D /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
-		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
-		B59D6F8B13319FAC00FAA935 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
 		B59D6F9F13329BDF00FAA935 /* MenuItemWithDict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuItemWithDict.h; sourceTree = "<group>"; };
 		B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemWithDict.m; sourceTree = "<group>"; };
@@ -248,8 +245,6 @@
 				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
-				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
-				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
 				B588DD301336DB6800221E3D /* Preferences.h */,
 				B588DD311336DB6800221E3D /* Preferences.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
@@ -572,7 +567,6 @@
 				CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */,
 				CFD6D67F133157930065567C /* CloudUploader.m in Sources */,
 				CFD6D682133171CB0065567C /* DropboxUploader.m in Sources */,
-				B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */,
 				B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */,
 				CFDD04361332D89300C8160E /* NSObject+JSON.m in Sources */,
 				CFDD04371332D89300C8160E /* SBJsonParser.m in Sources */,

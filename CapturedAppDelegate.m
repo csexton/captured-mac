@@ -11,7 +11,6 @@
 
 @synthesize statusMenuController;
 @synthesize welcomeWindowController;
-@synthesize preferencesController;
 @synthesize window;
 
 
@@ -37,10 +36,7 @@
 	}
     
     [self registerGlobalHotKey];
-        
-    preferencesController = [[PreferencesController alloc] initWithNibName:@"PreferencesWindow" bundle:nil];
-
-    
+            
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
     
     if ([self isFirstRun])
