@@ -31,6 +31,12 @@
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
+		B588DD331336DB6800221E3D /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2E1336DB6800221E3D /* Advanced.png */; };
+		B588DD341336DB6800221E3D /* General.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2F1336DB6800221E3D /* General.png */; };
+		B588DD351336DB6800221E3D /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = B588DD311336DB6800221E3D /* Preferences.m */; };
+		B588DD361336DB6800221E3D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B588DD321336DB6800221E3D /* Preferences.xib */; };
+		B588DD391336DCB500221E3D /* Colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD371336DCB500221E3D /* Colors.tiff */; };
+		B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD381336DCB500221E3D /* Updates.tiff */; };
 		B59D6F8C13319FAC00FAA935 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6F8B13319FAC00FAA935 /* PreferencesController.m */; };
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
@@ -130,6 +136,13 @@
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B588DD2E1336DB6800221E3D /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
+		B588DD2F1336DB6800221E3D /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General.png; sourceTree = "<group>"; };
+		B588DD301336DB6800221E3D /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
+		B588DD311336DB6800221E3D /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		B588DD321336DB6800221E3D /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		B588DD371336DCB500221E3D /* Colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colors.tiff; sourceTree = "<group>"; };
+		B588DD381336DCB500221E3D /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
 		B59D6F8A13319FAC00FAA935 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B59D6F8B13319FAC00FAA935 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
@@ -156,7 +169,7 @@
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		B5E9018112DEC3B6004F71B6 /* ImgurUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; path = ImgurUploader.h; sourceTree = "<group>"; };
+		B5E9018112DEC3B6004F71B6 /* ImgurUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurUploader.h; sourceTree = "<group>"; };
 		B5E9024B12DEC480004F71B6 /* StatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMenuController.h; sourceTree = "<group>"; };
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
@@ -232,6 +245,8 @@
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
 				B59D6F8A13319FAC00FAA935 /* PreferencesController.h */,
 				B59D6F8B13319FAC00FAA935 /* PreferencesController.m */,
+				B588DD301336DB6800221E3D /* Preferences.h */,
+				B588DD311336DB6800221E3D /* Preferences.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
 				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
 				CF3687FE133523A6003703C7 /* UrlShortener.h */,
@@ -298,9 +313,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B588DD371336DCB500221E3D /* Colors.tiff */,
+				B588DD381336DCB500221E3D /* Updates.tiff */,
 				B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */,
 				B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */,
 				B51A1FCC12E393EB006C7840 /* Credits.html */,
+				B588DD2E1336DB6800221E3D /* Advanced.png */,
+				B588DD2F1336DB6800221E3D /* General.png */,
 				B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */,
 				B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */,
 				B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */,
@@ -386,6 +405,7 @@
 		B5C564591304312300E396E6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B588DD321336DB6800221E3D /* Preferences.xib */,
 				B5C564571304310E00E396E6 /* WelcomeWindow.xib */,
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
 			);
@@ -507,6 +527,11 @@
 				B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */,
 				B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */,
 				B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */,
+				B588DD331336DB6800221E3D /* Advanced.png in Resources */,
+				B588DD341336DB6800221E3D /* General.png in Resources */,
+				B588DD361336DB6800221E3D /* Preferences.xib in Resources */,
+				B588DD391336DCB500221E3D /* Colors.tiff in Resources */,
+				B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,6 +578,7 @@
 				CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */,
 				CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */,
 				CF368800133523A7003703C7 /* UrlShortener.m in Sources */,
+				B588DD351336DB6800221E3D /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

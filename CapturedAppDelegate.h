@@ -24,11 +24,13 @@
 }
 
 @property BOOL startAtLogin;
-@property (retain) IBOutlet NSWindow *window;
+//@property (retain) IBOutlet NSWindow *window;
 
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
 @property (retain) IBOutlet PreferencesController *preferencesController;
+
+@property (assign) IBOutlet NSWindow *window;
 
 
 @property BOOL uploadsEnabled;

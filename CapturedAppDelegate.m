@@ -4,6 +4,9 @@
 #import "EventsController.h"
 #import "DDHotKeyCenter.h"
 
+#import "Preferences.h"
+
+
 @implementation CapturedAppDelegate
 
 @synthesize statusMenuController;
@@ -115,18 +118,11 @@
 }
 
 -(IBAction) showPreferencesWindow:(id)sender
-{    
-//    if (preferencesController==nil) {
-//        preferencesController = [[PreferencesController alloc] init];
-//        if ([NSBundle loadNibNamed:@"PreferencesWindow" owner:preferencesController]) {
-//            [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-//        }
-//    }
-//    [[preferencesController window] makeKeyAndOrderFront:sender];
-//    [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    //[preferencesController showpreferencesWindow:self];
+{
     [NSApp activateIgnoringOtherApps: YES];
-	[window makeKeyAndOrderFront:self];
+	//[window makeKeyAndOrderFront:self];
+    [[Preferences sharedPrefsWindowController] showWindow:nil];
+	(void)sender;
 }
 
 - (BOOL)startAtLogin
