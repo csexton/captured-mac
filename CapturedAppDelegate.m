@@ -95,14 +95,15 @@
 	return uploadsEnabled;
 }
 - (void)setUploadsEnabled: (BOOL)enabled {
+    [Preferences sharedWillChangeValueForKey:@"uploadsEnabled"];
+
 	if (enabled) {
 		[statusMenuController setStatusNormal];
-	}
-	else {
+	} else {
 		[statusMenuController setStatusDisabled];
 	}
-
 	uploadsEnabled = enabled;
+    [Preferences sharedDidChangeValueForKey:@"uploadsEnabled"];
 }
 
 -(IBAction) takeScreenCaptureAction:(id) sender
@@ -134,7 +135,9 @@
 - (void)setStartAtLogin:(BOOL)enabled
 {
     [statusMenuController willChangeValueForKey:@"startAtLogin"];
+    [Preferences sharedWillChangeValueForKey:@"startAtLogin"];
     [Utilities setStartAtLogin:[Utilities appURL] enabled:enabled];
+    [Preferences sharedDidChangeValueForKey:@"startAtLogin"];
     [statusMenuController didChangeValueForKey:@"startAtLogin"];
 }
 

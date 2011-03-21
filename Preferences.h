@@ -32,6 +32,9 @@
 
 
 + (Preferences *)sharedPrefsWindowController;
++ (void)sharedWillChangeValueForKey: (NSString *)key;
++ (void)sharedDidChangeValueForKey: (NSString *)key;
+
 + (NSString *)nibName;
 -(NSView *)viewForTag:(int)tag;
 -(IBAction)switchView:(id)sender;

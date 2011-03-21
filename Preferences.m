@@ -14,6 +14,18 @@ static Preferences *_sharedPrefsWindowController = nil;
 	return _sharedPrefsWindowController;
 }
 
++ (void)sharedWillChangeValueForKey: (NSString *)key
+{
+	if (_sharedPrefsWindowController) {
+        [_sharedPrefsWindowController willChangeValueForKey:key];
+    } 
+}
++ (void)sharedDidChangeValueForKey: (NSString *)key
+{
+	if (_sharedPrefsWindowController) {
+        [_sharedPrefsWindowController didChangeValueForKey:key];
+    } 
+}
 
 + (NSString *)nibName
 {
