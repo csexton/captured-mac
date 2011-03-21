@@ -8,16 +8,29 @@
 
 #import "JSON/JSON.h"
 #import "UrlShortener.h"
+#import "Utilities.h"
 
 @implementation UrlShortener
 
 + (NSString*)shorten:(NSString*)longUrl {
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* login = [defaults stringForKey:@"BitlyLogin"];
+	NSString* key = [defaults stringForKey:@"BitlyKey"];
+    
+    if (login == nil || key == nil) {
+
+        [Utilities growlError:@"Y U NO HAVE BITLY CONFIGRS??"];
+        return longUrl;
+    }
+    
+    
 	// need to url-encode the url we want shortened
     CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
 	NSString* escapedLongUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) longUrl, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
 	
 	// format the request url using our api key for bitly
-	NSString* path = [NSString stringWithFormat:@"http://api.bitly.com/v3/shorten?login=jorgev&apiKey=R_789e33b8a6612b1e9d1d233266322355&longUrl=%@", escapedLongUrl];
+	NSString* path = [NSString stringWithFormat:@"http://api.bitly.com/v3/shorten?login=%@&apiKey=%@&longUrl=%@", login, key, escapedLongUrl];
 	
 	// build and execute the request
 	NSURL* url = [NSURL URLWithString:path];
