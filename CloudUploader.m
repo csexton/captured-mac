@@ -8,6 +8,7 @@
 
 #import <CommonCrypto/CommonHMAC.h>
 
+#import "UrlShortener.h"
 #import "CloudUploader.h"
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -159,7 +160,13 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 		long response_code;
 		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
 		if (rc == CURLE_OK && response_code == 200)
+		{
+			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+			BOOL shortenUrl = [defaults boolForKey:@"UseURLShortener"];
+			if (shortenUrl)
+				url = [UrlShortener shorten:url];
 			NSLog(@"File successfully uploaded to cloud storage and accessible at %@", url);
+		}
 	}
 	
 	fclose(fp);
