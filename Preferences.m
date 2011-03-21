@@ -25,20 +25,16 @@ static Preferences *_sharedPrefsWindowController = nil;
 	[super dealloc];
 }
 
-
-
 -(void)awakeFromNib{
 	[self.window setContentSize:[generalPreferenceView frame].size];
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
 	[self.window center];
-    
-    [sftpPreferences setToolTip:@"Peas"];
-    
-    
+        
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString * type = [defaults stringForKey:@"UploadType"];
     
+    [uploadType selectItemWithObjectValue:type];
     [self selectUploaderViewWithType:type];
 }
 
@@ -93,6 +89,20 @@ static Preferences *_sharedPrefsWindowController = nil;
 	return [[toolbar items] valueForKey:@"itemIdentifier"];
 }
 
+- (BOOL)uploadsEnabled {
+	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled];
+}
+- (void)setUploadsEnabled: (BOOL)enabled {
+    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadsEnabled: enabled];
+}
+- (BOOL)startAtLogin {
+	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] startAtLogin];
+}
+- (void)setStartAtLogin:(BOOL)enabled {
+    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStartAtLogin: enabled];
+}
+
+
 -(IBAction) selectUploader:(id) sender
 {
     NSComboBox *combo = (NSComboBox*)sender;
@@ -108,7 +118,7 @@ static Preferences *_sharedPrefsWindowController = nil;
 
 -(void) selectUploaderViewWithType: (NSString *) type {
     
-    [uploaderBox setTitle:  [NSString stringWithFormat: @"%@ Settings", type]];
+    [uploaderBox setTitle: [NSString stringWithFormat: @"%@ Settings", type]];
     
     if ([type isEqualToString: @"Imgur"]) {
         [uploaderBox setContentView:imgurPreferences];

@@ -1,5 +1,6 @@
 
 #import <Cocoa/Cocoa.h>
+#import "CapturedAppDelegate.h"
 
 @interface Preferences : NSWindowController <NSToolbarDelegate> {
 
@@ -11,14 +12,24 @@
     
     IBOutlet NSWindow *window;
     IBOutlet NSBox *uploaderBox;
+    IBOutlet NSComboBox *uploadType;
+
     IBOutlet NSView *sftpPreferences;
     IBOutlet NSView *s3Preferences;
     IBOutlet NSView *imgurPreferences;
     IBOutlet NSView *dropboxPreferences;
-	
+    
+    IBOutlet NSButtonCell *startAtLoginCheckBox;
+    
+    
+    	
 	int currentViewTag;
 	
 }
+
+@property BOOL startAtLogin;
+@property BOOL uploadsEnabled;
+
 
 + (Preferences *)sharedPrefsWindowController;
 + (NSString *)nibName;

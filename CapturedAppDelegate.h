@@ -11,13 +11,14 @@
 #import "StatusMenuController.h"
 #import "WelcomeWindowController.h"
 #import "PreferencesController.h"
+#import "Preferences.h"
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet BOOL *startAtLogin;
 	EventsController *eventsController;
 	StatusMenuController *statusMenuController;
     WelcomeWindowController *welcomeWindowController;
-    PreferencesController *preferencesController;
+    PreferencesController *preferencesController; // DELETE
 	BOOL uploadsEnabled;
     NSWindow *window;
 

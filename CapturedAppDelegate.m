@@ -121,6 +121,7 @@
 {
     [NSApp activateIgnoringOtherApps: YES];
 	//[window makeKeyAndOrderFront:self];
+//    preferences = [Preferences sharedPrefsWindowController];
     [[Preferences sharedPrefsWindowController] showWindow:nil];
 	(void)sender;
 }
