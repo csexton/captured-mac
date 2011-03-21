@@ -8,6 +8,13 @@
 	IBOutlet NSView *colorsPreferenceView;
 	IBOutlet NSView *updatesPreferenceView;
 	IBOutlet NSView *advancedPreferenceView;
+    
+    IBOutlet NSWindow *window;
+    IBOutlet NSBox *uploaderBox;
+    IBOutlet NSView *sftpPreferences;
+    IBOutlet NSView *s3Preferences;
+    IBOutlet NSView *imgurPreferences;
+    IBOutlet NSView *dropboxPreferences;
 	
 	int currentViewTag;
 	
@@ -18,4 +25,7 @@
 -(NSView *)viewForTag:(int)tag;
 -(IBAction)switchView:(id)sender;
 -(NSRect)newFrameForNewContentView:(NSView *)view;
+
+-(IBAction) selectUploader:(id) sender;
+-(void) selectUploaderViewWithType: (NSString *) type;
 @end
