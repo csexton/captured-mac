@@ -14,12 +14,12 @@
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
-static char* oauthConsumerKey = "bpsv3nx35j5hua7";
-static char* oauthConsumerSecretKey = "qa9tvwoivvspknm";
+static NSString* oauthConsumerKey = @"bpsv3nx35j5hua7";
+static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
 // user tokens, these will need to be requested once and then stored
-NSString* token = @"nx7s0yvpe6654x6";
-NSString* secret = @"zspeub00bk58qlr";
+static NSString* token = @"nx7s0yvpe6654x6";
+static NSString* secret = @"zspeub00bk58qlr";
 
 // characters suitable for generating a unique nonce
 static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -180,7 +180,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	return rc;
 }
 
-- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(const char*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
 	NSString* sigBaseString;
 	
 	// if there is a file in the url, we format it slightly differently
@@ -202,7 +202,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	return sigBaseString;
 }
 
-- (NSString*)genOAuthSig:(NSString*)sigBaseString consumerSecret:(const char*)consumerSecret userSecret:(NSString*)userSecret {
+- (NSString*)genOAuthSig:(NSString*)sigBaseString consumerSecret:(NSString*)consumerSecret userSecret:(NSString*)userSecret {
 	// convert the string to data so we can generate the HMAC
  	NSData* dataToSign = [sigBaseString dataUsingEncoding:NSASCIIStringEncoding];
 	CCHmacContext context;
@@ -222,7 +222,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 }
 
 // this method builds up the Authorization header that we will need to send in the request
-- (NSString*)genAuthHeader:(const char*)fileName consumerKey:(const char*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+- (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
 	if (fileName == NULL)
 		return [NSString stringWithFormat:@"Authorization: OAuth oauth_consumer_key=\"%s\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
 	else
