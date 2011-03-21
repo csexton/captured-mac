@@ -3,6 +3,7 @@
 #import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "XMLReader.h"
+#import "Frameworks/OAuthConsumer.framework/Headers/OAuthConsumer.h"
 
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
