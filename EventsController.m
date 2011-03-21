@@ -145,8 +145,6 @@
 				NSLog(@"Error %@, %@", error, [error userInfo]);//[NSApp presentError:error]; 
 			}    
 			
-			
-			
 			// Extract the date string and use natural language matching to get its date
 			//NSString *datestring = [[[[[fileName stringByDeletingPathExtension] substringFromIndex:8] stringByReplacingOccurrencesOfString:@" at" withString:@""] stringByReplacingOccurrencesOfString:@"." withString:@":"] stringByAppendingString:@" -0600"];
 			//NSDate *picDate = [NSDate dateWithNaturalLanguageString:datestring];
@@ -165,25 +163,12 @@
 					// array because if someone disables uploads, takes a screen capture, then reneables them
 					// within 10 seconds captured will upload it anyway.
 					if ([(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled]) {
-
 					
 					// Get the full path and the actual image
 					NSString *path = [basepath stringByAppendingPathComponent:fileName];
 					NSLog(@"I want to upload %@", path);
 					[list addObject:path];
-						
-					//NSImage *image = [[[NSImage alloc]  initWithContentsOfFile:path] autorelease];
-					//
-					//// Convert the image to jpeg (use "NSPNGFileType" for PNG)
-					//NSArray *representations = [image representations];
-					//NSData * bitmapData = [NSBitmapImageRep representationOfImageRepsInArray:representations usingType:NSJPEGFileType properties:nil];
-					//[bitmapData writeToFile:@"/tmp/foo.jpg" atomically:YES];
-					//
-					//// Upload the image
-					//UploadOperation *op = [[[UploadOperation alloc] init] autorelease];
-					//op.path = @"/tmp/foo.jpg";
-					//op.delegate = self;
-					//[op start];
+
 					}
 				}
 			}

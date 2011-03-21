@@ -8,6 +8,7 @@
 
 #import "Utilities.h"
 #import "UrlShortener.h"
+#import <Growl/Growl.h>
 
 @implementation Utilities
 
@@ -53,7 +54,7 @@
 +(void)copyUrlToPasteboard:(NSString*)str shouldShorten:(BOOL)likesItStumpy {
     
     if (likesItStumpy) {
-        str = [[[UrlShortener alloc] init] shorten:str];
+        str = [UrlShortener shorten:str];
     }
     return [Utilities copyToPasteboard:str];
 }
@@ -194,6 +195,15 @@
     }
 
     return smallImage;
+}
++ (void) growlError:(NSString*) str{
+    [GrowlApplicationBridge notifyWithTitle:@"Captured had a Problem"
+                                description:str
+                           notificationName:@"Error"
+                                   iconData:nil
+                                   priority:0
+                                   isSticky:NO
+                               clickContext:[NSDate date]];
 }
 
 @end

@@ -23,6 +23,7 @@
 +(BOOL) willStartAtLogin:(NSURL *)itemURL;
 +(void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize;
++ (void) growlError:(NSString*) str;
 
 
 @end

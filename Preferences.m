@@ -115,17 +115,8 @@ static Preferences *_sharedPrefsWindowController = nil;
 }
 
 
--(IBAction) selectUploader:(id) sender
-{
-    NSComboBox *combo = (NSComboBox*)sender;
-    NSString* type = [combo stringValue];
-    //NSView *currentView = [[uploaderBox subviews] objectAtIndex:0];
-    
-    //Deletes all subviews
-    //[uploaderBox setSubviews:[NSArray array]];
-    
-    [self selectUploaderViewWithType: type];
-    
+-(IBAction) selectUploader:(id) sender{
+    [self selectUploaderViewWithType: [(NSComboBox*)sender stringValue]];
 }
 
 -(void) selectUploaderViewWithType: (NSString *) type {
