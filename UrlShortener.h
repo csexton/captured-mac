@@ -13,6 +13,6 @@
 	
 }
 
-- (NSString*)shorten:(NSString*)longUrl;
++ (NSString*)shorten:(NSString*)longUrl;
 
 @end
