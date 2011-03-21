@@ -7,7 +7,7 @@
 	IBOutlet NSToolbar *bar;
 	IBOutlet NSView *generalPreferenceView;
 	IBOutlet NSView *colorsPreferenceView;
-	IBOutlet NSView *updatesPreferenceView;
+	IBOutlet NSView *aboutPreferenceView;
 	IBOutlet NSView *advancedPreferenceView;
     
     IBOutlet NSWindow *window;
@@ -42,4 +42,6 @@
 
 -(IBAction) selectUploader:(id) sender;
 -(void) selectUploaderViewWithType: (NSString *) type;
+-(IBAction) openHomepage:(id) sender;
+
 @end

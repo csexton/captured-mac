@@ -1,5 +1,6 @@
 
 #import "Preferences.h"
+
 static Preferences *_sharedPrefsWindowController = nil;
 
 @implementation Preferences
@@ -57,7 +58,7 @@ static Preferences *_sharedPrefsWindowController = nil;
 		case 0: default: view = generalPreferenceView; break;
 		case 1: view = advancedPreferenceView; break;
 		case 2: view = colorsPreferenceView; break;
-		case 3: view = updatesPreferenceView; break;
+		case 3: view = aboutPreferenceView; break;
 	}
     return view;
 }
@@ -142,6 +143,10 @@ static Preferences *_sharedPrefsWindowController = nil;
     else {
         [uploaderBox setContentView:imgurPreferences];
     }
+}
+
+-(IBAction) openHomepage:(id) sender{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.codeography.com/captured"]];
 }
 
 
