@@ -32,6 +32,14 @@ static Preferences *_sharedPrefsWindowController = nil;
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
 	[self.window center];
+    
+    [sftpPreferences setToolTip:@"Peas"];
+    
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString * type = [defaults stringForKey:@"UploadType"];
+    
+    [self selectUploaderViewWithType:type];
 }
 
 
@@ -84,5 +92,44 @@ static Preferences *_sharedPrefsWindowController = nil;
 -(NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar {
 	return [[toolbar items] valueForKey:@"itemIdentifier"];
 }
+
+-(IBAction) selectUploader:(id) sender
+{
+    NSComboBox *combo = (NSComboBox*)sender;
+    NSString* type = [combo stringValue];
+    //NSView *currentView = [[uploaderBox subviews] objectAtIndex:0];
+    
+    //Deletes all subviews
+    //[uploaderBox setSubviews:[NSArray array]];
+    
+    [self selectUploaderViewWithType: type];
+    
+}
+
+-(void) selectUploaderViewWithType: (NSString *) type {
+    
+    [uploaderBox setTitle:  [NSString stringWithFormat: @"%@ Settings", type]];
+    
+    if ([type isEqualToString: @"Imgur"]) {
+        [uploaderBox setContentView:imgurPreferences];
+    }
+    else if ([type isEqualToString: @"SFTP"]) {
+        [uploaderBox setContentView:sftpPreferences];
+    }
+    else if ([type isEqualToString: @"Amazon S3"]) {
+        [uploaderBox setContentView:s3Preferences];
+        
+    }
+    else if ([type isEqualToString: @"Amazon S3"]) {
+        [uploaderBox setContentView:s3Preferences];
+    }
+    else if ([type isEqualToString: @"Dropbox"]) {
+        [uploaderBox setContentView:dropboxPreferences];
+    }
+    else {
+        [uploaderBox setContentView:imgurPreferences];
+    }
+}
+
 
 @end
