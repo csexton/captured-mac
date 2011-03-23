@@ -43,5 +43,6 @@
 -(IBAction) selectUploader:(id) sender;
 -(void) selectUploaderViewWithType: (NSString *) type;
 -(IBAction) openHomepage:(id) sender;
+-(IBAction) openBitlyPage:(id) sender;
 
 @end
