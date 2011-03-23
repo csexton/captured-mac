@@ -15,13 +15,10 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
 @implementation CloudUploader
 
-@synthesize handle;
-
 - (id)init
 {
 	self = [super init];
 	if (self) {
-		handle = curl_easy_init();
 	}
 
 	return self;
@@ -30,13 +27,10 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 - (void)dealloc
 {
 	[super dealloc];
-	curl_easy_cleanup(handle);
 }
 
 - (NSInteger)uploadFile:(NSString*)sourceFile
 {
-	CURLcode rc = CURLE_OK;
-	
 	// first thing we do is make sure we have a file to read
 	FILE* fp = fopen([sourceFile UTF8String], "rb");
 	if (fp == NULL)
@@ -54,65 +48,13 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	
 	// format the url
-	NSString* url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%s", bucket, tempNam];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%s", bucket, tempNam]];
 
-	// reset the handle
-	curl_easy_reset(handle);
-	
-	// set the url
-	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	if (rc != CURLE_OK)
-	{
-		fclose(fp);
-		return rc;
-	}
-	
-	// tell libcurl we're doing an upload
-	rc = curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
-	if (rc != CURLE_OK)
-	{
-		fclose(fp);
-		return rc;
-	}
-	
-	// pass file pointer to libcurl
-	rc = curl_easy_setopt(handle, CURLOPT_READDATA, fp);
-	if (rc != CURLE_OK)
-	{
-		fclose(fp);
-		return rc;
-	}
-	
-	// calculate the md5 of the file
-	unsigned char md5[CC_MD5_DIGEST_LENGTH];
-	CC_MD5_CTX md5_context;
-	CC_MD5_Init(&md5_context);
-	unsigned int size = 0;
-	NSFileHandle* fileHandle = [NSFileHandle fileHandleForReadingAtPath:sourceFile];
-	while (true)
-	{
-		NSData* block = [fileHandle readDataOfLength:1024];
-		size += [block length];
-		if ([block length] > 0)
-			CC_MD5_Update(&md5_context, [block bytes], [block length]);
-		else
-			break;
-	}
-	CC_MD5_Final(md5, &md5_context);
-	NSString* contentMd5 = @"";
-	for (int i = 0; i < CC_MD5_DIGEST_LENGTH; i++)
-		contentMd5 = [contentMd5 stringByAppendingFormat:@"%02x", md5[i]];
-	
-	// set the size
-	rc = curl_easy_setopt(handle, CURLOPT_INFILESIZE, size);
-	if (rc != CURLE_OK)
-	{
-		fclose(fp);
-		return rc;
-	}
-	
-	// get base64 encoding of the md5
-	NSString* base64md5 = [[NSData dataWithBytes:md5 length:CC_MD5_DIGEST_LENGTH] base64EncodedString];
+	// create the request object
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	[request setHTTPMethod:@"PUT"];
+	NSInputStream* fileStream = [NSInputStream inputStreamWithFileAtPath:sourceFile];
+	[request setHTTPBodyStream:fileStream];
 
 	// build up the data to sign
 	NSString* httpVerb = @"PUT";
@@ -122,7 +64,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
-	NSString* stringToSign = [NSString stringWithFormat:@"%@\n%@\n%@\n%@\nx-amz-acl:public-read\nx-amz-storage-class:REDUCED_REDUNDANCY\n", httpVerb, base64md5, contentType, timestamp];
+	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\nx-amz-acl:public-read\nx-amz-storage-class:REDUCED_REDUNDANCY\n", httpVerb, contentType, timestamp];
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%s", bucket, tempNam];
 	NSData* dataToSign = [stringToSign dataUsingEncoding:NSASCIIStringEncoding];
 
@@ -137,62 +79,33 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	
 	// create the headers
 	NSString* base64String = [digestData base64EncodedString];
-	NSString* authHeader = [NSString stringWithFormat:@"Authorization: AWS %@:%@", accessKey, base64String];
-	NSString* contentMd5Header = [NSString stringWithFormat:@"Content-MD5: %@", base64md5];
-	NSString* contentTypeHeader = [NSString stringWithFormat:@"Content-Type: %@", contentType];
-	NSString* dateHeader = [NSString stringWithFormat:@"Date: %@", timestamp];
-	
-	// add the custom headers
-	struct curl_slist *slist= NULL;
-	slist = curl_slist_append(slist, [contentMd5Header UTF8String]);
-	slist = curl_slist_append(slist, [contentTypeHeader UTF8String]);
-	slist = curl_slist_append(slist, [dateHeader UTF8String]);
-	slist = curl_slist_append(slist, [authHeader UTF8String]);
-	slist = curl_slist_append(slist, "x-amz-acl: public-read");
-	slist = curl_slist_append(slist, "x-amz-storage-class: REDUCED_REDUNDANCY");
-	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
+	[request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String] forHTTPHeaderField:@"Authorization"];
+	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+	[request addValue:timestamp forHTTPHeaderField:@"Date"];
+	[request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
+	[request addValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
+	unsigned long long fileSize = [[[[[[NSFileManager alloc] init] autorelease] attributesOfItemAtPath:sourceFile error:nil] objectForKey:NSFileSize] unsignedLongLongValue];
+	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
 	// do the upload
-	rc = curl_easy_perform(handle);
-	curl_slist_free_all(slist);
-	if (rc == CURLE_OK)
-	{
-		long response_code;
-		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
-		if (rc == CURLE_OK && response_code == 200)
-		{
-			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-			BOOL shortenUrl = [defaults boolForKey:@"UseURLShortener"];
-			if (shortenUrl)
-				url = [UrlShortener shorten:url];
-			NSLog(@"File successfully uploaded to cloud storage and accessible at %@", url);
-		}
-	}
+	NSURLResponse* response;
+	NSError* error;
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	if (error)
+		NSLog(@"Error while uploading to cloud provider: %@", [error description]);
 	
-	fclose(fp);
-	
-	return rc;
+	return 0;
 }
 
 - (NSInteger)testConnection
 {
-	CURLcode rc = CURLE_OK;
-	
 	// get the aws keys and bucket name from the keychain
-	NSString* bucket = @"jvshared";
+//	NSString* bucket = @"jvshared";
 
 	// format the url
-	NSString* url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@", bucket];
+//	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", bucket]];
 	
-	curl_easy_reset(handle);
-	
-	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	if (rc != CURLE_OK)
-		return rc;
-	
-	rc = curl_easy_perform(handle);
-	
-	return rc;
+	return 0;
 }
 
 @end

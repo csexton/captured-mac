@@ -7,17 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <curl/curl.h>
 
 @interface CloudUploader : NSObject {
-	CURL* handle;
 }
-
-@property CURL* handle;
 
 - (NSInteger)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
-- (CURL*)handle;
 
 @end
 
