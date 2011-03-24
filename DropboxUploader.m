@@ -102,7 +102,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	[request setHTTPBody:bodyData];
 	
 	// do the upload
-	NSURLResponse* response = nil;
+	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	if (!error)
@@ -196,7 +196,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
 
 	// make the request
-	NSURLResponse* response = nil;
+	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	if (!error)

@@ -69,11 +69,14 @@
 	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
 	// do the upload
-	NSURLResponse* response = nil;
+	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
 		NSLog(@"Error while uploading to cloud provider: %@", error);
+	else if ([response statusCode] != 200)
+		NSLog(@"Failed to upload file with HTTP status code %ld: %@", [response statusCode], textResponse);
 	else
 		NSLog(@"File uploaded to cloud storage and available at %@", url);
 	
