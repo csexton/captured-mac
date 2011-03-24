@@ -8,7 +8,6 @@
 
 #import "Utilities.h"
 #import "JSON/JSON.h"
-#import "UrlShortener.h"
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
@@ -113,10 +112,6 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		if ([result isEqualToString:@"winner!"])
 		{
 			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
-			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-			BOOL shortenUrl = [defaults boolForKey:@"UseURLShortener"];
-			if (shortenUrl)
-				publicLink = [UrlShortener shorten:publicLink];
 			NSLog(@"File successfully uploaded to Dropbox and accessible at %@", publicLink);
 		}
 	}
