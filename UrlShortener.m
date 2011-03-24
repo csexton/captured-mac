@@ -35,8 +35,8 @@
 	// build and execute the request
 	NSURL* url = [NSURL URLWithString:path];
 	NSURLRequest* request = [NSURLRequest requestWithURL:url];
-	NSURLResponse* response;
-	NSError* error;
+	NSURLResponse* response = nil;
+	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	if (error)
 	{
