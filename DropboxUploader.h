@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#include <curl/curl.h>
 
 @interface DropboxUploader : NSObject {
-	CURL* handle;
 }
-
-@property CURL* handle;
 
 - (NSInteger)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
@@ -22,6 +18,5 @@
 - (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
 - (NSInteger)getToken:(NSString*)username password:(NSString*)password;
 - (NSUInteger)getAccountId;
-- (CURL*)handle;
 
 @end

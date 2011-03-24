@@ -26,13 +26,10 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 @implementation DropboxUploader
 
-@synthesize handle;
-
 - (id)init
 {
 	self = [super init];
 	if (self) {
-		handle = curl_easy_init();
 	}
 
 	return self;
@@ -41,28 +38,29 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 - (void)dealloc
 {
 	[super dealloc];
-	curl_easy_cleanup(handle);
 }
 
 - (NSInteger)uploadFile:(NSString*)sourceFile
 {
-	CURLcode rc = CURLE_OK;
-		
 	// generate a unique filename
 	char tempNam[16];
 	strcpy(tempNam, "XXXXX.png");
 	mkstemps(tempNam, 4);
 	
-	// set the url
-	NSString* url = @"https://api-content.dropbox.com/0/files/dropbox/Public";
-	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
+	// set up the url
+	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public"];
+	
+	// now the request
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	NSString* httpVerb = @"POST";
+	[request setHTTPMethod:httpVerb];
 	
 	// generate a unique nonce for this request
 	time_t oauthTimestamp = time(NULL);
 	NSString* oauthNonce = [self genRandStringLength:16 seed:oauthTimestamp];
 	
 	// format the signature base string
-	NSString* sigBaseString = [self genSigBaseString:url method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
 	// build the signature
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
@@ -75,35 +73,15 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	[bodyData appendData: [[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
 	// Add data to upload
-	[bodyData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%s\"\r\n", tempNam] dataUsingEncoding:NSUTF8StringEncoding]];
-	[bodyData appendData: [[NSString stringWithString:@"Content-Type: image/png\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+	[bodyData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%s\"\r\n", tempNam] dataUsingEncoding:NSASCIIStringEncoding]];
+	[bodyData appendData: [[NSString stringWithString:@"Content-Type: image/png\r\n\r\n"] dataUsingEncoding:NSASCIIStringEncoding]];
 
-	// create a temp file we'll use for the mime-encoding
-	NSString* tempFilename = [NSString stringWithFormat: @"%.0f.txt", [NSDate timeIntervalSinceReferenceDate] * 1000.0];
-	NSString *tempFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:tempFilename];
-	if (![[NSFileManager defaultManager] createFileAtPath:tempFilePath contents:bodyData attributes:nil]) {
-		NSLog(@"failed to create file");
-		return -1;
-	}
-
-	// get a handle so we can append data to the mime file
-	NSFileHandle* bodyFile = [NSFileHandle fileHandleForWritingAtPath:tempFilePath];
-	[bodyFile seekToEndOfFile];
-
-	// write the raw file data to the mime file
+	// write the raw file data to the body data
 	if ([[NSFileManager defaultManager] fileExistsAtPath:sourceFile]) {
 		NSFileHandle* readFile = [NSFileHandle fileHandleForReadingAtPath:sourceFile];
 		NSData* readData;
-		while ((readData = [readFile readDataOfLength:1024 * 512]) != nil && [readData length] > 0) {
-			@try {
-				[bodyFile writeData:readData];
-			} @catch (NSException* e) {
-				NSLog(@"failed to write data");
-				[readFile closeFile];
-				[bodyFile closeFile];
-				[[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
-				return -1;
-			}
+		while ((readData = [readFile readDataOfLength:1024 * 64]) != nil && [readData length] > 0) {
+			[bodyData appendData:readData];
 		}
 		[readFile closeFile];
 	} else {
@@ -111,49 +89,30 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	}
 	
 	// write the end boundary to the mime file
-    @try {
-		[bodyFile writeData: [[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	} @catch (NSException* e) {
-		NSLog(@"failed to write end of data");
-		[bodyFile closeFile];
-		[[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
-		return -1;
-	}
-	[bodyFile closeFile];
-	
-	// dropbox wants a POST
-	rc = curl_easy_setopt(handle, CURLOPT_POST, 1);
+	[bodyData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", stringBoundary] dataUsingEncoding:NSASCIIStringEncoding]];
 	
 	// build the custom headers
 	NSString* authHeader = [self genAuthHeader:tempNam consumerKey:oauthConsumerKey signature:oauthSignature nonce:oauthNonce timestamp:oauthTimestamp token:token];
-	NSString* contentTypeHeader = [NSString stringWithFormat:@"Content-Type: multipart/form-data; boundary=%@", stringBoundary];
 	
 	// add the custom headers
-	struct curl_slist *slist = NULL;
-	slist = curl_slist_append(slist, [contentTypeHeader UTF8String]);
-	slist = curl_slist_append(slist, [authHeader UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
+	[request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary] forHTTPHeaderField:@"Content-Type"];
+	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
+	[request addValue:[NSString stringWithFormat:@"%lu", [bodyData length]]	forHTTPHeaderField:@"Content-Length"];
 	
-	// get the file pointer for passing
-	FILE* fp = fopen([tempFilePath UTF8String], "rb");
-	rc = curl_easy_setopt(handle, CURLOPT_READDATA, fp);
+	// set the data
+	[request setHTTPBody:bodyData];
 	
-	// set the size of the data
-	NSDictionary* dict = [[NSFileManager defaultManager] attributesOfItemAtPath:tempFilePath error:nil];
-	unsigned long long size = [dict fileSize];
-	rc = curl_easy_setopt(handle, CURLOPT_POSTFIELDSIZE, size);
-
 	// do the upload
-	rc = curl_easy_perform(handle);
-	curl_slist_free_all(slist);
-	if (rc == CURLE_OK)
+	NSURLResponse* response = nil;
+	NSError* error = nil;
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	if (!error)
 	{
-		long response_code;
-		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &response_code);
-		if (rc == CURLE_OK && response_code == 200)
+		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
+		if ([result isEqualToString:@"winner!"])
 		{
-			// if we got back 200 from the server, format the link for sharing
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", 3893484, tempNam];
 			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 			BOOL shortenUrl = [defaults boolForKey:@"UseURLShortener"];
 			if (shortenUrl)
@@ -161,21 +120,13 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 			NSLog(@"File successfully uploaded to Dropbox and accessible at %@", publicLink);
 		}
 	}
-	
-	// clean up - remove the temporary mime-encoded file and close the file pointer for the source file
-	[[NSFileManager defaultManager] removeItemAtPath:tempFilePath error:nil];
-	fclose(fp);
-	
-	return rc;
+		
+	return 0;
 }
 
 - (NSInteger)testConnection
 {
-	CURLcode rc = CURLE_OK;
-	
-	rc = curl_easy_perform(handle);
-	
-	return rc;
+	return 0;
 }
 
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
@@ -183,29 +134,30 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	
 	// if there is a file in the url, we format it slightly differently
 	if (fileName == NULL)
-		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%s&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", consumerKey, nonce, timestamp, token];
+		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", consumerKey, nonce, timestamp, token];
 	else
-		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%s&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
+		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
 	
 	// create an encoding object
     CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
+	CFStringRef escapeChars = (CFStringRef) @":?=,!$&'()*+;[]@#~/";
 	
 	// url-encode the parts that need to be url-encoded
-	NSString* escapedUrl = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
-    NSString* escapedPath = [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) sigBaseString, NULL, (CFStringRef) @":?=,!$&'()*+;[]@#~/", encoding) autorelease];
+	NSString* escapedUrl = (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, escapeChars, encoding);
+    NSString* escapedSig = (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) sigBaseString, NULL, escapeChars, encoding);
 	
 	// format them all into the signature base string
-	sigBaseString = [NSString stringWithFormat:@"%@&%@&%@", method, escapedUrl, escapedPath];
+	NSString* finalString = [NSString stringWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
 	
-	return sigBaseString;
+	return finalString;
 }
 
 // this method builds up the Authorization header that we will need to send in the request
 - (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
 	if (fileName == NULL)
-		return [NSString stringWithFormat:@"Authorization: OAuth oauth_consumer_key=\"%s\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
+		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
 	else
-		return [NSString stringWithFormat:@"Authorization: OAuth file=\"%s\", oauth_consumer_key=\"%s\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
+		return [NSString stringWithFormat:@"OAuth file=\"%s\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
 }
 
 -(NSString*)genRandStringLength:(int)len seed:(unsigned long)seed {
@@ -228,64 +180,49 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 }
 
 - (NSUInteger)getAccountId {
-	CURLcode rc = CURLE_OK;
-	int uid = 0;
-	
-	// reset the curl handle for this request
-	curl_easy_reset(handle);
-	
-	// timestamp and nonce generation
-	time_t timestamp = time(NULL);
-	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
-	
-	// URL for this request
-	NSString* url = @"https://api.dropbox.com/0/account/info";
-	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	
-	// generate oauth signature
-	NSString* sigBaseString = [self genSigBaseString:url method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
-	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
-	
-	// build the custom headers
-	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
-	
-	// add the custom headers
-	struct curl_slist *slist = NULL;
-	slist = curl_slist_append(slist, [authHeader UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
-	
-	// collect the response
-	char* data = malloc(4096); // should be plenty of room for the response
-	data[0] = 0;
-	rc = curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_func);
-	rc = curl_easy_setopt(handle, CURLOPT_WRITEDATA, data);
-	
-	// make the request
-	rc = curl_easy_perform(handle);
-	curl_slist_free_all(slist);
-	NSString* response = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
-	free(data);
-	if (rc == CURLE_OK)
-	{
-		long status_code;
-		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &status_code);
-		if (rc == CURLE_OK && status_code == 200)
-		{
-			// parse out the account id from the response
-			uid = [[[response JSONValue] valueForKey:@"uid"] intValue];
-		}
-	}
-	
-	
-	return uid;
+//	// timestamp and nonce generation
+//	time_t timestamp = time(NULL);
+//	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
+//	
+//	// URL for this request
+//	NSString* url = @"https://api.dropbox.com/0/account/info";
+//	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
+//	
+//	// generate oauth signature
+//	NSString* sigBaseString = [self genSigBaseString:url method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
+//	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
+//	
+//	// build the custom headers
+//	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
+//	
+//	// add the custom headers
+//	struct curl_slist *slist = NULL;
+//	slist = curl_slist_append(slist, [authHeader UTF8String]);
+//	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
+//	
+//	// collect the response
+//	char* data = malloc(4096); // should be plenty of room for the response
+//	data[0] = 0;
+//	rc = curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_func);
+//	rc = curl_easy_setopt(handle, CURLOPT_WRITEDATA, data);
+//	
+//	// make the request
+//	rc = curl_easy_perform(handle);
+//	curl_slist_free_all(slist);
+//	NSString* response = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
+//	free(data);
+//	if (rc == CURLE_OK)
+//	{
+//		long status_code;
+//		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &status_code);
+//		if (rc == CURLE_OK && status_code == 200)
+//		{
+//			// parse out the account id from the response
+//			uid = [[[response JSONValue] valueForKey:@"uid"] intValue];
+//		}
+//	}
+		
+	return 0;
 }
 
 @end
-
-size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata)
-{
-	size_t bytes = size * nmemb;
-	strncat(userdata, ptr, bytes);
-	
-	return bytes;
-}
