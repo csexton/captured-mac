@@ -7,7 +7,6 @@
 //
 
 #import "Utilities.h"
-#import "UrlShortener.h"
 #import "CloudUploader.h"
 
 @implementation CloudUploader
