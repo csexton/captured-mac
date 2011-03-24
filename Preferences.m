@@ -149,5 +149,8 @@ static Preferences *_sharedPrefsWindowController = nil;
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://www.codeography.com/captured"]];
 }
 
+-(IBAction) openBitlyPage:(id) sender{
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://bit.ly/a/account"]];
+}
 
 @end
