@@ -112,7 +112,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
 		if ([result isEqualToString:@"winner!"])
 		{
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", 3893484, tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
 			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 			BOOL shortenUrl = [defaults boolForKey:@"UseURLShortener"];
 			if (shortenUrl)
@@ -180,49 +180,37 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 }
 
 - (NSUInteger)getAccountId {
-//	// timestamp and nonce generation
-//	time_t timestamp = time(NULL);
-//	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
-//	
-//	// URL for this request
-//	NSString* url = @"https://api.dropbox.com/0/account/info";
-//	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-//	
-//	// generate oauth signature
-//	NSString* sigBaseString = [self genSigBaseString:url method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
-//	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
-//	
-//	// build the custom headers
-//	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
-//	
-//	// add the custom headers
-//	struct curl_slist *slist = NULL;
-//	slist = curl_slist_append(slist, [authHeader UTF8String]);
-//	curl_easy_setopt(handle, CURLOPT_HTTPHEADER, slist);
-//	
-//	// collect the response
-//	char* data = malloc(4096); // should be plenty of room for the response
-//	data[0] = 0;
-//	rc = curl_easy_setopt(handle, CURLOPT_WRITEFUNCTION, write_func);
-//	rc = curl_easy_setopt(handle, CURLOPT_WRITEDATA, data);
-//	
-//	// make the request
-//	rc = curl_easy_perform(handle);
-//	curl_slist_free_all(slist);
-//	NSString* response = [NSString stringWithCString:data encoding:NSUTF8StringEncoding];
-//	free(data);
-//	if (rc == CURLE_OK)
-//	{
-//		long status_code;
-//		rc = curl_easy_getinfo(handle, CURLINFO_RESPONSE_CODE, &status_code);
-//		if (rc == CURLE_OK && status_code == 200)
-//		{
-//			// parse out the account id from the response
-//			uid = [[[response JSONValue] valueForKey:@"uid"] intValue];
-//		}
-//	}
+	unsigned long uid = 0;
+	
+	// timestamp and nonce generation
+	time_t timestamp = time(NULL);
+	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
+	
+	// URL for this request
+	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	
+	// generate oauth signature
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
+	
+	// build the custom headers
+	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
+	
+	// add the custom headers
+	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
+
+	// make the request
+	NSURLResponse* response = nil;
+	NSError* error = nil;
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	if (!error)
+	{
+		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+		uid = [[[textResponse JSONValue] valueForKey:@"uid"] unsignedLongValue];
+	}
 		
-	return 0;
+	return uid;
 }
 
 @end
