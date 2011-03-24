@@ -6,9 +6,7 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
-#import <CommonCrypto/CommonHMAC.h>
-
-#import "CloudUploader.h"
+#import "Utilities.h"
 #import "JSON/JSON.h"
 #import "UrlShortener.h"
 #import "DropboxUploader.h"
@@ -67,7 +65,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	NSString* sigBaseString = [self genSigBaseString:url method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
 	// build the signature
-	NSString* oauthSignature = [self genOAuthSig:sigBaseString consumerSecret:oauthConsumerSecretKey userSecret:secret];
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
 	
 	// set up the body
 	CFUUIDRef uuid = CFUUIDCreate(NULL);
@@ -202,25 +200,6 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	return sigBaseString;
 }
 
-- (NSString*)genOAuthSig:(NSString*)sigBaseString consumerSecret:(NSString*)consumerSecret userSecret:(NSString*)userSecret {
-	// convert the string to data so we can generate the HMAC
- 	NSData* dataToSign = [sigBaseString dataUsingEncoding:NSASCIIStringEncoding];
-	CCHmacContext context;
-	unsigned char digestRaw[CC_SHA1_DIGEST_LENGTH];
-	
-	// the key is made by joining the consumer secret key and the user secret key
-	NSString* keyToSign = [NSString stringWithFormat:@"%s&%@", consumerSecret, userSecret];
-	CCHmacInit(&context, kCCHmacAlgSHA1, [keyToSign cStringUsingEncoding:NSASCIIStringEncoding], [keyToSign length]);
-	CCHmacUpdate(&context, [dataToSign bytes], [dataToSign length]);
-	CCHmacFinal(&context, digestRaw);
-	
-	// get the digest into a NSData object
-	NSData *digestData = [NSData dataWithBytes:digestRaw length:CC_SHA1_DIGEST_LENGTH];
-	
-	// return the base 64 encoding of the digest
-	return [digestData base64EncodedString];;
-}
-
 // this method builds up the Authorization header that we will need to send in the request
 - (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
 	if (fileName == NULL)
@@ -265,7 +244,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	
 	// generate oauth signature
 	NSString* sigBaseString = [self genSigBaseString:url method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
-	NSString* oauthSignature = [self genOAuthSig:sigBaseString consumerSecret:oauthConsumerSecretKey userSecret:secret];
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
 	
 	// build the custom headers
 	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
