@@ -19,6 +19,10 @@
     IBOutlet NSView *imgurPreferences;
     IBOutlet NSView *dropboxPreferences;
     
+    IBOutlet NSTextField *sftpTestLabel;
+    IBOutlet NSTextField *s3TestLabel;
+    IBOutlet NSTextField *imgurTestLabel;
+    
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
     
@@ -44,5 +48,10 @@
 -(void) selectUploaderViewWithType: (NSString *) type;
 -(IBAction) openHomepage:(id) sender;
 -(IBAction) openBitlyPage:(id) sender;
+
+-(IBAction) testSFTPConnection:(id) sender;
+-(IBAction) testS3Connection:(id) sender;
+
+-(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild;
 
 @end

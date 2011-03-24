@@ -1,5 +1,7 @@
 
 #import "Preferences.h"
+#import "SFTPUploader.h"
+#import "CloudUploader.h"
 
 static Preferences *_sharedPrefsWindowController = nil;
 
@@ -117,7 +119,10 @@ static Preferences *_sharedPrefsWindowController = nil;
 
 
 -(IBAction) selectUploader:(id) sender{
-    [self selectUploaderViewWithType: [(NSComboBox*)sender stringValue]];
+    NSPopUpButtonCell *cell = [sender selectedCell];
+    NSLog (@"Name of cell is %@", cell.title);
+
+    [self selectUploaderViewWithType: cell.title];
 }
 
 -(void) selectUploaderViewWithType: (NSString *) type {
@@ -150,7 +155,45 @@ static Preferences *_sharedPrefsWindowController = nil;
 }
 
 -(IBAction) openBitlyPage:(id) sender{
+    
 	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://bit.ly/a/account"]];
 }
+
+-(IBAction) testSFTPConnection:(id) sender{
+    [sftpTestLabel setHidden:NO];
+    [sftpTestLabel setStringValue: @"Testing..."];
+
+    [self performSelectorInBackground:@selector(runSFTPTestConnecton:) withObject:sender];
+}
+
+// Method to enable running the test in the background thread
+-(void) runSFTPTestConnecton: (id) sender{
+    SFTPUploader *s = [[SFTPUploader alloc] init];
+    [self runTestConnection:s textField: sftpTestLabel];
+}
+
+-(IBAction) testS3Connection:(id) sender{
+    [s3TestLabel setHidden:NO];
+    [s3TestLabel setStringValue: @"Testing..."];
+    [self performSelectorInBackground:@selector(runS3TestConnecton:) withObject:sender];
+}
+
+// Method to enable running the test in the background thread
+-(void) runS3TestConnecton: (id) sender{
+    CloudUploader *s = [[CloudUploader alloc] init];
+    [self runTestConnection:s textField: s3TestLabel];
+}
+
+-(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild {
+    NSInteger ret = [uploader testConnection];
+    if (ret == 0) {
+        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Success" waitUntilDone:YES];
+    }
+    else {
+        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:[NSString stringWithFormat:@"Error %i", ret] waitUntilDone:YES];
+    } 
+    
+}
+
 
 @end
