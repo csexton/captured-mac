@@ -24,6 +24,8 @@
 		B50909D412E7910C00A32F5E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D312E7910C00A32F5E /* XMLReader.m */; };
 		B50909D912E7915B00A32F5E /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D812E7915B00A32F5E /* validatereceipt.m */; };
 		B51A1FCD12E393EB006C7840 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = B51A1FCC12E393EB006C7840 /* Credits.html */; };
+		B51E8509133CD24D00B1824C /* AbstractUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B51E8508133CD24D00B1824C /* AbstractUploader.m */; };
+		B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */; };
 		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
 		B52ADBA5130C2B8D00C7A531 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = B52ADBA4130C2B8D00C7A531 /* DDHotKeyCenter.m */; };
 		B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52ADBA6130C2DA700C7A531 /* Carbon.framework */; };
@@ -126,6 +128,9 @@
 		B50909D712E7915B00A32F5E /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
 		B50909D812E7915B00A32F5E /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
 		B51A1FCC12E393EB006C7840 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
+		B51E8507133CD24D00B1824C /* AbstractUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractUploader.h; sourceTree = "<group>"; };
+		B51E8508133CD24D00B1824C /* AbstractUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractUploader.m; sourceTree = "<group>"; };
+		B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSelected.png; path = Resources/StatusMenuIconSelected.png; sourceTree = "<group>"; };
 		B52AAEB312DFADEB00609367 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
 		B52AAEB412DFADEB00609367 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
 		B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDHotKeyCenter.h; sourceTree = "<group>"; };
@@ -308,6 +313,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */,
 				B588DD371336DCB500221E3D /* Colors.tiff */,
 				B588DD381336DCB500221E3D /* Updates.tiff */,
 				B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */,
@@ -385,6 +391,8 @@
 		B588DD251336873C00221E3D /* Uploaders */ = {
 			isa = PBXGroup;
 			children = (
+				B51E8507133CD24D00B1824C /* AbstractUploader.h */,
+				B51E8508133CD24D00B1824C /* AbstractUploader.m */,
 				CFD6D67D133157930065567C /* CloudUploader.h */,
 				CFD6D67E133157930065567C /* CloudUploader.m */,
 				CFD6D680133171CB0065567C /* DropboxUploader.h */,
@@ -527,6 +535,7 @@
 				B588DD361336DB6800221E3D /* Preferences.xib in Resources */,
 				B588DD391336DCB500221E3D /* Colors.tiff in Resources */,
 				B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */,
+				B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -573,6 +582,7 @@
 				CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */,
 				CF368800133523A7003703C7 /* UrlShortener.m in Sources */,
 				B588DD351336DB6800221E3D /* PreferencesController.m in Sources */,
+				B51E8509133CD24D00B1824C /* AbstractUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

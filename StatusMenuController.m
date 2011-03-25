@@ -190,6 +190,7 @@
 */
 	
 	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
+	statusIconSelected = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSelected" ofType:@"png"]] retain];
 	statusIconSuccess = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSuccess" ofType:@"png"]] retain];
 	statusIconColor = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconColor" ofType:@"png"]] retain];
 	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
@@ -199,6 +200,7 @@
 	[statusItem setMenu:statusMenu];
 	//[statusItem setTitle:@"Status"];
 	[statusItem setImage:statusIcon];
+    [statusItem setAlternateImage:statusIconSelected];
 	[statusItem setHighlightMode:YES];
 }
 

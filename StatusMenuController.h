@@ -20,6 +20,7 @@
 	NSString *lastUploadedDeleteURL;
 
     NSImage * statusIcon;
+    NSImage * statusIconSelected;
     NSImage * statusIconColor;
 	NSImage * statusIconSuccess;
     NSImage * statusIconDisabled;
