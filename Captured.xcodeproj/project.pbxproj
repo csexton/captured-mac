@@ -137,7 +137,7 @@
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B588DD2E1336DB6800221E3D /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		B588DD2F1336DB6800221E3D /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General.png; sourceTree = "<group>"; };
-		B588DD301336DB6800221E3D /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PreferencesController.h; sourceTree = "<group>"; };
+		B588DD301336DB6800221E3D /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B588DD311336DB6800221E3D /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B588DD321336DB6800221E3D /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		B588DD371336DCB500221E3D /* Colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colors.tiff; sourceTree = "<group>"; };
