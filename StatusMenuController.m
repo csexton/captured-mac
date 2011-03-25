@@ -88,7 +88,10 @@
     [self performSelectorInBackground: @selector(createHistoryMenuItem:) withObject: dict];
                               
     // Play a sound
-	//[[NSSound soundNamed:@"Pop"] play];
+    
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"PlaySoundAfterUpload"] boolValue]) {
+    	[[NSSound soundNamed:@"Hero"] play];
+    }
 }
 -(void) createHistoryMenuItem: (NSDictionary *) dict {
     // Create history menu item
