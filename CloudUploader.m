@@ -76,7 +76,20 @@
 	if (error)
 		NSLog(@"Error while uploading to cloud provider: %@", error);
 	else if ([response statusCode] != 200)
-		NSLog(@"Failed to upload file with HTTP status code %ld: %@", [response statusCode], textResponse);
+	{
+		NSXMLDocument* doc = [[[NSXMLDocument alloc] init] autorelease];
+		[doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+		if (!error)
+		{
+			NSArray* nodes = [doc nodesForXPath:@"/Error/Code" error:&error];
+			if (!error && [nodes count] > 0)
+				NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
+			else
+				NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+		}
+		else
+			NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+	}
 	else
 		NSLog(@"File uploaded to cloud storage and available at %@", url);
 	
