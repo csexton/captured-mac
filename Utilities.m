@@ -184,9 +184,7 @@
     } else {
         
         NSSize smallSize = [sourceImage size];
-        float rx, ry, r;
-        rx = newSize.width / smallSize.width;
-        r = rx;
+        float r = newSize.width / smallSize.width;
         smallSize.width *= r;
         smallSize.height *= r;
         
