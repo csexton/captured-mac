@@ -19,6 +19,7 @@
 @synthesize lastUploadedDeleteURL;
 @synthesize copyURLMenuItem;
 @synthesize historyMenu;
+@synthesize historyMenuItem;
 
 
 -(void) setStatusIcon: (NSImage*)icon {
@@ -107,7 +108,7 @@
     //[img setSize: NSMakeSize(16, 16)];
 
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
-                                  initWithTitle:[@"Screen Capture from " stringByAppendingString:dateString]
+                                  initWithTitle:[@"Captured on " stringByAppendingString:dateString]
                                   action:@selector(historyMenuItemAction:) 
                                   keyEquivalent:@""];
     
@@ -137,6 +138,7 @@
     if([historyMenu numberOfItems] >= num) {
        [historyMenu removeItemAtIndex:0];
     }
+    [historyMenuItem setEnabled:YES];
     [historyMenu addItem:menuItem];
 }
 

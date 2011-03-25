@@ -25,7 +25,8 @@
 	NSImage * statusIconSuccess;
     NSImage * statusIconDisabled;
     NSImage * statusIconError;
-    
+
+    NSMenuItem * historyMenuItem;
     NSMenu * historyMenu;
 
 
@@ -36,6 +37,7 @@
 @property (readwrite, retain) NSString *lastUploadedDeleteURL;
 @property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
 @property (assign) IBOutlet NSMenu *historyMenu;
+@property (assign) IBOutlet NSMenuItem *historyMenuItem;
 
 -(BOOL) isURLAvaliable;
 
