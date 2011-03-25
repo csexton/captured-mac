@@ -1,15 +1,15 @@
 
-#import "Preferences.h"
+#import "PreferencesController.h"
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 
-static Preferences *_sharedPrefsWindowController = nil;
+static PreferencesController *_sharedPrefsWindowController = nil;
 
-@implementation Preferences
+@implementation PreferencesController
 
 #pragma mark -
 #pragma mark Class Methods
-+ (Preferences *)sharedPrefsWindowController
++ (PreferencesController *)sharedPrefsWindowController
 {
 	if (!_sharedPrefsWindowController) {
 		_sharedPrefsWindowController = [[self alloc] initWithWindowNibName:[self nibName]];

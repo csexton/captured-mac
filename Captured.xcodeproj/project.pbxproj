@@ -33,7 +33,7 @@
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B588DD331336DB6800221E3D /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2E1336DB6800221E3D /* Advanced.png */; };
 		B588DD341336DB6800221E3D /* General.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2F1336DB6800221E3D /* General.png */; };
-		B588DD351336DB6800221E3D /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = B588DD311336DB6800221E3D /* Preferences.m */; };
+		B588DD351336DB6800221E3D /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B588DD311336DB6800221E3D /* PreferencesController.m */; };
 		B588DD361336DB6800221E3D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B588DD321336DB6800221E3D /* Preferences.xib */; };
 		B588DD391336DCB500221E3D /* Colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD371336DCB500221E3D /* Colors.tiff */; };
 		B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD381336DCB500221E3D /* Updates.tiff */; };
@@ -137,8 +137,8 @@
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B588DD2E1336DB6800221E3D /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		B588DD2F1336DB6800221E3D /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General.png; sourceTree = "<group>"; };
-		B588DD301336DB6800221E3D /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
-		B588DD311336DB6800221E3D /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
+		B588DD301336DB6800221E3D /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = PreferencesController.h; sourceTree = "<group>"; };
+		B588DD311336DB6800221E3D /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B588DD321336DB6800221E3D /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		B588DD371336DCB500221E3D /* Colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colors.tiff; sourceTree = "<group>"; };
 		B588DD381336DCB500221E3D /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
@@ -240,8 +240,8 @@
 				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
-				B588DD301336DB6800221E3D /* Preferences.h */,
-				B588DD311336DB6800221E3D /* Preferences.m */,
+				B588DD301336DB6800221E3D /* PreferencesController.h */,
+				B588DD311336DB6800221E3D /* PreferencesController.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
 				B5E9024C12DEC480004F71B6 /* StatusMenuController.m */,
 				CF3687FE133523A6003703C7 /* UrlShortener.h */,
@@ -572,7 +572,7 @@
 				CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */,
 				CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */,
 				CF368800133523A7003703C7 /* UrlShortener.m in Sources */,
-				B588DD351336DB6800221E3D /* Preferences.m in Sources */,
+				B588DD351336DB6800221E3D /* PreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

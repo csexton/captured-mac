@@ -2,7 +2,7 @@
 #import <Cocoa/Cocoa.h>
 #import "CapturedAppDelegate.h"
 
-@interface Preferences : NSWindowController <NSToolbarDelegate> {
+@interface PreferencesController : NSWindowController <NSToolbarDelegate> {
 
 	IBOutlet NSToolbar *bar;
 	IBOutlet NSView *generalPreferenceView;
@@ -35,7 +35,7 @@
 @property BOOL uploadsEnabled;
 
 
-+ (Preferences *)sharedPrefsWindowController;
++ (PreferencesController *)sharedPrefsWindowController;
 + (void)sharedWillChangeValueForKey: (NSString *)key;
 + (void)sharedDidChangeValueForKey: (NSString *)key;
 

@@ -10,7 +10,7 @@
 #import "EventsController.h"
 #import "StatusMenuController.h"
 #import "WelcomeWindowController.h"
-#import "Preferences.h"
+#import "PreferencesController.h"
 
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet BOOL *startAtLogin;

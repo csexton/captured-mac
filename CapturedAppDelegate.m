@@ -4,7 +4,7 @@
 #import "EventsController.h"
 #import "DDHotKeyCenter.h"
 
-#import "Preferences.h"
+#import "PreferencesController.h"
 
 
 @implementation CapturedAppDelegate
@@ -91,7 +91,7 @@
 	return uploadsEnabled;
 }
 - (void)setUploadsEnabled: (BOOL)enabled {
-    [Preferences sharedWillChangeValueForKey:@"uploadsEnabled"];
+    [PreferencesController sharedWillChangeValueForKey:@"uploadsEnabled"];
 
 	if (enabled) {
 		[statusMenuController setStatusNormal];
@@ -99,7 +99,7 @@
 		[statusMenuController setStatusDisabled];
 	}
 	uploadsEnabled = enabled;
-    [Preferences sharedDidChangeValueForKey:@"uploadsEnabled"];
+    [PreferencesController sharedDidChangeValueForKey:@"uploadsEnabled"];
 }
 
 -(IBAction) takeScreenCaptureAction:(id) sender
@@ -119,7 +119,7 @@
     [NSApp activateIgnoringOtherApps: YES];
 	//[window makeKeyAndOrderFront:self];
 //    preferences = [Preferences sharedPrefsWindowController];
-    [[Preferences sharedPrefsWindowController] showWindow:nil];
+    [[PreferencesController sharedPrefsWindowController] showWindow:nil];
 	(void)sender;
 }
 
@@ -131,9 +131,9 @@
 - (void)setStartAtLogin:(BOOL)enabled
 {
     [statusMenuController willChangeValueForKey:@"startAtLogin"];
-    [Preferences sharedWillChangeValueForKey:@"startAtLogin"];
+    [PreferencesController sharedWillChangeValueForKey:@"startAtLogin"];
     [Utilities setStartAtLogin:[Utilities appURL] enabled:enabled];
-    [Preferences sharedDidChangeValueForKey:@"startAtLogin"];
+    [PreferencesController sharedDidChangeValueForKey:@"startAtLogin"];
     [statusMenuController didChangeValueForKey:@"startAtLogin"];
 }
 
