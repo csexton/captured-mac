@@ -72,6 +72,9 @@
 	[dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
 	NSDate *now = [[NSDate alloc] init];
 	NSString *timestamp = [dateFormat stringFromDate:now];
+    [dateFormat release];
+    [now release];
+
 	
 	NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
 	
