@@ -9,9 +9,10 @@
 #import <Cocoa/Cocoa.h>
 
 #import "ASIFormDataRequest.h"
+#import "AbstractUploader.h"
 
 
-@interface ImgurUploader : NSObject {
+@interface ImgurUploader : AbstractUploader {
 	NSData *imageSelection;
     NSData *imageSelectionData;
 	NSData *xmlResponseData;

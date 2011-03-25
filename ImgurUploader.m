@@ -45,16 +45,16 @@
 		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
 		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
 		NSDictionary *dict = [self parseResponseForURL:body];
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+        [self uploadSuccess:dict];
 	}
 }
 
 - (void) requestFailed: (ASIFormDataRequest *) request {
 	NSData * myData = [request rawResponseData];
 	NSLog(@"Upload Failed");
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 	NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
 	NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
+    [self uploadFailed:nil];
 }
 
 #pragma mark NSXMLParser Delegate Methods
@@ -73,7 +73,7 @@ foundCharacters:(NSString *)string {
 
 - (void) uploadFile:(NSString*)filename {
 
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+    [self uploadStarted];
     self.filePathName = filename;
 	NSData* data = [NSData dataWithContentsOfFile: filename];
 	[self performUpload:data];
