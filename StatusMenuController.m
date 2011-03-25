@@ -116,7 +116,7 @@
     @try {
         NSString *imageFilePath = [dict valueForKey:@"FilePath"];
         if (imageFilePath != nil){
-            NSImage *img = [Utilities thumbnailWithFile:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
+            NSImage *img = [Utilities thumbnailWithFileMaintainWidth:[dict valueForKey:@"FilePath"] size:NSMakeSize(64, 64)];
             [menuItem setImage:img];
         }
     }

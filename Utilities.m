@@ -161,6 +161,61 @@
     }       
 }
 
++ (NSImage*) thumbnailWithFileMaintainWidth: (NSString*)path size:(NSSize)newSize {
+    NSLog(@"Start resize image for history menu thumbnail");
+    NSImage *sourceImage;
+    NSImage *smallImage;
+    
+    sourceImage = [[[NSImage alloc] initWithContentsOfFile:path] autorelease];
+    
+    // Report an error if the source isn't a valid image
+    if (![sourceImage isValid]) {
+        @throw [NSException
+                exceptionWithName:@"FileNotFoundException"
+                reason:@"Original image was not valid, the uploader may not have set the FilePath key"
+                userInfo:nil];
+        return sourceImage; // Why do we get here?
+    } else {
+        
+        NSSize smallSize = [sourceImage size];
+        float rx, ry, r;
+        rx = newSize.width / smallSize.width;
+        r = rx;
+        smallSize.width *= r;
+        smallSize.height *= r;
+        
+        smallImage = [[[NSImage alloc] initWithSize:smallSize] autorelease];
+        [smallImage lockFocus];
+        [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+        [sourceImage setScalesWhenResized:YES];
+        [sourceImage setSize:smallSize];
+        [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+        [smallImage unlockFocus];
+        
+        if (smallSize.height > newSize.height) {
+            NSImage *cropImage;
+            
+            cropImage = [[[NSImage alloc] initWithSize:newSize] autorelease];
+            [cropImage lockFocus];
+            [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+            //[smallImage setScalesWhenResized:YES];
+
+            [smallImage setSize:newSize];
+            [smallImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+            [cropImage unlockFocus];
+            return cropImage; 
+            
+        }
+        
+        
+
+    }
+    
+    return smallImage;
+}
+
+
+
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
     NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;

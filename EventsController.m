@@ -105,15 +105,15 @@
         } 
         else if ([uploadType isEqualToString:@"Amazon S3"])
         {
-            NSInteger rc = [cloudUploader uploadFile:file];
+            [cloudUploader uploadFile:file];
         } 
         else if ([uploadType isEqualToString:@"Dropbox"])
         {
-            NSInteger rc = [dropboxUploader uploadFile:file];
+            [dropboxUploader uploadFile:file];
         } 
         else if ([uploadType isEqualToString:@"SFTP"]) 
         {
-            NSInteger rc = [sftpUploader uploadFile:file];
+            [sftpUploader uploadFile:file];
         } 
         else 
         { // Fallback to Imgur
