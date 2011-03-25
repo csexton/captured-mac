@@ -130,6 +130,10 @@
     [menuItem release];
 }
 -(void)addHistoryMenuItem:(NSMenuItem*) menuItem{
+    NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberOfHistoryItems"];
+    if([historyMenu numberOfItems] >= num) {
+       [historyMenu removeItemAtIndex:0];
+    }
     [historyMenu addItem:menuItem];
 }
 

@@ -161,6 +161,9 @@
     }       
 }
 
+
+// Sorta hackish. This will create the thumbnail by scaling the image to be 64 pixels wide and then cropping 
+// starting at the bottom left corner if it is more than 64 pixels tall
 + (NSImage*) thumbnailWithFileMaintainWidth: (NSString*)path size:(NSSize)newSize {
     NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;
@@ -204,11 +207,7 @@
             [smallImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
             [cropImage unlockFocus];
             return cropImage; 
-            
         }
-        
-        
-
     }
     
     return smallImage;

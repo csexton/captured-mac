@@ -6,11 +6,13 @@
 	<true/>
 	<key>ImgurKey</key>
 	<string>imgur_page</string>
-	<key>UseURLShortener</key>
-	<false/>
 	<key>ImgurLinkType</key>
 	<string>Copy URL to Webpage</string>
 	<key>UploadType</key>
 	<string>Imgur</string>
+	<key>UseURLShortener</key>
+	<false/>
+	<key>NumberOfHistoryItems</key>
+	<integer>10</integer>
 </dict>
 </plist>
