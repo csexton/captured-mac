@@ -13,22 +13,17 @@
 @interface StatusMenuController : NSObject <GrowlApplicationBridgeDelegate> {
     IBOutlet NSMenu *statusMenu;
     IBOutlet BOOL *startAtLogin;
-	
     NSStatusItem * statusItem;
 	IBOutlet NSMenuItem *copyURLMenuItem;
 	NSString *lastUploadedURL;
 	NSString *lastUploadedDeleteURL;
-
     NSImage * statusIcon;
     NSImage * statusIconSelected;
     NSImage * statusIconColor;
 	NSImage * statusIconSuccess;
     NSImage * statusIconDisabled;
     NSImage * statusIconError;
-
-    NSMenuItem * historyMenuItem;
     NSMenu * historyMenu;
-
 
 }
 
@@ -37,7 +32,6 @@
 @property (readwrite, retain) NSString *lastUploadedDeleteURL;
 @property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
 @property (assign) IBOutlet NSMenu *historyMenu;
-@property (assign) IBOutlet NSMenuItem *historyMenuItem;
 
 -(BOOL) isURLAvaliable;
 
@@ -54,9 +48,6 @@
 -(IBAction) openDeleteURLInBrowserAction:(id) sender;
 -(IBAction) historyMenuItemAction: (id) sender;
 -(void) createHistoryMenuItem: (NSDictionary *) dict;
-
-
-
-
+-(BOOL) enableHistoryMenu;
 
 @end

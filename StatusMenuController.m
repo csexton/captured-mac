@@ -19,8 +19,6 @@
 @synthesize lastUploadedDeleteURL;
 @synthesize copyURLMenuItem;
 @synthesize historyMenu;
-@synthesize historyMenuItem;
-
 
 -(void) setStatusIcon: (NSImage*)icon {
 	// Seems that a crash occurs if you try to set the menu title from a thread other than the main thread.
@@ -96,16 +94,11 @@
 }
 -(void) createHistoryMenuItem: (NSDictionary *) dict {
     // Create history menu item
-    
     NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0 locale:[NSLocale currentLocale]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:formatString];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     [dateFormatter release];
-    
-    //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:self.lastUploadedURL]];
-    //NSImage *img = [[NSImage alloc] initWithContentsOfURL:[NSURL URLWithString:[dict valueForKey:@"SmallSquareURL"]]];
-    //[img setSize: NSMakeSize(16, 16)];
 
     MenuItemWithDict *menuItem = [[MenuItemWithDict alloc]
                                   initWithTitle:[@"Captured on " stringByAppendingString:dateString]
@@ -134,12 +127,14 @@
     [menuItem release];
 }
 -(void)addHistoryMenuItem:(NSMenuItem*) menuItem{
+    [self willChangeValueForKey:@"enableHistoryMenu"];
     NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberOfHistoryItems"];
     if([historyMenu numberOfItems] >= num) {
        [historyMenu removeItemAtIndex:0];
     }
-    [historyMenuItem setEnabled:YES];
     [historyMenu addItem:menuItem];
+    [self didChangeValueForKey:@"enableHistoryMenu"];
+
 }
 
 
@@ -151,8 +146,6 @@
 
 -(void) awakeFromNib
 {
-    
-    
     NSBundle *myBundle = [NSBundle bundleForClass:[CapturedAppDelegate class]];
 	NSString *growlPath = [[myBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
 	NSBundle *growlBundle = [NSBundle bundleWithPath:growlPath];
@@ -164,32 +157,6 @@
 	else {
 		NSLog(@"ERROR: Could not load Growl.framework");
 	}
-    
-//    [GrowlApplicationBridge
-//      notifyWithTitle:@"title"
-//      description:@"description"
-//      notificationName:@"UploadFailed"
-//      //iconData:(NSData *)iconData
-//      //priority:0
-//      //isSticky:false
-//      //clickContext:(id)clickContext
-//     ];        
-        
-	//ImgurController *controller = [[ImgurController alloc] init];
-
-	//[controller parseResponseForURL:@""];
-	
-	//NSImage *image = [[NSImage alloc] initWithContentsOfFile: @"/Users/csexton/Desktop/horsehead-nebula.jpg"];
-	
-	//NSString *filename = @"/Users/csexton/Desktop/horsehead-nebula.jpg";
-	
-/*	
-    NSString *filename = @"/Users/csexton/Desktop/screen.png";
-    NSData *data;
-    data = [NSData dataWithContentsOfFile: filename];
-	ImgurController *controller = [[ImgurController alloc] init];
-	[controller uploadImage:data];
-*/
 	
 	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
 	statusIconSelected = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSelected" ofType:@"png"]] retain];
@@ -197,10 +164,8 @@
 	statusIconColor = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconColor" ofType:@"png"]] retain];
 	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
 	statusIconError = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconError" ofType:@"png"]] retain];
-
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setMenu:statusMenu];
-	//[statusItem setTitle:@"Status"];
 	[statusItem setImage:statusIcon];
     [statusItem setAlternateImage:statusIconSelected];
 	[statusItem setHighlightMode:YES];
@@ -209,7 +174,6 @@
 
 -(IBAction) quitItemAction:(id) sender
 {
-	NSLog(@"%@", @"Exiting");
 	[[NSApplication sharedApplication] terminate:self];	
 }
 
@@ -217,7 +181,6 @@
 {
 	[Utilities copyToPasteboard:self.lastUploadedURL];
 }
-
 
 -(IBAction) openURLInBrowserAction:(id) sender
 {
@@ -249,6 +212,11 @@
         
         return YES;
     }
+}
+
+-(BOOL) enableHistoryMenu
+{
+    return ([historyMenu numberOfItems] > 0);
 }
 
 @end

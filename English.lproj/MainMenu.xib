@@ -388,7 +388,6 @@
 					</object>
 					<object class="NSMenuItem" id="548996235">
 						<reference key="NSMenu" ref="424847978"/>
-						<bool key="NSIsDisabled">YES</bool>
 						<string key="NSTitle">History</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
@@ -760,6 +759,22 @@
 						<reference key="destination" ref="548996235"/>
 					</object>
 					<int key="connectionID">759</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: enableHistoryMenu</string>
+						<reference key="source" ref="548996235"/>
+						<reference key="destination" ref="56102586"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="548996235"/>
+							<reference key="NSDestination" ref="56102586"/>
+							<string key="NSLabel">enabled: enableHistoryMenu</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">enableHistoryMenu</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">762</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1295,7 +1310,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">759</int>
+			<int key="maxID">762</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1455,7 +1470,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLMenuItem</string>
 							<string>historyMenu</string>
-							<string>historyMenuItem</string>
 							<string>startAtLogin</string>
 							<string>statusMenu</string>
 						</object>
@@ -1463,7 +1477,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSMenuItem</string>
 							<string>NSMenu</string>
-							<string>NSMenuItem</string>
 							<string>BOOL</string>
 							<string>NSMenu</string>
 						</object>
@@ -1474,7 +1487,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLMenuItem</string>
 							<string>historyMenu</string>
-							<string>historyMenuItem</string>
 							<string>startAtLogin</string>
 							<string>statusMenu</string>
 						</object>
@@ -1487,10 +1499,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">historyMenu</string>
 								<string key="candidateClassName">NSMenu</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">historyMenuItem</string>
-								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">startAtLogin</string>
