@@ -275,6 +275,14 @@
 	return [digestData base64EncodedString];
 }
 
++(NSString*)URLEncode:(NSString*)stringToEncode
+{
+	CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
+	CFStringRef escapeChars = (CFStringRef) @":?=,!$&'()*+;[]@#~/";
+	
+	return (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) stringToEncode, NULL, escapeChars, encoding);
+}
+
 @end
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

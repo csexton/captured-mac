@@ -26,6 +26,7 @@
 +(NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize;
 +(void) growlError:(NSString*) str;
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey;
++(NSString*)URLEncode:(NSString*)stringToEncode;
 
 @end
 

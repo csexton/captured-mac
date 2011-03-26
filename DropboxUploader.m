@@ -135,12 +135,10 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
 	
 	// create an encoding object
-    CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
-	CFStringRef escapeChars = (CFStringRef) @":?=,!$&'()*+;[]@#~/";
 	
 	// url-encode the parts that need to be url-encoded
-	NSString* escapedUrl = (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) url, NULL, escapeChars, encoding);
-    NSString* escapedSig = (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) sigBaseString, NULL, escapeChars, encoding);
+	NSString* escapedUrl = [Utilities URLEncode:url];
+    NSString* escapedSig = [Utilities URLEncode:sigBaseString];
 	
 	// format them all into the signature base string
 	NSString* finalString = [NSString stringWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
