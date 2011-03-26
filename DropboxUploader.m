@@ -8,6 +8,7 @@
 
 #import "Utilities.h"
 #import "JSON/JSON.h"
+#import "CapturedAppDelegate.h"
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
@@ -25,21 +26,9 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 @implementation DropboxUploader
 
-- (id)init
-{
-	self = [super init];
-	if (self) {
-	}
+@synthesize accountId;
 
-	return self;
-}
-
-- (void)dealloc
-{
-	[super dealloc];
-}
-
-- (NSInteger)uploadFile:(NSString*)sourceFile
+- (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
 	char tempNam[16];
@@ -104,19 +93,31 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	if (!error)
+	if (error)
+	{
+	}
+	else
 	{
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
 		if ([result isEqualToString:@"winner!"])
 		{
 			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
-			NSLog(@"File successfully uploaded to Dropbox and accessible at %@", publicLink);
+			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+								  @"CloudProvider", @"Type",
+								  publicLink , @"ImageURL",
+								  @"", @"DeleteImageURL",
+								  sourceFile, @"FilePath",
+								  nil];
+			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+		}
+		else
+		{
+			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 		}
 	}
-		
-	return 0;
 }
 
 - (NSInteger)testConnection
@@ -175,7 +176,9 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 }
 
 - (NSUInteger)getAccountId {
-	unsigned long uid = 0;
+	// only need to fetch it once, so if we have it, return it
+	if (accountId != 0)
+		return accountId;
 	
 	// timestamp and nonce generation
 	time_t timestamp = time(NULL);
@@ -202,10 +205,10 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	if (!error)
 	{
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
-		uid = [[[textResponse JSONValue] valueForKey:@"uid"] unsignedLongValue];
+		accountId = [[[textResponse JSONValue] valueForKey:@"uid"] unsignedLongValue];
 	}
 		
-	return uid;
+	return accountId;
 }
 
 @end

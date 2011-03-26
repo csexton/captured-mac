@@ -7,25 +7,12 @@
 //
 
 #import "Utilities.h"
+#import "CapturedAppDelegate.h"
 #import "CloudUploader.h"
 
 @implementation CloudUploader
 
-- (id)init
-{
-	self = [super init];
-	if (self) {
-	}
-
-	return self;
-}
-
-- (void)dealloc
-{
-	[super dealloc];
-}
-
-- (NSInteger)uploadFile:(NSString*)sourceFile
+- (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
 	char tempNam[16];
@@ -71,12 +58,17 @@
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
+	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
+	{
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 		NSLog(@"Error while uploading to cloud provider: %@", error);
+	}
 	else if ([response statusCode] != 200)
 	{
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 		NSXMLDocument* doc = [[[NSXMLDocument alloc] init] autorelease];
 		[doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
 		if (!error)
@@ -91,9 +83,15 @@
 			NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
 	}
 	else
-		NSLog(@"File uploaded to cloud storage and available at %@", url);
-	
-	return 0;
+	{
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"CloudProvider", @"Type",
+							  [url absoluteString] , @"ImageURL",
+							  @"", @"DeleteImageURL",
+							  sourceFile, @"FilePath",
+							  nil];
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+	}
 }
 
 - (NSInteger)testConnection

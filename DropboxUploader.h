@@ -8,10 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DropboxUploader : NSObject {
+#import "AbstractUploader.h"
+
+@interface DropboxUploader : AbstractUploader {
+	NSUInteger accountId;
 }
 
-- (NSInteger)uploadFile:(NSString*)sourceFile;
+@property NSUInteger accountId;
+
+- (void)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
 - (NSString*)genRandStringLength:(int)len seed:(unsigned long)seed;
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;

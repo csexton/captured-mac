@@ -9,14 +9,15 @@
 #import <Foundation/Foundation.h>
 #include <curl/curl.h>
 
-@interface SFTPUploader : NSObject {
+#import "AbstractUploader.h"
+
+@interface SFTPUploader : AbstractUploader {
 	CURL* handle;
 }
 
 @property CURL* handle;
 
-- (NSInteger)uploadFile:(NSString*)sourceFile;
+- (void)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
-- (CURL*)handle;
 
 @end

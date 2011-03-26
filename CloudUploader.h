@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CloudUploader : NSObject {
+#import "AbstractUploader.h"
+
+@interface CloudUploader : AbstractUploader {
 }
 
-- (NSInteger)uploadFile:(NSString*)sourceFile;
+- (void)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
 
 @end
