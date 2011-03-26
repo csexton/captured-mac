@@ -172,6 +172,25 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 }
 
 - (NSInteger)getToken:(NSString*)username password:(NSString*)password {
+	// create the url and request
+	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	
+	// timestamp and nonce generation
+	time_t timestamp = time(NULL);
+	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
+	
+	// format the signature base string
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
+	
+	// build the signature
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
+	
+	// make the request
+	NSHTTPURLResponse* response = nil;
+	NSError* error = nil;
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	
 	return 0;
 }
 
@@ -180,13 +199,13 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	if (accountId != 0)
 		return accountId;
 	
-	// timestamp and nonce generation
-	time_t timestamp = time(NULL);
-	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
-	
 	// URL for this request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	
+	// timestamp and nonce generation
+	time_t timestamp = time(NULL);
+	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
 	
 	// generate oauth signature
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
