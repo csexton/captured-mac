@@ -16,8 +16,8 @@ static NSString* oauthConsumerKey = @"bpsv3nx35j5hua7";
 static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
 // user tokens, these will need to be requested once and then stored
-static NSString* token = @"nx7s0yvpe6654x6";
-static NSString* secret = @"zspeub00bk58qlr";
+static NSString* token = @"8kdqqbo485e5uco";
+static NSString* secret = @"juqtdbczwhprxsn";
 
 // characters suitable for generating a unique nonce
 static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
@@ -97,6 +97,15 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	if (error)
 	{
+		NSLog(@"Error while attempting to upload to Dropbox: %@", [error description]);
+	}
+	else if ([response statusCode] != 200)
+	{
+		if ([response statusCode] == 401)
+		{
+			// this means the token has expired (unlikely, since it is given out for 10 years) or revoked, which means
+			// we need to re-authenticate, so we should wipe out the stored token since it's no longer valid
+		}
 	}
 	else
 	{
@@ -169,7 +178,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	return randomString;
 }
 
-- (NSInteger)getToken:(NSString*)username password:(NSString*)password {
+- (NSInteger)getToken:(NSString*)email password:(NSString*)password {
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/token"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -187,8 +196,16 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	// build the authentication header
 	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
 	
+	// add the post data
+	NSString* paramsString = [NSString stringWithFormat:@"email=%@&password=%@", [Utilities URLEncode:email], [Utilities URLEncode:password]];
+	NSData* paramsData = [paramsString dataUsingEncoding:NSASCIIStringEncoding];
+	[request setHTTPMethod:@"POST"];
+	[request setHTTPBody:paramsData];
+	
 	// add the headers
 	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
+	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request addValue:[NSString stringWithFormat:@"%lu", [paramsData length]] forHTTPHeaderField:@"Content-Length"];
 	
 	// make the request
 	NSHTTPURLResponse* response = nil;
@@ -207,9 +224,12 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	}
 	else
 	{
+		// get the new token and secret
 		NSDictionary* dict = [textResponse JSONValue];
-		NSString* token = [dict valueForKey:@"token"];
-		NSString* secret = [dict valueForKey:@"secret"];
+		NSString* newToken = [dict valueForKey:@"token"];
+		NSString* newSecret = [dict valueForKey:@"secret"];
+		
+		// TODO: store these in the keychain
 	}
 	
 	return 0;
