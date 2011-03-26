@@ -96,11 +96,43 @@
 
 - (NSInteger)testConnection
 {
-	// get the aws keys and bucket name from the keychain
-//	NSString* bucket = @"jvshared";
-
+	// get the aws keys and bucket name from the defaults
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* bucket = [defaults stringForKey:@"S3URL"];
+	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
+	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
+	
 	// format the url
-//	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", bucket]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", bucket]];
+	
+	// create the request object
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	NSString* httpVerb = @"HEAD";
+	[request setHTTPMethod:httpVerb];
+	
+	// build up the data to sign
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	[dateFormatter setDateFormat:@"EEE',' dd MMM yyyy HH:mm:ss 'GMT'"];
+	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
+	[dateFormatter setTimeZone:timeZone];
+	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
+	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n\n%@\n", httpVerb, timestamp];
+	stringToSign = [stringToSign stringByAppendingFormat:@"/%@", bucket];
+	
+	// create the headers
+	NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
+	[request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String] forHTTPHeaderField:@"Authorization"];
+	[request addValue:timestamp forHTTPHeaderField:@"Date"];
+	
+	// do the upload
+	NSHTTPURLResponse* response = nil;
+	NSError* error = nil;
+	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	if (error)
+		NSLog(@"Error trying to connect to cloud storage provider %@", [error description]);
+	NSInteger httpStatusCode = [response statusCode];
+	if (httpStatusCode != 200)
+		return 1;
 	
 	return 0;
 }
