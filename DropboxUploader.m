@@ -262,7 +262,16 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	if (!error)
+	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+	if (error)
+	{
+		NSLog(@"Error while attempting to get account info: %@", [error description]);
+	}
+	else if ([response statusCode] != 200)
+	{
+		NSLog(@"Error while attempting to get account info, HTTP status code %lu, message: %@", [response statusCode], textResponse);
+	}
+	else
 	{
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		accountId = [[[textResponse JSONValue] valueForKey:@"uid"] unsignedLongValue];
