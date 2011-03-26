@@ -36,7 +36,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	mkstemps(tempNam, 4);
 	
 	// set up the url
-	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public"];
+	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public/Captured"];
 	
 	// now the request
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -104,7 +104,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
 		if ([result isEqualToString:@"winner!"])
 		{
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/%s", [self getAccountId], tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", [self getAccountId], tempNam];
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
@@ -173,7 +173,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 - (NSInteger)getToken:(NSString*)username password:(NSString*)password {
 	// create the url and request
-	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
+	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/token"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 	
 	// timestamp and nonce generation
@@ -186,10 +186,33 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	// build the signature
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
 	
+	// build the authentication header
+	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
+	
+	// add the headers
+	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
+	
 	// make the request
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+
+	// parse out the response
+	if (error)
+	{
+		NSLog(@"Error calling Dropbox API: %@", [error description]);
+	}
+	else if ([response statusCode] != 200)
+	{
+		NSLog(@"Error in Dropbox API call, returned HTTP status code %lu", [response statusCode]);
+	}
+	else
+	{
+		NSDictionary* dict = [textResponse JSONValue];
+		NSString* token = [dict valueForKey:@"token"];
+		NSString* secret = [dict valueForKey:@"secret"];
+	}
 	
 	return 0;
 }
