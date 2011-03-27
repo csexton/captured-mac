@@ -280,7 +280,7 @@
 	CFStringEncoding encoding = CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding);
 	CFStringRef escapeChars = (CFStringRef) @":?=,!$&'()*+;[]@#~/";
 	
-	return (NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) stringToEncode, NULL, escapeChars, encoding);
+	return [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) stringToEncode, NULL, escapeChars, encoding) autorelease];
 }
 
 @end

@@ -15,18 +15,7 @@
 static NSString* oauthConsumerKey = @"bpsv3nx35j5hua7";
 static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
-// user tokens, these will need to be requested once and then stored
-static NSString* token = @"8kdqqbo485e5uco";
-static NSString* secret = @"juqtdbczwhprxsn";
-
-// characters suitable for generating a unique nonce
-static char* nonceChars = "abcdefghijklmnopqrstuvwxyz0123456789";
-
-size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
-
 @implementation DropboxUploader
-
-@synthesize accountInfo;
 
 - (void)uploadFile:(NSString*)sourceFile
 {
@@ -45,8 +34,13 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	
 	// generate a unique nonce for this request
 	time_t oauthTimestamp = time(NULL);
-	NSString* oauthNonce = [self genRandStringLength:16 seed:oauthTimestamp];
+	NSString* oauthNonce = [self genRandString];
 	
+	// get the user settings
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* token = [defaults stringForKey:@"DropboxToken"];
+	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
+
 	// format the signature base string
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
@@ -118,8 +112,8 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
 		if ([result isEqualToString:@"winner!"])
 		{
-			[self getAccountInfo]; // TODO: should move this somewhere like an initializer, we really only need to do it at startup
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", [[accountInfo valueForKey:@"uid"] unsignedLongValue] , tempNam];
+			NSInteger uid = [defaults integerForKey:@"DropboxUID"];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", uid, tempNam];
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
@@ -144,8 +138,12 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	NSString* sigBaseString;
 	
 	// if there is a file in the url, we format it slightly differently
-	if (fileName == NULL)
+	if (fileName == NULL && token == nil)
+		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", consumerKey, nonce, timestamp];
+	else if (fileName == NULL)
 		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", consumerKey, nonce, timestamp, token];
+	else if (token == nil)
+		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", fileName, consumerKey, nonce, timestamp];
 	else
 		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
 	
@@ -163,25 +161,25 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 // this method builds up the Authorization header that we will need to send in the request
 - (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
-	if (fileName == NULL)
+	if (fileName == NULL && token == nil)
+		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce];
+	else if (fileName == NULL)
 		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
+	else if (token == nil)
+		return [NSString stringWithFormat:@"OAuth file=\"%s\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce];
 	else
 		return [NSString stringWithFormat:@"OAuth file=\"%s\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
 }
 
--(NSString*)genRandStringLength:(int)len seed:(unsigned long)seed {
-	// create a mutable string to hold the random string
-	NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
+-(NSString*)genRandString {
+	CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
+
+	//get the string representation of the UUID
+	NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+
+	CFRelease(uuidObj);
 	
-	// give it a random seed based on the time
-	srand(seed);
-	
-	// build up the string from random characters
-	for (int i=0; i<len; i++) {
-		[randomString appendFormat: @"%c", nonceChars[rand() % strlen(nonceChars)]];
-	}
-		 
-	return randomString;
+	return [uuidString autorelease];
 }
 
 - (NSInteger)getToken:(NSString*)email password:(NSString*)password {
@@ -191,16 +189,16 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	
 	// timestamp and nonce generation
 	time_t timestamp = time(NULL);
-	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
+	NSString* nonce = [self genRandString];
 	
 	// format the signature base string
-	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:nil];
 	
 	// build the signature
-	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:oauthConsumerSecretKey];
 	
 	// build the authentication header
-	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
+	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
 	
 	// add the post data
 	NSString* paramsString = [NSString stringWithFormat:@"email=%@&password=%@", [Utilities URLEncode:email], [Utilities URLEncode:password]];
@@ -235,24 +233,28 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		NSString* newToken = [dict valueForKey:@"token"];
 		NSString* newSecret = [dict valueForKey:@"secret"];
 		
-		// TODO: store these somewhere, tokens are for 10 years unless explicitly revoked by the user
+		// store there in user defaults, may want to move them elsewhere at some point
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setValue:newToken forKey:@"DropboxToken"];
+		[defaults setValue:newSecret forKey:@"DropboxSecret"];
 	}
 	
 	return 0;
 }
 
-- (NSDictionary*)getAccountInfo {
-	// only need to fetch it once, so if we have it, return it
-	if (accountInfo)
-		return accountInfo;
-	
+- (void)getAccountInfo {
 	// URL for this request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 	
 	// timestamp and nonce generation
 	time_t timestamp = time(NULL);
-	NSString* nonce = [self genRandStringLength:16 seed:timestamp];
+	NSString* nonce = [self genRandString];
+	
+	// get the user settings
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* token = [defaults stringForKey:@"DropboxToken"];
+	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
 	
 	// generate oauth signature
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
@@ -281,10 +283,12 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	{
 		// grab the bits that we want to save
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
-		accountInfo = [textResponse JSONValue];
+		NSDictionary* dict = [textResponse JSONValue];
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setValue:[dict valueForKey:@"uid"] forKey:@"DropboxUID"];
+		[defaults setValue:[dict valueForKey:@"display_name"] forKey:@"DropboxDisplayName"];
+		[defaults setValue:[dict valueForKey:@"email"] forKey:@"DropboxEmail"];
 	}
-		
-	return accountInfo;
 }
 
 - (BOOL)isAccountLinked
