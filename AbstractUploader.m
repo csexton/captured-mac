@@ -34,7 +34,7 @@
 
 - (void) deleteImage:(NSString*)deleteImageURL
 {
-    NSLog(@"deleteImageURL Not Implemented");
+    NSLog(@"deleteImage Not Implemented");
 }
 
 - (void) uploadStarted 
