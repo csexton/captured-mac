@@ -130,7 +130,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
-								  @"", @"DeleteImageURL",
+								  [NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]], @"DeleteImageURL",
 								  sourceFile, @"FilePath",
 								  nil];
 			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];

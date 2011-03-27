@@ -94,7 +94,7 @@
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"CloudProvider", @"Type",
 							  [url absoluteString] , @"ImageURL",
-							  @"", @"DeleteImageURL",
+							  [url absoluteString], @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
 		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];

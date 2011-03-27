@@ -31,6 +31,12 @@
 {
     NSLog(@"uploadFile Not Implemented");
 }
+
+- (void) deleteImage:(NSString*)deleteImageURL
+{
+    NSLog(@"deleteImageURL Not Implemented");
+}
+
 - (void) uploadStarted 
 {
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
