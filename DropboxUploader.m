@@ -25,7 +25,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
 	
 	// must have both of these before we can proceed
-	if (!token || !secret)
+	if (!token || [token length] == 0 || !secret || [secret length] == 0)
 	{
 		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 		return;
