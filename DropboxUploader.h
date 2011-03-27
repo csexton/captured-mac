@@ -11,10 +11,10 @@
 #import "AbstractUploader.h"
 
 @interface DropboxUploader : AbstractUploader {
-	NSUInteger accountId;
+	NSDictionary* accountInfo;
 }
 
-@property NSUInteger accountId;
+@property(retain) NSDictionary* accountInfo;
 
 - (void)uploadFile:(NSString*)sourceFile;
 - (NSInteger)testConnection;
@@ -22,6 +22,7 @@
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
 - (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
 - (NSInteger)getToken:(NSString*)email password:(NSString*)password;
-- (NSUInteger)getAccountId;
+- (NSDictionary*)getAccountInfo;
+- (BOOL)isAccountLinked;
 
 @end

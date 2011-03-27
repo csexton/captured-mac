@@ -26,7 +26,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 
 @implementation DropboxUploader
 
-@synthesize accountId;
+@synthesize accountInfo;
 
 - (void)uploadFile:(NSString*)sourceFile
 {
@@ -95,6 +95,7 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	NSError* error = nil;
 	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
 	{
 		NSLog(@"Error while attempting to upload to Dropbox: %@", [error description]);
@@ -106,14 +107,19 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 			// this means the token has expired (unlikely, since it is given out for 10 years) or revoked, which means
 			// we need to re-authenticate, so we should wipe out the stored token since it's no longer valid
 		}
+		else
+		{
+			NSString* result = [[textResponse JSONValue] valueForKey:@"error"];
+			NSLog(@"Received the following error message when trying to upload to Dropbox: %@", result);
+		}
 	}
 	else
 	{
-		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
 		if ([result isEqualToString:@"winner!"])
 		{
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", [self getAccountId], tempNam];
+			[self getAccountInfo]; // TODO: should move this somewhere like an initializer, we really only need to do it at startup
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", [[accountInfo valueForKey:@"uid"] unsignedLongValue] , tempNam];
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
@@ -229,16 +235,16 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 		NSString* newToken = [dict valueForKey:@"token"];
 		NSString* newSecret = [dict valueForKey:@"secret"];
 		
-		// TODO: store these in the keychain
+		// TODO: store these somewhere, tokens are for 10 years unless explicitly revoked by the user
 	}
 	
 	return 0;
 }
 
-- (NSUInteger)getAccountId {
+- (NSDictionary*)getAccountInfo {
 	// only need to fetch it once, so if we have it, return it
-	if (accountId != 0)
-		return accountId;
+	if (accountInfo)
+		return accountInfo;
 	
 	// URL for this request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/account/info"];
@@ -273,11 +279,19 @@ size_t write_func(void *ptr, size_t size, size_t nmemb, void *userdata);
 	}
 	else
 	{
+		// grab the bits that we want to save
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
-		accountId = [[[textResponse JSONValue] valueForKey:@"uid"] unsignedLongValue];
+		accountInfo = [textResponse JSONValue];
 	}
 		
-	return accountId;
+	return accountInfo;
+}
+
+- (BOOL)isAccountLinked
+{
+	// account is linked if we have a token/secret pair
+	
+	return TRUE;
 }
 
 @end
