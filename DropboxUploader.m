@@ -285,7 +285,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSDictionary* dict = [textResponse JSONValue];
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setValue:[dict valueForKey:@"uid"] forKey:@"DropboxUID"];
+		[defaults setInteger:[[dict valueForKey:@"uid"] unsignedLongValue] forKey:@"DropboxUID"];
 		[defaults setValue:[dict valueForKey:@"display_name"] forKey:@"DropboxDisplayName"];
 		[defaults setValue:[dict valueForKey:@"email"] forKey:@"DropboxEmail"];
 	}
