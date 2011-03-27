@@ -19,6 +19,18 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
 - (void)uploadFile:(NSString*)sourceFile
 {
+	// get the user settings
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* token = [defaults stringForKey:@"DropboxToken"];
+	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
+	
+	// must have both of these before we can proceed
+	if (!token || !secret)
+	{
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		return;
+	}
+	
 	// generate a unique filename
 	char tempNam[16];
 	strcpy(tempNam, "XXXXX.png");
@@ -36,11 +48,6 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	time_t oauthTimestamp = time(NULL);
 	NSString* oauthNonce = [self genRandString];
 	
-	// get the user settings
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* token = [defaults stringForKey:@"DropboxToken"];
-	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
-
 	// format the signature base string
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
