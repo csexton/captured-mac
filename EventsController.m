@@ -59,8 +59,8 @@
 	// event gets fired	
 	self.screenCapturePrefix = [Utilities screenCapturePrefix];
 	self.screenCaptureDir = [Utilities screenCaptureDir];
-	self.history = [[NSMutableSet alloc] init]; 
-	self.imgurUploader = [[ImgurUploader alloc] init]; //Leak?
+	self.history = [[[NSMutableSet alloc] init] autorelease]; 
+	self.imgurUploader = [[[ImgurUploader alloc] init] autorelease];
 	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
 	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
 	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];

@@ -14,14 +14,21 @@
 
 - (void)uploadFile:(NSString*)sourceFile
 {
-	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename];
-	
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* bucket = [defaults stringForKey:@"S3URL"];
 	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
+	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
+	
+	// validate the inputs
+	if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0)
+	{
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		return;
+	}
+	
+	// generate a unique filename
+	NSString* tempNam = [Utilities createUniqueFilename];
 	
 	// format the url
 	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam]];
@@ -85,7 +92,7 @@
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"CloudProvider", @"Type",
 							  [url absoluteString] , @"ImageURL",
-							  @"", @"DeleteImageURL",
+							  [url absoluteString], @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
 		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
@@ -96,7 +103,7 @@
 {
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* bucket = [defaults stringForKey:@"S3URL"];
+	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
 	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	

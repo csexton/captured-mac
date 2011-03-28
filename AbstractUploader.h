@@ -16,6 +16,7 @@
 
 // Virtual Interface, these should be be implemented in the subclass
 - (void) uploadFile:(NSString*)filename;
+- (void) deleteImage:(NSString*)deleteImageURL;
 - (NSInteger)testConnection;
 
 

@@ -19,6 +19,18 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
 - (void)uploadFile:(NSString*)sourceFile
 {
+	// get the user settings
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* token = [defaults stringForKey:@"DropboxToken"];
+	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
+	
+	// must have both of these before we can proceed
+	if (!token || [token length] == 0 || !secret || [secret length] == 0)
+	{
+		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		return;
+	}
+	
 	// generate a unique filename
 	NSString* tempNam = [Utilities createUniqueFilename];
 	
@@ -34,11 +46,6 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	time_t oauthTimestamp = time(NULL);
 	NSString* oauthNonce = [self genRandString];
 	
-	// get the user settings
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* token = [defaults stringForKey:@"DropboxToken"];
-	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
-
 	// format the signature base string
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:tempNam consumerKey:oauthConsumerKey nonce:oauthNonce timestamp:oauthTimestamp token:token];
 
@@ -121,7 +128,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
-								  @"", @"DeleteImageURL",
+								  [NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]], @"DeleteImageURL",
 								  sourceFile, @"FilePath",
 								  nil];
 			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
