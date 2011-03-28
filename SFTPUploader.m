@@ -6,6 +6,7 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
+#import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "SFTPUploader.h"
 
@@ -32,9 +33,7 @@
 - (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
-	char tempNam[16];
-	strcpy(tempNam, "XXXXX.png");
-	mkstemps(tempNam, 4);
+	NSString* tempNam = [Utilities createUniqueFilename];
 	
 	// get host, username, password and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -47,8 +46,8 @@
 		targetDir = @"~";
 	
 	// format the urls
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%s", host, targetDir, tempNam];
-	uploadUrl = [NSString stringWithFormat:@"%@/%s", uploadUrl, tempNam];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%@", host, targetDir, tempNam];
+	uploadUrl = [NSString stringWithFormat:@"%@/%@", uploadUrl, tempNam];
 
 	// reset the handle
 	curl_easy_reset(handle);

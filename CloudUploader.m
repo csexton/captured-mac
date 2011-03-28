@@ -15,9 +15,7 @@
 - (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
-	char tempNam[16];
-	strcpy(tempNam, "XXXXX.png");
-	mkstemps(tempNam, 4);
+	NSString* tempNam = [Utilities createUniqueFilename];
 	
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -26,7 +24,7 @@
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	
 	// format the url
-	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%s", bucket, tempNam]];
+	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam]];
 
 	// create the request object
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -43,7 +41,7 @@
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
 	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\nx-amz-acl:public-read\nx-amz-storage-class:REDUCED_REDUNDANCY\n", httpVerb, contentType, timestamp];
-	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%s", bucket, tempNam];
+	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
 
 	// create the headers
 	NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];

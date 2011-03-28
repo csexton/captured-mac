@@ -11,6 +11,8 @@
 #import <Growl/Growl.h>
 #import <CommonCrypto/CommonHMAC.h>
 
+static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
 @implementation Utilities
 
 +(NSDictionary*)screenCapturePrefs {
@@ -281,6 +283,16 @@
 	CFStringRef escapeChars = (CFStringRef) @":?=,!$&'()*+;[]@#~/";
 	
 	return [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) stringToEncode, NULL, escapeChars, encoding) autorelease];
+}
+
++(NSString*)createUniqueFilename
+{
+	char buf[16];
+	for (int i = 0; i < 5; i++)
+		buf[i] = alNum[rand() % strlen(alNum)];
+	buf[5] = 0;
+	strcat(buf, ".png");
+	return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
 }
 
 @end

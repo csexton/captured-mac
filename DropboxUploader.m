@@ -20,9 +20,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 - (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
-	char tempNam[16];
-	strcpy(tempNam, "XXXXX.png");
-	mkstemps(tempNam, 4);
+	NSString* tempNam = [Utilities createUniqueFilename];
 	
 	// set up the url
 	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public/Captured"];
@@ -55,7 +53,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	[bodyData appendData: [[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
 
 	// Add data to upload
-	[bodyData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%s\"\r\n", tempNam] dataUsingEncoding:NSASCIIStringEncoding]];
+	[bodyData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", tempNam] dataUsingEncoding:NSASCIIStringEncoding]];
 	[bodyData appendData: [[NSString stringWithString:@"Content-Type: image/png\r\n\r\n"] dataUsingEncoding:NSASCIIStringEncoding]];
 
 	// write the raw file data to the body data
@@ -119,7 +117,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 		if ([result isEqualToString:@"winner!"])
 		{
 			NSInteger uid = [defaults integerForKey:@"DropboxUID"];
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%s", uid, tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%@", uid, tempNam];
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
@@ -140,18 +138,18 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	return 0;
 }
 
-- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(const char*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+- (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
 	NSString* sigBaseString;
 	
 	// if there is a file in the url, we format it slightly differently
-	if (fileName == NULL && token == nil)
+	if (fileName == nil && token == nil)
 		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", consumerKey, nonce, timestamp];
-	else if (fileName == NULL)
+	else if (fileName == nil)
 		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", consumerKey, nonce, timestamp, token];
 	else if (token == nil)
-		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", fileName, consumerKey, nonce, timestamp];
+		sigBaseString = [NSString stringWithFormat:@"file=%@&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", fileName, consumerKey, nonce, timestamp];
 	else
-		sigBaseString = [NSString stringWithFormat:@"file=%s&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
+		sigBaseString = [NSString stringWithFormat:@"file=%@&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
 	
 	// create an encoding object
 	
@@ -166,15 +164,15 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 }
 
 // this method builds up the Authorization header that we will need to send in the request
-- (NSString*)genAuthHeader:(const char*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
-	if (fileName == NULL && token == nil)
+- (NSString*)genAuthHeader:(NSString*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+	if (fileName == nil && token == nil)
 		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce];
-	else if (fileName == NULL)
+	else if (fileName == nil)
 		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
 	else if (token == nil)
-		return [NSString stringWithFormat:@"OAuth file=\"%s\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce];
+		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce];
 	else
-		return [NSString stringWithFormat:@"OAuth file=\"%s\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
+		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
 }
 
 -(NSString*)genRandString {
@@ -198,13 +196,13 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	NSString* nonce = [self genRandString];
 	
 	// format the signature base string
-	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:nil];
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"POST" fileName:nil consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:nil];
 	
 	// build the signature
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:oauthConsumerSecretKey];
 	
 	// build the authentication header
-	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
+	NSString* authHeader = [self genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
 	
 	// add the post data
 	NSString* paramsString = [NSString stringWithFormat:@"email=%@&password=%@", [Utilities URLEncode:email], [Utilities URLEncode:password]];
@@ -263,11 +261,11 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
 	
 	// generate oauth signature
-	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:NULL consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
+	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:nil consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
 	
 	// build the custom headers
-	NSString* authHeader = [self genAuthHeader:NULL consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
+	NSString* authHeader = [self genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
 	
 	// add the custom headers
 	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
