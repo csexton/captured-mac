@@ -53,6 +53,10 @@
 	// reset the handle
 	curl_easy_reset(handle);
 	
+	// capture messages in a user-friendly format
+	char buf[CURL_ERROR_SIZE];
+	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
+	
 	// set the curl options
 	curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
@@ -92,10 +96,16 @@
 	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
 	if ([targetDir length] == 0)
 		targetDir = @"~";
-	
+
+	// set the url to just do an ls of the target dir
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];
 	
+	// reset the curl handle
 	curl_easy_reset(handle);
+	
+	// capture messages in a user-friendly format
+	char buf[CURL_ERROR_SIZE];
+	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
 	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
 	if (rc != CURLE_OK)
