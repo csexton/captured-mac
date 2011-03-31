@@ -288,6 +288,7 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 +(NSString*)createUniqueFilename
 {
 	char buf[16];
+	srand(time(NULL));
 	for (int i = 0; i < 5; i++)
 		buf[i] = alNum[rand() % strlen(alNum)];
 	buf[5] = 0;
