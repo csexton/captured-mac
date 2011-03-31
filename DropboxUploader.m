@@ -19,7 +19,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 
 - (void)uploadFile:(NSString*)sourceFile
 {
-	// get the user settings
+	// get the token
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* token = [defaults stringForKey:@"DropboxToken"];
 	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
@@ -188,7 +188,9 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	return [uuidString autorelease];
 }
 
-- (NSInteger)getToken:(NSString*)email password:(NSString*)password {
+- (NSString*)linkAccount:(NSString*)email password:(NSString*)password {
+	NSString* linkResponse = @"Success";
+	
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/token"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -221,20 +223,22 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 
 	// parse out the response
 	if (error)
 	{
-		NSLog(@"Error calling Dropbox API: %@", [error description]);
+		linkResponse = [NSString stringWithFormat:@"Error calling Dropbox API: %@", [error description]];
 	}
 	else if ([response statusCode] != 200)
 	{
-		NSLog(@"Error in Dropbox API call, returned HTTP status code %lu", [response statusCode]);
+		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+		NSDictionary* dict = [textResponse JSONValue];
+		linkResponse = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
 	}
 	else
 	{
 		// get the new token and secret
+		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSDictionary* dict = [textResponse JSONValue];
 		NSString* newToken = [dict valueForKey:@"token"];
 		NSString* newSecret = [dict valueForKey:@"secret"];
@@ -243,9 +247,12 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setValue:newToken forKey:@"DropboxToken"];
 		[defaults setValue:newSecret forKey:@"DropboxSecret"];
+		
+		// now we get the account info, we'll need the user id for formatting the upload links
+		[self getAccountInfo];
 	}
 	
-	return 0;
+	return linkResponse;
 }
 
 - (void)getAccountInfo {
@@ -300,8 +307,22 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 - (BOOL)isAccountLinked
 {
 	// account is linked if we have a token/secret pair
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* token = [defaults stringForKey:@"DropboxToken"];
+	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
 	
-	return TRUE;
+	return (token && [token length] > 0 && secret && [secret length] > 0);
+}
+
+- (void) unlinkAccount
+{
+	// remove the dropbox token from our records
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults removeObjectForKey:@"DropboxToken"];
+	[defaults removeObjectForKey:@"DropboxSecret"];
+	[defaults removeObjectForKey:@"DropboxUID"];
+	[defaults removeObjectForKey:@"DropboxDisplayName"];
+	[defaults removeObjectForKey:@"DropboxEmail"];
 }
 
 @end
