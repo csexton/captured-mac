@@ -13,8 +13,6 @@
 @interface DropboxUploader : AbstractUploader {
 }
 
-- (void)uploadFile:(NSString*)sourceFile;
-- (NSInteger)testConnection;
 - (NSString*)genRandString;
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
 - (NSString*)genAuthHeader:(NSString*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;

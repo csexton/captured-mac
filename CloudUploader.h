@@ -13,7 +13,4 @@
 @interface CloudUploader : AbstractUploader {
 }
 
-- (void)uploadFile:(NSString*)sourceFile;
-- (NSInteger)testConnection;
-
 @end

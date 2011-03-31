@@ -15,9 +15,4 @@
 	CURL* handle;
 }
 
-@property CURL* handle;
-
-- (void)uploadFile:(NSString*)sourceFile;
-- (NSInteger)testConnection;
-
 @end

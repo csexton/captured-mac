@@ -17,7 +17,7 @@
 // Virtual Interface, these should be be implemented in the subclass
 - (void) uploadFile:(NSString*)filename;
 - (void) deleteImage:(NSString*)deleteImageURL;
-- (NSInteger)testConnection;
+- (NSString*)testConnection;
 
 
 // Called to notify the application the upload has started

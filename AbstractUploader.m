@@ -50,9 +50,10 @@
 {
     [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
 }
-- (NSInteger)testConnection
+- (NSString*)testConnection
 {
-    return 0;
+    NSLog(@"testConnection Not Implemented");
+    return @"Not Implemented";
 }
 
 @end

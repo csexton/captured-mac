@@ -12,8 +12,6 @@
 
 @implementation SFTPUploader
 
-@synthesize handle;
-
 - (id)init
 {
     self = [super init];
@@ -83,9 +81,9 @@
 	}
 }
 
-- (NSInteger)testConnection
+- (NSString*)testConnection
 {
-	CURLcode rc = CURLE_OK;
+	NSString* testResponse = @"Success";
 	
 	// get host, username, password and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -106,20 +104,15 @@
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
-	rc = curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	if (rc != CURLE_OK)
-		return rc;
-	
-	rc = curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
-	if (rc != CURLE_OK)
-		return rc;
-	rc = curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
-	if (rc != CURLE_OK)
-		return rc;
+	curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
+	curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
+	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
 
-	rc = curl_easy_perform(handle);
+	CURLcode rc = curl_easy_perform(handle);
+	if (rc != CURLE_OK)
+		testResponse = [NSString stringWithFormat:@"Error: %s", buf];
 	
-	return rc;
+	return testResponse;
 }
 
 @end

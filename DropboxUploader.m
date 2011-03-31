@@ -140,9 +140,11 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	}
 }
 
-- (NSInteger)testConnection
+- (NSString*)testConnection
 {
-	return 0;
+	NSString* testResponse = @"Success";
+	
+	return testResponse;
 }
 
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {

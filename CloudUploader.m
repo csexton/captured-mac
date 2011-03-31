@@ -99,8 +99,10 @@
 	}
 }
 
-- (NSInteger)testConnection
+- (NSString*)testConnection
 {
+	NSString* testResponse = @"Success";
+
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
@@ -132,14 +134,35 @@
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
-	[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	if (error)
-		NSLog(@"Error trying to connect to cloud storage provider %@", [error description]);
-	NSInteger httpStatusCode = [response statusCode];
-	if (httpStatusCode != 200)
-		return 1;
+	{
+		return [NSString stringWithFormat:@"Error while uploading to cloud provider: %@", error];
+	}
+	else if ([response statusCode] != 200)
+	{
+		if ([data length] > 0)
+		{
+			NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+			NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+			[doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+			if (!error)
+			{
+				NSArray* nodes = [doc nodesForXPath:@"/Error/Code" error:&error];
+				if (!error && [nodes count] > 0)
+					testResponse = [NSString stringWithFormat:@"Failed with error: %@", [[nodes objectAtIndex:0] stringValue]];
+				else
+					testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
+			}
+			else
+				testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
+			[doc release];
+		}
+		else
+			testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
+	}
 	
-	return 0;
+	return testResponse;
 }
 
 @end

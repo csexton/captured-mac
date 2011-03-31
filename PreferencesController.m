@@ -185,14 +185,8 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild {
-    NSInteger ret = [uploader testConnection];
-    if (ret == 0) {
-        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Success" waitUntilDone:YES];
-    }
-    else {
-        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:[NSString stringWithFormat:@"Error %i", ret] waitUntilDone:YES];
-    } 
-    
+    NSString* ret = [uploader testConnection];
+	[textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
 }
 
 
