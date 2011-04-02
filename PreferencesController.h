@@ -33,6 +33,8 @@
 
 @property BOOL startAtLogin;
 @property BOOL uploadsEnabled;
+@property NSString * sftpPassword;
+@property NSString * sftpUser;
 
 
 + (PreferencesController *)sharedPrefsWindowController;

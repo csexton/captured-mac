@@ -9,6 +9,7 @@
 #import "Utilities.h"
 #import "CapturedAppDelegate.h"
 #import "SFTPUploader.h"
+#import "EMKeychainItem.h"
 
 @implementation SFTPUploader
 
@@ -33,15 +34,24 @@
 	// generate a unique filename
 	NSString* tempNam = [Utilities createUniqueFilename];
 	
-	// get host, username, password and target directory options from user preferences
+	// get host, username and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* password = [defaults stringForKey:@"SFTPPassword"];
 	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
 	NSString* uploadUrl = [defaults stringForKey:@"SFTPURL"];
 	if ([targetDir length] == 0)
 		targetDir = @"~";
+    
+    // get the password from the keychain
+    NSString* password;
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    if (keychainItem){
+        password = keychainItem.password;
+    } else {
+        NSLog(@"No password found for SFTP User '%@' in the keychain", username);
+    }
+
 	
 	// format the urls
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%@", host, targetDir, tempNam];
@@ -85,14 +95,23 @@
 {
 	NSString* testResponse = @"Success";
 	
-	// get host, username, password and target directory options from user preferences
+	// get host, username and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* password = [defaults stringForKey:@"SFTPPassword"];
 	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
 	if ([targetDir length] == 0)
 		targetDir = @"~";
+    
+    // FIXME: Duplicate code
+    // get the password from the keychain
+    NSString* password;
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    if (keychainItem){
+        password = keychainItem.password;
+    } else {
+        NSLog(@"No password found for SFTP User '%@' in the keychain", username);
+    }
 
 	// set the url to just do an ls of the target dir
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];

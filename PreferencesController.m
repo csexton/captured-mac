@@ -2,6 +2,7 @@
 #import "PreferencesController.h"
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
+#import "EMKeychainItem.h"
 
 static PreferencesController *_sharedPrefsWindowController = nil;
 
@@ -41,12 +42,13 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 -(void)awakeFromNib{
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+
 	[self.window setContentSize:[generalPreferenceView frame].size];
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
 	[self.window center];
         
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString * type = [defaults stringForKey:@"UploadType"];
     
     [uploadType selectItemWithObjectValue:type];
@@ -134,6 +136,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     }
     else if ([type isEqualToString: @"SFTP"]) {
         [uploaderBox setContentView:sftpPreferences];
+
     }
     else if ([type isEqualToString: @"Amazon S3"]) {
         [uploaderBox setContentView:s3Preferences];
@@ -189,5 +192,58 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	[textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
 }
 
+////// SFTP Settings Binding Methods //////////////////
+
+-(NSString *) sftpPassword {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* username = [defaults stringForKey:@"SFTPUser"];
+    
+    //Grab the keychain item.
+    //    EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:host withUsername:username path:@"" port:22 protocol:kSecProtocolTypeFTP];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    
+    if (keychainItem) {
+        NSLog(@"Password is %@", keychainItem.password);
+        return keychainItem.password;
+    } else {
+        return @"";
+    }
+}
+-(void) setSftpPassword:(NSString *)password {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* username = [defaults stringForKey:@"SFTPUser"];
+    //    [EMInternetKeychainItem addInternetKeychainItemForServer:host 
+    //                                                withUsername:username
+    //                                                    password:str
+    //                                                        path:@"" 
+    //                                                        port:22 
+    //                                                    protocol:'sftp'];
+    
+    // See if there is an existing keychain item
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    
+    if (keychainItem) {
+        // Update the password
+        keychainItem.password = password;
+    } else {
+        // If we didn't find an item, lets create one
+        keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured SFTP" withUsername:username password:password];
+    }
+}
+
+-(NSString *) sftpUser { 
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"SFTPUser"];
+}
+-(void) setSftpUser:(NSString *)username {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldUsername = [defaults stringForKey:@"SFTPUser"];
+    [defaults setValue:username forKey:@"SFTPUser"]; 
+    
+    // Update the username in the keychain
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:oldUsername];
+    if (keychainItem) {
+        keychainItem.username = username;
+    }
+}
 
 @end
