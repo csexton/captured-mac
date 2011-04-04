@@ -74,6 +74,9 @@
 		CFDD043C1332D89300C8160E /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04311332D89300C8160E /* SBJsonStreamWriterState.m */; };
 		CFDD043D1332D89300C8160E /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04331332D89300C8160E /* SBJsonTokeniser.m */; };
 		CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04351332D89300C8160E /* SBJsonWriter.m */; };
+		CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA70C61349475A0016D54E /* PicasaUploader.m */; };
+		CFFA70CB134955840016D54E /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
+		CFFA70CD134955D40016D54E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CC134955D40016D54E /* GData.framework */; };
 		CFFCA58C132575CF004BE557 /* ImgurUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* ImgurUploader.m */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +87,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				CFFA70CD134955D40016D54E /* GData.framework in CopyFiles */,
 				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
 				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
 			);
@@ -206,6 +210,10 @@
 		CFDD04331332D89300C8160E /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
 		CFDD04341332D89300C8160E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		CFDD04351332D89300C8160E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		CFFA70C51349475A0016D54E /* PicasaUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicasaUploader.h; sourceTree = "<group>"; };
+		CFFA70C61349475A0016D54E /* PicasaUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicasaUploader.m; sourceTree = "<group>"; };
+		CFFA70CA134955840016D54E /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GData.framework; path = Frameworks/GData.framework; sourceTree = "<group>"; };
+		CFFA70CC134955D40016D54E /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GData.framework; path = Frameworks/GData.framework; sourceTree = "<group>"; };
 		CFFCA58B132575CF004BE557 /* ImgurUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurUploader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -214,6 +222,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFFA70CB134955840016D54E /* GData.framework in Frameworks */,
 				B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */,
 				B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -249,6 +258,8 @@
 				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
+				CFFA70C51349475A0016D54E /* PicasaUploader.h */,
+				CFFA70C61349475A0016D54E /* PicasaUploader.m */,
 				B588DD301336DB6800221E3D /* PreferencesController.h */,
 				B588DD311336DB6800221E3D /* PreferencesController.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
@@ -257,10 +268,10 @@
 				CF3687FF133523A7003703C7 /* UrlShortener.m */,
 				B5A437C712E0C820007D2A2D /* Utilities.h */,
 				B5A437C812E0C820007D2A2D /* Utilities.m */,
-				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
-				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
 				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
 				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
+				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
+				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -294,6 +305,7 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				CFFA70CC134955D40016D54E /* GData.framework */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -341,6 +353,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CFFA70CA134955840016D54E /* GData.framework */,
 				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5E9015512DEC349004F71B6 /* CoreServices.framework */,
@@ -597,6 +610,7 @@
 				B588DD351336DB6800221E3D /* PreferencesController.m in Sources */,
 				B51E8509133CD24D00B1824C /* AbstractUploader.m in Sources */,
 				B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */,
+				CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
