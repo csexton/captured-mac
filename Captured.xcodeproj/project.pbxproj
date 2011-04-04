@@ -305,7 +305,6 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
-				CFFA70CC134955D40016D54E /* GData.framework */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -353,14 +352,15 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+				CFFA70CC134955D40016D54E /* GData.framework */,
 				CFFA70CA134955840016D54E /* GData.framework */,
 				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5E9015512DEC349004F71B6 /* CoreServices.framework */,
 				B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */,
 				B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */,
-				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
-				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				B5665DCF12E54D490024ADEF /* IOKit.framework */,
 				B5665DD112E54D520024ADEF /* Security.framework */,
 				CF1742B013273F890021D91B /* libcurl.framework */,
