@@ -1633,66 +1633,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.SFTPHost</string>
-						<reference key="source" ref="432487764"/>
-						<reference key="destination" ref="2211320"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="432487764"/>
-							<reference key="NSDestination" ref="2211320"/>
-							<string key="NSLabel">value: values.SFTPHost</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.SFTPHost</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1079</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.SFTPPath</string>
-						<reference key="source" ref="687691538"/>
-						<reference key="destination" ref="2211320"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="687691538"/>
-							<reference key="NSDestination" ref="2211320"/>
-							<string key="NSLabel">value: values.SFTPPath</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.SFTPPath</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1080</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.SFTPURL</string>
-						<reference key="source" ref="4383779"/>
-						<reference key="destination" ref="2211320"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="4383779"/>
-							<reference key="NSDestination" ref="2211320"/>
-							<string key="NSLabel">value: values.SFTPURL</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.SFTPURL</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">1081</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: values.S3AccessKey</string>
 						<reference key="source" ref="304510945"/>
 						<reference key="destination" ref="2211320"/>
@@ -1978,14 +1918,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string key="NSLabel">value: sftpPassword</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">sftpPassword</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1208</int>
+					<int key="connectionID">1212</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1998,14 +1938,74 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string key="NSLabel">value: sftpUser</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">sftpUser</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSRaisesForNotApplicableKeys</string>
-								<boolean value="NO" key="NS.object.0"/>
-							</object>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">1211</int>
+					<int key="connectionID">1213</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.SFTPHost</string>
+						<reference key="source" ref="432487764"/>
+						<reference key="destination" ref="2211320"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="432487764"/>
+							<reference key="NSDestination" ref="2211320"/>
+							<string key="NSLabel">value: values.SFTPHost</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.SFTPHost</string>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1214</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.SFTPPath</string>
+						<reference key="source" ref="687691538"/>
+						<reference key="destination" ref="2211320"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="687691538"/>
+							<reference key="NSDestination" ref="2211320"/>
+							<string key="NSLabel">value: values.SFTPPath</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.SFTPPath</string>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1215</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: values.SFTPURL</string>
+						<reference key="source" ref="4383779"/>
+						<reference key="destination" ref="2211320"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="4383779"/>
+							<reference key="NSDestination" ref="2211320"/>
+							<string key="NSLabel">value: values.SFTPURL</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">values.SFTPURL</string>
+							<dictionary key="NSOptions">
+								<boolean value="YES" key="NSContinuouslyUpdatesValue"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1216</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2961,7 +2961,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1211</int>
+			<int key="maxID">1216</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
