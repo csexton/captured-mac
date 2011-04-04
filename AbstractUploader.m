@@ -39,16 +39,16 @@
 
 - (void) uploadStarted 
 {
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+	[AppDelegate statusProcessing];
 }
 
 - (void) uploadSuccess: (NSDictionary *) dict
 {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+    [AppDelegate uploadSuccess:dict];
 }
 - (void) uploadFailed: (NSDictionary *) dict
 {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+    [AppDelegate uploadFailure];
 }
 - (NSString*)testConnection
 {

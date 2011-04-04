@@ -162,7 +162,7 @@
 					// Cannot check if uploads are enabled until after we add the filename to the history
 					// array because if someone disables uploads, takes a screen capture, then reneables them
 					// within 10 seconds captured will upload it anyway.
-					if ([(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled]) {
+					if ([AppDelegate uploadsEnabled]) {
 					
 					// Get the full path and the actual image
 					NSString *path = [basepath stringByAppendingPathComponent:fileName];

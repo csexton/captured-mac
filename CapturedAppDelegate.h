@@ -12,6 +12,8 @@
 #import "WelcomeWindowController.h"
 #import "PreferencesController.h"
 
+#define AppDelegate (CapturedAppDelegate *)[[NSApplication sharedApplication] delegate]
+
 @interface CapturedAppDelegate : NSObject <NSApplicationDelegate> {
     IBOutlet BOOL *startAtLogin;
 	EventsController *eventsController;

@@ -107,16 +107,16 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 - (BOOL)uploadsEnabled {
-	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled];
+	return [AppDelegate uploadsEnabled];
 }
 - (void)setUploadsEnabled: (BOOL)enabled {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadsEnabled: enabled];
+    [AppDelegate setUploadsEnabled: enabled];
 }
 - (BOOL)startAtLogin {
-	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] startAtLogin];
+	return [AppDelegate startAtLogin];
 }
 - (void)setStartAtLogin:(BOOL)enabled {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStartAtLogin: enabled];
+    [AppDelegate setStartAtLogin: enabled];
 }
 
 
@@ -192,7 +192,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	[textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
 }
 
-////// SFTP Settings Binding Methods //////////////////
+////// SFTP Settings Binding Methods ////////////////////////////////////////////////////
 
 -(NSString *) sftpPassword {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -224,7 +224,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     
     if (keychainItem) {
         // Update the password
-        keychainItem.password = password;
+        if (password) {
+            keychainItem.password = password;
+        }
     } else {
         // If we didn't find an item, lets create one
         keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured SFTP" withUsername:username password:password];
