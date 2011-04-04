@@ -107,16 +107,16 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 - (BOOL)uploadsEnabled {
-	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadsEnabled];
+	return [AppDelegate uploadsEnabled];
 }
 - (void)setUploadsEnabled: (BOOL)enabled {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setUploadsEnabled: enabled];
+    [AppDelegate setUploadsEnabled: enabled];
 }
 - (BOOL)startAtLogin {
-	return [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] startAtLogin];
+	return [AppDelegate startAtLogin];
 }
 - (void)setStartAtLogin:(BOOL)enabled {
-    [(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] setStartAtLogin: enabled];
+    [AppDelegate setStartAtLogin: enabled];
 }
 
 
@@ -140,13 +140,12 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     }
     else if ([type isEqualToString: @"Amazon S3"]) {
         [uploaderBox setContentView:s3Preferences];
-        
-    }
-    else if ([type isEqualToString: @"Amazon S3"]) {
-        [uploaderBox setContentView:s3Preferences];
     }
     else if ([type isEqualToString: @"Dropbox"]) {
         [uploaderBox setContentView:dropboxPreferences];
+    }
+    else if ([type isEqualToString: @"Picassa"]) {
+        [uploaderBox setContentView:picassaPreferences];
     }
     else {
         [uploaderBox setContentView:imgurPreferences];
@@ -169,17 +168,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [self performSelectorInBackground:@selector(runSFTPTestConnecton:) withObject:sender];
 }
 
-// Method to enable running the test in the background thread
--(void) runSFTPTestConnecton: (id) sender{
-    SFTPUploader *s = [[SFTPUploader alloc] init];
-    [self runTestConnection:s textField: sftpTestLabel];
-}
-
--(IBAction) testS3Connection:(id) sender{
-    [s3TestLabel setHidden:NO];
-    [s3TestLabel setStringValue: @"Testing..."];
-    [self performSelectorInBackground:@selector(runS3TestConnecton:) withObject:sender];
-}
+////// S3 Settings Binding Methods ////////////////////////////////////////////////////
 
 // Method to enable running the test in the background thread
 -(void) runS3TestConnecton: (id) sender{
@@ -192,7 +181,20 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	[textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
 }
 
-////// SFTP Settings Binding Methods //////////////////
+////// SFTP Settings Binding Methods ////////////////////////////////////////////////////
+
+// Method to enable running the test in the background thread
+-(void) runSFTPTestConnecton: (id) sender{
+    SFTPUploader *s = [[SFTPUploader alloc] init];
+    [self runTestConnection:s textField: sftpTestLabel];
+}
+
+-(IBAction) testS3Connection:(id) sender{
+    [s3TestLabel setHidden:NO];
+    [s3TestLabel setStringValue: @"Testing..."];
+    [self performSelectorInBackground:@selector(runS3TestConnecton:) withObject:sender];
+}
+
 
 -(NSString *) sftpPassword {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -203,7 +205,6 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
     
     if (keychainItem) {
-        NSLog(@"Password is %@", keychainItem.password);
         return keychainItem.password;
     } else {
         return @"";
@@ -224,7 +225,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     
     if (keychainItem) {
         // Update the password
-        keychainItem.password = password;
+        if (password) {
+            keychainItem.password = password;
+        }
     } else {
         // If we didn't find an item, lets create one
         keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured SFTP" withUsername:username password:password];
@@ -246,4 +249,63 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     }
 }
 
+////// Picassa Settings Binding Methods ////////////////////////////////////////////////////
+
+-(void) runPicassaTestConnecton: (id) sender{
+    SFTPUploader *s = [[SFTPUploader alloc] init];
+    [self runTestConnection:s textField: sftpTestLabel];
+}
+
+-(IBAction) testPicassaConnection:(id) sender{
+    [s3TestLabel setHidden:NO];
+    [s3TestLabel setStringValue: @"Testing..."];
+    [self performSelectorInBackground:@selector(runPicassaTestConnecton:) withObject:sender];
+}
+
+-(NSString *) picassaPassword {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* username = [defaults stringForKey:@"PicassaUser"];
+    
+    //Grab the keychain item.
+    //    EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:host withUsername:username path:@"" port:22 protocol:kSecProtocolTypeFTP];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:username];
+    
+    if (keychainItem) {
+        return keychainItem.password;
+    } else {
+        return @"";
+    }
+}
+-(void) setPicassaPassword:(NSString *)password {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* username = [defaults stringForKey:@"PicassaUser"];
+    // See if there is an existing keychain item
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:username];
+    
+    if (keychainItem) {
+        // Update the password
+        if (password) {
+            keychainItem.password = password;
+        }
+    } else {
+        // If we didn't find an item, lets create one
+        keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured Picassa" withUsername:username password:password];
+    }
+}
+
+-(NSString *) picassaUser {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"PicassaUser"];
+}
+-(void) setPicassaUser:(NSString *)username {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString *oldUsername = [defaults stringForKey:@"PicassaUser"];
+    [defaults setValue:username forKey:@"PicassaUser"];
+    
+    // Update the username in the keychain
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:oldUsername];
+    if (keychainItem) {
+        keychainItem.username = username;
+    }
+}
 @end
+

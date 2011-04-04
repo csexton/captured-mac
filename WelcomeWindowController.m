@@ -53,7 +53,7 @@
 
 - (BOOL)startAtLogin
 {
-    return [[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] valueForKey:@"startAtLogin"] boolValue] ;
+    return [[AppDelegate valueForKey:@"startAtLogin"] boolValue] ;
 }
 
 - (void)setStartAtLogin:(BOOL)enabled

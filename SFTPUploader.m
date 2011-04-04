@@ -73,7 +73,7 @@
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
 
 	// do the upload
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+	[AppDelegate statusProcessing];
 	CURLcode rc = curl_easy_perform(handle);
 	if (rc == CURLE_OK)
 	{
@@ -83,11 +83,11 @@
 							  @"", @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+		[AppDelegate uploadSuccess:dict];
 	}
 	else
 	{
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];		
+		[AppDelegate uploadFailure];
 	}
 }
 

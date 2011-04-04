@@ -27,7 +27,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	// must have both of these before we can proceed
 	if (!token || [token length] == 0 || !secret || [secret length] == 0)
 	{
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		[AppDelegate uploadFailure];
 		return;
 	}
 	
@@ -92,7 +92,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+	[AppDelegate statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
@@ -126,11 +126,11 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 								  [NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]], @"DeleteImageURL",
 								  sourceFile, @"FilePath",
 								  nil];
-			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+			[AppDelegate uploadSuccess:dict];
 		}
 		else
 		{
-			[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+			[AppDelegate uploadFailure];
 		}
 	}
 }

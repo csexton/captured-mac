@@ -23,7 +23,7 @@
 	// validate the inputs
 	if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0)
 	{
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		[AppDelegate uploadFailure];
 		return;
 	}
 	
@@ -63,17 +63,17 @@
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
-	[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] statusProcessing];
+	[AppDelegate statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
 	{
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		[AppDelegate uploadFailure];
 		NSLog(@"Error while uploading to cloud provider: %@", error);
 	}
 	else if ([response statusCode] != 200)
 	{
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadFailure];
+		[AppDelegate uploadFailure];
 		NSXMLDocument* doc = [[[NSXMLDocument alloc] init] autorelease];
 		[doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
 		if (!error)
@@ -95,7 +95,7 @@
 							  [url absoluteString], @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
-		[(CapturedAppDelegate *)[[NSApplication sharedApplication] delegate] uploadSuccess:dict];
+		[AppDelegate uploadSuccess:dict];
 	}
 }
 

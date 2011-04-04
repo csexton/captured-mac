@@ -18,6 +18,8 @@
     IBOutlet NSView *s3Preferences;
     IBOutlet NSView *imgurPreferences;
     IBOutlet NSView *dropboxPreferences;
+    IBOutlet NSView *picassaPreferences;
+
     
     IBOutlet NSTextField *sftpTestLabel;
     IBOutlet NSTextField *s3TestLabel;
@@ -33,8 +35,10 @@
 
 @property BOOL startAtLogin;
 @property BOOL uploadsEnabled;
-@property NSString * sftpPassword;
-@property NSString * sftpUser;
+@property (assign) NSString * sftpPassword;
+@property (assign) NSString * sftpUser;
+@property (assign) NSString * picassaPassword;
+@property (assign) NSString * picassaUser;
 
 
 + (PreferencesController *)sharedPrefsWindowController;
