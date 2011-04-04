@@ -37,6 +37,7 @@
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "DropboxUploader.h"
+#import "PicasaUploader.h"
 
 @implementation EventsController
 
@@ -47,6 +48,7 @@
 @synthesize sftpUploader;
 @synthesize cloudUploader;
 @synthesize dropboxUploader;
+@synthesize picasaUploader;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -64,6 +66,7 @@
 	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
 	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
 	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];
+	self.picasaUploader = [[[PicasaUploader alloc] init] autorelease];
 
     DirEvents *events = [DirEvents sharedPathWatcher];
     

@@ -34,6 +34,7 @@
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "DropboxUploader.h"
+#import "PicasaUploader.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
@@ -43,6 +44,7 @@
 	SFTPUploader *sftpUploader;
 	CloudUploader *cloudUploader;
 	DropboxUploader *dropboxUploader;
+	PicasaUploader *picasaUploader;
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
@@ -52,6 +54,7 @@
 @property (readwrite, retain) SFTPUploader *sftpUploader;
 @property (readwrite, retain) CloudUploader *cloudUploader;
 @property (readwrite, retain) DropboxUploader *dropboxUploader;
+@property (readwrite, retain) PicasaUploader *picasaUploader;
 
 - (void)setupEventListener;
 - (void)processFile: (NSString*)file;
