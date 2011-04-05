@@ -172,9 +172,24 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 ////// Dropbox Settings Binding Methods ////////////////////////////////////////////////////
 -(IBAction) linkDropbox: (id) sender{
     
+   if (!myCustomDialog)
+        [NSBundle loadNibNamed: @"OAuthWindow" owner: self];
+    
+    [NSApp beginSheet: myCustomDialog
+       modalForWindow: window
+        modalDelegate: nil
+       didEndSelector: nil
+          contextInfo: nil];
+    [NSApp runModalForWindow: myCustomDialog];
+    // Dialog is up here.
+    [NSApp endSheet: myCustomDialog];
+    [myCustomDialog orderOut: self];
+    
+    
+    
     // This works, but I want it ot be modal 
-    OAuthController* ctl = [[OAuthController alloc] init];
-    [ctl showWindow:nil];
+//    OAuthController* ctl = [[OAuthController alloc] init];
+//    [ctl showWindow:nil];
 
        
 //    //progressPanel is an IBOutlet to the NSPanel

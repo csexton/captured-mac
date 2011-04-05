@@ -27,7 +27,7 @@
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
-    IBOutlet NSPanel *linkDropboxPanel; // XXX
+    IBOutlet NSPanel *myCustomDialog; // XXX
     
     
     	
