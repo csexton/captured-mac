@@ -27,6 +27,8 @@
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
+    IBOutlet NSPanel *linkDropboxPanel; // XXX
+    
     
     	
 	int currentViewTag;
@@ -57,6 +59,7 @@
 
 -(IBAction) testSFTPConnection:(id) sender;
 -(IBAction) testS3Connection:(id) sender;
+-(IBAction) linkDropbox:(id) sender;
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild;
 

@@ -3,6 +3,7 @@
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "EMKeychainItem.h"
+#import "OAuthController.h"
 
 static PreferencesController *_sharedPrefsWindowController = nil;
 
@@ -166,6 +167,36 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [sftpTestLabel setStringValue: @"Testing..."];
 
     [self performSelectorInBackground:@selector(runSFTPTestConnecton:) withObject:sender];
+}
+
+////// Dropbox Settings Binding Methods ////////////////////////////////////////////////////
+-(IBAction) linkDropbox: (id) sender{
+    
+    // This works, but I want it ot be modal 
+    OAuthController* ctl = [[OAuthController alloc] init];
+    [ctl showWindow:nil];
+
+       
+//    //progressPanel is an IBOutlet to the NSPanel
+//    if(!linkDropboxPanel)
+//        [NSBundle loadNibNamed:@"OAuthWindow" owner:self];
+//    
+//    [NSApp beginSheet: linkDropboxPanel
+//       modalForWindow: window
+//        modalDelegate: nil
+//       didEndSelector: nil
+//          contextInfo: nil];
+//    
+//    //modalSession is an instance variable
+//    NSModalSession modalSession = [NSApp beginModalSessionForWindow:linkDropboxPanel];
+//        
+//    [NSApp runModalSession:modalSession];
+    
+//----
+//    NSWindow * win = [ctl window];
+//    [NSApp runModalForWindow: [ctl window]];
+
+    
 }
 
 ////// S3 Settings Binding Methods ////////////////////////////////////////////////////
