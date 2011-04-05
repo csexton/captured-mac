@@ -1,5 +1,5 @@
 //
-//  OAuthController.h
+//  DropboxPreferences.h
 //  Captured
 //
 //  Created by Christopher Sexton on 4/4/11.
@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface OAuthController : NSWindowController {
+@interface DropboxPreferencesController : NSViewController {
 @private
     
 }

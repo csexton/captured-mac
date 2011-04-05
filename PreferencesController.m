@@ -3,7 +3,7 @@
 #import "SFTPUploader.h"
 #import "CloudUploader.h"
 #import "EMKeychainItem.h"
-#import "OAuthController.h"
+#import "DropboxPreferencesController.h"
 
 static PreferencesController *_sharedPrefsWindowController = nil;
 
@@ -143,7 +143,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         [uploaderBox setContentView:s3Preferences];
     }
     else if ([type isEqualToString: @"Dropbox"]) {
-        [uploaderBox setContentView:dropboxPreferences];
+        //[uploaderBox setContentView:dropboxPreferences];
+        NSViewController *viewController = [[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil];
+        NSView *newView = [viewController view];
+        [uploaderBox setContentView:newView];
+
     }
     else if ([type isEqualToString: @"Picassa"]) {
         [uploaderBox setContentView:picassaPreferences];
@@ -172,19 +176,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 ////// Dropbox Settings Binding Methods ////////////////////////////////////////////////////
 -(IBAction) linkDropbox: (id) sender{
     
-   if (!myCustomDialog)
-        [NSBundle loadNibNamed: @"OAuthWindow" owner: self];
-    
-    [NSApp beginSheet: myCustomDialog
-       modalForWindow: window
-        modalDelegate: nil
-       didEndSelector: nil
-          contextInfo: nil];
-    [NSApp runModalForWindow: myCustomDialog];
-    // Dialog is up here.
-    [NSApp endSheet: myCustomDialog];
-    [myCustomDialog orderOut: self];
-    
+
+    [uploaderBox setContentView:dropboxLinkedPreferences];
+
     
     
     // This works, but I want it ot be modal 

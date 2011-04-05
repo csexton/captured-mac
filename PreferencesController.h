@@ -18,6 +18,8 @@
     IBOutlet NSView *s3Preferences;
     IBOutlet NSView *imgurPreferences;
     IBOutlet NSView *dropboxPreferences;
+    IBOutlet NSView *dropboxLinkedPreferences;
+
     IBOutlet NSView *picassaPreferences;
 
     

@@ -47,8 +47,8 @@
 		B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */; };
 		B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */; };
 		B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */; };
-		B5AEC8D3134A9C11001922C8 /* OAuthWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AEC8D2134A9C11001922C8 /* OAuthWindow.xib */; };
-		B5AEC8D6134A9C56001922C8 /* OAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8D5134A9C56001922C8 /* OAuthController.m */; };
+		B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */; };
+		B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
 		B5C5645613042BBE00E396E6 /* ViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645513042BBE00E396E6 /* ViewBackground.m */; };
@@ -168,9 +168,9 @@
 		B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSuccess.png; path = Resources/StatusMenuIconSuccess.png; sourceTree = "<group>"; };
 		B5AEC8CC1347CB49001922C8 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
-		B5AEC8D2134A9C11001922C8 /* OAuthWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OAuthWindow.xib; sourceTree = "<group>"; };
-		B5AEC8D4134A9C56001922C8 /* OAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthController.h; sourceTree = "<group>"; };
-		B5AEC8D5134A9C56001922C8 /* OAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthController.m; sourceTree = "<group>"; };
+		B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropboxPreferences.xib; sourceTree = "<group>"; };
+		B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DropboxPreferencesController.h; sourceTree = "<group>"; };
+		B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxPreferencesController.m; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5C5645413042BBE00E396E6 /* ViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBackground.h; sourceTree = "<group>"; };
 		B5C5645513042BBE00E396E6 /* ViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBackground.m; sourceTree = "<group>"; };
@@ -277,8 +277,8 @@
 				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
 				B5C5645A1304317100E396E6 /* WelcomeWindowController.h */,
 				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
-				B5AEC8D4134A9C56001922C8 /* OAuthController.h */,
-				B5AEC8D5134A9C56001922C8 /* OAuthController.m */,
+				B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */,
+				B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -444,7 +444,7 @@
 				B588DD321336DB6800221E3D /* Preferences.xib */,
 				B5C564571304310E00E396E6 /* WelcomeWindow.xib */,
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
-				B5AEC8D2134A9C11001922C8 /* OAuthWindow.xib */,
+				B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -570,7 +570,7 @@
 				B588DD391336DCB500221E3D /* Colors.tiff in Resources */,
 				B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */,
 				B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */,
-				B5AEC8D3134A9C11001922C8 /* OAuthWindow.xib in Resources */,
+				B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -620,7 +620,7 @@
 				B51E8509133CD24D00B1824C /* AbstractUploader.m in Sources */,
 				B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */,
 				CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */,
-				B5AEC8D6134A9C56001922C8 /* OAuthController.m in Sources */,
+				B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
