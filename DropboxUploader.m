@@ -285,12 +285,13 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	}
 	else if ([response statusCode] != 200)
 	{
-		NSLog(@"Error while attempting to get account info, HTTP status code %lu, message: %@", [response statusCode], textResponse);
+		NSDictionary* dict = [textResponse JSONValue];
+		NSString* errorString = [dict valueForKey:@"error"];
+		NSLog(@"Error while attempting to get Dropbox account info, HTTP status code %lu, message: %@", [response statusCode], errorString);
 	}
 	else
 	{
 		// grab the bits that we want to save
-		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSDictionary* dict = [textResponse JSONValue];
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setInteger:[[dict valueForKey:@"uid"] unsignedLongValue] forKey:@"DropboxUID"];
