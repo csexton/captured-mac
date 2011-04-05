@@ -78,7 +78,6 @@
 		CFDD043E1332D89300C8160E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = CFDD04351332D89300C8160E /* SBJsonWriter.m */; };
 		CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFA70C61349475A0016D54E /* PicasaUploader.m */; };
 		CFFA70CB134955840016D54E /* GData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
-		CFFA70CD134955D40016D54E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CC134955D40016D54E /* GData.framework */; };
 		CFFCA58C132575CF004BE557 /* ImgurUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFFCA58B132575CF004BE557 /* ImgurUploader.m */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +88,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CFFA70CD134955D40016D54E /* GData.framework in CopyFiles */,
 				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
 				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
 			);
@@ -218,7 +216,6 @@
 		CFFA70C51349475A0016D54E /* PicasaUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PicasaUploader.h; sourceTree = "<group>"; };
 		CFFA70C61349475A0016D54E /* PicasaUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PicasaUploader.m; sourceTree = "<group>"; };
 		CFFA70CA134955840016D54E /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GData.framework; path = Frameworks/GData.framework; sourceTree = "<group>"; };
-		CFFA70CC134955D40016D54E /* GData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GData.framework; path = Frameworks/GData.framework; sourceTree = "<group>"; };
 		CFFCA58B132575CF004BE557 /* ImgurUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurUploader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -361,7 +358,6 @@
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
-				CFFA70CC134955D40016D54E /* GData.framework */,
 				CFFA70CA134955840016D54E /* GData.framework */,
 				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
