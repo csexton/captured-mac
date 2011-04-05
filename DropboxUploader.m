@@ -105,12 +105,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 		{
 			// this means the token has expired (unlikely, since it is given out for 10 years) or revoked, which means
 			// we need to re-authenticate, so we should wipe out the stored token since it's no longer valid
-			NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-			[defaults removeObjectForKey:@"DropboxToken"];
-			[defaults removeObjectForKey:@"DropboxSecret"];
-			[defaults removeObjectForKey:@"DropboxUID"];
-			[defaults removeObjectForKey:@"DropboxDisplayName"];
-			[defaults removeObjectForKey:@"DropboxEmail"];
+			[self unlinkAccount];
 		}
 		else
 		{
@@ -290,12 +285,13 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	}
 	else if ([response statusCode] != 200)
 	{
-		NSLog(@"Error while attempting to get account info, HTTP status code %lu, message: %@", [response statusCode], textResponse);
+		NSDictionary* dict = [textResponse JSONValue];
+		NSString* errorString = [dict valueForKey:@"error"];
+		NSLog(@"Error while attempting to get Dropbox account info, HTTP status code %lu, message: %@", [response statusCode], errorString);
 	}
 	else
 	{
 		// grab the bits that we want to save
-		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 		NSDictionary* dict = [textResponse JSONValue];
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setInteger:[[dict valueForKey:@"uid"] unsignedLongValue] forKey:@"DropboxUID"];
@@ -314,7 +310,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	return (token && [token length] > 0 && secret && [secret length] > 0);
 }
 
-- (void) unlinkAccount
+- (void)unlinkAccount
 {
 	// remove the dropbox token from our records
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

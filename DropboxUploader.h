@@ -19,5 +19,6 @@
 - (NSString*)linkAccount:(NSString*)email password:(NSString*)password;
 - (void)getAccountInfo;
 - (BOOL)isAccountLinked;
+- (void)unlinkAccount;
 
 @end
