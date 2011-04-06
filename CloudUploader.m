@@ -101,7 +101,7 @@
 
 - (NSString*)testConnection
 {
-	NSString* testResponse = @"Success";
+	NSString* testResponse = nil;
 
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

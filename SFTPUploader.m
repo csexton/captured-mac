@@ -93,7 +93,7 @@
 
 - (NSString*)testConnection
 {
-	NSString* testResponse = @"Success";
+	NSString* testResponse = nil;
 	
 	// get host, username and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

@@ -137,7 +137,7 @@
 
 - (NSString*)testConnection
 {
-	NSString* testResponse = @"Success";
+	NSString* testResponse = nil;
 
 	return testResponse;
 }

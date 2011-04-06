@@ -38,7 +38,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public/Captured"];
 	
 	// now the request
-	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
 	NSString* httpVerb = @"POST";
 	[request setHTTPMethod:httpVerb];
 	
@@ -54,7 +54,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	
 	// set up the body
 	CFUUIDRef uuid = CFUUIDCreate(NULL);
-	NSString* stringBoundary = [(NSString*)CFUUIDCreateString(NULL, uuid) autorelease];
+	NSString* stringBoundary = (NSString*)CFUUIDCreateString(NULL, uuid);
 	CFRelease(uuid);
 	NSMutableData* bodyData = [NSMutableData data];
 	[bodyData appendData: [[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -85,6 +85,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	[request addValue:[NSString stringWithFormat:@"multipart/form-data; boundary=%@", stringBoundary] forHTTPHeaderField:@"Content-Type"];
 	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
 	[request addValue:[NSString stringWithFormat:@"%lu", [bodyData length]]	forHTTPHeaderField:@"Content-Length"];
+	[stringBoundary release];
 	
 	// set the data
 	[request setHTTPBody:bodyData];
@@ -133,6 +134,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 			[AppDelegate uploadFailure];
 		}
 	}
+	[request release];
 }
 
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
@@ -155,7 +157,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
     NSString* escapedSig = [Utilities URLEncode:sigBaseString];
 	
 	// format them all into the signature base string
-	NSString* finalString = [NSString stringWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
+	NSString* finalString = [[NSString alloc] initWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
 	
 	return finalString;
 }
@@ -184,7 +186,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 }
 
 - (NSString*)linkAccount:(NSString*)email password:(NSString*)password {
-	NSString* linkResponse = @"Success";
+	NSString* linkResponse = nil;
 	
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.dropbox.com/0/token"];
@@ -199,6 +201,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	
 	// build the signature
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:oauthConsumerSecretKey];
+	[sigBaseString release];
 	
 	// build the authentication header
 	NSString* authHeader = [self genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
@@ -267,6 +270,7 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 	// generate oauth signature
 	NSString* sigBaseString = [self genSigBaseString:[url absoluteString] method:@"GET" fileName:nil consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
+	[sigBaseString release];
 	
 	// build the custom headers
 	NSString* authHeader = [self genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];
@@ -304,10 +308,9 @@ static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
 {
 	// account is linked if we have a token/secret pair
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* token = [defaults stringForKey:@"DropboxToken"];
-	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
+	NSString* displayName = [defaults stringForKey:@"DropboxDisplayName"];
 	
-	return (token && [token length] > 0 && secret && [secret length] > 0);
+	return (displayName && [displayName length] > 0);
 }
 
 - (void)unlinkAccount
