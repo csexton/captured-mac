@@ -31,6 +31,7 @@
 		B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52ADBA6130C2DA700C7A531 /* Carbon.framework */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
+		B56521C0134C087B00870F8E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B588DD331336DB6800221E3D /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2E1336DB6800221E3D /* Advanced.png */; };
@@ -90,6 +91,7 @@
 			files = (
 				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
 				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
+				B56521C0134C087B00870F8E /* GData.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,7 +169,7 @@
 		B5AEC8CC1347CB49001922C8 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropboxPreferences.xib; sourceTree = "<group>"; };
-		B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; path = DropboxPreferencesController.h; sourceTree = "<group>"; };
+		B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxPreferencesController.h; sourceTree = "<group>"; };
 		B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxPreferencesController.m; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
 		B5C5645413042BBE00E396E6 /* ViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBackground.h; sourceTree = "<group>"; };

@@ -1,6 +1,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CapturedAppDelegate.h"
+#import "DropboxPreferencesController.h"
 
 @interface PreferencesController : NSWindowController <NSToolbarDelegate> {
 
@@ -10,17 +11,19 @@
 	IBOutlet NSView *aboutPreferenceView;
 	IBOutlet NSView *advancedPreferenceView;
     
+    
+    
     IBOutlet NSWindow *window;
     IBOutlet NSBox *uploaderBox;
     IBOutlet NSComboBox *uploadType;
 
     IBOutlet NSView *sftpPreferences;
     IBOutlet NSView *s3Preferences;
-    IBOutlet NSView *imgurPreferences;
-    IBOutlet NSView *dropboxPreferences;
+    IBOutlet NSView *imgurPreferences;    
     IBOutlet NSView *dropboxLinkedPreferences;
+    NSView *dropboxPreferences;
 
-    IBOutlet NSView *picassaPreferences;
+    IBOutlet NSView *picasaPreferences;
 
     
     IBOutlet NSTextField *sftpTestLabel;
@@ -41,8 +44,8 @@
 @property BOOL uploadsEnabled;
 @property (assign) NSString * sftpPassword;
 @property (assign) NSString * sftpUser;
-@property (assign) NSString * picassaPassword;
-@property (assign) NSString * picassaUser;
+@property (assign) NSString * picasaPassword;
+@property (assign) NSString * picasaUser;
 
 
 + (PreferencesController *)sharedPrefsWindowController;
