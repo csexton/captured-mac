@@ -37,6 +37,8 @@
 
 -(void)showApproprateView{
     if ([uploader isAccountLinked]) {
+        NSString* name = [[NSUserDefaults standardUserDefaults] stringForKey:@"DropboxDisplayName"];
+        [displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to %@'s Dropbox Account.",name]];
         [box setContentView:linkedView];
     } else {
         [box setContentView:loginView];
@@ -48,8 +50,11 @@
     NSString *user = [dropboxUser stringValue];
     NSString *pass = [dropboxPassword stringValue];
     NSString *ret = [uploader linkAccount:user password:pass];
-    NSLog(@"Dropbox said: %@", ret);
-    [box setContentView:linkedView];
+    
+    if (ret != nil) {
+        [errorLabel setStringValue:ret];
+    }
+    [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {
     [box setContentView:loginView];

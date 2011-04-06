@@ -18,6 +18,9 @@
     IBOutlet NSView *linkedView;
     IBOutlet NSView *loginView;
     IBOutlet NSTextField *linkedAccountLabel;
+    IBOutlet NSTextField *errorLabel;
+    IBOutlet NSTextField *displayName;
+
     
     DropboxUploader *uploader;
 
