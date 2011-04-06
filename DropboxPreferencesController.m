@@ -49,6 +49,7 @@
     
     NSString *user = [dropboxUser stringValue];
     NSString *pass = [dropboxPassword stringValue];
+
     NSString *ret = [uploader linkAccount:user password:pass];
     
     if (ret != nil) {
@@ -57,6 +58,7 @@
     [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {
+    [dropboxPassword setStringValue:@""];
     [box setContentView:loginView];
     [uploader unlinkAccount];
     
