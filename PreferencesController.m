@@ -44,6 +44,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 -(void)awakeFromNib{
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
+    dropboxPreferences = [[[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil] view];
+
 
 	[self.window setContentSize:[generalPreferenceView frame].size];
 	[[self.window contentView] addSubview:generalPreferenceView];
@@ -143,14 +146,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         [uploaderBox setContentView:s3Preferences];
     }
     else if ([type isEqualToString: @"Dropbox"]) {
-        //[uploaderBox setContentView:dropboxPreferences];
-        NSViewController *viewController = [[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil];
-        NSView *newView = [viewController view];
-        [uploaderBox setContentView:newView];
-
+        [uploaderBox setContentView:dropboxPreferences];
     }
-    else if ([type isEqualToString: @"Picassa"]) {
-        [uploaderBox setContentView:picassaPreferences];
+    else if ([type isEqualToString: @"Picasa"]) {
+        [uploaderBox setContentView:picasaPreferences];
     }
     else {
         [uploaderBox setContentView:imgurPreferences];
@@ -289,26 +288,26 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     }
 }
 
-////// Picassa Settings Binding Methods ////////////////////////////////////////////////////
+////// Picasa Settings Binding Methods ////////////////////////////////////////////////////
 
--(void) runPicassaTestConnecton: (id) sender{
+-(void) runPicasaTestConnecton: (id) sender{
     SFTPUploader *s = [[SFTPUploader alloc] init];
     [self runTestConnection:s textField: sftpTestLabel];
 }
 
--(IBAction) testPicassaConnection:(id) sender{
+-(IBAction) testPicasaConnection:(id) sender{
     [s3TestLabel setHidden:NO];
     [s3TestLabel setStringValue: @"Testing..."];
-    [self performSelectorInBackground:@selector(runPicassaTestConnecton:) withObject:sender];
+    [self performSelectorInBackground:@selector(runPicasaTestConnecton:) withObject:sender];
 }
 
--(NSString *) picassaPassword {
+-(NSString *) picasaPassword {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* username = [defaults stringForKey:@"PicassaUser"];
+	NSString* username = [defaults stringForKey:@"PicasaUser"];
     
     //Grab the keychain item.
     //    EMInternetKeychainItem *keychainItem = [EMInternetKeychainItem internetKeychainItemForServer:host withUsername:username path:@"" port:22 protocol:kSecProtocolTypeFTP];
-    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:username];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picasa" withUsername:username];
     
     if (keychainItem) {
         return keychainItem.password;
@@ -316,11 +315,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         return @"";
     }
 }
--(void) setPicassaPassword:(NSString *)password {
+-(void) setPicasaPassword:(NSString *)password {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* username = [defaults stringForKey:@"PicassaUser"];
+	NSString* username = [defaults stringForKey:@"PicasaUser"];
     // See if there is an existing keychain item
-    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:username];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picasa" withUsername:username];
     
     if (keychainItem) {
         // Update the password
@@ -329,20 +328,20 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         }
     } else {
         // If we didn't find an item, lets create one
-        keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured Picassa" withUsername:username password:password];
+        keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured Picasa" withUsername:username password:password];
     }
 }
 
--(NSString *) picassaUser {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"PicassaUser"];
+-(NSString *) picasaUser {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"PicasaUser"];
 }
--(void) setPicassaUser:(NSString *)username {
+-(void) setPicasaUser:(NSString *)username {
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString *oldUsername = [defaults stringForKey:@"PicassaUser"];
-    [defaults setValue:username forKey:@"PicassaUser"];
+    NSString *oldUsername = [defaults stringForKey:@"PicasaUser"];
+    [defaults setValue:username forKey:@"PicasaUser"];
     
     // Update the username in the keychain
-    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picassa" withUsername:oldUsername];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picasa" withUsername:oldUsername];
     if (keychainItem) {
         keychainItem.username = username;
     }

@@ -12,8 +12,8 @@
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
-static NSString* oauthConsumerKey = @"bpsv3nx35j5hua7";
-static NSString* oauthConsumerSecretKey = @"qa9tvwoivvspknm";
+static NSString* oauthConsumerKey = @"4zwv9noh6qesnob";
+static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 
 @implementation DropboxUploader
 
