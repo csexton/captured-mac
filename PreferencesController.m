@@ -283,7 +283,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     
     // Update the username in the keychain
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:oldUsername];
-    if (keychainItem) {
+    if (keychainItem && username) {
         keychainItem.username = username;
     }
 }
