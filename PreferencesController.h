@@ -19,9 +19,9 @@
 
     IBOutlet NSView *sftpPreferences;
     IBOutlet NSView *s3Preferences;
-    IBOutlet NSView *imgurPreferences;    
     IBOutlet NSView *dropboxLinkedPreferences;
     NSView *dropboxPreferences;
+    NSView *imgurPreferences;
 
     IBOutlet NSView *picasaPreferences;
 

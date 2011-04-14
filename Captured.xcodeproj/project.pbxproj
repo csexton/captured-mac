@@ -14,6 +14,8 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
 		B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */; };
+		B505D3351356966D00B91EDE /* ImgurPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B505D3341356966D00B91EDE /* ImgurPreferences.xib */; };
+		B505D3391356970000B91EDE /* ImgurPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B505D3371356970000B91EDE /* ImgurPreferencesController.m */; };
 		B50909C812E790BF00A32F5E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909B812E790BF00A32F5E /* ASIDataCompressor.m */; };
 		B50909C912E790BF00A32F5E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BA12E790BF00A32F5E /* ASIDataDecompressor.m */; };
 		B50909CA12E790BF00A32F5E /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BC12E790BF00A32F5E /* ASIDownloadCache.m */; };
@@ -112,6 +114,9 @@
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5015B10131B51B900E7FA35 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
 		B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
+		B505D3341356966D00B91EDE /* ImgurPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImgurPreferences.xib; sourceTree = "<group>"; };
+		B505D3361356970000B91EDE /* ImgurPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurPreferencesController.h; sourceTree = "<group>"; };
+		B505D3371356970000B91EDE /* ImgurPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurPreferencesController.m; sourceTree = "<group>"; };
 		B50909B612E790BF00A32F5E /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = HTTPRequest/ASICacheDelegate.h; sourceTree = "<group>"; };
 		B50909B712E790BF00A32F5E /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataCompressor.h; path = HTTPRequest/ASIDataCompressor.h; sourceTree = "<group>"; };
 		B50909B812E790BF00A32F5E /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataCompressor.m; path = HTTPRequest/ASIDataCompressor.m; sourceTree = "<group>"; };
@@ -278,6 +283,8 @@
 				B5C5645B1304317100E396E6 /* WelcomeWindowController.m */,
 				B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */,
 				B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */,
+				B505D3361356970000B91EDE /* ImgurPreferencesController.h */,
+				B505D3371356970000B91EDE /* ImgurPreferencesController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -443,6 +450,7 @@
 				B5C564571304310E00E396E6 /* WelcomeWindow.xib */,
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
 				B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */,
+				B505D3341356966D00B91EDE /* ImgurPreferences.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -569,6 +577,7 @@
 				B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */,
 				B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */,
 				B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */,
+				B505D3351356966D00B91EDE /* ImgurPreferences.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -619,6 +628,7 @@
 				B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */,
 				CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */,
 				B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */,
+				B505D3391356970000B91EDE /* ImgurPreferencesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

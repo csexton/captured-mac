@@ -4,6 +4,7 @@
 #import "CloudUploader.h"
 #import "EMKeychainItem.h"
 #import "DropboxPreferencesController.h"
+#import "ImgurPreferencesController.h"
 
 static PreferencesController *_sharedPrefsWindowController = nil;
 
@@ -46,6 +47,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
     dropboxPreferences = [[[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil] view];
+    imgurPreferences = [[[ImgurPreferencesController alloc] initWithNibName:@"ImgurPreferences" bundle:nil] view];
 
 
 	[self.window setContentSize:[generalPreferenceView frame].size];
