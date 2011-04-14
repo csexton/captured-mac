@@ -89,11 +89,14 @@
  */
 - (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
 {
-	NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
-	
-	for (NSString *path in list) {
-		[self processFile:path];
-	}
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"EnableDesktopWatcher"]) {
+        
+        NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
+        
+        for (NSString *path in list) {
+            [self processFile:path];
+        }
+    }
 }
 
 - (void)processFile: (NSString*)file {

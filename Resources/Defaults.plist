@@ -8,13 +8,15 @@
 	<string>imgur_page</string>
 	<key>ImgurLinkType</key>
 	<string>Copy URL to Webpage</string>
+	<key>NumberOfHistoryItems</key>
+	<integer>10</integer>
+	<key>PlaySoundAfterUpload</key>
+	<true/>
 	<key>UploadType</key>
 	<string>Imgur</string>
 	<key>UseURLShortener</key>
 	<false/>
-	<key>PlaySoundAfterUpload</key>
+	<key>EnableDesktopWatcher</key>
 	<true/>
-	<key>NumberOfHistoryItems</key>
-	<integer>10</integer>
 </dict>
 </plist>
