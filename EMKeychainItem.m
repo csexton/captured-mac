@@ -124,6 +124,7 @@ static BOOL _logsErrors;
 	{
 		return [[mPassword copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setPassword:(NSString *)newPassword
@@ -149,6 +150,7 @@ static BOOL _logsErrors;
 	{
 		return [[mUsername copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setUsername:(NSString *)newUsername
@@ -174,6 +176,7 @@ static BOOL _logsErrors;
 	{
 		return [[mLabel copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setLabel:(NSString *)newLabel
@@ -303,6 +306,7 @@ static BOOL _logsErrors;
 	{
 		return [[mServiceName copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setServiceName:(NSString *)newServiceName
@@ -452,6 +456,7 @@ static BOOL _logsErrors;
 	{
 		return [[mServer copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setServer:(NSString *)newServer
@@ -477,6 +482,7 @@ static BOOL _logsErrors;
 	{
 		return [[mPath copy] autorelease];
 	}
+    return nil; // should never get here
 }
 
 - (void)setPath:(NSString *)newPath
@@ -499,6 +505,7 @@ static BOOL _logsErrors;
 	{
 		return mPort;
 	}
+    return nil; // should never get here
 }
 
 - (void)setPort:(NSInteger)newPort
@@ -523,6 +530,7 @@ static BOOL _logsErrors;
 	{
 		return mProtocol;
 	}
+    return nil; // should never get here
 }
 
 - (void)setProtocol:(SecProtocolType)newProtocol
