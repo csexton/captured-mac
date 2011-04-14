@@ -267,8 +267,6 @@
 				B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */,
 				B5C5645F130470F500E396E6 /* NSButton+TextColor.h */,
 				B5C56460130470F500E396E6 /* NSButton+TextColor.m */,
-				CFFA70C51349475A0016D54E /* PicasaUploader.h */,
-				CFFA70C61349475A0016D54E /* PicasaUploader.m */,
 				B588DD301336DB6800221E3D /* PreferencesController.h */,
 				B588DD311336DB6800221E3D /* PreferencesController.m */,
 				B5E9024B12DEC480004F71B6 /* StatusMenuController.h */,
@@ -428,6 +426,8 @@
 				CFD6D681133171CB0065567C /* DropboxUploader.m */,
 				CFFCA58B132575CF004BE557 /* ImgurUploader.m */,
 				B5E9018112DEC3B6004F71B6 /* ImgurUploader.h */,
+				CFFA70C51349475A0016D54E /* PicasaUploader.h */,
+				CFFA70C61349475A0016D54E /* PicasaUploader.m */,
 				CFB327DE132B125400B388E0 /* SFTPUploader.h */,
 				CFB327DF132B125400B388E0 /* SFTPUploader.m */,
 			);
