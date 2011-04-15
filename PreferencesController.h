@@ -29,6 +29,8 @@
     IBOutlet NSTextField *sftpTestLabel;
     IBOutlet NSTextField *s3TestLabel;
     IBOutlet NSTextField *imgurTestLabel;
+    IBOutlet NSTextField *picasaTestLabel;
+
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
@@ -43,9 +45,7 @@
 @property BOOL startAtLogin;
 @property BOOL uploadsEnabled;
 @property (assign) NSString * sftpPassword;
-@property (assign) NSString * sftpUser;
 @property (assign) NSString * picasaPassword;
-@property (assign) NSString * picasaUser;
 
 
 + (PreferencesController *)sharedPrefsWindowController;
