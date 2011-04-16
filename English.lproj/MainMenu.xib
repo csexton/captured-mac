@@ -329,6 +329,26 @@
 				<string key="NSTitle">StatusMenu</string>
 				<object class="NSMutableArray" key="NSMenuItems">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="NSMenuItem" id="21869386">
+						<reference key="NSMenu" ref="424847978"/>
+						<bool key="NSIsHidden">YES</bool>
+						<string key="NSTitle">Error Uploading Screenshot...</string>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="893455832"/>
+						<reference key="NSMixedImage" ref="424226900"/>
+					</object>
+					<object class="NSMenuItem" id="878513310">
+						<reference key="NSMenu" ref="424847978"/>
+						<bool key="NSIsDisabled">YES</bool>
+						<bool key="NSIsSeparator">YES</bool>
+						<bool key="NSIsHidden">YES</bool>
+						<string key="NSTitle"/>
+						<string key="NSKeyEquiv"/>
+						<int key="NSMnemonicLoc">2147483647</int>
+						<reference key="NSOnImage" ref="893455832"/>
+						<reference key="NSMixedImage" ref="424226900"/>
+					</object>
 					<object class="NSMenuItem" id="61477332">
 						<reference key="NSMenu" ref="424847978"/>
 						<string key="NSTitle">Select Area to Capture...</string>
@@ -776,6 +796,30 @@
 					</object>
 					<int key="connectionID">762</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">errorMsgMenuItem</string>
+						<reference key="source" ref="56102586"/>
+						<reference key="destination" ref="21869386"/>
+					</object>
+					<int key="connectionID">764</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreferencesWindow:</string>
+						<reference key="source" ref="612578685"/>
+						<reference key="destination" ref="21869386"/>
+					</object>
+					<int key="connectionID">765</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">errorMsgSepMenuItem</string>
+						<reference key="source" ref="56102586"/>
+						<reference key="destination" ref="878513310"/>
+					</object>
+					<int key="connectionID">767</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1013,6 +1057,8 @@
 							<reference ref="61477332"/>
 							<reference ref="796794054"/>
 							<reference ref="850422188"/>
+							<reference ref="21869386"/>
+							<reference ref="878513310"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1123,6 +1169,16 @@
 						<reference key="object" ref="108822263"/>
 						<reference key="parent" ref="123765298"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">763</int>
+						<reference key="object" ref="21869386"/>
+						<reference key="parent" ref="424847978"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">766</int>
+						<reference key="object" ref="878513310"/>
+						<reference key="parent" ref="424847978"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -1209,6 +1265,8 @@
 					<string>754.ImportedFromIB2</string>
 					<string>756.IBPluginDependency</string>
 					<string>756.ImportedFromIB2</string>
+					<string>763.IBPluginDependency</string>
+					<string>766.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1296,6 +1354,8 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<integer value="1"/>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -1310,7 +1370,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">762</int>
+			<int key="maxID">767</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1469,12 +1529,16 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLMenuItem</string>
+							<string>errorMsgMenuItem</string>
+							<string>errorMsgSepMenuItem</string>
 							<string>historyMenu</string>
 							<string>startAtLogin</string>
 							<string>statusMenu</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenu</string>
 							<string>BOOL</string>
@@ -1486,6 +1550,8 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>copyURLMenuItem</string>
+							<string>errorMsgMenuItem</string>
+							<string>errorMsgSepMenuItem</string>
 							<string>historyMenu</string>
 							<string>startAtLogin</string>
 							<string>statusMenu</string>
@@ -1494,6 +1560,14 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
 								<string key="name">copyURLMenuItem</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">errorMsgMenuItem</string>
+								<string key="candidateClassName">NSMenuItem</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">errorMsgSepMenuItem</string>
 								<string key="candidateClassName">NSMenuItem</string>
 							</object>
 							<object class="IBToOneOutletInfo">

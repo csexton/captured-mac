@@ -10,9 +10,7 @@
 	IBOutlet NSView *colorsPreferenceView;
 	IBOutlet NSView *aboutPreferenceView;
 	IBOutlet NSView *advancedPreferenceView;
-    
-    
-    
+
     IBOutlet NSWindow *window;
     IBOutlet NSBox *uploaderBox;
     IBOutlet NSComboBox *uploadType;
@@ -25,21 +23,16 @@
 
     IBOutlet NSView *picasaPreferences;
 
-    
     IBOutlet NSTextField *sftpTestLabel;
     IBOutlet NSTextField *s3TestLabel;
     IBOutlet NSTextField *imgurTestLabel;
     IBOutlet NSTextField *picasaTestLabel;
-
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
     IBOutlet NSPanel *myCustomDialog; // XXX
-    
-    
-    	
+
 	int currentViewTag;
-	
 }
 
 @property BOOL startAtLogin;

@@ -15,6 +15,8 @@
     IBOutlet BOOL *startAtLogin;
     NSStatusItem * statusItem;
 	IBOutlet NSMenuItem *copyURLMenuItem;
+	IBOutlet NSMenuItem *errorMsgMenuItem;
+	IBOutlet NSMenuItem *errorMsgSepMenuItem;
 	NSString *lastUploadedURL;
 	NSString *lastUploadedDeleteURL;
     NSImage * statusIcon;
@@ -49,5 +51,7 @@
 -(IBAction) historyMenuItemAction: (id) sender;
 -(void) createHistoryMenuItem: (NSDictionary *) dict;
 -(BOOL) enableHistoryMenu;
+
+- (void) growlNotificationWasClicked:(id)clickContext;
 
 @end

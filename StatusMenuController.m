@@ -37,6 +37,8 @@
 }
 -(void) setStatusDisabled {
 	[self setStatusIcon: statusIconDisabled];
+    [errorMsgMenuItem setHidden:YES];
+    [errorMsgSepMenuItem setHidden:YES];
 }
 -(void) setStatusProcessing {
 	[self setStatusIcon: statusIconColor];
@@ -47,18 +49,29 @@
                                    priority:0
                                    isSticky:NO
                                clickContext:[NSDate date]];
+    [errorMsgMenuItem setHidden:YES];
+    [errorMsgSepMenuItem setHidden:YES];
 }
 -(void) setStatusFailure {
 	[self setStatusIcon: statusIconError];
     
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Failed to Upload Screenshot"
+                                description:@"Failed to Upload Screenshot. \n\nClick here to edit Captured's Preferences."
                            notificationName:@"Upload Failed"
                                    iconData:nil
                                    priority:0
                                    isSticky:NO
-                               clickContext:[NSDate date]];
+                               clickContext:@"errorMessageClicked"];
+    [errorMsgMenuItem setHidden:NO];
+    [errorMsgSepMenuItem setHidden:NO];
 }
+
+- (void) growlNotificationWasClicked:(id)clickContext{
+    if (clickContext && [clickContext isEqualToString:@"errorMessageClicked"]) {
+        [AppDelegate showPreferencesWindow:nil];
+    }
+}
+
 -(void) setStatusSuccess: (NSDictionary*)dict {
 
     // Update the icon
