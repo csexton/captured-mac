@@ -218,7 +218,12 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild {
     NSString* ret = [uploader testConnection];
-	[textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
+    if (ret == nil) {
+        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Success!" waitUntilDone:YES];    
+
+    } else {
+        [textFeild performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
+    }
 }
 
 ////// SFTP Settings Binding Methods ////////////////////////////////////////////////////
