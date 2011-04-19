@@ -95,7 +95,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	NSError* error = nil;
 	[AppDelegate statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	if (error)
 	{
 		NSLog(@"Error while attempting to upload to Dropbox: %@", [error description]);
@@ -134,6 +134,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 			[AppDelegate uploadFailure];
 		}
 	}
+	[textResponse release];
 	[request release];
 }
 
@@ -229,14 +230,15 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	}
 	else if ([response statusCode] != 200)
 	{
-		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSDictionary* dict = [textResponse JSONValue];
 		linkResponse = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
+		[textResponse release];
 	}
 	else
 	{
 		// get the new token and secret
-		NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSDictionary* dict = [textResponse JSONValue];
 		NSString* newToken = [dict valueForKey:@"token"];
 		NSString* newSecret = [dict valueForKey:@"secret"];
@@ -245,6 +247,9 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setValue:newToken forKey:@"DropboxToken"];
 		[defaults setValue:newSecret forKey:@"DropboxSecret"];
+		
+		// done with the string
+		[textResponse release];
 		
 		// now we get the account info, we'll need the user id for formatting the upload links
 		[self getAccountInfo];
@@ -282,7 +287,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
+	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	if (error)
 	{
 		NSLog(@"Error while attempting to get account info: %@", [error description]);
@@ -302,6 +307,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 		[defaults setValue:[dict valueForKey:@"display_name"] forKey:@"DropboxDisplayName"];
 		[defaults setValue:[dict valueForKey:@"email"] forKey:@"DropboxEmail"];
 	}
+	[textResponse release];
 }
 
 - (BOOL)isAccountLinked
