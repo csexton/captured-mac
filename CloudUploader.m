@@ -65,7 +65,6 @@
 	NSError* error = nil;
 	[AppDelegate statusProcessing];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
 	if (error)
 	{
 		[AppDelegate uploadFailure];
@@ -74,24 +73,33 @@
 	else if ([response statusCode] != 200)
 	{
 		[AppDelegate uploadFailure];
-		NSXMLDocument* doc = [[[NSXMLDocument alloc] init] autorelease];
-        if(textResponse != nil) {
-            [doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error]; // TODO: Getting a crash here, response is nil
-            if (!error)
-            {
-                NSArray* nodes = [doc nodesForXPath:@"/Error/Code" error:&error];
-                if (!error && [nodes count] > 0)
-                    NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
-                else
-                    NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
-            }
-            else
-                NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
-        }
-        else
-        {
-            NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
-        }
+		if (data && [data length] > 0)
+		{
+			NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+			if (textResponse) {
+				NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+				if (!error)
+				{
+					NSArray* nodes = [doc nodesForXPath:@"/Error/Message" error:&error];
+					if (!error && [nodes count] > 0)
+						NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
+					else
+						NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+				}
+				else
+					NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+				[doc release];
+			}
+			else
+			{
+				NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+			}
+			[textResponse release];
+		}
+		else
+		{
+			NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+		}
 	}
 	else
 	{
@@ -120,7 +128,7 @@
 	
 	// create the request object
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-	NSString* httpVerb = @"HEAD";
+	NSString* httpVerb = @"GET";
 	[request setHTTPMethod:httpVerb];
 	
 	// build up the data to sign
@@ -147,22 +155,27 @@
 	}
 	else if ([response statusCode] != 200)
 	{
-		if ([data length] > 0)
+		if (data && [data length] > 0)
 		{
-			NSString* textResponse = [NSString stringWithUTF8String:[data bytes]];
-			NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
-			[doc initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
-			if (!error)
+			NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+			if (textResponse)
 			{
-				NSArray* nodes = [doc nodesForXPath:@"/Error/Code" error:&error];
-				if (!error && [nodes count] > 0)
-					testResponse = [NSString stringWithFormat:@"Failed with error: %@", [[nodes objectAtIndex:0] stringValue]];
+				NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+				if (!error)
+				{
+					NSArray* nodes = [doc nodesForXPath:@"/Error/Message" error:&error];
+					if (!error && [nodes count] > 0)
+						testResponse = [NSString stringWithFormat:@"Failed with error: %@", [[nodes objectAtIndex:0] stringValue]];
+					else
+						testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
+				}
 				else
 					testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
+				[doc release];
 			}
 			else
 				testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
-			[doc release];
+			[textResponse release];
 		}
 		else
 			testResponse = [NSString stringWithFormat:@"Failed with HTTP status code %ld", [response statusCode]];
