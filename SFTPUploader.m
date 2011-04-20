@@ -105,7 +105,7 @@
     
     // FIXME: Duplicate code
     // get the password from the keychain
-    NSString* password;
+    NSString* password = nil;
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
     if (keychainItem){
         password = keychainItem.password;
@@ -123,9 +123,9 @@
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
-	curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
+	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
+	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
+	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
 
 	CURLcode rc = curl_easy_perform(handle);
 	if (rc != CURLE_OK)
