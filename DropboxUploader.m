@@ -57,7 +57,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	NSString* stringBoundary = (NSString*)CFUUIDCreateString(NULL, uuid);
 	CFRelease(uuid);
 	NSMutableData* bodyData = [NSMutableData data];
-	[bodyData appendData: [[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSUTF8StringEncoding]];
+	[bodyData appendData: [[NSString stringWithFormat:@"--%@\r\n", stringBoundary] dataUsingEncoding:NSASCIIStringEncoding]];
 
 	// Add data to upload
 	[bodyData appendData: [[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", tempNam] dataUsingEncoding:NSASCIIStringEncoding]];

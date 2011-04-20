@@ -65,11 +65,11 @@
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
 	// set the curl options
-	curl_easy_setopt(handle, CURLOPT_URL, [url UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_USERNAME, [username UTF8String]);
-	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password UTF8String]);
+	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
+	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
+	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
-	FILE* fp = fopen([sourceFile UTF8String], "rb");
+	FILE* fp = fopen([sourceFile cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
 
 	// do the upload
