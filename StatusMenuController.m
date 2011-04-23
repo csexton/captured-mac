@@ -106,6 +106,8 @@
     }
 }
 -(void) createHistoryMenuItem: (NSDictionary *) dict {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+	
     // Create history menu item
     NSString *formatString = [NSDateFormatter dateFormatFromTemplate:@"dMMMhhmma" options:0 locale:[NSLocale currentLocale]];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -138,6 +140,7 @@
     [self performSelectorOnMainThread:@selector(addHistoryMenuItem:) withObject:menuItem waitUntilDone:YES];
     //[historyMenu addItem:menuItem];
     [menuItem release];
+	[pool release];
 }
 -(void)addHistoryMenuItem:(NSMenuItem*) menuItem{
     [self willChangeValueForKey:@"enableHistoryMenu"];

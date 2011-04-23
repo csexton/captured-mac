@@ -212,8 +212,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 // Method to enable running the test in the background thread
 -(void) runS3TestConnecton: (id) sender{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     CloudUploader *s = [[CloudUploader alloc] init];
     [self runTestConnection:s textField: s3TestLabel];
+	[pool release];
 }
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild {
@@ -230,8 +232,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 // Method to enable running the test in the background thread
 -(void) runSFTPTestConnecton: (id) sender{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     SFTPUploader *s = [[SFTPUploader alloc] init];
     [self runTestConnection:s textField: sftpTestLabel];
+	[pool release];
 }
 
 -(IBAction) testS3Connection:(id) sender{
@@ -272,8 +276,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 ////// Picasa Settings Binding Methods ////////////////////////////////////////////////////
 
 -(void) runPicasaTestConnecton: (id) sender{
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     PicasaUploader *s = [[PicasaUploader alloc] init];
     [self runTestConnection:s textField: picasaTestLabel];
+	[pool release];
 }
 
 -(IBAction) testPicasaConnection:(id) sender{

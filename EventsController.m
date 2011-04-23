@@ -100,6 +100,7 @@
 }
 
 - (void)processFile: (NSString*)file {
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
         NSString * uploadType = [[NSUserDefaults standardUserDefaults] stringForKey:@"UploadType"];
         
@@ -127,6 +128,7 @@
             [imgurUploader uploadFile:file];
         }
     }
+	[pool release];
 }
 
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath{
