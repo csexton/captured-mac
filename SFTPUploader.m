@@ -44,7 +44,7 @@
 		targetDir = @"~";
     
     // get the password from the keychain
-    NSString* password;
+    NSString* password = nil;
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
     if (keychainItem){
         password = keychainItem.password;
@@ -67,7 +67,8 @@
 	// set the curl options
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
-	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+	if (password)
+		curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	FILE* fp = fopen([sourceFile cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
