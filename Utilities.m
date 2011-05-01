@@ -80,7 +80,7 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	
 	NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
 	
-	NSLog(@"Saving to temp path: %@", path);
+	//NSLog(@"Saving to temp path: %@", path);
 	NSTask *task;
 	task = [[NSTask alloc] init];
 	[task setLaunchPath: @"/usr/sbin/screencapture"];
@@ -219,7 +219,7 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
-    NSLog(@"Start resize image for history menu thumbnail");
+    //NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;
     NSImage *smallImage;
     

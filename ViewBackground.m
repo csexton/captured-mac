@@ -28,7 +28,7 @@
 
 -(void)drawRect:(NSRect)rect
 {
-    NSLog(@"Drawing...");
+    //NSLog(@"Drawing...");
     // Load the image.
     NSImage *anImage = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WelcomeWindowBackground" ofType:@"png"]] retain];
     
