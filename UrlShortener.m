@@ -20,7 +20,7 @@
     
     if (login == nil || key == nil) {
 
-        [Utilities growlError:@"Y U NO HAVE BITLY CONFIGRS??"];
+        [Utilities growlError:@"Unable to shorten the URL with Bit.ly, using the full URL instead. Please see captured prefrences for bit.ly settings."];
         return longUrl;
     }
     
@@ -44,10 +44,20 @@
 		NSLog(@"Error while calling URL shortener: %@", [error description]);
 		return longUrl;
 	}
-	
+    
 	// parse out the json response and return the short url
 	NSString* json = [NSString stringWithUTF8String:[data bytes]];
-	NSDictionary* dict = [[json JSONValue] valueForKey:@"data"];
+	
+    
+    NSNumber* statusCode = (NSNumber*) [[json JSONValue] valueForKey:@"status_code"];
+    if ([statusCode intValue] != 200) {
+        [Utilities growlError:@"Unable to shorten the URL with Bit.ly, using the full URL instead. Please see Captured's prefrences for bit.ly settings."];
+        NSLog(@"Unable to shorten URL with Bit.ly, falling back to the full URL.");
+        NSLog(@"Bit.ly Response: %.*s", [data length], [data bytes]);
+        return longUrl;
+    }
+    
+    NSDictionary* dict = [[json JSONValue] valueForKey:@"data"];
 	return [dict valueForKey:@"url"];
 }
 
