@@ -60,7 +60,6 @@
 								<string key="NSFrameSize">{500, 337}</string>
 								<reference key="NSSuperview" ref="762224958"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 							</object>
 						</object>
 						<string key="NSFrameSize">{500, 337}</string>
@@ -112,7 +111,7 @@
 					<object class="NSTextField" id="354082411">
 						<reference key="NSNextResponder" ref="1072817732"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{37, 206}, {406, 54}}</string>
+						<string key="NSFrame">{{42, 206}, {376, 54}}</string>
 						<reference key="NSSuperview" ref="1072817732"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="269635857"/>
@@ -150,10 +149,9 @@
 					<object class="NSButton" id="269635857">
 						<reference key="NSNextResponder" ref="1072817732"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{139, 174}, {122, 25}}</string>
+						<string key="NSFrame">{{169, 174}, {122, 25}}</string>
 						<reference key="NSSuperview" ref="1072817732"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="952049079">
 							<int key="NSCellFlags">-2080244224</int>
@@ -191,7 +189,6 @@
 						<string key="NSFrame">{{136, 63}, {286, 105}}</string>
 						<reference key="NSSuperview" ref="103576964"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="278372811">
 							<int key="NSCellFlags">67239424</int>
@@ -448,8 +445,8 @@
 						<reference key="object" ref="1072817732"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="269635857"/>
 							<reference ref="354082411"/>
+							<reference ref="269635857"/>
 						</object>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Linked Account</string>
