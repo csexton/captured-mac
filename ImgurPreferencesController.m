@@ -29,6 +29,7 @@
 -(void)awakeFromNib {
     uploader = [[ImgurUploader alloc] init];
     
+    [box setHidden:YES]; // TODO: put this back when we get OAuth and Imgur
     [self showApproprateView];
 }
 
