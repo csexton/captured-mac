@@ -52,7 +52,6 @@
         NSLog(@"No password found for SFTP User '%@' in the keychain", username);
     }
 
-	
 	// format the urls
 	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%@", host, targetDir, tempNam];
 	uploadUrl = [NSString stringWithFormat:@"%@/%@", uploadUrl, tempNam];
@@ -63,6 +62,9 @@
 	// capture messages in a user-friendly format
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
+	
+	// allow only password auth for now
+	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD);
 	
 	// set the curl options
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
@@ -123,6 +125,9 @@
 	// capture messages in a user-friendly format
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
+	
+	// allow only password auth for now
+	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD);
 	
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
