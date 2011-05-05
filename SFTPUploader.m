@@ -40,8 +40,6 @@
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
 	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
 	NSString* uploadUrl = [defaults stringForKey:@"SFTPURL"];
-	if ([targetDir length] == 0)
-		targetDir = @"~";
     
     // get the password from the keychain
     NSString* password = nil;
@@ -53,7 +51,10 @@
     }
 
 	// format the urls
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@/%@", host, targetDir, tempNam];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/~/", host];
+	if (targetDir && [targetDir length] > 0)
+		url = [url stringByAppendingFormat:@"%@/", targetDir];
+	url = [url stringByAppendingString:tempNam];
 	uploadUrl = [NSString stringWithFormat:@"%@/%@", uploadUrl, tempNam];
 
 	// reset the handle
@@ -103,8 +104,6 @@
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
 	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
-	if ([targetDir length] == 0)
-		targetDir = @"~";
     
     // FIXME: Duplicate code
     // get the password from the keychain
@@ -117,7 +116,9 @@
     }
 
 	// set the url to just do an ls of the target dir
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/%@", host, targetDir];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@/~/", host];
+	if (targetDir && [targetDir length] > 0)
+		url = [url stringByAppendingFormat:@"%@/", targetDir];
 	
 	// reset the curl handle
 	curl_easy_reset(handle);
