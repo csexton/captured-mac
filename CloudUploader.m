@@ -19,6 +19,7 @@
 	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
+	BOOL reducedRedundancy = [defaults boolForKey:@"S3ReducedRedundancyStorage"];
 	
 	// validate the inputs
 	if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0)
@@ -47,7 +48,9 @@
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
-	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\nx-amz-acl:public-read\nx-amz-storage-class:REDUCED_REDUNDANCY\n", httpVerb, contentType, timestamp];
+	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\nx-amz-acl:public-read\n", httpVerb, contentType, timestamp];
+	if (reducedRedundancy)
+		stringToSign = [stringToSign stringByAppendingFormat:@"x-amz-storage-class:REDUCED_REDUNDANCY\n"];
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
 
 	// create the headers
@@ -56,7 +59,8 @@
 	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
 	[request addValue:timestamp forHTTPHeaderField:@"Date"];
 	[request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
-	[request addValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
+	if (reducedRedundancy)
+		[request addValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
 	unsigned long long fileSize = [[[[[[NSFileManager alloc] init] autorelease] attributesOfItemAtPath:sourceFile error:nil] objectForKey:NSFileSize] unsignedLongLongValue];
 	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
