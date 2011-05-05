@@ -53,7 +53,12 @@
     return url;
 }
 
-
+- (NSString*)removeAnyTrailingSlashes: (NSString*)str
+{
+    if( [str hasSuffix: @"/"] )	// Remove any trailing slashes that might screw up removal.    
+      str = [str substringToIndex:[str length] - 1];
+    return str;
+}
 
 - (void)uploadFile:(NSString*)sourceFile
 {
@@ -64,9 +69,9 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
-	NSString* uploadUrl = [defaults stringForKey:@"SFTPURL"];
-    
+	NSString* targetDir = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
+	NSString* uploadUrl = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
+        
     // get the password from the keychain
     NSString* password = nil;
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
@@ -127,7 +132,7 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* targetDir = [defaults stringForKey:@"SFTPPath"];
+	NSString* targetDir = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
     
     // FIXME: Duplicate code
     // get the password from the keychain
