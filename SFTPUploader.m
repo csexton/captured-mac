@@ -29,6 +29,32 @@
 	curl_easy_cleanup(handle);
 }
 
+- (NSString*)formatPath: (NSString*) targetDir
+{
+    NSString* url = @"";
+    if (targetDir && [targetDir length] > 0) {
+        switch ([targetDir characterAtIndex:0]) {
+            case '/':
+                url = [url stringByAppendingFormat:@"%@/", targetDir];
+                break;
+                
+            case '~':
+                url = [url stringByAppendingFormat:@"/%@/", targetDir];
+                break;
+                
+            default:
+                url = [url stringByAppendingFormat:@"/~/%@/", targetDir];
+                break;
+        }
+    } else {
+        // Use the home directory
+        url = [NSString stringWithFormat:@"%@/~/", url];
+    }
+    return url;
+}
+
+
+
 - (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
@@ -51,10 +77,8 @@
     }
 
 	// format the urls
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/~/", host];
-	if (targetDir && [targetDir length] > 0)
-		url = [url stringByAppendingFormat:@"%@/", targetDir];
-	url = [url stringByAppendingString:tempNam];
+	NSString* url = [NSString stringWithFormat:@"sftp://%@%@%@", host, [self formatPath:targetDir], tempNam];
+
 	uploadUrl = [NSString stringWithFormat:@"%@/%@", uploadUrl, tempNam];
 
 	// reset the handle
@@ -116,9 +140,8 @@
     }
 
 	// set the url to just do an ls of the target dir
-	NSString* url = [NSString stringWithFormat:@"sftp://%@/~/", host];
-	if (targetDir && [targetDir length] > 0)
-		url = [url stringByAppendingFormat:@"%@/", targetDir];
+    NSString* url = [NSString stringWithFormat:@"sftp://%@%@", host, [self formatPath:targetDir]];
+
 	
 	// reset the curl handle
 	curl_easy_reset(handle);
