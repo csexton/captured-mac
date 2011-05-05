@@ -2132,15 +2132,15 @@ bmcgc2VydmljZS4KCg</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.S3ReducedSedundancyStorage</string>
+						<string key="label">value: values.S3ReducedRedundancyStorage</string>
 						<reference key="source" ref="12254787"/>
 						<reference key="destination" ref="2211320"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="12254787"/>
 							<reference key="NSDestination" ref="2211320"/>
-							<string key="NSLabel">value: values.S3ReducedSedundancyStorage</string>
+							<string key="NSLabel">value: values.S3ReducedRedundancyStorage</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.S3ReducedSedundancyStorage</string>
+							<string key="NSKeyPath">values.S3ReducedRedundancyStorage</string>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>

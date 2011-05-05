@@ -14,11 +14,11 @@
 	<integer>10</integer>
 	<key>PlaySoundAfterUpload</key>
 	<true/>
+	<key>S3ReducedRedundancyStorage</key>
+	<true/>
 	<key>UploadType</key>
 	<string>Imgur</string>
 	<key>UseURLShortener</key>
 	<false/>
-	<key>S3ReducedSedundancyStorage</key>
-	<true/>
 </dict>
 </plist>
