@@ -43,7 +43,7 @@
     
     // get the password from the keychain
     NSString* password = nil;
-    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
     if (keychainItem){
         password = keychainItem.password;
     } else {
@@ -108,7 +108,7 @@
     // FIXME: Duplicate code
     // get the password from the keychain
     NSString* password = nil;
-    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:username];
+    EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
     if (keychainItem){
         password = keychainItem.password;
     } else {
