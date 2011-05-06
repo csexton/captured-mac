@@ -13,12 +13,14 @@
 	<key>NumberOfHistoryItems</key>
 	<integer>10</integer>
 	<key>PlaySoundAfterUpload</key>
-	<true/>
+	<false/>
 	<key>S3ReducedRedundancyStorage</key>
 	<true/>
 	<key>UploadType</key>
 	<string>Imgur</string>
 	<key>UseURLShortener</key>
 	<false/>
+	<key>DropboxDirName</key>
+	<string>Captured</string>
 </dict>
 </plist>
