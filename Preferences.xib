@@ -215,7 +215,6 @@
 								<string key="NSTitle">Imgur</string>
 								<string key="NSKeyEquiv"/>
 								<int key="NSMnemonicLoc">2147483647</int>
-								<int key="NSState">1</int>
 								<object class="NSCustomResource" key="NSOnImage" id="760124410">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">NSMenuCheckmark</string>
