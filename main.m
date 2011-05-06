@@ -10,6 +10,8 @@
 #import <Foundation/Foundation.h>
 #import "validatereceipt.h"
 
+#include <curl/curl.h>
+
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
@@ -24,8 +26,15 @@ int main (int argc, const char * argv[]) {
 	}
 #endif	
 
+	// we call this here because it is not thread safe...if we don't do it here, on the main thread, then it will
+	// be called implicitly when we call curl_easy_init(), which is on a UI thread, so that could lead to bad things
+	curl_global_init(CURL_GLOBAL_ALL);
+	
 	int ret = NSApplicationMain(argc,  (const char **) argv);
     [pool drain];
+	
+	curl_global_cleanup();
+	
     return ret;
 }
 
