@@ -49,8 +49,7 @@
 	}
     
 	// parse out the json response and return the short url
-	NSString* json = [NSString stringWithUTF8String:[data bytes]];
-	
+	NSString* json = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     
     NSNumber* statusCode = (NSNumber*) [[json JSONValue] valueForKey:@"status_code"];
     if ([statusCode intValue] != 200) {
