@@ -1,0 +1,7 @@
+Fixing the load paths
+=====================
+
+    install_name_tool -change /usr/local/lib/libssh2.1.dylib @loader_path/libssh2.1.dylib ./libcurl
+
+    install_name_tool -id @executable_path/../Frameworks/libcurl.framework/Versions/A/libssh2.1.dylib ./libssh2.1.dylib
+
