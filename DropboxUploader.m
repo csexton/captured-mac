@@ -23,6 +23,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* token = [defaults stringForKey:@"DropboxToken"];
 	NSString* secret = [defaults stringForKey:@"DropboxSecret"];
+	NSString* folder = [defaults stringForKey:@"DropboxDirName"];
 	
 	// must have both of these before we can proceed
 	if (!token || [token length] == 0 || !secret || [secret length] == 0)
@@ -35,7 +36,12 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	NSString* tempNam = [Utilities createUniqueFilename];
 	
 	// set up the url
-	NSURL* url = [NSURL URLWithString:@"https://api-content.dropbox.com/0/files/dropbox/Public/Captured"];
+	NSString* uploadPath = @"https://api-content.dropbox.com/0/files/dropbox/Public/";
+	if (folder)
+		uploadPath = [uploadPath stringByAppendingString:folder];
+	while ([uploadPath rangeOfString:@"//" options:0 range:NSMakeRange(8, [uploadPath length] - 8)].location != NSNotFound)
+		uploadPath = [uploadPath stringByReplacingOccurrencesOfString:@"//" withString:@"/" options:0 range:NSMakeRange(8, [uploadPath length] - 8)];
+	NSURL* url = [NSURL URLWithString:uploadPath];
 	
 	// now the request
 	NSMutableURLRequest* request = [[NSMutableURLRequest alloc] initWithURL:url];
@@ -120,7 +126,12 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 		if ([result isEqualToString:@"winner!"])
 		{
 			NSInteger uid = [defaults integerForKey:@"DropboxUID"];
-			NSString* publicLink = [NSString stringWithFormat:@"http://dl.dropbox.com/u/%lu/Captured/%@", uid, tempNam];
+			NSString* publicLink = [NSString stringWithFormat:@"https://dl.dropbox.com/u/%lu/", uid];
+			if (folder)
+				publicLink = [publicLink stringByAppendingString:folder];
+			publicLink = [publicLink stringByAppendingFormat:@"/%@", tempNam];
+			while ([publicLink rangeOfString:@"//" options:0 range:NSMakeRange(8, [publicLink length] - 8)].location != NSNotFound)
+				publicLink = [publicLink stringByReplacingOccurrencesOfString:@"//" withString:@"/" options:0 range:NSMakeRange(8, [publicLink length] - 8)];
 			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  @"CloudProvider", @"Type",
 								  publicLink , @"ImageURL",
