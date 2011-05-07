@@ -146,9 +146,10 @@
     [self willChangeValueForKey:@"enableHistoryMenu"];
     NSInteger num = [[NSUserDefaults standardUserDefaults] integerForKey:@"NumberOfHistoryItems"];
     if([historyMenu numberOfItems] >= num) {
-       [historyMenu removeItemAtIndex:0];
+       [historyMenu removeItemAtIndex:(num-1)];
     }
-    [historyMenu addItem:menuItem];
+    //[historyMenu addItem:menuItem];
+    [historyMenu insertItem:menuItem atIndex:0];
     [self didChangeValueForKey:@"enableHistoryMenu"];
 
 }
