@@ -53,12 +53,6 @@
     return url;
 }
 
-- (NSString*)removeAnyTrailingSlashes: (NSString*)str
-{
-    if( [str hasSuffix: @"/"] )	// Remove any trailing slashes that might screw up removal.    
-      str = [str substringToIndex:[str length] - 1];
-    return str;
-}
 
 - (void)uploadFile:(NSString*)sourceFile
 {
@@ -69,8 +63,8 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* targetDir = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
-	NSString* uploadUrl = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
+	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
+	NSString* uploadUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
         
     // get the password from the keychain
     NSString* password = nil;

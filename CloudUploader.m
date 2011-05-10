@@ -19,6 +19,8 @@
 	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
+    NSString* publicUrl = [defaults stringForKey:@"S3URL"];
+
 	BOOL reducedRedundancy = [defaults boolForKey:@"S3ReducedRedundancyStorage"];
 	
 	// validate the inputs
@@ -30,6 +32,13 @@
 	
 	// generate a unique filename
 	NSString* tempNam = [Utilities createUniqueFilename];
+    
+    if (publicUrl) {
+        publicUrl = [Utilities removeAnyTrailingSlashes: publicUrl];
+        publicUrl = [NSString stringWithFormat:@"%@/%@", publicUrl, tempNam];
+    }else {
+        publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam];
+    }
 	
 	// format the url
 	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam]];
@@ -109,7 +118,7 @@
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"CloudProvider", @"Type",
-							  [url absoluteString] , @"ImageURL",
+							  publicUrl , @"ImageURL",
 							  [url absoluteString], @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];

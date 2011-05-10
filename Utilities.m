@@ -296,6 +296,16 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
 }
 
++ (NSString*)removeAnyTrailingSlashes: (NSString*)str
+{
+    if (str) {
+        if( [str hasSuffix: @"/"] ){	// Remove any trailing slashes that might screw up removal.    
+            return [str substringToIndex:[str length] - 1];
+        }
+    }
+    return str;
+}
+
 @end
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -356,5 +366,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	
 	return [NSString stringWithString:result]; // convert to immutable string
 }
+
+
 
 @end

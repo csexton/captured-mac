@@ -28,6 +28,7 @@
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey;
 +(NSString*)URLEncode:(NSString*)stringToEncode;
 +(NSString*)createUniqueFilename;
++(NSString*)removeAnyTrailingSlashes: (NSString*)str;
 
 @end
 
