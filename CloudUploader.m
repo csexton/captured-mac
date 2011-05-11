@@ -97,21 +97,21 @@
 					if (!error && [nodes count] > 0)
 						NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
 					else
-						NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+						NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
 				}
 				else
-					NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+					NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
 				[doc release];
 			}
 			else
 			{
-				NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+				NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
 			}
 			[textResponse release];
 		}
 		else
 		{
-			NSLog(@"Failed to upload file with HTTP status code %ld", [response statusCode]);
+			NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
 		}
 	}
 	else

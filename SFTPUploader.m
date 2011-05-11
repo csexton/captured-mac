@@ -126,7 +126,7 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
-	NSString* targetDir = [self removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
+	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
     
     // FIXME: Duplicate code
     // get the password from the keychain

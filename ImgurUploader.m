@@ -171,4 +171,16 @@ foundCharacters:(NSString *)string {
 
 }
 
+-(void)unlinkAccount
+{
+    // TODO
+    return;
+}
+- (NSString*)linkAccount: (NSString *)user password:(NSString *)password
+{
+    // TODO
+    NSLog(@"linkAccount Not Implemented");
+    return @"Not Implemented";
+}
+
 @end

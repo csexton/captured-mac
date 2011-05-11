@@ -45,10 +45,10 @@
 
 -(IBAction)linkAccounts:(id)sender {
     
-    NSString *user = [user stringValue];
+    NSString *userStr = [user stringValue];
     NSString *pass = [password stringValue];
     
-    NSString *ret = [uploader linkAccount:user password:pass];
+    NSString *ret = [uploader linkAccount:userStr password:pass];
     
     if (ret != nil) {
         [errorLabel setStringValue:ret];
