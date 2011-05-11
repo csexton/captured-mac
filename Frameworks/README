@@ -5,3 +5,7 @@ Fixing the load paths
 
     install_name_tool -id @executable_path/../Frameworks/libcurl.framework/Versions/A/libssh2.1.dylib ./libssh2.1.dylib
 
+Removign ppc Arch
+=================
+
+    lipo -remove ppc Growl.framework/Growl -output Growl.framework/GrowlIntel
