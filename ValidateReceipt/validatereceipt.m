@@ -393,7 +393,7 @@ BOOL validateReceiptAtPath(NSString * path)
 	// http://www.craftymind.com/2011/01/06/mac-app-store-hacked-how-developers-can-better-protect-themselves/
 
 	// so use hard coded values instead (probably even somehow obfuscated)
-	bundleVersion = @"1.1";
+	bundleVersion = @"2.0";
 	bundleIdentifier = @"com.codeography.captured-mac";
 
 	// avoid making stupid mistakes --> check again
