@@ -16,7 +16,7 @@ int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
 #ifdef DONT_VALIDATE_RECEIPT
-#warning *** DOES NOT VALITATE RECEIPT! DO NOT RELEASE TO STORE! ***
+#warning *** DOES NOT VALIDATE RECEIPT! DO NOT RELEASE TO STORE! ***
 #else
 	// put the example receipt on the desktop (or change that path)
 	//NSString * pathToReceipt = @"~/src/Captured/receipt";
