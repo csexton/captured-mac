@@ -57,7 +57,7 @@
 - (void)uploadFile:(NSString*)sourceFile
 {
 	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename];
+	NSString* tempNam = [Utilities createUniqueFilename:5];
 	
 	// get host, username and target directory options from user preferences
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

@@ -27,7 +27,7 @@
 +(void) growlError:(NSString*) str;
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey;
 +(NSString*)URLEncode:(NSString*)stringToEncode;
-+(NSString*)createUniqueFilename;
++(NSString*)createUniqueFilename:(NSInteger) numChars;
 +(NSString*)removeAnyTrailingSlashes: (NSString*)str;
 
 @end

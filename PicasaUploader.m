@@ -95,7 +95,7 @@
 	}
 	
 	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename];
+	NSString* tempNam = [Utilities createUniqueFilename:5];
 	
 	// create the photo service object
 	NSData *photoData = [NSData dataWithContentsOfFile:sourceFile];

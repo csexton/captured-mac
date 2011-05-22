@@ -285,13 +285,13 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	return [(NSString*) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef) stringToEncode, NULL, escapeChars, encoding) autorelease];
 }
 
-+(NSString*)createUniqueFilename
++(NSString*)createUniqueFilename:(NSInteger) numChars
 {
-	char buf[16];
+	char buf[32];
 	srand(time(NULL));
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < numChars; i++)
 		buf[i] = alNum[rand() % strlen(alNum)];
-	buf[5] = 0;
+	buf[numChars] = 0;
 	strcat(buf, ".png");
 	return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
 }

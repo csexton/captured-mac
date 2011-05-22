@@ -33,7 +33,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	}
 	
 	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename];
+	NSString* tempNam = [Utilities createUniqueFilename:5];
 	
 	// set up the url
 	NSString* uploadPath = @"https://api-content.dropbox.com/0/files/dropbox/Public/";

@@ -31,7 +31,7 @@
 	}
 	
 	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename];
+	NSString* tempNam = [Utilities createUniqueFilename:5];
     
     if (publicUrl) {
         publicUrl = [Utilities removeAnyTrailingSlashes: publicUrl];
