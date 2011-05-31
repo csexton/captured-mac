@@ -74,56 +74,56 @@
 	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
 	// do the upload
-	NSHTTPURLResponse* response = nil;
-	NSError* error = nil;
 	[AppDelegate statusProcessing];
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	if (error)
+	[NSURLConnection connectionWithRequest:request delegate:self];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	NSHTTPURLResponse* r = (NSHTTPURLResponse*) response;
+	if ([r statusCode] != 200)
 	{
 		[AppDelegate uploadFailure];
-		NSLog(@"Error while uploading to cloud provider: %@", error);
-	}
-	else if ([response statusCode] != 200)
-	{
-		[AppDelegate uploadFailure];
-		if (data && [data length] > 0)
-		{
-			NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-			if (textResponse) {
-				NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
-				if (!error)
-				{
-					NSArray* nodes = [doc nodesForXPath:@"/Error/Message" error:&error];
-					if (!error && [nodes count] > 0)
-						NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
-					else
-						NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
-				}
-				else
-					NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
-				[doc release];
-			}
-			else
-			{
-				NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
-			}
-			[textResponse release];
-		}
-		else
-		{
-			NSLog(@"Failed to upload file with HTTP status code %d", [response statusCode]);
-		}
 	}
 	else
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"CloudProvider", @"Type",
-							  publicUrl , @"ImageURL",
-							  [url absoluteString], @"DeleteImageURL",
-							  sourceFile, @"FilePath",
+							  [[response URL] absoluteString], @"ImageURL",
+							  [[response URL] absoluteString], @"DeleteImageURL",
+							  @"FilePath", @"FilePath",
 							  nil];
 		[AppDelegate uploadSuccess:dict];
 	}
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	if (textResponse) {
+		NSError* error = nil;
+		NSXMLDocument* doc = [[NSXMLDocument alloc] initWithXMLString:textResponse options:NSXMLDocumentTidyXML error:&error];
+		if (!error)
+		{
+			NSArray* nodes = [doc nodesForXPath:@"/Error/Message" error:&error];
+			if (!error && [nodes count] > 0)
+				NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
+		}
+		else
+			NSLog(@"Failed to parse response: %@", error);
+		[doc release];
+	}
+	[textResponse release];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[AppDelegate uploadFailure];
+	NSLog(@"Error while uploading to cloud provider: %@", error);
 }
 
 - (NSString*)testConnection
