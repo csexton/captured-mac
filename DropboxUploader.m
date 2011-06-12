@@ -16,8 +16,14 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 
 @implementation DropboxUploader
 
+//@synthesize filePath;
+//@synthesize uploadUrl;
+//@synthesize deleteUrl;
+
 - (void)uploadFile:(NSString*)sourceFile
 {
+	[self setFilePath:sourceFile];
+	
 	// get the token
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* token = [defaults stringForKey:@"DropboxToken"];
@@ -95,56 +101,22 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	// set the data
 	[request setHTTPBody:bodyData];
 	
+	// this is the public url
+	NSInteger uid = [defaults integerForKey:@"DropboxUID"];
+	NSString* publicLink = [NSString stringWithFormat:@"https://dl.dropbox.com/u/%lu/", uid];
+	if (folder)
+		publicLink = [publicLink stringByAppendingString:folder];
+	publicLink = [publicLink stringByAppendingFormat:@"/%@", tempNam];
+	while ([publicLink rangeOfString:@"//" options:0 range:NSMakeRange(8, [publicLink length] - 8)].location != NSNotFound)
+		publicLink = [publicLink stringByReplacingOccurrencesOfString:@"//" withString:@"/" options:0 range:NSMakeRange(8, [publicLink length] - 8)];
+	[self setUploadUrl:publicLink];
+	
+	// now set the delete url
+	[self setDeleteUrl:[NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]]];
+
 	// do the upload
-	NSHTTPURLResponse* response = nil;
-	NSError* error = nil;
 	[self uploadStarted];
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	if (error)
-	{
-		NSLog(@"Error while attempting to upload to Dropbox: %@", [error description]);
-	}
-	else if ([response statusCode] != 200)
-	{
-		if ([response statusCode] == 401)
-		{
-			// this means the token has expired (unlikely, since it is given out for 10 years) or revoked, which means
-			// we need to re-authenticate, so we should wipe out the stored token since it's no longer valid
-			[self unlinkAccount];
-		}
-		else
-		{
-			NSString* result = [[textResponse JSONValue] valueForKey:@"error"];
-			NSLog(@"Received the following error message when trying to upload to Dropbox: %@", result);
-		}
-	}
-	else
-	{
-		NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
-		if ([result isEqualToString:@"winner!"])
-		{
-			NSInteger uid = [defaults integerForKey:@"DropboxUID"];
-			NSString* publicLink = [NSString stringWithFormat:@"https://dl.dropbox.com/u/%lu/", uid];
-			if (folder)
-				publicLink = [publicLink stringByAppendingString:folder];
-			publicLink = [publicLink stringByAppendingFormat:@"/%@", tempNam];
-			while ([publicLink rangeOfString:@"//" options:0 range:NSMakeRange(8, [publicLink length] - 8)].location != NSNotFound)
-				publicLink = [publicLink stringByReplacingOccurrencesOfString:@"//" withString:@"/" options:0 range:NSMakeRange(8, [publicLink length] - 8)];
-			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-								  @"CloudProvider", @"Type",
-								  publicLink , @"ImageURL",
-								  [NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]], @"DeleteImageURL",
-								  sourceFile, @"FilePath",
-								  nil];
-			[self uploadSuccess:dict];
-		}
-		else
-		{
-			[self uploadFailed:nil];
-		}
-	}
-	[textResponse release];
+	[NSURLConnection connectionWithRequest:request delegate:self];
 	[request release];
 }
 
@@ -183,6 +155,50 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce];
 	else
 		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	NSHTTPURLResponse* r = (NSHTTPURLResponse*) response;
+	if ([r statusCode] != 200)
+	{
+		if ([r statusCode] == 401)
+		{
+			// this means the token has expired (unlikely, since it is given out for 10 years) or revoked, which means
+			// we need to re-authenticate, so we should wipe out the stored token since it's no longer valid
+			[self unlinkAccount];
+		}
+		[self uploadFailed:nil];
+		NSLog(@"Upload failed with HTTP status code %ld", [r statusCode]);
+	}
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
+	if ([result isEqualToString:@"winner!"])
+	{
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"DropboxProvider", @"Type",
+							  [super uploadUrl], @"ImageURL",
+							  [super deleteUrl], @"DeleteImageURL",
+							  [super filePath], @"FilePath",
+							  nil];
+		[self uploadSuccess:dict];
+	}
+	else
+	{
+		[self uploadFailed:nil];
+		NSLog(@"Upload failed with error message %@", result);
+	}
+	[textResponse release];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+	[self uploadFailed:nil];
+	NSLog(@"Error while uploading to Dropbox: %@", error);
 }
 
 -(NSString*)genRandString {

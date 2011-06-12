@@ -10,8 +10,7 @@
 
 #import "AbstractUploader.h"
 
-@interface DropboxUploader : AbstractUploader {
-}
+@interface DropboxUploader : AbstractUploader
 
 - (NSString*)genRandString;
 - (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token;
@@ -20,5 +19,9 @@
 - (void)getAccountInfo;
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end
