@@ -12,7 +12,6 @@
 #import "GData/GDataFeedPhotoUser.h"
 #import "GData/GDataServiceGooglePhotos.h"
 #import "GData/GDataFeedPhotoAlbum.h"
-#import "CapturedAppDelegate.h"
 #import "PicasaUploader.h"
 
 @implementation PicasaUploader

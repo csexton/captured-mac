@@ -7,7 +7,6 @@
 //
 
 #import "Utilities.h"
-#import "CapturedAppDelegate.h"
 #import "CloudUploader.h"
 
 @implementation CloudUploader
@@ -47,7 +46,7 @@
 	// validate the inputs
 	if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0)
 	{
-		[AppDelegate uploadFailure];
+		[self uploadFailed:nil];
 		return;
 	}
 	
@@ -97,7 +96,7 @@
 	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
 	// do the upload
-	[AppDelegate statusProcessing];
+	[self uploadStarted];
 	[NSURLConnection connectionWithRequest:request delegate:self];
 }
 
@@ -106,7 +105,7 @@
 	NSHTTPURLResponse* r = (NSHTTPURLResponse*) response;
 	if ([r statusCode] != 200)
 	{
-		[AppDelegate uploadFailure];
+		[self uploadFailed:nil];
 	}
 	else
 	{
@@ -116,7 +115,7 @@
 							  deleteUrl, @"DeleteImageURL",
 							  filePath, @"FilePath",
 							  nil];
-		[AppDelegate uploadSuccess:dict];
+		[self uploadSuccess:dict];
 	}
 }
 
@@ -141,7 +140,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[AppDelegate uploadFailure];
+	[self uploadFailed:nil];
 	NSLog(@"Error while uploading to cloud provider: %@", error);
 }
 

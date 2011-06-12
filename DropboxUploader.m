@@ -8,7 +8,6 @@
 
 #import "Utilities.h"
 #import "JSON/JSON.h"
-#import "CapturedAppDelegate.h"
 #import "DropboxUploader.h"
 
 // these are the Dropbox API keys, keep them safe
@@ -28,7 +27,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	// must have both of these before we can proceed
 	if (!token || [token length] == 0 || !secret || [secret length] == 0)
 	{
-		[AppDelegate uploadFailure];
+		[self uploadFailed:nil];
 		return;
 	}
 	
@@ -99,7 +98,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	// do the upload
 	NSHTTPURLResponse* response = nil;
 	NSError* error = nil;
-	[AppDelegate statusProcessing];
+	[self uploadStarted];
 	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	if (error)
@@ -138,11 +137,11 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 								  [NSString stringWithFormat:@"https://api.dropbox.com/0/fileops/delete?root=dropbox&path=%@", [Utilities URLEncode:[NSString stringWithFormat:@"/Public/Captured/%s", tempNam]]], @"DeleteImageURL",
 								  sourceFile, @"FilePath",
 								  nil];
-			[AppDelegate uploadSuccess:dict];
+			[self uploadSuccess:dict];
 		}
 		else
 		{
-			[AppDelegate uploadFailure];
+			[self uploadFailed:nil];
 		}
 	}
 	[textResponse release];

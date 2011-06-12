@@ -7,7 +7,6 @@
 //
 
 #import "Utilities.h"
-#import "CapturedAppDelegate.h"
 #import "SFTPUploader.h"
 #import "EMKeychainItem.h"
 
@@ -100,7 +99,7 @@
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
 
 	// do the upload
-	[AppDelegate statusProcessing];
+	[self uploadStarted];
 	CURLcode rc = curl_easy_perform(handle);
 	if (rc == CURLE_OK)
 	{
@@ -110,11 +109,11 @@
 							  @"", @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
-		[AppDelegate uploadSuccess:dict];
+		[self uploadSuccess:dict];
 	}
 	else
 	{
-		[AppDelegate uploadFailure];
+		[self uploadFailed:nil];
 	}
 }
 
