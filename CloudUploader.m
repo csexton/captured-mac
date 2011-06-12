@@ -28,10 +28,6 @@
 
 - (void) dealloc
 {
-	[filePath release];
-	[uploadUrl release];
-	[deleteUrl release];
-
 	[super dealloc];
 }
 
@@ -122,10 +118,6 @@
 							  nil];
 		[AppDelegate uploadSuccess:dict];
 	}
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data

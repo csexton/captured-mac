@@ -10,16 +10,10 @@
 
 #import "AbstractUploader.h"
 
-@interface CloudUploader : AbstractUploader {
-}
-
-@property (retain) NSString* filePath;
-@property (retain) NSString* uploadUrl;
-@property (retain) NSString* deleteUrl;
+@interface CloudUploader : AbstractUploader
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end

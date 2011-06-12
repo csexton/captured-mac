@@ -12,6 +12,10 @@
 
 @implementation AbstractUploader
 
+@synthesize filePath;
+@synthesize uploadUrl;
+@synthesize deleteUrl;
+
 - (id)init
 {
     self = [super init];
@@ -24,6 +28,10 @@
 
 - (void)dealloc
 {
+	[filePath release];
+	[uploadUrl release];
+	[deleteUrl release];
+	
     [super dealloc];
 }
 

@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AbstractUploader : NSObject {
-@private
-    
-}
+@interface AbstractUploader : NSObject    
+
+@property (retain) NSString* filePath;
+@property (retain) NSString* uploadUrl;
+@property (retain) NSString* deleteUrl;
 
 // Virtual Interface, these should be be implemented in the subclass
 - (void) uploadFile:(NSString*)filename;
