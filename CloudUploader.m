@@ -11,10 +11,6 @@
 
 @implementation CloudUploader
 
-@synthesize filePath;
-@synthesize uploadUrl;
-@synthesize deleteUrl;
-
 - (id) init
 {
 	self = [super init];
@@ -32,7 +28,7 @@
 
 - (void)uploadFile:(NSString*)sourceFile
 {
-	[self setFilePath:sourceFile];
+	[super setFilePath:sourceFile];
 	
 	// get the aws keys and bucket name from the defaults
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -59,11 +55,11 @@
     }else {
         publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam];
     }
-	[self setUploadUrl:publicUrl];
+	[super setUploadUrl:publicUrl];
 	
 	// format the url
 	NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam]];
-	[self setDeleteUrl:[url absoluteString]];
+	[super setDeleteUrl:[url absoluteString]];
 
 	// create the request object
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
@@ -111,9 +107,9 @@
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"CloudProvider", @"Type",
-							  uploadUrl, @"ImageURL",
-							  deleteUrl, @"DeleteImageURL",
-							  filePath, @"FilePath",
+							  [super uploadUrl], @"ImageURL",
+							  [super deleteUrl], @"DeleteImageURL",
+							  [super filePath], @"FilePath",
 							  nil];
 		[self uploadSuccess:dict];
 	}
