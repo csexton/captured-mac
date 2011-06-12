@@ -13,6 +13,10 @@
 @interface CloudUploader : AbstractUploader {
 }
 
+@property (retain) NSString* filePath;
+@property (retain) NSString* uploadUrl;
+@property (retain) NSString* deleteUrl;
+
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection;
