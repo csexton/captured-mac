@@ -12,6 +12,7 @@
 #import <CommonCrypto/CommonHMAC.h>
 
 static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+static size_t CHAR_COUNT = 62;
 
 @implementation Utilities
 
@@ -290,7 +291,7 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	char buf[32];
 	srand(time(NULL));
 	for (int i = 0; i < numChars; i++)
-		buf[i] = alNum[rand() % strlen(alNum)];
+		buf[i] = alNum[rand() % CHAR_COUNT];
 	buf[numChars] = 0;
 	strcat(buf, ".png");
 	return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
