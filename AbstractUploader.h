@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AbstractUploader : NSObject    
+@interface AbstractUploader : NSObject {
+	NSString* filePath;
+	NSString* uploadUrl;
+	NSString* deleteUrl;
+}
 
 @property (retain) NSString* filePath;
 @property (retain) NSString* uploadUrl;
