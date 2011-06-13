@@ -63,7 +63,7 @@
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
 	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
-	NSString* uploadUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
+	NSString* imageUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
         
     // get the password from the keychain
     NSString* password = nil;
@@ -77,7 +77,7 @@
 	// format the urls
 	NSString* url = [NSString stringWithFormat:@"sftp://%@%@%@", host, [self formatPath:targetDir], tempNam];
 
-	uploadUrl = [NSString stringWithFormat:@"%@/%@", uploadUrl, tempNam];
+	imageUrl = [NSString stringWithFormat:@"%@/%@", imageUrl, tempNam];
 
 	// reset the handle
 	curl_easy_reset(handle);
@@ -105,7 +105,7 @@
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"SFTP", @"Type",
-							  uploadUrl, @"ImageURL",
+							  imageUrl, @"ImageURL",
 							  @"", @"DeleteImageURL",
 							  sourceFile, @"FilePath",
 							  nil];
