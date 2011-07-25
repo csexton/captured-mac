@@ -6,6 +6,8 @@
 //  Copyright 2011 Christopher Sexton. All rights reserved.
 //
 
+#include <math.h>
+
 #import "Utilities.h"
 #import "UrlShortener.h"
 #import <Growl/Growl.h>
@@ -39,6 +41,9 @@ static size_t CHAR_COUNT = 62;
 	
 	// Get prefix
 	NSString *prefix = @"Screen shot";
+    if (floor(kCFCoreFoundationVersionNumber) > kCFCoreFoundationVersionNumber10_6) {
+        prefix = @"Screen Shot";
+    }
 	if (scdict && [scdict objectForKey:@"name"]) {
 		prefix = [scdict objectForKey:@"name"];
 	}
