@@ -16,10 +16,6 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 
 @implementation DropboxUploader
 
-//@synthesize filePath;
-//@synthesize uploadUrl;
-//@synthesize deleteUrl;
-
 - (void)uploadFile:(NSString*)sourceFile
 {
 	[self setFilePath:sourceFile];
@@ -181,9 +177,9 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"DropboxProvider", @"Type",
-							  [super uploadUrl], @"ImageURL",
-							  [super deleteUrl], @"DeleteImageURL",
-							  [super filePath], @"FilePath",
+							  uploadUrl, @"ImageURL",
+							  deleteUrl, @"DeleteImageURL",
+							  filePath, @"FilePath",
 							  nil];
 		[self uploadSuccess:dict];
 	}

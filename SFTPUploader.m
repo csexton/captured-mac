@@ -101,6 +101,7 @@
 	// do the upload
 	[self uploadStarted];
 	CURLcode rc = curl_easy_perform(handle);
+	fclose(fp);
 	if (rc == CURLE_OK)
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
