@@ -9,20 +9,16 @@
 
 static inline double radians (double degrees) {return degrees * M_PI/180;} // From Apple Docs
 
-#define TEST_FILE @"/Users/csexton/test.tiff"
 @implementation AnnotateImageView
 
 @synthesize useBrush;
 @synthesize useArrow;
 
 
-
-- (CGImageRef)getImage {
-    if (image == nil) {
-    NSString * filename = TEST_FILE;
-    image = [[NSImage alloc] initWithContentsOfFile:filename]; 
-    }
-    return [self nsImageToCGImageRef:image];
+- (void)setImage:(NSImage *)i {
+    image = i;
+    imageRef = [self nsImageToCGImageRef:i];
+    [self setNeedsDisplay:YES];    
 }
 
 - (CGPoint)rotate:(CGPoint) p by:(CGFloat) theta {
@@ -72,48 +68,30 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 - (CGImageRef)nsImageToCGImageRef:(NSImage*)cgImage;
 {
     NSData * imageData = [cgImage TIFFRepresentation];
-    CGImageRef imageRef;
+    CGImageRef cgImageRef;
     if(imageData)
     {
         CGImageSourceRef imageSource =
         CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
         imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
     }
-    return imageRef;
+    return cgImageRef;
 }
 
 - (IBAction)saveViewToDesktop:(id)sender
 {
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/annotated.png"];
-//    NSString *path = @"/Users/csexton/Desktop/annotated.png";
-
-//	[self lockFocus];
-//	NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:[self bounds]];
-//	[self unlockFocus];
-//	NSData *data = [rep TIFFRepresentation];
-//	[data writeToFile:path atomically:YES];
-//    
-//    
-//    NSURL *outURL = [[NSURL alloc] initFileURLWithPath:path]; 
-//	CGImageDestinationRef dr = CGImageDestinationCreateWithURL ((CFURLRef)outURL, (CFStringRef)@"public.png" , 1, NULL);
-//	CGImageDestinationAddImage(dr, imageRef, NULL);
-//	CGImageDestinationFinalize(dr);
-    
+    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/annotated.png"];    
     [self lockFocus];
     NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:[self bounds]];
-    [self unlockFocus];
-    //data = [rep TIFFRepresentation];
-    
+    [self unlockFocus];    
     NSData *data = [rep representationUsingType:(NSBitmapImageFileType) NSPNGFileType
                              properties:(NSDictionary *)nil];
     
     [data writeToFile:path atomically:YES];
-
 }
 
 - (void)mouseUp:(NSEvent *)event {
     
-	currentLocation	= [self convertPoint:[event locationInWindow] fromView:nil];
 //	NSPoint mousePointInView	= [self convertPoint:tvarMousePointInWindow fromView:nil];
 //	APoint * APointObj		= [[APoint alloc]initWithNSPoint:mousePointInView];
 //    
@@ -122,6 +100,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 //	[myMutaryOfPoints addObject:APointObj];	
     
     NSPoint l	= [self convertPoint:[event locationInWindow] fromView:nil];
+    
+    if (self.useArrow) {
+        currentLocation	= l;
+    }
     
     if (self.useBrush) {
         APoint * tvarAPointObj		= [[APoint alloc]initWithNSPoint:l];
@@ -274,7 +256,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     CGFloat fillColor[4] = {0.0,0.0,0.0,1.0};
 	CGContextSetFillColor(context,fillColor);
     CGContextFillRect(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ));
-    CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), [self getImage]);
+    //if (imageRef) {
+        CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
+    //}
     
     if (self.useArrow) {
         [self drawArrowOn:context from:downLocation to:currentLocation];

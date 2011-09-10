@@ -15,6 +15,8 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+
+
     }
     
     return self;
@@ -25,6 +27,7 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+
 }
 
 - (void)windowWillClose
@@ -34,6 +37,10 @@
     
     // I don't think works at all
     [self autorelease];
+}
+
+- (void)setImage:(NSImage*) image {
+    [annotateImageView setImage:image];
 }
 
 

@@ -7,6 +7,7 @@
     NSPoint currentLocation;
     NSPoint downLocation;
     NSImage * image;
+    CGImageRef imageRef;
     
     NSMutableArray	* arrayOfBrushStrokes;
 	NSMutableArray	* arrayOfPoints;
@@ -22,7 +23,7 @@
 - (void)drawBrushStrokesOn:(CGContextRef)context;
 
 - (CGColorSpaceRef) getRGBColorSpace;
-- (CGImageRef)getImage;
+- (void)setImage:(NSImage*) i;
 
 - (CGImageRef) nsImageToCGImageRef:(NSImage*)image;
 - (IBAction)saveViewToDesktop:(id)sender;

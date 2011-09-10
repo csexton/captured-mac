@@ -70,8 +70,12 @@
 //    NSWindow* window = [controller window];
 //    [window makeKeyAndOrderFront:self];
     
-    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner:[[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"]]) {
+    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
+    
+    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
+        [controller setImage: image];
     }
 
 }

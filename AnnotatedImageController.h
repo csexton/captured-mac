@@ -14,6 +14,7 @@
     IBOutlet AnnotateImageView *annotateImageView;
 
 }
+- (void)setImage:(NSImage*) image;
 
 -(IBAction)useBrush:(id)sender;
 -(IBAction)useArrow:(id)sender;
