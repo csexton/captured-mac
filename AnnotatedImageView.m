@@ -1,5 +1,5 @@
 
-#import "AnnotateImageView.h"
+#import "AnnotatedImageView.h"
 #import "APoint.h"
 
 #import <math.h>
@@ -9,7 +9,7 @@
 
 static inline double radians (double degrees) {return degrees * M_PI/180;} // From Apple Docs
 
-@implementation AnnotateImageView
+@implementation AnnotatedImageView
 
 @synthesize useBrush;
 @synthesize useArrow;

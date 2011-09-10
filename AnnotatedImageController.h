@@ -7,11 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AnnotateImageView.h"
+#import "AnnotatedImageView.h"
 @interface AnnotatedImageController : NSWindowController{
 @private
     
-    IBOutlet AnnotateImageView *annotateImageView;
+    IBOutlet AnnotatedImageView *annotateImageView;
 
 }
 - (void)setImage:(NSImage*) image;
