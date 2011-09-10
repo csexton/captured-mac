@@ -5,6 +5,7 @@
 #import "DDHotKeyCenter.h"
 
 #import "PreferencesController.h"
+#import "AnnotatedImageController.h"
 
 
 @implementation CapturedAppDelegate
@@ -43,6 +44,9 @@
     {
         [self showWelcomeWindow];
     }
+    
+    [self showAnnotateImageWindow];
+
 }
 
 - (BOOL)isFirstRun {
@@ -57,6 +61,19 @@
     if ([NSBundle loadNibNamed:@"WelcomeWindow" owner:welcomeWindowController]) {
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
     }
+}
+
+- (void)showAnnotateImageWindow {
+
+//    NSWindowController* controller = [[AnnotatedImageController alloc] 
+//                                      initWithWindowNibName:@"AnnotatedImage"];
+//    NSWindow* window = [controller window];
+//    [window makeKeyAndOrderFront:self];
+    
+    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner:[[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"]]) {
+        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    }
+
 }
 
 - (void)initEventsController {

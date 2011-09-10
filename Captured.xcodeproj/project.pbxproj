@@ -59,6 +59,12 @@
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
 		B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */; };
 		B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C56460130470F500E396E6 /* NSButton+TextColor.m */; };
+		B5CF8DE4141B9D2300D50721 /* AnnotateImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DE1141B9D2300D50721 /* AnnotateImageView.m */; };
+		B5CF8DE5141B9D2300D50721 /* APoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DE3141B9D2300D50721 /* APoint.m */; };
+		B5CF8DE7141B9D7700D50721 /* AnnotatedImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CF8DE6141B9D7700D50721 /* AnnotatedImage.xib */; };
+		B5CF8DF2141BA2CD00D50721 /* AnnotatedImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */; };
+		B5CF8DF4141BAA0800D50721 /* BrushIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CF8DF3141BAA0800D50721 /* BrushIcon.png */; };
+		B5CF8DF6141BAEDD00D50721 /* ArrowIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5CF8DF5141BAEDD00D50721 /* ArrowIcon.png */; };
 		B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015512DEC349004F71B6 /* CoreServices.framework */; };
 		B5E9015D12DEC354004F71B6 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */; };
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
@@ -185,6 +191,15 @@
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
 		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
 		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
+		B5CF8DE0141B9D2300D50721 /* AnnotateImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotateImageView.h; sourceTree = "<group>"; };
+		B5CF8DE1141B9D2300D50721 /* AnnotateImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotateImageView.m; sourceTree = "<group>"; };
+		B5CF8DE2141B9D2300D50721 /* APoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APoint.h; sourceTree = "<group>"; };
+		B5CF8DE3141B9D2300D50721 /* APoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APoint.m; sourceTree = "<group>"; };
+		B5CF8DE6141B9D7700D50721 /* AnnotatedImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnnotatedImage.xib; sourceTree = "<group>"; };
+		B5CF8DF0141BA2CD00D50721 /* AnnotatedImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotatedImageController.h; sourceTree = "<group>"; };
+		B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotatedImageController.m; sourceTree = "<group>"; };
+		B5CF8DF3141BAA0800D50721 /* BrushIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrushIcon.png; path = Resources/BrushIcon.png; sourceTree = "<group>"; };
+		B5CF8DF5141BAEDD00D50721 /* ArrowIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowIcon.png; path = Resources/ArrowIcon.png; sourceTree = "<group>"; };
 		B5E9015512DEC349004F71B6 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		B5E9015C12DEC354004F71B6 /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
 		B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -257,6 +272,10 @@
 				B588DD251336873C00221E3D /* Uploaders */,
 				B50909D112E7910C00A32F5E /* XMLReader */,
 				B50909D612E7915B00A32F5E /* ValidateReceipt */,
+				B5CF8DE0141B9D2300D50721 /* AnnotateImageView.h */,
+				B5CF8DE1141B9D2300D50721 /* AnnotateImageView.m */,
+				B5CF8DE2141B9D2300D50721 /* APoint.h */,
+				B5CF8DE3141B9D2300D50721 /* APoint.m */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
 				77C8280C06725ACE000B614F /* CapturedAppDelegate.m */,
 				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
@@ -283,6 +302,8 @@
 				B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */,
 				B505D3361356970000B91EDE /* ImgurPreferencesController.h */,
 				B505D3371356970000B91EDE /* ImgurPreferencesController.m */,
+				B5CF8DF0141BA2CD00D50721 /* AnnotatedImageController.h */,
+				B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -339,6 +360,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5CF8DF5141BAEDD00D50721 /* ArrowIcon.png */,
+				B5CF8DF3141BAA0800D50721 /* BrushIcon.png */,
 				B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */,
 				B588DD371336DCB500221E3D /* Colors.tiff */,
 				B588DD381336DCB500221E3D /* Updates.tiff */,
@@ -451,6 +474,7 @@
 				2F7446970DB6B7EA00F9684A /* MainMenu.xib */,
 				B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */,
 				B505D3341356966D00B91EDE /* ImgurPreferences.xib */,
+				B5CF8DE6141B9D7700D50721 /* AnnotatedImage.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -578,6 +602,9 @@
 				B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */,
 				B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */,
 				B505D3351356966D00B91EDE /* ImgurPreferences.xib in Resources */,
+				B5CF8DE7141B9D7700D50721 /* AnnotatedImage.xib in Resources */,
+				B5CF8DF4141BAA0800D50721 /* BrushIcon.png in Resources */,
+				B5CF8DF6141BAEDD00D50721 /* ArrowIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,6 +656,9 @@
 				CFFA70C71349475A0016D54E /* PicasaUploader.m in Sources */,
 				B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */,
 				B505D3391356970000B91EDE /* ImgurPreferencesController.m in Sources */,
+				B5CF8DE4141B9D2300D50721 /* AnnotateImageView.m in Sources */,
+				B5CF8DE5141B9D2300D50721 /* APoint.m in Sources */,
+				B5CF8DF2141BA2CD00D50721 /* AnnotatedImageController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,6 +45,7 @@
 
 - (BOOL)isFirstRun;
 - (void)showWelcomeWindow;
+- (void)showAnnotateImageWindow;
 
 - (void) hotkeyWithEvent:(NSEvent *)hkEvent;
 - (void) registerGlobalHotKey;
