@@ -18,5 +18,6 @@
 
 -(IBAction)useBrush:(id)sender;
 -(IBAction)useArrow:(id)sender;
+-(IBAction)closeButton:(id)sender;
 
 @end
