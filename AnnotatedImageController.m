@@ -27,6 +27,8 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
 - (void)windowWillClose
@@ -54,11 +56,11 @@
 //    CGFloat originalWidth = annotateImageView.frame.size.width;
 //    CGFloat originalHeight = annotateImageView.frame.size.height;
 
-    NSRect f = NSMakeRect(55, 55, image.size.width + 55, image.size.height + 55);
+    NSRect f = NSMakeRect(0, 55, image.size.width, image.size.height + 55);
         
     NSRect frame = [self.window frame];
-    frame.size.height = image.size.height + 100;
-    frame.size.width = image.size.width + 55;
+    frame.size.height = image.size.height + 55;
+    frame.size.width = image.size.width;
     
     [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
