@@ -360,7 +360,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<object class="NSTextFieldCell" key="NSCell" id="822444862">
 							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string key="NSContents">Linking an imgur account is not required, but does have additinoal benefits such as private images and the ability to delete images.</string>
+							<string key="NSContents">Linking an imgur account is not required, but does have additional benefits such as private images and the ability to delete images.</string>
 							<object class="NSFont" key="NSSupport" id="155759038">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>

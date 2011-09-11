@@ -36,6 +36,14 @@
     [self autorelease];
 }
 
+- (void)keyDown:(NSEvent *)event {
+    [self interpretKeyEvents:[NSArray arrayWithObject:event]];
+    NSLog(@"Event %@", event);
+    if ([event keyCode] == 36) {
+        [self closeButton:nil];
+    }
+}
+
 - (void)setImage:(NSImage*) image {
     
     
@@ -89,6 +97,12 @@
 -(IBAction)useBrush:(id)sender{
     annotateImageView.useArrow = NO;
     annotateImageView.useBrush = YES;
+}
+
+-(IBAction)closeButton:(id)sender{
+    [self close];
+     //[self.window orderOut:nil]; // to hide it
+     //[window makeKeyAndOrderFront:nil]; // to show it
 }
 
 @end

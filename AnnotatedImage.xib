@@ -142,7 +142,7 @@
 						<object class="NSCustomView" id="1062309623">
 							<reference key="NSNextResponder" ref="168819053"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{55, 150}, {100, 100}}</string>
+							<string key="NSFrame">{{55, 55}, {413, 228}}</string>
 							<reference key="NSSuperview" ref="168819053"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1048389453"/>
@@ -196,6 +196,14 @@
 						<reference key="destination" ref="328851760"/>
 					</object>
 					<int key="connectionID">30</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">closeButton:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1048389453"/>
+					</object>
+					<int key="connectionID">31</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -342,7 +350,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">31</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -354,11 +362,13 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>closeButton:</string>
 							<string>useArrow:</string>
 							<string>useBrush:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -367,11 +377,16 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>closeButton:</string>
 							<string>useArrow:</string>
 							<string>useBrush:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">closeButton:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">useArrow:</string>
 								<string key="candidateClassName">id</string>
