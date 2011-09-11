@@ -39,6 +39,7 @@
 - (void)uploadFailure;
 - (void)statusProcessing;
 - (void)initEventsController;
+- (void)processFileEvent: (NSString *)path;
 - (IBAction)takeScreenCaptureAction:(id) sender;
 - (IBAction) takeAnnotatedScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;

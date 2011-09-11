@@ -78,9 +78,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     return cgImageRef;
 }
 
-- (IBAction)saveViewToDesktop:(id)sender
+- (void)saveViewToFile:(NSString *) path
 {
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/annotated.png"];    
+    //NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/annotated.png"];    
     [self lockFocus];
     NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:[self bounds]];
     [self unlockFocus];    
@@ -111,8 +111,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         
         [self setNeedsDisplay:YES];
     }
-    
-    [self saveViewToDesktop: nil];
 }
 
 - (void)mouseDown:(NSEvent *)event{

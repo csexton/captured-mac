@@ -26,8 +26,7 @@
 - (void)setImage:(NSImage*) i;
 
 - (CGImageRef) nsImageToCGImageRef:(NSImage*)image;
-- (IBAction)saveViewToDesktop:(id)sender;
-
+- (void)saveViewToFile:(NSString *) path;
 
 @property (readwrite) BOOL useBrush;
 @property (readwrite) BOOL useArrow;

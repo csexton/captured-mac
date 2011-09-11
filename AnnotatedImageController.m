@@ -7,6 +7,8 @@
 //
 
 #import "AnnotatedImageController.h"
+#import "CapturedAppDelegate.h"
+
 
 @implementation AnnotatedImageController
 
@@ -25,6 +27,8 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
 - (void)windowWillClose
@@ -49,38 +53,18 @@
     
     CGFloat originalX = annotateImageView.frame.origin.x;
     CGFloat originalY = annotateImageView.frame.origin.y;
-    CGFloat originalWidth = annotateImageView.frame.size.width;
-    CGFloat originalHeight = annotateImageView.frame.size.height;
-    
-    NSLog(@"orgx: %f orgy: %f", originalX, originalY);
-    NSLog(@"orgw: %f orgh: %f", originalWidth, originalHeight);
-    
-    NSLog(@"Image Size: w: %f h: %f", image.size.width, image.size.height);
-    
-    CGFloat topY = originalY+100.f; // The view is 100 px tall in the nib
-    
-    topY = image.size.height-100+originalY;
-    
+//    CGFloat originalWidth = annotateImageView.frame.size.width;
+//    CGFloat originalHeight = annotateImageView.frame.size.height;
 
-    NSRect f = NSMakeRect(55, 55, image.size.width+55, image.size.height+55);
+    NSRect f = NSMakeRect(0, 55, image.size.width, image.size.height + 55);
         
     NSRect frame = [self.window frame];
-    float delta = image.size.height - frame.size.height;
-    //frame.origin.y -= delta;
-    frame.size.height = image.size.height + 100;
-    frame.size.width = image.size.width + 55;
+    frame.size.height = image.size.height + 55;
+    frame.size.width = image.size.width;
     
-
-    [self.window setFrame: frame
-             display: YES
-             animate: NO];
+    [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
 
-    
-    
-    //[self.window setFrameOrigin:NSMakePoint(900, 900)];
-    
-    
     [annotateImageView setFrame: f];
     
     [annotateImageView setImage:image];
@@ -101,6 +85,22 @@
 
 -(IBAction)closeButton:(id)sender{
     [self close];
+    
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+	[dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
+	NSDate *now = [[NSDate alloc] init];
+	NSString *timestamp = [dateFormat stringFromDate:now];
+    [dateFormat release];
+    [now release];
+    NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
+    
+    NSLog(@"Saving Annotated Image to %@", path);
+    
+    [annotateImageView saveViewToFile:path];
+    
+    [AppDelegate processFileEvent:path];
+    
+
      //[self.window orderOut:nil]; // to hide it
      //[window makeKeyAndOrderFront:nil]; // to show it
 }

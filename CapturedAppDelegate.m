@@ -88,6 +88,10 @@
 	[eventsController setupEventListener];
 }
 
+- (void)processFileEvent: (NSString *)path {
+    [eventsController processFile: path];
+}
+
 - (void)dealloc {
 	[eventsController release];
     eventsController = (EventsController*)nil;   
