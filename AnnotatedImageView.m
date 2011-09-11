@@ -1,5 +1,5 @@
 
-#import "AnnotateImageView.h"
+#import "AnnotatedImageView.h"
 #import "APoint.h"
 
 #import <math.h>
@@ -9,7 +9,7 @@
 
 static inline double radians (double degrees) {return degrees * M_PI/180;} // From Apple Docs
 
-@implementation AnnotateImageView
+@implementation AnnotatedImageView
 
 @synthesize useBrush;
 @synthesize useArrow;
@@ -18,6 +18,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 - (void)setImage:(NSImage *)i {
     image = i;
     imageRef = [self nsImageToCGImageRef:i];
+
     [self setNeedsDisplay:YES];    
 }
 
@@ -65,15 +66,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     return CGColorSpaceCreateDeviceRGB();		
 }
 
-- (CGImageRef)nsImageToCGImageRef:(NSImage*)cgImage;
+- (CGImageRef)nsImageToCGImageRef:(NSImage*)nsImage;
 {
-    NSData * imageData = [cgImage TIFFRepresentation];
+    NSData * imageData = [nsImage TIFFRepresentation];
     CGImageRef cgImageRef;
     if(imageData)
     {
-        CGImageSourceRef imageSource =
-        CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
-        imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+        CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
+        cgImageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
     }
     return cgImageRef;
 }
@@ -117,9 +117,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void)mouseDown:(NSEvent *)event{
     
-    NSPoint locationInWindow = [event locationInWindow];
-	NSPoint locationInView	= [self convertPoint:locationInWindow fromView:nil];
-    NSPoint l = locationInView; // Not sure if this is view or window
+    NSPoint l	= [self convertPoint:[event locationInWindow] fromView:nil];
     
     if (self.useArrow) {
         // For the arrow
@@ -257,16 +255,23 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 	CGContextSetFillColor(context,fillColor);
     CGContextFillRect(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ));
     //if (imageRef) {
+    
+    NSImage * i = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
+    
+    if (image) {
         CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
+    }
+
+//    CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
     //}
     
-    if (self.useArrow) {
+//    if (self.useArrow) {
         [self drawArrowOn:context from:downLocation to:currentLocation];
-    }
+//    }
     
-    if (self.useBrush) {
+//    if (self.useBrush) {
         [self drawBrushStrokesOn:context];
-    }
+//    }
 	
 }
 //- (void)drawRect:(NSRect)rect {

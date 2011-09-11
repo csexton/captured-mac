@@ -2,7 +2,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface AnnotateImageView : NSView {
+@interface AnnotatedImageView : NSView {
 	CGColorSpaceRef colorSpace;
     NSPoint currentLocation;
     NSPoint downLocation;

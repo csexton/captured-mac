@@ -45,7 +45,7 @@
         [self showWelcomeWindow];
     }
     
-    [self showAnnotateImageWindow];
+    //[self showAnnotateImageWindow];
 
 }
 
@@ -62,22 +62,25 @@
         [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
     }
 }
+- (void)showAnnotateImageWindowWithFile: (NSString*) file {
+    AnnotatedImageController* controller = [[AnnotatedImageController alloc] 
+                                            initWithWindowNibName:@"AnnotatedImage"];
+    [[controller window] makeKeyAndOrderFront:self];
+    NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
+    [controller setImage: image];
+    
+    //    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
+    //    
+    //    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
+    //        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+    //        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
+    //        [controller setImage: image];
+    //    }
+  
+}
 
 - (void)showAnnotateImageWindow {
-
-//    NSWindowController* controller = [[AnnotatedImageController alloc] 
-//                                      initWithWindowNibName:@"AnnotatedImage"];
-//    NSWindow* window = [controller window];
-//    [window makeKeyAndOrderFront:self];
-    
-    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
-    
-    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
-        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
-        [controller setImage: image];
-    }
-
+    [self showAnnotateImageWindowWithFile:@"/Users/csexton/test.tiff"];
 }
 
 - (void)initEventsController {
@@ -129,6 +132,12 @@
 	[eventsController processFile: path];
 }
 
+-(IBAction) takeAnnotatedScreenCaptureAction:(id) sender
+{
+	NSString *path = [Utilities invokeScreenCapture: @"-i"];
+    [self showAnnotateImageWindowWithFile:path];
+}
+
 -(IBAction) takeScreenCaptureWindowAction:(id) sender
 {	
 	NSString *path = [Utilities invokeScreenCapture: @"-w"];
@@ -163,6 +172,12 @@
     [self takeScreenCaptureAction:nil];
 }
 
+- (void) hotkeyAnnotateWithEvent:(NSEvent *)hkEvent {
+    //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
+	//NSLog(@"Hotkey event: %@", hkEvent);
+    [self takeAnnotatedScreenCaptureAction:nil];
+}
+
 - (void) registerGlobalHotKey
 {
     DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
@@ -174,8 +189,14 @@
         NSLog(@"Unable to register global keyboard shortcut");
     } else {
         NSLog(@"Registered global keyboard shortcut for Shift-Command-5");
-        //NSLog(@"Registered: %@", [c registeredHotKeys]);
     }
+    
+    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_6*/0x16 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyAnnotateWithEvent:) object:nil]) {
+        NSLog(@"Unable to register global keyboard shortcut");
+    } else {
+        NSLog(@"Registered global keyboard shortcut for Shift-Command-6");
+    }
+    
     [c release];
 }
 @end
