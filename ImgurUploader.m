@@ -186,7 +186,7 @@ foundCharacters:(NSString *)string {
 	NSString* linkResponse = nil;
 	
 	// create the url and request
-	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/request_token.json"];
+	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/request_token"];
 	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
 	
 	// timestamp and nonce generation
@@ -222,7 +222,7 @@ foundCharacters:(NSString *)string {
 	// parse out the response
 	if (error)
 	{
-		linkResponse = [NSString stringWithFormat:@"Error calling Imgur API: %@", [error description]];
+		linkResponse = [NSString stringWithFormat:@"Error calling Imgur OAuth token request: %@", [error description]];
 	}
 	else if ([response statusCode] != 200)
 	{
