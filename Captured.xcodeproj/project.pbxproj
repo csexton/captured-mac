@@ -26,6 +26,11 @@
 		B50909D412E7910C00A32F5E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D312E7910C00A32F5E /* XMLReader.m */; };
 		B50909D912E7915B00A32F5E /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D812E7915B00A32F5E /* validatereceipt.m */; };
 		B51A1FCD12E393EB006C7840 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = B51A1FCC12E393EB006C7840 /* Credits.html */; };
+		B51ABACE141C7B9C004E5B9C /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAC5141C7B9C004E5B9C /* SRCommon.m */; };
+		B51ABACF141C7B9C004E5B9C /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAC7141C7B9C004E5B9C /* SRKeyCodeTransformer.m */; };
+		B51ABAD0141C7B9C004E5B9C /* SRRecorderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAC9141C7B9C004E5B9C /* SRRecorderCell.m */; };
+		B51ABAD1141C7B9C004E5B9C /* SRRecorderControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABACB141C7B9C004E5B9C /* SRRecorderControl.m */; };
+		B51ABAD2141C7B9C004E5B9C /* SRValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABACD141C7B9C004E5B9C /* SRValidator.m */; };
 		B51E8509133CD24D00B1824C /* AbstractUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B51E8508133CD24D00B1824C /* AbstractUploader.m */; };
 		B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */; };
 		B52AAEB512DFADEB00609367 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B52AAEB412DFADEB00609367 /* EventsController.m */; };
@@ -146,6 +151,16 @@
 		B50909D712E7915B00A32F5E /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
 		B50909D812E7915B00A32F5E /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
 		B51A1FCC12E393EB006C7840 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
+		B51ABAC4141C7B9C004E5B9C /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRCommon.h; path = ShortcutRecorder/SRCommon.h; sourceTree = "<group>"; };
+		B51ABAC5141C7B9C004E5B9C /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRCommon.m; path = ShortcutRecorder/SRCommon.m; sourceTree = "<group>"; };
+		B51ABAC6141C7B9C004E5B9C /* SRKeyCodeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRKeyCodeTransformer.h; path = ShortcutRecorder/SRKeyCodeTransformer.h; sourceTree = "<group>"; };
+		B51ABAC7141C7B9C004E5B9C /* SRKeyCodeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRKeyCodeTransformer.m; path = ShortcutRecorder/SRKeyCodeTransformer.m; sourceTree = "<group>"; };
+		B51ABAC8141C7B9C004E5B9C /* SRRecorderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRRecorderCell.h; path = ShortcutRecorder/SRRecorderCell.h; sourceTree = "<group>"; };
+		B51ABAC9141C7B9C004E5B9C /* SRRecorderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRRecorderCell.m; path = ShortcutRecorder/SRRecorderCell.m; sourceTree = "<group>"; };
+		B51ABACA141C7B9C004E5B9C /* SRRecorderControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRRecorderControl.h; path = ShortcutRecorder/SRRecorderControl.h; sourceTree = "<group>"; };
+		B51ABACB141C7B9C004E5B9C /* SRRecorderControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRRecorderControl.m; path = ShortcutRecorder/SRRecorderControl.m; sourceTree = "<group>"; };
+		B51ABACC141C7B9C004E5B9C /* SRValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRValidator.h; path = ShortcutRecorder/SRValidator.h; sourceTree = "<group>"; };
+		B51ABACD141C7B9C004E5B9C /* SRValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRValidator.m; path = ShortcutRecorder/SRValidator.m; sourceTree = "<group>"; };
 		B51E8507133CD24D00B1824C /* AbstractUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractUploader.h; sourceTree = "<group>"; };
 		B51E8508133CD24D00B1824C /* AbstractUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractUploader.m; sourceTree = "<group>"; };
 		B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSelected.png; path = Resources/StatusMenuIconSelected.png; sourceTree = "<group>"; };
@@ -191,7 +206,7 @@
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
 		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
 		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
-		B5CF8DE0141B9D2300D50721 /* AnnotatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; path = AnnotatedImageView.h; sourceTree = "<group>"; };
+		B5CF8DE0141B9D2300D50721 /* AnnotatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotatedImageView.h; sourceTree = "<group>"; };
 		B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotatedImageView.m; sourceTree = "<group>"; };
 		B5CF8DE2141B9D2300D50721 /* APoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APoint.h; sourceTree = "<group>"; };
 		B5CF8DE3141B9D2300D50721 /* APoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APoint.m; sourceTree = "<group>"; };
@@ -265,6 +280,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				B51ABAC3141C7B7C004E5B9C /* ShortcutRecorder */,
 				B5AEC8CB13477AFD001922C8 /* KeyChain */,
 				B52AAEAA12DFAC7D00609367 /* DirEvents */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
@@ -424,6 +440,23 @@
 				B50909D812E7915B00A32F5E /* validatereceipt.m */,
 			);
 			path = ValidateReceipt;
+			sourceTree = "<group>";
+		};
+		B51ABAC3141C7B7C004E5B9C /* ShortcutRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				B51ABAC4141C7B9C004E5B9C /* SRCommon.h */,
+				B51ABAC5141C7B9C004E5B9C /* SRCommon.m */,
+				B51ABAC6141C7B9C004E5B9C /* SRKeyCodeTransformer.h */,
+				B51ABAC7141C7B9C004E5B9C /* SRKeyCodeTransformer.m */,
+				B51ABAC8141C7B9C004E5B9C /* SRRecorderCell.h */,
+				B51ABAC9141C7B9C004E5B9C /* SRRecorderCell.m */,
+				B51ABACA141C7B9C004E5B9C /* SRRecorderControl.h */,
+				B51ABACB141C7B9C004E5B9C /* SRRecorderControl.m */,
+				B51ABACC141C7B9C004E5B9C /* SRValidator.h */,
+				B51ABACD141C7B9C004E5B9C /* SRValidator.m */,
+			);
+			name = ShortcutRecorder;
 			sourceTree = "<group>";
 		};
 		B52AAEAA12DFAC7D00609367 /* DirEvents */ = {
@@ -659,6 +692,11 @@
 				B5CF8DE4141B9D2300D50721 /* AnnotatedImageView.m in Sources */,
 				B5CF8DE5141B9D2300D50721 /* APoint.m in Sources */,
 				B5CF8DF2141BA2CD00D50721 /* AnnotatedImageController.m in Sources */,
+				B51ABACE141C7B9C004E5B9C /* SRCommon.m in Sources */,
+				B51ABACF141C7B9C004E5B9C /* SRKeyCodeTransformer.m in Sources */,
+				B51ABAD0141C7B9C004E5B9C /* SRRecorderCell.m in Sources */,
+				B51ABAD1141C7B9C004E5B9C /* SRRecorderControl.m in Sources */,
+				B51ABAD2141C7B9C004E5B9C /* SRValidator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
