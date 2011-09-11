@@ -312,6 +312,54 @@ static size_t CHAR_COUNT = 62;
     return str;
 }
 
++ (NSString*)genRandString {
+	CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
+	
+	//get the string representation of the UUID
+	NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+	
+	CFRelease(uuidObj);
+	
+	return [uuidString autorelease];
+}
+
++ (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+	NSString* sigBaseString;
+	
+	// if there is a file in the url, we format it slightly differently
+	if (fileName == nil && token == nil)
+		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", consumerKey, nonce, timestamp];
+	else if (fileName == nil)
+		sigBaseString = [NSString stringWithFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", consumerKey, nonce, timestamp, token];
+	else if (token == nil)
+		sigBaseString = [NSString stringWithFormat:@"file=%@&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_version=1.0", fileName, consumerKey, nonce, timestamp];
+	else
+		sigBaseString = [NSString stringWithFormat:@"file=%@&oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu&oauth_token=%@&oauth_version=1.0", fileName, consumerKey, nonce, timestamp, token];
+	
+	// create an encoding object
+	
+	// url-encode the parts that need to be url-encoded
+	NSString* escapedUrl = [Utilities URLEncode:url];
+    NSString* escapedSig = [Utilities URLEncode:sigBaseString];
+	
+	// format them all into the signature base string
+	NSString* finalString = [[NSString alloc] initWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
+	
+	return finalString;
+}
+
+// this method builds up the Authorization header that we will need to send in the request
++ (NSString*)genAuthHeader:(NSString*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
+	if (fileName == nil && token == nil)
+		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce];
+	else if (fileName == nil)
+		return [NSString stringWithFormat:@"OAuth oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", consumerKey, signature, timestamp, nonce, token];
+	else if (token == nil)
+		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce];
+	else
+		return [NSString stringWithFormat:@"OAuth file=\"%@\", oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\", oauth_token=\"%@\", oauth_version=\"1.0\"", fileName, consumerKey, signature, timestamp, nonce, token];
+}
+
 @end
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
@@ -372,7 +420,5 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 	
 	return [NSString stringWithString:result]; // convert to immutable string
 }
-
-
 
 @end

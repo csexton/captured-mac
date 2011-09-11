@@ -1,9 +1,11 @@
 #import "ASIFormDataRequest.h"
 #import "ImgurUploader.h"
 #import "Utilities.h"
-#import "CapturedAppDelegate.h"
+#import "JSON/JSON.h"
 #import "XMLReader.h"
 
+NSString* imgurConsumerKey = @"ef8c51ce1140df5ff9cfe16f17b3d36704e6c0b48";
+NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 #define API_KEY @"343d3562a7a1533019b9994c68deb896" // Captured Mac API Key
 
 @implementation ImgurUploader
@@ -16,7 +18,7 @@
                                                         object:self];
 	imageSelectionData = data;
 	
-    NSURL *imgurURL = [NSURL URLWithString:@"http://api.imgur.com/2/upload.xml"];
+    NSURL *imgurURL = [NSURL URLWithString:@"http://api.imgur.com/2/upload.xml"];	
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:imgurURL];
     [request setDelegate:self];
     [request setPostValue:[NSString stringWithString:API_KEY] forKey:@"key"];
@@ -171,16 +173,81 @@ foundCharacters:(NSString *)string {
 
 }
 
+- (NSString*)linkAccount:(NSString*)email password:(NSString*)password {
+	NSString* linkResponse = nil;
+	
+	// create the url and request
+	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/request_token.json"];
+	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+	
+	// timestamp and nonce generation
+	time_t timestamp = time(NULL);
+	NSString* nonce = [Utilities genRandString];
+	
+	// format the signature base string
+	NSString* sigBaseString = [Utilities genSigBaseString:[url absoluteString] method:@"POST" fileName:nil consumerKey:imgurConsumerKey nonce:nonce timestamp:timestamp token:nil];
+	
+	// build the signature
+	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:imgurConsumerSecret];
+	[sigBaseString release];
+	
+	// build the authentication header
+	NSString* authHeader = [Utilities genAuthHeader:nil consumerKey:imgurConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
+	
+	// add the post data
+	NSString* paramsString = [NSString stringWithFormat:@"email=%@&password=%@", [Utilities URLEncode:email], [Utilities URLEncode:password]];
+	NSData* paramsData = [paramsString dataUsingEncoding:NSASCIIStringEncoding];
+	[request setHTTPMethod:@"POST"];
+	[request setHTTPBody:paramsData];
+	
+	// add the headers
+	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
+	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request addValue:[NSString stringWithFormat:@"%lu", [paramsData length]] forHTTPHeaderField:@"Content-Length"];
+	
+	// make the request
+	NSHTTPURLResponse* response = nil;
+	NSError* error = nil;
+	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	
+	// parse out the response
+	if (error)
+	{
+		linkResponse = [NSString stringWithFormat:@"Error calling Imgur API: %@", [error description]];
+	}
+	else if ([response statusCode] != 200)
+	{
+		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSDictionary* dict = [textResponse JSONValue];
+		linkResponse = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
+		[textResponse release];
+	}
+	else
+	{
+		// get the new token and secret
+		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSDictionary* dict = [textResponse JSONValue];
+		NSString* newToken = [dict valueForKey:@"token"];
+		NSString* newSecret = [dict valueForKey:@"secret"];
+		
+		// store there in user defaults, may want to move them elsewhere at some point
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setValue:newToken forKey:@"ImgurToken"];
+		[defaults setValue:newSecret forKey:@"ImgurSecret"];
+		
+		// done with the string
+		[textResponse release];
+	}
+	
+	return linkResponse;
+}
+
 -(void)unlinkAccount
 {
-    // TODO
-    return;
-}
-- (NSString*)linkAccount: (NSString *)user password:(NSString *)password
-{
-    // TODO
-    NSLog(@"linkAccount Not Implemented");
-    return @"Not Implemented";
+	// remove the imgur token from our records
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults removeObjectForKey:@"ImgurToken"];
+	[defaults removeObjectForKey:@"ImgurSecret"];
 }
 
 @end
