@@ -45,7 +45,7 @@
         [self showWelcomeWindow];
     }
     
-    [self showAnnotateImageWindow];
+    //[self showAnnotateImageWindow];
 
 }
 
