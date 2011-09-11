@@ -33,6 +33,7 @@
 - (void) uploadFile:(NSString*)filename;
 - (NSDictionary*) parseResponseForURL:(NSString*)str;
 
--(void)unlinkAccount;
+- (BOOL)isAccountLinked;
+- (void)unlinkAccount;
 - (NSString*)linkAccount: (NSString *)user password:(NSString *)password;
 @end

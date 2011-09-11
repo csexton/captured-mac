@@ -173,6 +173,15 @@ foundCharacters:(NSString *)string {
 
 }
 
+- (BOOL)isAccountLinked
+{
+	// account is linked if we have a token/secret pair
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* displayName = [defaults stringForKey:@"ImgurToken"];
+	
+	return (displayName && [displayName length] > 0);
+}
+
 - (NSString*)linkAccount:(NSString*)email password:(NSString*)password {
 	NSString* linkResponse = nil;
 	

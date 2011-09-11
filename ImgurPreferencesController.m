@@ -29,14 +29,14 @@
 -(void)awakeFromNib {
     uploader = [[ImgurUploader alloc] init];
     
-    [box setHidden:YES]; // TODO: put this back when we get OAuth and Imgur
+//    [box setHidden:YES]; // TODO: put this back when we get OAuth and Imgur
     [self showApproprateView];
 }
 
 -(void)showApproprateView{
-    if (YES){//([uploader isAccountLinked]) {
-        //NSString* name = [[NSUserDefaults standardUserDefaults] stringForKey:@"ImgurDisplayName"];
-        //[displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to %@'s Imgur Account.",name]];
+    if ([uploader isAccountLinked]) {
+			NSString* name = [[NSUserDefaults standardUserDefaults] stringForKey:@"ImgurDisplayName"];
+			[displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to %@'s Imgur Account.",name]];
         [box setContentView:linkedView];
     } else {
         [box setContentView:loginView];
