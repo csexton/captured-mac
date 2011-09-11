@@ -65,18 +65,19 @@
 
 - (void)showAnnotateImageWindow {
 
-//    NSWindowController* controller = [[AnnotatedImageController alloc] 
-//                                      initWithWindowNibName:@"AnnotatedImage"];
-//    NSWindow* window = [controller window];
-//    [window makeKeyAndOrderFront:self];
+    AnnotatedImageController* controller = [[AnnotatedImageController alloc] 
+                                      initWithWindowNibName:@"AnnotatedImage"];
+    [[controller window] makeKeyAndOrderFront:self];
+    NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
+    [controller setImage: image];
     
-    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
-    
-    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
-        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
-        [controller setImage: image];
-    }
+//    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
+//    
+//    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
+//        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
+//        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
+//        [controller setImage: image];
+//    }
 
 }
 
