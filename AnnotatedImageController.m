@@ -15,8 +15,6 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
-
-
     }
     
     return self;
@@ -64,12 +62,15 @@
     frame.size.height = image.size.height + 100;
     frame.size.width = image.size.width + 55;
     
+
     [self.window setFrame: frame
              display: YES
              animate: NO];
+    [self.window center];
+
+    
     
     //[self.window setFrameOrigin:NSMakePoint(900, 900)];
-    [self.window center];
     
     
     [annotateImageView setFrame: f];

@@ -40,12 +40,14 @@
 - (void)statusProcessing;
 - (void)initEventsController;
 - (IBAction)takeScreenCaptureAction:(id) sender;
+- (IBAction) takeAnnotatedScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;
 - (IBAction)showPreferencesWindow:(id) sender;
 
 - (BOOL)isFirstRun;
 - (void)showWelcomeWindow;
 - (void)showAnnotateImageWindow;
+- (void)showAnnotateImageWindowWithFile: (NSString*) file;
 
 - (void) hotkeyWithEvent:(NSEvent *)hkEvent;
 - (void) registerGlobalHotKey;
