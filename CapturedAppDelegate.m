@@ -45,7 +45,7 @@
         [self showWelcomeWindow];
     }
     
-    //[self showAnnotateImageWindow];
+    [self showAnnotateImageWindow];
 
 }
 
@@ -86,6 +86,10 @@
 - (void)initEventsController {
 	eventsController = [[EventsController alloc] init]; //This used to be autorelease, but I would get a crash. So now I think I need to do something to release the memory
 	[eventsController setupEventListener];
+}
+
+- (void)processFileEvent: (NSString *)path {
+    [eventsController processFile: path];
 }
 
 - (void)dealloc {
