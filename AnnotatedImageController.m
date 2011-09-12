@@ -56,10 +56,10 @@
 //    CGFloat originalWidth = annotateImageView.frame.size.width;
 //    CGFloat originalHeight = annotateImageView.frame.size.height;
 
-    NSRect f = NSMakeRect(0, 55, image.size.width, image.size.height + 55);
+    NSRect f = NSMakeRect(0, /* Button Bar Height */ 55, image.size.width, image.size.height + /* Button Bar Height */ 55);
         
     NSRect frame = [self.window frame];
-    frame.size.height = image.size.height + 55;
+    frame.size.height = image.size.height + /* Button Bar Height */ 55 + /* Window Frame (70 for full title bar) */ 55;
     frame.size.width = image.size.width;
     
     [self.window setFrame: frame display: YES animate: NO];
@@ -69,6 +69,8 @@
     
     [annotateImageView setImage:image];
     //[self showWindow:nil];
+    [[self window] makeKeyAndOrderFront:self];
+
     
 }
 

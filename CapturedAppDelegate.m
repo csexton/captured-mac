@@ -45,7 +45,7 @@
         [self showWelcomeWindow];
     }
     
-    //[self showAnnotateImageWindow];
+    [self showAnnotateImageWindow];
 
 }
 
@@ -65,7 +65,7 @@
 - (void)showAnnotateImageWindowWithFile: (NSString*) file {
     AnnotatedImageController* controller = [[AnnotatedImageController alloc] 
                                             initWithWindowNibName:@"AnnotatedImage"];
-    [[controller window] makeKeyAndOrderFront:self];
+    //[[controller window] makeKeyAndOrderFront:self];
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
     [controller setImage: image];
     

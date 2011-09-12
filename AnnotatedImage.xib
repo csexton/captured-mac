@@ -93,7 +93,7 @@
 							<string key="NSFrame">{{45, 7}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="168819053"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="1062309623"/>
+							<reference key="NSNextKeyView" ref="1048389453"/>
 							<string key="NSReuseIdentifierKey">_NS:1491</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="929516962">
@@ -145,7 +145,7 @@
 							<string key="NSFrame">{{0, 55}, {468, 228}}</string>
 							<reference key="NSSuperview" ref="168819053"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="1048389453"/>
+							<reference key="NSNextKeyView" ref="265323819"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
 							<string key="NSClassName">AnnotatedImageView</string>
 						</object>
@@ -153,7 +153,7 @@
 					<string key="NSFrameSize">{468, 283}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView" ref="265323819"/>
+					<reference key="NSNextKeyView" ref="1062309623"/>
 					<string key="NSReuseIdentifierKey">_NS:2927</string>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -330,7 +330,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<boolean value="YES"/>
+					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

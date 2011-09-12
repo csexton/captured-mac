@@ -374,7 +374,7 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">256</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSTextField" id="387859276">
+					<object class="NSTextField" id="739378344">
 						<reference key="NSNextResponder" ref="283594781"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{33, 73}, {201, 17}}</string>
@@ -382,18 +382,18 @@
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="528418339">
+						<object class="NSTextFieldCell" key="NSCell" id="831064381">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Take and Annotate Screen Shot</string>
 							<reference key="NSSupport" ref="868193175"/>
 							<string key="NSCellIdentifier">_NS:3936</string>
-							<reference key="NSControlView" ref="387859276"/>
+							<reference key="NSControlView" ref="739378344"/>
 							<reference key="NSBackgroundColor" ref="969592841"/>
 							<reference key="NSTextColor" ref="947852348"/>
 						</object>
 					</object>
-					<object class="NSCustomView" id="375873816">
+					<object class="NSCustomView" id="650699899">
 						<reference key="NSNextResponder" ref="283594781"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{52, 43}, {163, 22}}</string>
@@ -402,7 +402,7 @@
 						<string key="NSReuseIdentifierKey">_NS:499</string>
 						<string key="NSClassName">SRRecorderControl</string>
 					</object>
-					<object class="NSTextField" id="549059050">
+					<object class="NSTextField" id="479907650">
 						<reference key="NSNextResponder" ref="283594781"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{33, 119}, {112, 17}}</string>
@@ -410,18 +410,18 @@
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:3936</string>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSTextFieldCell" key="NSCell" id="992281187">
+						<object class="NSTextFieldCell" key="NSCell" id="945476367">
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">Take Screen Shot</string>
 							<reference key="NSSupport" ref="868193175"/>
 							<string key="NSCellIdentifier">_NS:3936</string>
-							<reference key="NSControlView" ref="549059050"/>
+							<reference key="NSControlView" ref="479907650"/>
 							<reference key="NSBackgroundColor" ref="969592841"/>
 							<reference key="NSTextColor" ref="947852348"/>
 						</object>
 					</object>
-					<object class="NSCustomView" id="474602507">
+					<object class="NSCustomView" id="643417685">
 						<reference key="NSNextResponder" ref="283594781"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{52, 89}, {163, 22}}</string>
@@ -473,7 +473,7 @@ pzQ</string>
 						<object class="NSButtonCell" key="NSCell" id="984894707">
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Only upload on ⌘⇧5</string>
+							<string key="NSContents">Ignore ⌘⇧4</string>
 							<reference key="NSSupport" ref="868193175"/>
 							<reference key="NSControlView" ref="220218169"/>
 							<int key="NSButtonFlags">1211912703</int>
@@ -632,7 +632,7 @@ pzQ</string>
 										<string key="NSFrame">{{107, 40}, {131, 25}}</string>
 										<reference key="NSSuperview" ref="427710471"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="474602507"/>
+										<reference key="NSNextKeyView" ref="643417685"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="14916203">
 											<int key="NSCellFlags">-2080244224</int>
@@ -2348,10 +2348,10 @@ IHByb2R1Y3RzLg</string>
 							<reference ref="220218169"/>
 							<reference ref="1054437310"/>
 							<reference ref="344698236"/>
-							<reference ref="549059050"/>
-							<reference ref="375873816"/>
-							<reference ref="387859276"/>
-							<reference ref="474602507"/>
+							<reference ref="479907650"/>
+							<reference ref="650699899"/>
+							<reference ref="739378344"/>
+							<reference ref="643417685"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">General</string>
@@ -3206,39 +3206,39 @@ IHByb2R1Y3RzLg</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1378</int>
-						<reference key="object" ref="474602507"/>
+						<reference key="object" ref="643417685"/>
 						<reference key="parent" ref="283594781"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1379</int>
-						<reference key="object" ref="375873816"/>
+						<reference key="object" ref="650699899"/>
 						<reference key="parent" ref="283594781"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1380</int>
-						<reference key="object" ref="549059050"/>
+						<reference key="object" ref="479907650"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="992281187"/>
+							<reference ref="945476367"/>
 						</array>
 						<reference key="parent" ref="283594781"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1381</int>
-						<reference key="object" ref="992281187"/>
-						<reference key="parent" ref="549059050"/>
+						<reference key="object" ref="945476367"/>
+						<reference key="parent" ref="479907650"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1382</int>
-						<reference key="object" ref="387859276"/>
+						<reference key="object" ref="739378344"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="528418339"/>
+							<reference ref="831064381"/>
 						</array>
 						<reference key="parent" ref="283594781"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">1383</int>
-						<reference key="object" ref="528418339"/>
-						<reference key="parent" ref="387859276"/>
+						<reference key="object" ref="831064381"/>
+						<reference key="parent" ref="739378344"/>
 					</object>
 				</array>
 			</object>
