@@ -37,7 +37,7 @@
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 	}
     
-    [self registerGlobalHotKey];
+    [self registerGlobalHotKeys];
             
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
     
@@ -64,20 +64,9 @@
     }
 }
 - (void)showAnnotateImageWindowWithFile: (NSString*) file {
-    AnnotatedImageController* controller = [[AnnotatedImageController alloc] 
-                                            initWithWindowNibName:@"AnnotatedImage"];
-    //[[controller window] makeKeyAndOrderFront:self];
+    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
-    [controller setImage: image];
-    
-    //    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
-    //    
-    //    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
-    //        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    //        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
-    //        [controller setImage: image];
-    //    }
-  
+    [controller setImageAndShowWindow: image]; 
 }
 
 - (void)showAnnotateImageWindow {
@@ -184,13 +173,6 @@
 }
 
 - (BOOL) registerPrimaryHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
-
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
     [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(primaryHotkeyWithEvent:)];
     if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
                                    modifierFlags:flags 
@@ -204,15 +186,14 @@
         [defaults setInteger:flags forKey:@"PrimaryKeybindingModifierFlags"];
         return YES;
     } else {
+        // Attempt to re-register the original keybindings
+        [self registerGlobalHotKeys];
+        // Then say we failed
         return NO;
     }
 }
 - (BOOL) registerAnnotateHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah
-    // TODO: only unregister IF we are successful in registering....yeah  
+    
     [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(annotateHotkeyWithEvent:)];
     if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
                                    modifierFlags:flags 
@@ -226,11 +207,14 @@
         [defaults setInteger:flags forKey:@"AnnotateyKeybindingModifierFlags"];
         return YES;
     } else {
+        // Attempt to re-register the original keybindings
+        [self registerGlobalHotKeys];
+        // Then say we failed
         return NO;
-    }}
+    }
+}
 
-- (void) registerGlobalHotKey
-{
+- (void) registerGlobalHotKeys {
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
@@ -250,12 +234,9 @@
         NSLog(@"Unable to register global keyboard shortcut");
     }
     
-    NSLog(@"CmdShift: %i", (NSShiftKeyMask|NSCommandKeyMask));
+    // This is how I got the number to store in Defaults.plist
+    //NSLog(@"CmdShift: %i", (NSShiftKeyMask|NSCommandKeyMask));
 
-    
-//    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(hotkeyAnnotateWithEvent:)];
-    
-//    [hotKeyCenter release];
 }
 
 - (DDHotKeyCenter*) getHotKeyCenter

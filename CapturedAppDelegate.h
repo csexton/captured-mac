@@ -53,7 +53,9 @@
 
 - (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent;
 - (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent;
-- (void) registerGlobalHotKey;
+- (void) registerGlobalHotKeys;
+- (BOOL) registerPrimaryHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
+- (BOOL) registerAnnotateHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
 - (DDHotKeyCenter*) getHotKeyCenter;
 
 

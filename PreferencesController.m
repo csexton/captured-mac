@@ -326,11 +326,14 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
+    BOOL isTaken = YES;
+
     if (aRecorder == annotatedShortcutRecorder) {
-        NSLog(@"Shortcut Reader Callback Annotated");
+        isTaken = ![AppDelegate registerAnnotateHotKeyWithKeyCode: keyCode modifierFlags: flags];
+
     }
     if (aRecorder == primaryShortcutRecorder) {
-        NSLog(@"Shortcut Reader Callback Primary");
+        isTaken = ![AppDelegate registerPrimaryHotKeyWithKeyCode: keyCode modifierFlags: flags];
     }
     //	if (aRecorder == shortcutRecorder)
     //	{
@@ -346,7 +349,6 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     //	}
     //	
     
-    BOOL isTaken = ![AppDelegate registerAnnotateHotKeyWithKeyCode: keyCode modifierFlags: flags];
     
     return isTaken;
     
