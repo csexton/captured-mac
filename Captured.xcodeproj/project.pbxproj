@@ -41,6 +41,7 @@
 		B56521C0134C087B00870F8E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
+		B58291AC141EEB0C00CC2C41 /* Keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = B58291AB141EEB0C00CC2C41 /* Keybindings.png */; };
 		B588DD331336DB6800221E3D /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2E1336DB6800221E3D /* Advanced.png */; };
 		B588DD341336DB6800221E3D /* General.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2F1336DB6800221E3D /* General.png */; };
 		B588DD351336DB6800221E3D /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B588DD311336DB6800221E3D /* PreferencesController.m */; };
@@ -173,6 +174,7 @@
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		B58291AB141EEB0C00CC2C41 /* Keybindings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Keybindings.png; sourceTree = "<group>"; };
 		B588DD2E1336DB6800221E3D /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
 		B588DD2F1336DB6800221E3D /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General.png; sourceTree = "<group>"; };
 		B588DD301336DB6800221E3D /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B58291AB141EEB0C00CC2C41 /* Keybindings.png */,
 				B5CF8DF5141BAEDD00D50721 /* ArrowIcon.png */,
 				B5CF8DF3141BAA0800D50721 /* BrushIcon.png */,
 				B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */,
@@ -638,6 +641,7 @@
 				B5CF8DE7141B9D7700D50721 /* AnnotatedImage.xib in Resources */,
 				B5CF8DF4141BAA0800D50721 /* BrushIcon.png in Resources */,
 				B5CF8DF6141BAEDD00D50721 /* ArrowIcon.png in Resources */,
+				B58291AC141EEB0C00CC2C41 /* Keybindings.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

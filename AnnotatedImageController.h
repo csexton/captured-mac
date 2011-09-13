@@ -8,6 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AnnotatedImageView.h"
+
 @interface AnnotatedImageController : NSWindowController{
 @private
     

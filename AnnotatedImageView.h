@@ -4,11 +4,14 @@
 
 @interface AnnotatedImageView : NSView {
 	CGColorSpaceRef colorSpace;
-    NSPoint currentLocation;
-    NSPoint downLocation;
+    CGPoint currentLocation;
+    CGPoint downLocation;
     NSImage * image;
     CGImageRef imageRef;
     
+    BOOL useBrush;
+    BOOL useArrow;
+
     NSMutableArray	* arrayOfBrushStrokes;
 	NSMutableArray	* arrayOfPoints;
 
@@ -30,7 +33,5 @@
 
 @property (readwrite) BOOL useBrush;
 @property (readwrite) BOOL useArrow;
-
-
 
 @end

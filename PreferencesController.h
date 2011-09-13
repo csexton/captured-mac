@@ -2,12 +2,14 @@
 #import <Cocoa/Cocoa.h>
 #import "CapturedAppDelegate.h"
 #import "DropboxPreferencesController.h"
+#import "SRRecorderControl.h"
+
 
 @interface PreferencesController : NSWindowController <NSToolbarDelegate> {
 
 	IBOutlet NSToolbar *bar;
 	IBOutlet NSView *generalPreferenceView;
-	IBOutlet NSView *colorsPreferenceView;
+	IBOutlet NSView *keybindingsPreferenceView;
 	IBOutlet NSView *aboutPreferenceView;
 	IBOutlet NSView *advancedPreferenceView;
 
@@ -30,6 +32,9 @@
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     
+    IBOutlet SRRecorderControl *primaryShortcutRecorder;
+    IBOutlet SRRecorderControl *annotatedShortcutRecorder;
+
     IBOutlet NSPanel *myCustomDialog; // XXX
 
 	int currentViewTag;

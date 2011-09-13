@@ -51,12 +51,10 @@
 - (void)setImage:(NSImage*) image {
     
     
-    CGFloat originalX = annotateImageView.frame.origin.x;
-    CGFloat originalY = annotateImageView.frame.origin.y;
+//    CGFloat originalX = annotateImageView.frame.origin.x;
+//    CGFloat originalY = annotateImageView.frame.origin.y;
 //    CGFloat originalWidth = annotateImageView.frame.size.width;
 //    CGFloat originalHeight = annotateImageView.frame.size.height;
-
-    NSRect f = NSMakeRect(0, /* Button Bar Height */ 55, image.size.width, image.size.height + /* Button Bar Height */ 55);
         
     NSRect frame = [self.window frame];
     frame.size.height = image.size.height + /* Button Bar Height */ 55 + /* Window Frame (70 for full title bar) */ 55;
@@ -65,8 +63,7 @@
     [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
 
-    [annotateImageView setFrame: f];
-    
+    [annotateImageView setFrame: NSMakeRect(0, /* Button Bar Height */ 55, image.size.width, image.size.height)]; //TODO: move into annotateImageView:setImage?    
     [annotateImageView setImage:image];
     //[self showWindow:nil];
     [[self window] makeKeyAndOrderFront:self];

@@ -59,6 +59,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     
     [uploadType selectItemWithObjectValue:type];
     [self selectUploaderViewWithType:type];
+    
+    [primaryShortcutRecorder setDelegate:self];
+    [annotatedShortcutRecorder setDelegate:self];
 }
 
 
@@ -67,7 +70,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	switch(tag) {
 		case 0: default: view = generalPreferenceView; break;
 		case 1: view = advancedPreferenceView; break;
-		case 2: view = colorsPreferenceView; break;
+		case 2: view = keybindingsPreferenceView; break;
 		case 3: view = aboutPreferenceView; break;
 	}
     return view;
@@ -311,6 +314,44 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured Picasa" withUsername:@"" password:password];
     }
 }
+
+
+
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
+{
+    if (aRecorder == annotatedShortcutRecorder) {
+        NSLog(@"Shortcut Reader Callback Annotated");
+    }
+    if (aRecorder == primaryShortcutRecorder) {
+        NSLog(@"Shortcut Reader Callback Primary");
+    }
+    //	if (aRecorder == shortcutRecorder)
+    //	{
+    //		BOOL isTaken = NO;
+    //		
+    //		KeyCombo kc = [delegateDisallowRecorder keyCombo];
+    //		
+    //		if (kc.code == keyCode && kc.flags == flags) isTaken = YES;
+    //		
+    //		*aReason = [delegateDisallowReasonField stringValue];
+    //		
+    //		return isTaken;
+    //	}
+    //	
+	return NO;
+}
+
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
+{
+    NSLog(@"Shortcut Reader Callback 2");
+    
+    //	if (aRecorder == shortcutRecorder)
+    //	{
+    //		[self toggleGlobalHotKey: aRecorder];
+    //	}
+}
+
+
 
 
 

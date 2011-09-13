@@ -2,7 +2,6 @@
 #import "Utilities.h"
 #import "DirEvents.h"
 #import "EventsController.h"
-#import "DDHotKeyCenter.h"
 
 #import "PreferencesController.h"
 #import "AnnotatedImageController.h"
@@ -20,6 +19,8 @@
     if ( self ) {
 		uploadsEnabled = YES;
         [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+        hotKeyCenter = [[DDHotKeyCenter alloc] init];
+
     }
     return self;
 }
@@ -45,7 +46,7 @@
         [self showWelcomeWindow];
     }
     
-    [self showAnnotateImageWindow];
+//    [self showAnnotateImageWindow];
 
 }
 
@@ -184,23 +185,29 @@
 
 - (void) registerGlobalHotKey
 {
-    DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
     // 
     // The keycode was found in 
     // /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
     // 
-    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_5*/0x17 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil]) {
+    if (![hotKeyCenter registerHotKeyWithKeyCode:/*kVK_ANSI_5*/0x17 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil]) {
         NSLog(@"Unable to register global keyboard shortcut");
     } else {
         NSLog(@"Registered global keyboard shortcut for Shift-Command-5");
     }
     
-    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_6*/0x16 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyAnnotateWithEvent:) object:nil]) {
+    if (![hotKeyCenter registerHotKeyWithKeyCode:/*kVK_ANSI_6*/0x16 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyAnnotateWithEvent:) object:nil]) {
         NSLog(@"Unable to register global keyboard shortcut");
     } else {
         NSLog(@"Registered global keyboard shortcut for Shift-Command-6");
     }
     
-    [c release];
+//    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(hotkeyAnnotateWithEvent:)];
+    
+//    [hotKeyCenter release];
+}
+
+- (DDHotKeyCenter*) getHotKeyCenter
+{
+    return hotKeyCenter;
 }
 @end
