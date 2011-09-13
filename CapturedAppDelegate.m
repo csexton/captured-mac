@@ -171,35 +171,87 @@
     [statusMenuController didChangeValueForKey:@"startAtLogin"];
 }
 
-- (void) hotkeyWithEvent:(NSEvent *)hkEvent {
+- (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent {
     //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	//NSLog(@"Hotkey event: %@", hkEvent);
     [self takeScreenCaptureAction:nil];
 }
 
-- (void) hotkeyAnnotateWithEvent:(NSEvent *)hkEvent {
+- (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent {
     //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	//NSLog(@"Hotkey event: %@", hkEvent);
     [self takeAnnotatedScreenCaptureAction:nil];
 }
 
+- (BOOL) registerPrimaryHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
+
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(primaryHotkeyWithEvent:)];
+    if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
+                                   modifierFlags:flags 
+                                          target:self 
+                                          action:@selector(primaryHotkeyWithEvent:) 
+                                          object:nil] ){
+        
+        // Save the new combo to defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:keyCode forKey:@"PrimaryKeybindingKeyCode"];
+        [defaults setInteger:flags forKey:@"PrimaryKeybindingModifierFlags"];
+        return YES;
+    } else {
+        return NO;
+    }
+}
+- (BOOL) registerAnnotateHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah
+    // TODO: only unregister IF we are successful in registering....yeah  
+    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(annotateHotkeyWithEvent:)];
+    if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
+                                   modifierFlags:flags 
+                                          target:self 
+                                          action:@selector(annotateHotkeyWithEvent:) 
+                                          object:nil] ){
+        
+        // Save the new combo to defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:keyCode forKey:@"AnnotateKeybindingKeyCode"];
+        [defaults setInteger:flags forKey:@"AnnotateyKeybindingModifierFlags"];
+        return YES;
+    } else {
+        return NO;
+    }}
+
 - (void) registerGlobalHotKey
 {
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
+    
     // 
     // The keycode was found in 
     // /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
     // 
-    if (![hotKeyCenter registerHotKeyWithKeyCode:/*kVK_ANSI_5*/0x17 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil]) {
+    if (![self registerPrimaryHotKeyWithKeyCode:pKeyCode modifierFlags:pModifierFlags]) {
         NSLog(@"Unable to register global keyboard shortcut");
-    } else {
-        NSLog(@"Registered global keyboard shortcut for Shift-Command-5");
     }
     
-    if (![hotKeyCenter registerHotKeyWithKeyCode:/*kVK_ANSI_6*/0x16 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyAnnotateWithEvent:) object:nil]) {
+    if (![self registerAnnotateHotKeyWithKeyCode:aKeyCode modifierFlags:aModifierFlags]) {
         NSLog(@"Unable to register global keyboard shortcut");
-    } else {
-        NSLog(@"Registered global keyboard shortcut for Shift-Command-6");
     }
+    
+    NSLog(@"CmdShift: %i", (NSShiftKeyMask|NSCommandKeyMask));
+
     
 //    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(hotkeyAnnotateWithEvent:)];
     

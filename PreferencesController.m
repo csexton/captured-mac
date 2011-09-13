@@ -6,6 +6,7 @@
 #import "DropboxPreferencesController.h"
 #import "ImgurPreferencesController.h"
 
+
 static PreferencesController *_sharedPrefsWindowController = nil;
 
 @implementation PreferencesController
@@ -49,7 +50,6 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     dropboxPreferences = [[[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil] view];
     imgurPreferences = [[[ImgurPreferencesController alloc] initWithNibName:@"ImgurPreferences" bundle:nil] view];
 
-
 	[self.window setContentSize:[generalPreferenceView frame].size];
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
@@ -60,8 +60,15 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [uploadType selectItemWithObjectValue:type];
     [self selectUploaderViewWithType:type];
     
+    // Keybindings    
+    NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
     [primaryShortcutRecorder setDelegate:self];
     [annotatedShortcutRecorder setDelegate:self];
+    [primaryShortcutRecorder setKeyCombo:SRMakeKeyCombo(pKeyCode, pModifierFlags)];
+    [annotatedShortcutRecorder setKeyCombo:SRMakeKeyCombo(aKeyCode, aModifierFlags)];
 }
 
 
@@ -338,7 +345,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     //		return isTaken;
     //	}
     //	
-	return NO;
+    
+    BOOL isTaken = ![AppDelegate registerAnnotateHotKeyWithKeyCode: keyCode modifierFlags: flags];
+    
+    return isTaken;
+    
 }
 
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo

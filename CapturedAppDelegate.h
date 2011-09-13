@@ -51,7 +51,8 @@
 - (void)showAnnotateImageWindow;
 - (void)showAnnotateImageWindowWithFile: (NSString*) file;
 
-- (void) hotkeyWithEvent:(NSEvent *)hkEvent;
+- (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent;
+- (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent;
 - (void) registerGlobalHotKey;
 - (DDHotKeyCenter*) getHotKeyCenter;
 
