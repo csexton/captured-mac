@@ -3,6 +3,10 @@
 #import "Utilities.h"
 #import "JSON/JSON.h"
 #import "XMLReader.h"
+#import "OAConsumer.h"
+#import "OAMutableURLRequest.h"
+#import "OADataFetcher.h"
+#import "OAToken.h"
 
 NSString* imgurConsumerKey = @"ef8c51ce1140df5ff9cfe16f17b3d36704e6c0b48";
 NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
@@ -182,76 +186,36 @@ foundCharacters:(NSString *)string {
 	return (displayName && [displayName length] > 0);
 }
 
-- (NSString*)linkAccount:(NSString*)email password:(NSString*)password {
-	NSString* linkResponse = nil;
-	
+- (NSString*)linkAccount:(NSString*)email password:(NSString*)password {	
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/request_token"];
-	NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-	
-	// timestamp and nonce generation
-	time_t timestamp = time(NULL);
-	NSString* nonce = [Utilities genRandString];
-	
-	// format the signature base string
-	NSString* sigBaseString = [Utilities genSigBaseString:[url absoluteString] method:@"POST" fileName:nil consumerKey:imgurConsumerKey nonce:nonce timestamp:timestamp token:nil];
-	
-	// build the signature
-	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:imgurConsumerSecret];
-	[sigBaseString release];
-	
-	// build the authentication header
-	NSString* authHeader = [Utilities genAuthHeader:nil consumerKey:imgurConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
-	
-	// add the post data
-	NSString* paramsString = [NSString stringWithFormat:@"email=%@&password=%@", [Utilities URLEncode:email], [Utilities URLEncode:password]];
-	NSData* paramsData = [paramsString dataUsingEncoding:NSASCIIStringEncoding];
+	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
+	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:nil realm:nil signatureProvider:nil];
 	[request setHTTPMethod:@"POST"];
-	[request setHTTPBody:paramsData];
-	
-	// add the headers
-	[request addValue:authHeader forHTTPHeaderField:@"Authorization"];
-	[request addValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request addValue:[NSString stringWithFormat:@"%lu", [paramsData length]] forHTTPHeaderField:@"Content-Length"];
 	
 	// make the request
-	NSHTTPURLResponse* response = nil;
-	NSError* error = nil;
-	NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-	
-	// parse out the response
-	if (error)
-	{
-		linkResponse = [NSString stringWithFormat:@"Error calling Imgur OAuth token request: %@", [error description]];
-	}
-	else if ([response statusCode] != 200)
-	{
-		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSDictionary* dict = [textResponse JSONValue];
-		linkResponse = [NSString stringWithFormat:@"%@", [dict valueForKey:@"error"]];
-		[textResponse release];
-	}
-	else
-	{
-		// get the new token and secret
-		NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSDictionary* dict = [textResponse JSONValue];
-		NSString* newToken = [dict valueForKey:@"token"];
-		NSString* newSecret = [dict valueForKey:@"secret"];
-		
-		// store there in user defaults, may want to move them elsewhere at some point
-		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-		[defaults setValue:newToken forKey:@"ImgurToken"];
-		[defaults setValue:newSecret forKey:@"ImgurSecret"];
-		
-		// done with the string
-		[textResponse release];
-	}
-	
-	return linkResponse;
+	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
+	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(requestTokenTicket:didFinishWithData:) didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+
+	return nil;
 }
 
--(void)unlinkAccount
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed)
+	{
+		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		OAToken* requestToken = [[OAToken alloc] initWithHTTPResponseBody:response];
+		NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/authorize"];
+		[[NSWorkspace sharedWorkspace] openURL:url];
+	}
+}
+
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+}
+
+- (void)unlinkAccount
 {
 	// remove the imgur token from our records
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];

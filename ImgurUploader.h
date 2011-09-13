@@ -10,7 +10,7 @@
 
 #import "ASIFormDataRequest.h"
 #import "AbstractUploader.h"
-
+#import "OAServiceTicket.h"
 
 @interface ImgurUploader : AbstractUploader {
 	NSData *imageSelection;
@@ -36,4 +36,8 @@
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
 - (NSString*)linkAccount: (NSString *)user password:(NSString *)password;
+
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+
 @end
