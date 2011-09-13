@@ -99,14 +99,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 //	
 //	[myMutaryOfPoints addObject:APointObj];	
     
-    NSPoint l	= [self convertPoint:[event locationInWindow] fromView:nil];
+    CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
     if (self.useArrow) {
         currentLocation	= l;
     }
     
     if (self.useBrush) {
-        APoint * tvarAPointObj		= [[APoint alloc]initWithNSPoint:l];
+        APoint * tvarAPointObj		= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:tvarAPointObj];
         
         [self setNeedsDisplay:YES];
@@ -115,7 +115,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void)mouseDown:(NSEvent *)event{
     
-    NSPoint l	= [self convertPoint:[event locationInWindow] fromView:nil];
+    CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
     if (self.useArrow) {
         // For the arrow
@@ -127,7 +127,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         // For drawing the line
         arrayOfPoints	= [[NSMutableArray alloc]init];
         [arrayOfBrushStrokes addObject:arrayOfPoints];
-        APoint * p	= [[APoint alloc]initWithNSPoint:l];
+        APoint * p	= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:p];
     }
     
@@ -137,14 +137,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 -(void)mouseDragged:(NSEvent *)event {
     
-    NSPoint l	= [self convertPoint:[event locationInWindow] fromView:nil];
+    CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
 
     if (self.useArrow) {
         currentLocation = l;
     }
     
     if (self.useBrush) {
-        APoint * p	= [[APoint alloc]initWithNSPoint:l];
+        APoint * p	= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:p];
     }
     
@@ -253,9 +253,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 	CGContextSetFillColor(context,fillColor);
     CGContextFillRect(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ));
     //if (imageRef) {
-    
-    NSImage * i = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
-    
+        
     if (image) {
         CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
     }

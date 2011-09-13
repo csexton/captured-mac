@@ -6,6 +6,7 @@
 #import "DropboxPreferencesController.h"
 #import "ImgurPreferencesController.h"
 
+
 static PreferencesController *_sharedPrefsWindowController = nil;
 
 @implementation PreferencesController
@@ -49,7 +50,6 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     dropboxPreferences = [[[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil] view];
     imgurPreferences = [[[ImgurPreferencesController alloc] initWithNibName:@"ImgurPreferences" bundle:nil] view];
 
-
 	[self.window setContentSize:[generalPreferenceView frame].size];
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
@@ -59,6 +59,16 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     
     [uploadType selectItemWithObjectValue:type];
     [self selectUploaderViewWithType:type];
+    
+    // Keybindings    
+    NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
+    [primaryShortcutRecorder setDelegate:self];
+    [annotatedShortcutRecorder setDelegate:self];
+    [primaryShortcutRecorder setKeyCombo:SRMakeKeyCombo(pKeyCode, pModifierFlags)];
+    [annotatedShortcutRecorder setKeyCombo:SRMakeKeyCombo(aKeyCode, aModifierFlags)];
 }
 
 
@@ -67,7 +77,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	switch(tag) {
 		case 0: default: view = generalPreferenceView; break;
 		case 1: view = advancedPreferenceView; break;
-		case 2: view = colorsPreferenceView; break;
+		case 2: view = keybindingsPreferenceView; break;
 		case 3: view = aboutPreferenceView; break;
 	}
     return view;
@@ -311,6 +321,50 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         keychainItem = [EMGenericKeychainItem addGenericKeychainItemForService:@"Captured Picasa" withUsername:@"" password:password];
     }
 }
+
+
+
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
+{
+    BOOL isTaken = YES;
+
+    if (aRecorder == annotatedShortcutRecorder) {
+        isTaken = ![AppDelegate registerAnnotateHotKeyWithKeyCode: keyCode modifierFlags: flags];
+
+    }
+    if (aRecorder == primaryShortcutRecorder) {
+        isTaken = ![AppDelegate registerPrimaryHotKeyWithKeyCode: keyCode modifierFlags: flags];
+    }
+    //	if (aRecorder == shortcutRecorder)
+    //	{
+    //		BOOL isTaken = NO;
+    //		
+    //		KeyCombo kc = [delegateDisallowRecorder keyCombo];
+    //		
+    //		if (kc.code == keyCode && kc.flags == flags) isTaken = YES;
+    //		
+    //		*aReason = [delegateDisallowReasonField stringValue];
+    //		
+    //		return isTaken;
+    //	}
+    //	
+    
+    
+    return isTaken;
+    
+}
+
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
+{
+    NSLog(@"Shortcut Reader Callback 2");
+    
+    //	if (aRecorder == shortcutRecorder)
+    //	{
+    //		[self toggleGlobalHotKey: aRecorder];
+    //	}
+}
+
+
 
 
 

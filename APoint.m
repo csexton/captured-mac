@@ -2,7 +2,7 @@
 
 @implementation APoint
 
-- (id) initWithNSPoint:(NSPoint)p {
+- (id) initWithCGPoint:(CGPoint)p {
 	if ((self = [super init]) == nil) {
 		return self;
 	} // end if
@@ -12,7 +12,7 @@
     return self;
 }
 
-- (NSPoint) getNSPoint {
+- (CGPoint) getCGPoint {
 	return point;
 }
 
@@ -23,9 +23,5 @@
 - (float)y {
 	return point.y;
 } // end y
-
-
-
-
 
 @end

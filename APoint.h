@@ -2,10 +2,10 @@
 #import <Cocoa/Cocoa.h>
 
 @interface APoint : NSObject {
-	NSPoint point;
+	CGPoint point;
 }
-- (id) initWithNSPoint:(NSPoint)p;
-- (NSPoint) getNSPoint;
+- (id) initWithCGPoint:(CGPoint)p;
+- (CGPoint) getCGPoint;
 - (float)x;
 - (float)y;
 

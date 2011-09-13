@@ -22,5 +22,13 @@
 	<false/>
 	<key>DropboxDirName</key>
 	<string>Captured</string>
+	<key>PrimaryKeybindingKeyCode</key>
+	<integer>23</integer>
+	<key>PrimaryKeybindingModifierFlags</key>
+	<integer>1179648</integer>
+	<key>AnnotateKeybindingKeyCode</key>
+	<integer>22</integer>
+	<key>AnnotateKeybindingModifierFlags</key>
+	<integer>1179648</integer>
 </dict>
 </plist>

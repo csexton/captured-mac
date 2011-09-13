@@ -8,13 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 #import "AnnotatedImageView.h"
+
 @interface AnnotatedImageController : NSWindowController{
 @private
     
     IBOutlet AnnotatedImageView *annotateImageView;
 
 }
-- (void)setImage:(NSImage*) image;
+- (void)setImageAndShowWindow:(NSImage*) image;
 
 -(IBAction)useBrush:(id)sender;
 -(IBAction)useArrow:(id)sender;

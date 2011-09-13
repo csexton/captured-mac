@@ -48,27 +48,32 @@
     }
 }
 
-- (void)setImage:(NSImage*) image {
+- (void)setImageAndShowWindow:(NSImage*) image {
     
     
-    CGFloat originalX = annotateImageView.frame.origin.x;
-    CGFloat originalY = annotateImageView.frame.origin.y;
+//    CGFloat originalX = annotateImageView.frame.origin.x;
+//    CGFloat originalY = annotateImageView.frame.origin.y;
 //    CGFloat originalWidth = annotateImageView.frame.size.width;
 //    CGFloat originalHeight = annotateImageView.frame.size.height;
-
-    NSRect f = NSMakeRect(0, 55, image.size.width, image.size.height + 55);
         
     NSRect frame = [self.window frame];
-    frame.size.height = image.size.height + 55;
-    frame.size.width = image.size.width;
+    CGFloat imgX = 0;
+    frame.size.height = image.size.height + /* Button Bar Height */ 55 + /* Window Frame (70 for full title bar) */ 55;
+    if (image.size.width < 250) {
+        frame.size.width = 250; // Minimum width of image   
+        imgX = 125 - (image.size.width/2); // Center the image
+    } else {
+        frame.size.width = image.size.width;
+    }
     
     [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
 
-    [annotateImageView setFrame: f];
-    
+    [annotateImageView setFrame: NSMakeRect(imgX, /* Button Bar Height */ 55, image.size.width, image.size.height)];
     [annotateImageView setImage:image];
-    //[self showWindow:nil];
+
+    // Show the window
+    [[self window] makeKeyAndOrderFront:self];
     
 }
 

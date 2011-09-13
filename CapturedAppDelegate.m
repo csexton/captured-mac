@@ -2,7 +2,6 @@
 #import "Utilities.h"
 #import "DirEvents.h"
 #import "EventsController.h"
-#import "DDHotKeyCenter.h"
 
 #import "PreferencesController.h"
 #import "AnnotatedImageController.h"
@@ -20,6 +19,8 @@
     if ( self ) {
 		uploadsEnabled = YES;
         [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
+        hotKeyCenter = [[DDHotKeyCenter alloc] init];
+
     }
     return self;
 }
@@ -36,7 +37,7 @@
 		TransformProcessType(&psn, kProcessTransformToForegroundApplication);
 	}
     
-    [self registerGlobalHotKey];
+    [self registerGlobalHotKeys];
             
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
     
@@ -45,7 +46,7 @@
         [self showWelcomeWindow];
     }
     
-    //[self showAnnotateImageWindow];
+//    [self showAnnotateImageWindow];
 
 }
 
@@ -63,20 +64,9 @@
     }
 }
 - (void)showAnnotateImageWindowWithFile: (NSString*) file {
-    AnnotatedImageController* controller = [[AnnotatedImageController alloc] 
-                                            initWithWindowNibName:@"AnnotatedImage"];
-    [[controller window] makeKeyAndOrderFront:self];
+    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
-    [controller setImage: image];
-    
-    //    AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
-    //    
-    //    if ([NSBundle loadNibNamed:@"AnnotatedImage" owner: controller]) {
-    //        [[NSApplication sharedApplication] activateIgnoringOtherApps: YES];
-    //        NSImage * image = [[NSImage alloc] initWithContentsOfFile:@"/Users/csexton/test.tiff"]; 
-    //        [controller setImage: image];
-    //    }
-  
+    [controller setImageAndShowWindow: image]; 
 }
 
 - (void)showAnnotateImageWindow {
@@ -170,37 +160,87 @@
     [statusMenuController didChangeValueForKey:@"startAtLogin"];
 }
 
-- (void) hotkeyWithEvent:(NSEvent *)hkEvent {
+- (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent {
     //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	//NSLog(@"Hotkey event: %@", hkEvent);
     [self takeScreenCaptureAction:nil];
 }
 
-- (void) hotkeyAnnotateWithEvent:(NSEvent *)hkEvent {
+- (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent {
     //NSLog(@"Firing -[%@ %@]", NSStringFromClass([self class]), NSStringFromSelector(_cmd));
 	//NSLog(@"Hotkey event: %@", hkEvent);
     [self takeAnnotatedScreenCaptureAction:nil];
 }
 
-- (void) registerGlobalHotKey
-{
-    DDHotKeyCenter * c = [[DDHotKeyCenter alloc] init];
+- (BOOL) registerPrimaryHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
+    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(primaryHotkeyWithEvent:)];
+    if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
+                                   modifierFlags:flags 
+                                          target:self 
+                                          action:@selector(primaryHotkeyWithEvent:) 
+                                          object:nil] ){
+        
+        // Save the new combo to defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:keyCode forKey:@"PrimaryKeybindingKeyCode"];
+        [defaults setInteger:flags forKey:@"PrimaryKeybindingModifierFlags"];
+        return YES;
+    } else {
+        // Attempt to re-register the original keybindings
+        [self registerGlobalHotKeys];
+        // Then say we failed
+        return NO;
+    }
+}
+- (BOOL) registerAnnotateHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags {
+    
+    [hotKeyCenter unregisterHotKeysWithTarget:self action:@selector(annotateHotkeyWithEvent:)];
+    if ( [hotKeyCenter registerHotKeyWithKeyCode:keyCode 
+                                   modifierFlags:flags 
+                                          target:self 
+                                          action:@selector(annotateHotkeyWithEvent:) 
+                                          object:nil] ){
+        
+        // Save the new combo to defaults
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:keyCode forKey:@"AnnotateKeybindingKeyCode"];
+        [defaults setInteger:flags forKey:@"AnnotateyKeybindingModifierFlags"];
+        return YES;
+    } else {
+        // Attempt to re-register the original keybindings
+        [self registerGlobalHotKeys];
+        // Then say we failed
+        return NO;
+    }
+}
+
+- (void) registerGlobalHotKeys {
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
+    
     // 
     // The keycode was found in 
     // /System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h
     // 
-    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_5*/0x17 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyWithEvent:) object:nil]) {
+    if (![self registerPrimaryHotKeyWithKeyCode:pKeyCode modifierFlags:pModifierFlags]) {
         NSLog(@"Unable to register global keyboard shortcut");
-    } else {
-        NSLog(@"Registered global keyboard shortcut for Shift-Command-5");
     }
     
-    if (![c registerHotKeyWithKeyCode:/*kVK_ANSI_6*/0x16 modifierFlags:(NSShiftKeyMask|NSCommandKeyMask) target:self action:@selector(hotkeyAnnotateWithEvent:) object:nil]) {
+    if (![self registerAnnotateHotKeyWithKeyCode:aKeyCode modifierFlags:aModifierFlags]) {
         NSLog(@"Unable to register global keyboard shortcut");
-    } else {
-        NSLog(@"Registered global keyboard shortcut for Shift-Command-6");
     }
     
-    [c release];
+    // This is how I got the number to store in Defaults.plist
+    //NSLog(@"CmdShift: %i", (NSShiftKeyMask|NSCommandKeyMask));
+
+}
+
+- (DDHotKeyCenter*) getHotKeyCenter
+{
+    return hotKeyCenter;
 }
 @end

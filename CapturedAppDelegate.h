@@ -11,6 +11,8 @@
 #import "StatusMenuController.h"
 #import "WelcomeWindowController.h"
 #import "PreferencesController.h"
+#import "DDHotKeyCenter.h"
+
 
 #define AppDelegate (CapturedAppDelegate *)[[NSApplication sharedApplication] delegate]
 
@@ -21,6 +23,7 @@
     WelcomeWindowController *welcomeWindowController;
 	BOOL uploadsEnabled;
     NSWindow *window;
+    DDHotKeyCenter *hotKeyCenter;
 
 }
 
@@ -29,9 +32,7 @@
 
 @property (assign) IBOutlet StatusMenuController *statusMenuController;
 @property (assign) IBOutlet WelcomeWindowController *welcomeWindowController;
-
 @property (assign) IBOutlet NSWindow *window;
-
 
 @property BOOL uploadsEnabled;
 
@@ -41,7 +42,7 @@
 - (void)initEventsController;
 - (void)processFileEvent: (NSString *)path;
 - (IBAction)takeScreenCaptureAction:(id) sender;
-- (IBAction) takeAnnotatedScreenCaptureAction:(id) sender;
+- (IBAction)takeAnnotatedScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;
 - (IBAction)showPreferencesWindow:(id) sender;
 
@@ -50,8 +51,12 @@
 - (void)showAnnotateImageWindow;
 - (void)showAnnotateImageWindowWithFile: (NSString*) file;
 
-- (void) hotkeyWithEvent:(NSEvent *)hkEvent;
-- (void) registerGlobalHotKey;
+- (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent;
+- (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent;
+- (void) registerGlobalHotKeys;
+- (BOOL) registerPrimaryHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
+- (BOOL) registerAnnotateHotKeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
+- (DDHotKeyCenter*) getHotKeyCenter;
 
 
 
