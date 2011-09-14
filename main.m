@@ -29,8 +29,32 @@ int main (int argc, const char * argv[]) {
 	// we call this here because it is not thread safe...if we don't do it here, on the main thread, then it will
 	// be called implicitly when we call curl_easy_init(), which is on a UI thread, so that could lead to bad things
 	curl_global_init(CURL_GLOBAL_ALL);
-	
-	int ret = NSApplicationMain(argc,  (const char **) argv);
+    
+    int ret = 0;
+ 
+// For future command line operation:
+//    NSArray *arguments = [[NSProcessInfo processInfo] arguments];
+//    int index = 0;
+//    int fileFlagIndex = -1;
+//    for (NSString* item in arguments)
+//    {
+//        if ([item rangeOfString:@"-f"].location != NSNotFound) {
+//            fileFlagIndex = index;
+//            NSLog(@"Contains -f at index %i", index);
+//
+//        }
+//        index++;
+//    }  
+//    
+//    if (fileFlagIndex > 0) {
+//        NSString* filePath = [arguments objectAtIndex:(fileFlagIndex+1)];
+//        NSLog(@"File to upload %@", filePath);
+//        exit(0); // Stop the app
+//    }
+//        
+        
+    ret = NSApplicationMain(argc,  (const char **) argv);
+    
     [pool drain];
 	
 	curl_global_cleanup();
