@@ -530,7 +530,8 @@ static BOOL _logsErrors;
 	{
 		return mProtocol;
 	}
-    return nil; // should never get here
+    return (SecProtocolType)0; // should never get here
+                               // Use 0 instead of nil to hush a warning
 }
 
 - (void)setProtocol:(SecProtocolType)newProtocol
