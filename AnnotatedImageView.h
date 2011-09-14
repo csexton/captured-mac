@@ -10,9 +10,11 @@
     CGImageRef imageRef;
     
     BOOL useBrush;
+    BOOL useHighlighter;
     BOOL useArrow;
 
     NSMutableArray	* arrayOfBrushStrokes;
+    NSMutableArray	* arrayOfHighlighterStrokes;
 	NSMutableArray	* arrayOfPoints;
 
 }
@@ -32,6 +34,7 @@
 - (void)saveViewToFile:(NSString *) path;
 
 @property (readwrite) BOOL useBrush;
+@property (readwrite) BOOL useHighlighter;
 @property (readwrite) BOOL useArrow;
 
 @end

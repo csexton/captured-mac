@@ -13,12 +13,16 @@
 @private
     
     IBOutlet AnnotatedImageView *annotateImageView;
+    IBOutlet NSButton *brushButton;
+    IBOutlet NSButton *highlighterButton;
+    IBOutlet NSButton *arrowButton;
 
 }
 - (void)setImageAndShowWindow:(NSImage*) image;
 
 -(IBAction)useBrush:(id)sender;
 -(IBAction)useArrow:(id)sender;
+-(IBAction)useHighlighter:(id)sender;
 -(IBAction)closeButton:(id)sender;
 
 @end

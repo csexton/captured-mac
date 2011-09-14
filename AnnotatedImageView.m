@@ -12,6 +12,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 @implementation AnnotatedImageView
 
 @synthesize useBrush;
+@synthesize useHighlighter;
 @synthesize useArrow;
 
 
@@ -51,6 +52,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 	}
     
     arrayOfBrushStrokes	= [[NSMutableArray alloc]init];
+    arrayOfHighlighterStrokes	= [[NSMutableArray alloc]init];
 
     return self;
 }
@@ -59,6 +61,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 	colorSpace	= [self getRGBColorSpace];
 	
     self.useBrush = NO;
+    self.useHighlighter = NO;
     self.useArrow = NO;
 }
 
@@ -108,9 +111,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     if (self.useBrush) {
         APoint * tvarAPointObj		= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:tvarAPointObj];
-        
-        [self setNeedsDisplay:YES];
+
     }
+    if (self.useHighlighter) {
+        APoint * tvarAPointObj		= [[APoint alloc]initWithCGPoint:l];
+        [arrayOfPoints addObject:tvarAPointObj];
+        
+    }
+    [self setNeedsDisplay:YES];
+
 }
 
 - (void)mouseDown:(NSEvent *)event{
@@ -130,6 +139,13 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         APoint * p	= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:p];
     }
+    if (self.useHighlighter) {
+        // For drawing the line
+        arrayOfPoints	= [[NSMutableArray alloc]init];
+        [arrayOfHighlighterStrokes addObject:arrayOfPoints];
+        APoint * p	= [[APoint alloc]initWithCGPoint:l];
+        [arrayOfPoints addObject:p];
+    }
     
     
 	[self setNeedsDisplay:YES];
@@ -143,10 +159,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         currentLocation = l;
     }
     
-    if (self.useBrush) {
+    if (self.useBrush || self.useHighlighter) {
         APoint * p	= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:p];
     }
+    
     
 	[self setNeedsDisplay:YES];
 }
@@ -220,11 +237,41 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
 	NSUInteger i;
 	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
-        CGContextSetRGBStrokeColor(context,1.0,0.0,1.0,0.5);
+        CGContextSetRGBStrokeColor(context,0xE2/256, 0x4B/256, 0x39/256,0.9);
 		CGContextSetLineWidth(context, 3.0 );
         CGContextSetShadow(context, CGSizeMake(2, -2), 5);
 
 		NSMutableArray * strokePts	= [arrayOfBrushStrokes objectAtIndex:i];
+        
+		NSUInteger tvarIntNumberOfPoints	= [strokePts count];				// always >= 2
+		APoint * tvarLastPointObj			= [strokePts objectAtIndex:0];
+		CGContextBeginPath(context);
+		CGContextMoveToPoint(context,[tvarLastPointObj x],[tvarLastPointObj y]);
+        
+		NSUInteger j;
+		for (j = 1; j < tvarIntNumberOfPoints; j++) {  // note the index starts at 1
+			APoint * tvarCurPointObj			= [strokePts objectAtIndex:j];
+			CGContextAddLineToPoint(context,[tvarCurPointObj x],[tvarCurPointObj y]);
+		}
+		CGContextDrawPath(context,kCGPathStroke);
+	}
+    CGContextRestoreGState(context);
+}
+
+-(void)drawHighlighterStrokesOn:(CGContextRef)context {
+    if ([arrayOfHighlighterStrokes count] == 0) { return; }
+    
+    CGContextSaveGState(context);
+    
+	NSUInteger tvarIntNumberOfStrokes	= [arrayOfHighlighterStrokes count];
+    
+	NSUInteger i;
+	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
+        CGContextSetRGBStrokeColor(context,1.0,1.0,0.0,0.5);
+		CGContextSetLineWidth(context, 12.0 );
+        //CGContextSetShadow(context, CGSizeMake(2, -2), 5);
+        
+		NSMutableArray * strokePts	= [arrayOfHighlighterStrokes objectAtIndex:i];
         
 		NSUInteger tvarIntNumberOfPoints	= [strokePts count];				// always >= 2
 		APoint * tvarLastPointObj			= [strokePts objectAtIndex:0];
@@ -258,17 +305,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
     }
 
-//    CGContextDrawImage(context, CGRectMake (0.0, 0.0, rect.size.width, rect.size.height ), imageRef);
-    //}
-    
-//    if (self.useArrow) {
-        [self drawArrowOn:context from:downLocation to:currentLocation];
-//    }
-    
-//    if (self.useBrush) {
-        [self drawBrushStrokesOn:context];
-//    }
-	
+
+    [self drawArrowOn:context from:downLocation to:currentLocation];
+    [self drawBrushStrokesOn:context];
+    [self drawHighlighterStrokesOn:context];
+
 }
 //- (void)drawRect:(NSRect)rect {
 //	

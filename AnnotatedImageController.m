@@ -56,21 +56,25 @@
 //    CGFloat originalWidth = annotateImageView.frame.size.width;
 //    CGFloat originalHeight = annotateImageView.frame.size.height;
         
+    
+    
     NSRect frame = [self.window frame];
     CGFloat imgX = 0;
-    frame.size.height = image.size.height + /* Button Bar Height */ 55 + /* Window Frame (70 for full title bar) */ 55;
-    if (image.size.width < 250) {
-        frame.size.width = 250; // Minimum width of image   
-        imgX = 125 - (image.size.width/2); // Center the image
+    CGFloat minWidth = 300;
+    frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (70 for full title bar) */ 0;
+    if (image.size.width < minWidth) {
+        frame.size.width = minWidth; // Minimum width of image   
+        imgX = (minWidth/2) - (image.size.width/2); // Center the image
     } else {
-        frame.size.width = image.size.width;
+        frame.size.width = image.size.width+1;
     }
     
     [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
 
-    [annotateImageView setFrame: NSMakeRect(imgX, /* Button Bar Height */ 55, image.size.width, image.size.height)];
+    [annotateImageView setFrame: NSMakeRect(imgX, /* Button Bar Height */ 50, image.size.width+2, image.size.height)];
     [annotateImageView setImage:image];
+    [self useArrow:nil];
 
     // Show the window
     [[self window] makeKeyAndOrderFront:self];
@@ -81,13 +85,27 @@
 -(IBAction)useArrow:(id)sender{
     annotateImageView.useArrow = YES;
     annotateImageView.useBrush = NO;
+    annotateImageView.useHighlighter = NO;
+    
+    brushButton.state = NSOffState;
+    highlighterButton.state = NSOffState;
 }
 
 -(IBAction)useBrush:(id)sender{
     annotateImageView.useArrow = NO;
     annotateImageView.useBrush = YES;
+    annotateImageView.useHighlighter = NO;
+    arrowButton.state = NSOffState;
+    highlighterButton.state = NSOffState;
 }
+-(IBAction)useHighlighter:(id)sender{
+    annotateImageView.useArrow = NO;
+    annotateImageView.useBrush = NO;
+    annotateImageView.useHighlighter = YES;
+    arrowButton.state = NSOffState;
+    brushButton.state = NSOffState;
 
+}
 -(IBAction)closeButton:(id)sender{
     [self close];
     
@@ -105,7 +123,6 @@
     
     [AppDelegate processFileEvent:path];
     
-
      //[self.window orderOut:nil]; // to hide it
      //[window makeKeyAndOrderFront:nil]; // to show it
 }
