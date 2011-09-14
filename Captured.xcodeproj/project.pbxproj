@@ -25,6 +25,9 @@
 		B50909CE12E790BF00A32F5E /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909C612E790BF00A32F5E /* ASINetworkQueue.m */; };
 		B50909D412E7910C00A32F5E /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D312E7910C00A32F5E /* XMLReader.m */; };
 		B50909D912E7915B00A32F5E /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909D812E7915B00A32F5E /* validatereceipt.m */; };
+		B50D6EEC14204E3E00A73B54 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D6EEB14204E3E00A73B54 /* NSMutableURLRequest+Parameters.m */; };
+		B50D6EF114204F0D00A73B54 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D6EEE14204F0D00A73B54 /* NSString+URLEncoding.m */; };
+		B50D6EF214204F0D00A73B54 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = B50D6EF014204F0D00A73B54 /* NSURL+Base.m */; };
 		B51A1FCD12E393EB006C7840 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = B51A1FCC12E393EB006C7840 /* Credits.html */; };
 		B51ABACE141C7B9C004E5B9C /* SRCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAC5141C7B9C004E5B9C /* SRCommon.m */; };
 		B51ABACF141C7B9C004E5B9C /* SRKeyCodeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = B51ABAC7141C7B9C004E5B9C /* SRKeyCodeTransformer.m */; };
@@ -162,6 +165,12 @@
 		B50909D312E7910C00A32F5E /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		B50909D712E7915B00A32F5E /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
 		B50909D812E7915B00A32F5E /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
+		B50D6EEA14204E3E00A73B54 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableURLRequest+Parameters.h"; path = "OAuthConsumer/NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		B50D6EEB14204E3E00A73B54 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableURLRequest+Parameters.m"; path = "OAuthConsumer/NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
+		B50D6EED14204F0D00A73B54 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+URLEncoding.h"; path = "OAuthConsumer/NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		B50D6EEE14204F0D00A73B54 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+URLEncoding.m"; path = "OAuthConsumer/NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		B50D6EEF14204F0D00A73B54 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSURL+Base.h"; path = "OAuthConsumer/NSURL+Base.h"; sourceTree = "<group>"; };
+		B50D6EF014204F0D00A73B54 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSURL+Base.m"; path = "OAuthConsumer/NSURL+Base.m"; sourceTree = "<group>"; };
 		B51A1FCC12E393EB006C7840 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = Resources/Credits.html; sourceTree = "<group>"; };
 		B51ABAC4141C7B9C004E5B9C /* SRCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SRCommon.h; path = ShortcutRecorder/SRCommon.h; sourceTree = "<group>"; };
 		B51ABAC5141C7B9C004E5B9C /* SRCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SRCommon.m; path = ShortcutRecorder/SRCommon.m; sourceTree = "<group>"; };
@@ -579,6 +588,12 @@
 		CF088226141C886F00017138 /* OAuthConsumer */ = {
 			isa = PBXGroup;
 			children = (
+				B50D6EED14204F0D00A73B54 /* NSString+URLEncoding.h */,
+				B50D6EEE14204F0D00A73B54 /* NSString+URLEncoding.m */,
+				B50D6EEF14204F0D00A73B54 /* NSURL+Base.h */,
+				B50D6EF014204F0D00A73B54 /* NSURL+Base.m */,
+				B50D6EEA14204E3E00A73B54 /* NSMutableURLRequest+Parameters.h */,
+				B50D6EEB14204E3E00A73B54 /* NSMutableURLRequest+Parameters.m */,
 				CF088228141C89AD00017138 /* OAAsynchronousDataFetcher.h */,
 				CF088229141C89AD00017138 /* OAAsynchronousDataFetcher.m */,
 				CF08822A141C89AD00017138 /* OAConsumer.h */,
@@ -785,6 +800,9 @@
 				CF088245141C89AD00017138 /* OAToken_KeychainExtensions.m in Sources */,
 				CF088246141C89AD00017138 /* OAToken.m in Sources */,
 				CF08824A141C95AE00017138 /* Base64Transcoder.c in Sources */,
+				B50D6EEC14204E3E00A73B54 /* NSMutableURLRequest+Parameters.m in Sources */,
+				B50D6EF114204F0D00A73B54 /* NSString+URLEncoding.m in Sources */,
+				B50D6EF214204F0D00A73B54 /* NSURL+Base.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
