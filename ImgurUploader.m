@@ -66,7 +66,12 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	if (ticket.didSucceed)
 	{
 		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		uploadUrl = [[response JSONValue] valueForKeyPath:@"upload.links.original"];
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		NSString * linkType = [defaults stringForKey:@"ImgurLinkType"];
+		if ([linkType isEqualToString:@"Copy URL to Direct Image"])
+			uploadUrl = [[response JSONValue] valueForKeyPath:@"upload.links.original"];
+		else
+			uploadUrl = [[response JSONValue] valueForKeyPath:@"upload.links.imgur_page"];
 		deleteUrl = [[response JSONValue] valueForKeyPath:@"upload.links.delete_page"];
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"DropboxProvider", @"Type",
@@ -283,7 +288,7 @@ foundCharacters:(NSString *)string {
 {
 }
 
-- (void)authorizeAccount:(NSString*) verificationCode
+- (NSString*)authorizeAccount:(NSString*) verificationCode
 {
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/access_token"];
@@ -295,6 +300,8 @@ foundCharacters:(NSString *)string {
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(accessTokenTicket:didFinishWithData:) didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+	
+	return @"Obtaining access token...";
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data

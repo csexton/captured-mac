@@ -39,7 +39,7 @@
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
 - (NSString*)linkAccount: (NSString *)user password:(NSString *)password;
-- (void)authorizeAccount:(NSString*) verificationCode;
+- (NSString*)authorizeAccount:(NSString*) verificationCode;
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
