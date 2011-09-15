@@ -242,6 +242,9 @@ foundCharacters:(NSString *)string {
 	{
 		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		accessToken = [[OAToken alloc] initWithHTTPResponseBody:response];
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		[defaults setValue:[accessToken key] forKey:@"ImgurKey"];
+		[defaults setValue:[accessToken secret] forKey:@"ImgurSecret"];
 	}
 	else
 	{
