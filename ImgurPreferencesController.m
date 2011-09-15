@@ -44,24 +44,45 @@
 
 -(IBAction)linkAccounts:(id)sender {
     
-    NSString *ret = [uploader linkAccount:nil password:nil];
+    [uploader linkAccount:self withSelector:@selector(linkAccountsCallback:)];
     
-    if (ret != nil) {
-        [errorLabel setStringValue:ret];
-    }
+
     [box setContentView:verifyView];
+}
+
+-(void)linkAccountsCallback:(NSString*)status {
+    if (status != nil) {
+        [errorLabel setStringValue:status];
+    } else {
+        [box setContentView:verifyView];
+    }
+
 }
 
 -(IBAction)verifyAccounts:(id)sender {
     
     NSString *vc = [verificationCode stringValue];
     
-    NSString *ret = [uploader authorizeAccount:vc];
+//    NSString *ret = [uploader authorizeAccount:vc];
+//    
+//    if (ret != nil) {
+//        [verifyErrorLabel setStringValue:ret];
+//    }
+//    [self showApproprateView];
+    // Until we get a delegete for the uploader to call back with, just trust it worked
+    [uploader authorizeAccount:vc delegate:self withSelector:@selector(verifyAccountsCallback:)];
+}
+-(void)verifyAccountsCallback:(NSString*)status {
     
-    if (ret != nil) {
-        [verifyErrorLabel setStringValue:ret];
+    if (status != nil) {
+        [verifyErrorLabel setStringValue:status];
+    } else {
+        [box setContentView:linkedView];
     }
-    [self showApproprateView];
+//    [self showApproprateView];
+//    NSLog(@"Called back with %@", status);
+//    [box setContentView:linkedView];
+    
 }
 -(IBAction)unlinkAccounts:(id)sender {
     [box setContentView:loginView];

@@ -31,7 +31,11 @@
 
 -(void)showApproprateView;
 -(IBAction)linkAccounts:(id)sender;
+-(void)linkAccountsCallback:(NSString*)status;
 -(IBAction)verifyAccounts:(id)sender;
+-(void)verifyAccountsCallback:(NSString*)status;
 -(IBAction)unlinkAccounts:(id)sender;
+
+
 
 @end
