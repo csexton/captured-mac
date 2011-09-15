@@ -28,6 +28,7 @@
 @property (retain) NSString *filePathName;
 
 - (void) performUpload: (NSData *) image;
+- (void) performUploadWithToken: (NSData *) data accessToken:(OAToken*) accessToken;
 - (void) requestFinished: (ASIFormDataRequest *) request;
 - (void) requestFailed: (ASIFormDataRequest *) request;
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;
@@ -44,5 +45,7 @@
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)postImage:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)postImage:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end

@@ -17,7 +17,8 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 @synthesize imageSelection, imageSelectionData, xmlResponseData, filePathName;
 
 #pragma mark  Imgur API Access Method
-- (void) performUpload: (NSData *) data; {
+- (void) performUpload: (NSData *) data
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
                                                         object:self];
 	imageSelectionData = data;
@@ -35,6 +36,54 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
                                                         object:self];
+}
+
+- (void) performUploadWithToken: (NSData *) data
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
+                                                        object:self];
+	
+	NSURL* url = [NSURL URLWithString:@"http://api.imgur.com/2/upload.json"];
+	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
+	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:accessToken realm:nil signatureProvider:nil];
+	[request setHTTPMethod:@"POST"];
+	
+	OARequestParameter* keyParam = [[OARequestParameter alloc] initWithName:@"key" value:API_KEY];
+	OARequestParameter* imageParam = [[OARequestParameter alloc] initWithName:@"image" value:[data base64EncodedString]];
+	
+	NSArray* params = [NSArray arrayWithObjects:keyParam, imageParam, nil];
+	[request setParameters:params];
+
+	// make the request
+	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
+	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(postImage:didFinishWithData:) didFailSelector:@selector(postImage:didFailWithError:)];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
+                                                        object:self];
+}
+- (void)postImage:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed)
+	{
+		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		uploadUrl = [[response JSONValue] valueForKeyPath:@"upload.links.original"];
+		deleteUrl = [[response JSONValue] valueForKeyPath:@"upload.links.delete_page"];
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"DropboxProvider", @"Type",
+							  uploadUrl, @"ImageURL",
+							  deleteUrl, @"DeleteImageURL",
+							  nil, @"FilePath",
+							  nil];
+		[self uploadSuccess:dict];
+	}
+	else
+	{
+		[self uploadFailed:nil];
+	}
+}
+
+- (void)postImage:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
 }
 
 #pragma mark ASIFormData Delegate Methods
@@ -82,7 +131,19 @@ foundCharacters:(NSString *)string {
     [self uploadStarted];
     self.filePathName = filename;
 	NSData* data = [NSData dataWithContentsOfFile: filename];
-	[self performUpload:data];
+	if (!accessToken)
+	{
+		// user may have linked account since last time, so we check each time
+		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+		NSString* key = [defaults stringForKey:@"ImgurKey"];
+		NSString* secret = [defaults stringForKey:@"ImgurSecret"];
+		if (key && secret)
+			accessToken = [[OAToken alloc] initWithKey:key secret:secret];
+	}
+	if (accessToken)
+		[self performUploadWithToken:data];
+	else
+		[self performUpload:data];
 }
 
 - (NSDictionary *) parseResponseForURL: (NSString*)str {
