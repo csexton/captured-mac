@@ -237,7 +237,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
 	NSUInteger i;
 	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
-        CGContextSetRGBStrokeColor(context,0xE2/256, 0x4B/256, 0x39/256,0.9);
+        CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
 		CGContextSetLineWidth(context, 3.0 );
         CGContextSetShadow(context, CGSizeMake(2, -2), 5);
 

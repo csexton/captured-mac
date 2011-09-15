@@ -45,18 +45,25 @@
 
 -(IBAction)linkAccounts:(id)sender {
     
-    NSString *userStr = [user stringValue];
-    NSString *pass = [password stringValue];
-    
-    NSString *ret = [uploader linkAccount:userStr password:pass];
+    NSString *ret = [uploader linkAccount:nil password:nil];
     
     if (ret != nil) {
         [errorLabel setStringValue:ret];
     }
+    [box setContentView:verifyView];
+}
+
+-(IBAction)verifyAccounts:(id)sender {
+    
+    NSString *vc = [verificationCode stringValue];
+    
+    NSLog(@"CALL VERIFY THINGY FROM JORGE! %@", vc);
+//    if (ret != nil) {
+//        [errorLabel setStringValue:ret];
+//    }
     [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {
-    [password setStringValue:@""];
     [box setContentView:loginView];
     [uploader unlinkAccount];
     

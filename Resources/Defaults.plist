@@ -24,7 +24,7 @@
 	<string>Captured</string>
 	<key>KeybindingPrimaryCode</key>
 	<integer>23</integer>
-	<key>PrimaryKeybindingModifierFlags</key>
+	<key>KeybindingPrimaryFlags</key>
 	<integer>1179648</integer>
 	<key>KeybindingAnnotateCode</key>
 	<integer>22</integer>

@@ -14,9 +14,9 @@
 @private
     
     IBOutlet NSBox *box;
-    IBOutlet NSTextField *user;
-    IBOutlet NSTextField *password;
+    IBOutlet NSTextField *verificationCode;
     IBOutlet NSView *linkedView;
+    IBOutlet NSView *verifyView;
     IBOutlet NSView *loginView;
     IBOutlet NSTextField *linkedAccountLabel;
     IBOutlet NSTextField *errorLabel;
@@ -30,6 +30,7 @@
 
 -(void)showApproprateView;
 -(IBAction)linkAccounts:(id)sender;
+-(IBAction)verifyAccounts:(id)sender;
 -(IBAction)unlinkAccounts:(id)sender;
 
 @end
