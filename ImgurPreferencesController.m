@@ -57,7 +57,8 @@
     
     NSString *vc = [verificationCode stringValue];
     
-    NSLog(@"CALL VERIFY THINGY FROM JORGE! %@", vc);
+    [uploader authorizeAccount:vc];
+    
 //    if (ret != nil) {
 //        [errorLabel setStringValue:ret];
 //    }
