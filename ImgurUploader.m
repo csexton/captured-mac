@@ -227,6 +227,7 @@ foundCharacters:(NSString *)string {
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/access_token"];
 	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
+	[requestToken setVerifier:verificationCode];
 	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:requestToken realm:nil signatureProvider:nil];
 	[request setHTTPMethod:@"POST"];
 	
