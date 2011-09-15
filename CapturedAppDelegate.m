@@ -182,8 +182,8 @@
         
         // Save the new combo to defaults
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:keyCode forKey:@"PrimaryKeybindingKeyCode"];
-        [defaults setInteger:flags forKey:@"PrimaryKeybindingModifierFlags"];
+        [defaults setInteger:keyCode forKey:@"KeybindingPrimaryCode"];
+        [defaults setInteger:flags forKey:@"KeybindingPrimaryFlags"];
         return YES;
     } else {
         // Attempt to re-register the original keybindings
@@ -203,8 +203,8 @@
         
         // Save the new combo to defaults
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setInteger:keyCode forKey:@"AnnotateKeybindingKeyCode"];
-        [defaults setInteger:flags forKey:@"AnnotateyKeybindingModifierFlags"];
+        [defaults setInteger:keyCode forKey:@"KeybindingAnnotateCode"];
+        [defaults setInteger:flags forKey:@"KeybindingAnnotateFlags"];
         return YES;
     } else {
         // Attempt to re-register the original keybindings
@@ -217,10 +217,10 @@
 - (void) registerGlobalHotKeys {
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
-	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
-    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
-	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
+	NSInteger pKeyCode = [defaults integerForKey:@"KeybindingPrimaryCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"KeybindingPrimaryFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"KeybindingAnnotateCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"KeybindingAnnotateFlags"];
     
     // 
     // The keycode was found in 

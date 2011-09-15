@@ -61,10 +61,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [self selectUploaderViewWithType:type];
     
     // Keybindings    
-    NSInteger pKeyCode = [defaults integerForKey:@"PrimaryKeybindingKeyCode"];
-	NSInteger pModifierFlags = [defaults integerForKey:@"PrimaryKeybindingModifierFlags"];
-    NSInteger aKeyCode = [defaults integerForKey:@"AnnotateKeybindingKeyCode"];
-	NSInteger aModifierFlags = [defaults integerForKey:@"AnnotateKeybindingModifierFlags"];
+    NSInteger pKeyCode = [defaults integerForKey:@"KeybindingPrimaryCode"];
+	NSInteger pModifierFlags = [defaults integerForKey:@"KeybindingPrimaryFlags"];
+    NSInteger aKeyCode = [defaults integerForKey:@"KeybindingAnnotateCode"];
+	NSInteger aModifierFlags = [defaults integerForKey:@"KeybindingAnnotateFlags"];
     [primaryShortcutRecorder setDelegate:self];
     [annotatedShortcutRecorder setDelegate:self];
     [primaryShortcutRecorder setKeyCombo:SRMakeKeyCombo(pKeyCode, pModifierFlags)];
