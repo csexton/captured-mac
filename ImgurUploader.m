@@ -53,6 +53,8 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	
 	NSArray* params = [NSArray arrayWithObjects:keyParam, imageParam, nil];
 	[request setParameters:params];
+	
+	[self uploadStarted];
 
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
