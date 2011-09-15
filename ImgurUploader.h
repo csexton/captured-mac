@@ -39,5 +39,7 @@
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end
