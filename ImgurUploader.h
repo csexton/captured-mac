@@ -11,13 +11,15 @@
 #import "ASIFormDataRequest.h"
 #import "AbstractUploader.h"
 #import "OAServiceTicket.h"
+#import "OAToken.h"
 
 @interface ImgurUploader : AbstractUploader {
 	NSData *imageSelection;
     NSData *imageSelectionData;
 	NSData *xmlResponseData;
     NSString *filePathName;
-
+	OAToken* requestToken;
+	OAToken* accessToken;
 }
 
 @property (retain) NSData *imageSelection;

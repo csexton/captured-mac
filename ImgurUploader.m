@@ -179,7 +179,13 @@ foundCharacters:(NSString *)string {
 
 - (BOOL)isAccountLinked
 {
-	OAToken *accessToken = [[OAToken alloc] initWithUserDefaultsUsingServiceProviderName:@"Captured" prefix:@"imgur"];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* key = [defaults stringForKey:@"ImgurKey"];
+	NSString* secret = [defaults stringForKey:@"ImgurSecret"];
+	if (!key || !secret)
+		return false;
+
+	accessToken = [[OAToken alloc] initWithKey:key secret:secret];
 	
 	return accessToken != nil;
 }
@@ -203,7 +209,7 @@ foundCharacters:(NSString *)string {
 	if (ticket.didSucceed)
 	{
 		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		OAToken* requestToken = [[OAToken alloc] initWithHTTPResponseBody:response];
+		requestToken = [[OAToken alloc] initWithHTTPResponseBody:response];
 		NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.imgur.com/oauth/authorize?oauth_token=%@", [requestToken key]]];
 		[[NSWorkspace sharedWorkspace] openURL:url];
 	}
@@ -216,13 +222,25 @@ foundCharacters:(NSString *)string {
 {
 }
 
+- (void)authorizeAccount:(NSString*) verificationCode
+{
+	// create the url and request
+	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/access_token"];
+	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
+	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:requestToken realm:nil signatureProvider:nil];
+	[request setHTTPMethod:@"POST"];
+	
+	// make the request
+	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
+	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(accessTokenTicket:didFinishWithData:) didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+}
+
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	if (ticket.didSucceed)
 	{
 		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		OAToken* accessToken = [[OAToken alloc] initWithHTTPResponseBody:response];
-		[accessToken storeInUserDefaultsWithServiceProviderName:@"Captured" prefix:@"imgur"];
+		accessToken = [[OAToken alloc] initWithHTTPResponseBody:response];
 	}
 	else
 	{
@@ -235,6 +253,14 @@ foundCharacters:(NSString *)string {
 
 - (void)unlinkAccount
 {
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	[defaults removeObjectForKey:@"ImgurKey"];
+	[defaults removeObjectForKey:@"ImgurSecret"];
+	if (accessToken)
+	{
+		[accessToken release];
+		accessToken = nil;
+	}
 }
 
 @end
