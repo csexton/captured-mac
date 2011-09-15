@@ -35,8 +35,7 @@
 
 -(void)showApproprateView{
     if ([uploader isAccountLinked]) {
-			NSString* name = [[NSUserDefaults standardUserDefaults] stringForKey:@"ImgurDisplayName"];
-			[displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to %@'s Imgur Account.",name]];
+			[displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to an Imgur Account."]];
         [box setContentView:linkedView];
     } else {
         [box setContentView:loginView];
@@ -57,11 +56,11 @@
     
     NSString *vc = [verificationCode stringValue];
     
-    [uploader authorizeAccount:vc];
+    NSString *ret = [uploader authorizeAccount:vc];
     
-//    if (ret != nil) {
-//        [errorLabel setStringValue:ret];
-//    }
+    if (ret != nil) {
+        [verifyErrorLabel setStringValue:ret];
+    }
     [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {

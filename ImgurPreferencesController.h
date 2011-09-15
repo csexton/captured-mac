@@ -20,6 +20,7 @@
     IBOutlet NSView *loginView;
     IBOutlet NSTextField *linkedAccountLabel;
     IBOutlet NSTextField *errorLabel;
+    IBOutlet NSTextField *verifyErrorLabel;
     IBOutlet NSTextField *displayName;
     
     
