@@ -1,8 +1,8 @@
 //
-//  OADataFetcherTest.h
+//  OAToken.h
 //  OAuthConsumer
 //
-//  Created by Jon Crosby on 11/6/07.
+//  Created by Jon Crosby on 10/19/07.
 //  Copyright 2007 Kaboomerang LLC. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,16 +23,22 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+#import <Foundation/Foundation.h>
 
-#import <SenTestingKit/SenTestingKit.h>
-#import "OADataFetcher.h"
-#import "OAPlaintextSignatureProvider.h"
-
-
-@interface OADataFetcherTest : SenTestCase {
-    NSTask *server;
+@interface OAToken : NSObject {
+@protected
+	NSString *key;
+	NSString *secret;
+	NSString *verifier;
 }
 
-- (void)testFetchDataWithRequest;
+@property(retain) NSString *verifier;
+@property(retain) NSString *key;
+@property(retain) NSString *secret;
+
+- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret;
+- (id)initWithUserDefaultsUsingServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
+- (id)initWithHTTPResponseBody:(NSString *)body;
+- (int)storeInUserDefaultsWithServiceProviderName:(NSString *)provider prefix:(NSString *)prefix;
 
 @end

@@ -149,11 +149,14 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
                                                   [token.secret URLEncodedString]]];
     
     // set OAuth headers
-    NSString *oauthToken;
-    if ([token.key isEqualToString:@""])
-        oauthToken = @""; // not used on Request Token transactions
-    else
-        oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [token.key URLEncodedString]];
+	NSString *oauthToken;
+	
+	if ([token.key isEqualToString:@""])
+		oauthToken = @"oauth_callback=\"oob\", ";
+	else if(token.verifier == nil || [token.verifier isEqualToString:@""])
+		oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", ", [token.key URLEncodedString]];
+	else
+		oauthToken = [NSString stringWithFormat:@"oauth_token=\"%@\", oauth_verifier=\"%@\", ", [token.key URLEncodedString], [token.verifier URLEncodedString]];
 	
 	NSMutableString *extraParameters = [NSMutableString string];
 	
@@ -206,10 +209,18 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 	[parameterPairs addObject:[[OARequestParameter requestParameterWithName:@"oauth_nonce" value:nonce] URLEncodedNameValuePair]];
 	[parameterPairs addObject:[[OARequestParameter requestParameterWithName:@"oauth_version" value:@"1.0"] URLEncodedNameValuePair]];
     
-    if (![token.key isEqualToString:@""]) {
+	if (![token.key isEqualToString:@""]) {
         [parameterPairs addObject:[[OARequestParameter requestParameterWithName:@"oauth_token" value:token.key] URLEncodedNameValuePair]];
+		if (token.verifier != nil && ![token.verifier isEqualToString:@""]) {
+			[parameterPairs addObject:[[OARequestParameter requestParameterWithName:@"oauth_verifier" value:token.verifier] URLEncodedNameValuePair]];
+		}
     }
-    
+	else 
+	{
+		[parameterPairs addObject:[[OARequestParameter requestParameterWithName:@"oauth_callback" value:@"oob"] URLEncodedNameValuePair]];
+	}
+
+	
     for (OARequestParameter *param in [self parameters]) {
         [parameterPairs addObject:[param URLEncodedNameValuePair]];
     }

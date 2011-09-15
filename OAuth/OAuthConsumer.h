@@ -1,5 +1,6 @@
 //
-//  OAHMAC_SHA1SignatureProviderTest.h
+//  OAuthConsumer.h
+//  OAuthConsumer
 //
 //  Created by Jon Crosby on 10/19/07.
 //  Copyright 2007 Kaboomerang LLC. All rights reserved.
@@ -22,13 +23,17 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-#import <SenTestingKit/SenTestingKit.h>
+#import <Foundation/Foundation.h>
+#import "OAToken.h"
+#import "OAConsumer.h"
+#import "OAMutableURLRequest.h"
+#import "NSString+URLEncoding.h"
+#import "NSMutableURLRequest+Parameters.h"
+#import "NSURL+Base.h"
+#import "OASignatureProviding.h"
 #import "OAHMAC_SHA1SignatureProvider.h"
-
-
-@interface OAHMAC_SHA1SignatureProviderTest : SenTestCase
-
-- (void)testSignClearText;
-
-@end
+#import "OAPlaintextSignatureProvider.h"
+#import "OARequestParameter.h"
+#import "OAServiceTicket.h"
+#import "OADataFetcher.h"
+#import "OAAsynchronousDataFetcher.h"
