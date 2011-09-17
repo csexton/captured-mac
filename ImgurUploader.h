@@ -28,7 +28,7 @@
 @property (retain) NSString *filePathName;
 
 - (void) performUpload: (NSData *) image;
-- (void) performUploadWithToken: (NSData *) data accessToken:(OAToken*) accessToken;
+- (void) performUploadWithToken: (NSData *) data;
 - (void) requestFinished: (ASIFormDataRequest *) request;
 - (void) requestFailed: (ASIFormDataRequest *) request;
 - (void) parser:(NSXMLParser *)parser foundCharacters:(NSString *)string;

@@ -59,6 +59,13 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(postImage:didFinishWithData:) didFailSelector:@selector(postImage:didFailWithError:)];
+	
+	// clean up
+	[keyParam release];
+	[imageParam release];
+	[fetcher release];
+	[request release];
+	[consumer release];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
                                                         object:self];
@@ -81,6 +88,7 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 							  deleteUrl, @"DeleteImageURL",
 							  nil, @"FilePath",
 							  nil];
+		[response release];
 		[self uploadSuccess:dict];
 	}
 	else
@@ -268,6 +276,11 @@ foundCharacters:(NSString *)string {
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(requestTokenTicket:didFinishWithData:) didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+	
+	// clean up
+	[fetcher release];
+	[request release];
+	[consumer release];
 
 	return nil;
 }
@@ -280,6 +293,7 @@ foundCharacters:(NSString *)string {
 		requestToken = [[OAToken alloc] initWithHTTPResponseBody:response];
 		NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.imgur.com/oauth/authorize?oauth_token=%@", [requestToken key]]];
 		[[NSWorkspace sharedWorkspace] openURL:url];
+		[response release];
 	}
 	else
 	{
@@ -303,6 +317,11 @@ foundCharacters:(NSString *)string {
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(accessTokenTicket:didFinishWithData:) didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
 	
+	// clean up
+	[fetcher release];
+	[request release];
+	[consumer release];
+	
 	return @"Obtaining access token...";
 }
 
@@ -315,6 +334,7 @@ foundCharacters:(NSString *)string {
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setValue:[accessToken key] forKey:@"ImgurKey"];
 		[defaults setValue:[accessToken secret] forKey:@"ImgurSecret"];
+		[response release];
 	}
 	else
 	{
