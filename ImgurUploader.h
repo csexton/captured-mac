@@ -20,6 +20,11 @@
     NSString *filePathName;
 	OAToken* requestToken;
 	OAToken* accessToken;
+    
+    id linkAccountDelegate;
+    SEL linkAccountSelector;
+    id authorizeAccountDelegate;
+    SEL authorizeAccountSelector;
 }
 
 @property (retain) NSData *imageSelection;
@@ -38,8 +43,8 @@
 
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
-- (NSString*)linkAccount: (NSString *)user password:(NSString *)password;
-- (NSString*)authorizeAccount:(NSString*) verificationCode;
+- (void)linkAccount:(id)delegate withSelector:(SEL)finishSelector;
+- (void)authorizeAccount:(NSString*) verificationCode delegate:(id)delegate withSelector:(SEL)selector;
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

@@ -266,8 +266,12 @@ foundCharacters:(NSString *)string {
 	return accessToken != nil;
 }
 
-- (NSString*)linkAccount:(NSString*)email password:(NSString*)password {	
+- (void)linkAccount:(id)delegate withSelector:(SEL)finishSelector {	
 	// create the url and request
+    
+    linkAccountDelegate = delegate;
+    linkAccountSelector = finishSelector;
+    
 	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/request_token"];
 	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
 	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:nil realm:nil signatureProvider:nil];
@@ -294,18 +298,30 @@ foundCharacters:(NSString *)string {
 		NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.imgur.com/oauth/authorize?oauth_token=%@", [requestToken key]]];
 		[[NSWorkspace sharedWorkspace] openURL:url];
 		[response release];
+        [linkAccountDelegate performSelector:linkAccountSelector withObject:nil];
 	}
 	else
 	{
+        [linkAccountDelegate performSelector:linkAccountSelector withObject:@"Unable to get the request token from imgur"];
 	}
+    
+    // Now that we've called back, clear the pointers
+    linkAccountDelegate = nil;
+    linkAccountSelector = nil;
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+    [linkAccountDelegate performSelector:linkAccountSelector withObject:@"Unable to get the request token from imgur"];
+    // Now that we've called back, clear the pointers
+    linkAccountDelegate = nil;
+    linkAccountSelector = nil;
 }
 
-- (NSString*)authorizeAccount:(NSString*) verificationCode
+- (void)authorizeAccount:(NSString*) verificationCode delegate:(id)delegate withSelector:(SEL)selector
 {
+    authorizeAccountDelegate = delegate;
+    authorizeAccountSelector = selector;
 	// create the url and request
 	NSURL* url = [NSURL URLWithString:@"https://api.imgur.com/oauth/access_token"];
 	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
@@ -329,20 +345,33 @@ foundCharacters:(NSString *)string {
 {
 	if (ticket.didSucceed)
 	{
+        NSLog(@"Successfully authenticated with Imgur");
 		NSString* response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		accessToken = [[OAToken alloc] initWithHTTPResponseBody:response];
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setValue:[accessToken key] forKey:@"ImgurKey"];
 		[defaults setValue:[accessToken secret] forKey:@"ImgurSecret"];
 		[response release];
+        [authorizeAccountDelegate performSelector:authorizeAccountSelector withObject:nil];
 	}
 	else
 	{
+        NSLog(@"Unable to create access token for Imgur");
+        [authorizeAccountDelegate performSelector:authorizeAccountSelector withObject:@"Invalid access token ticket"];
+
 	}
+    // Now that we've called back, clear the pointers
+    authorizeAccountDelegate = nil;
+    authorizeAccountSelector = nil;
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+    [authorizeAccountDelegate performSelector:authorizeAccountSelector withObject:@"Unable to get access token"];
+    // Now that we've called back, clear the pointers
+    authorizeAccountDelegate = nil;
+    authorizeAccountSelector = nil;
+
 }
 
 - (void)unlinkAccount
