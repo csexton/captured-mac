@@ -59,6 +59,13 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(postImage:didFinishWithData:) didFailSelector:@selector(postImage:didFailWithError:)];
+	
+	// clean up
+	[keyParam release];
+	[imageParam release];
+	[fetcher release];
+	[request release];
+	[consumer release];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
                                                         object:self];
@@ -81,6 +88,7 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 							  deleteUrl, @"DeleteImageURL",
 							  nil, @"FilePath",
 							  nil];
+		[response release];
 		[self uploadSuccess:dict];
 	}
 	else
@@ -100,11 +108,11 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	if (request.responseStatusCode != 200) {
 		NSLog(@"Upload Failed");
 		NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
-		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
+		NSLog(@"Imgur Response: %@", [[[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding] autorelease]);
 		[self requestFailed:nil];
 	}
 	else{
-		NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
+		NSLog(@"Imgur Response: %@", [[[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding] autorelease]);
 		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
 		NSDictionary *dict = [self parseResponseForURL:body];
         [self uploadSuccess:dict];
@@ -115,7 +123,7 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	NSData * myData = [request rawResponseData];
 	NSLog(@"Upload Failed");
 	NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
-	NSLog(@"Imgur Response: %.*s", [myData length], [myData bytes]);
+	NSLog(@"Imgur Response: %@", [[[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding] autorelease]);
     [self uploadFailed:nil];
 }
 
@@ -272,6 +280,11 @@ foundCharacters:(NSString *)string {
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(requestTokenTicket:didFinishWithData:) didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+	
+	// clean up
+	[fetcher release];
+	[request release];
+	[consumer release];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
@@ -282,8 +295,8 @@ foundCharacters:(NSString *)string {
 		requestToken = [[OAToken alloc] initWithHTTPResponseBody:response];
 		NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.imgur.com/oauth/authorize?oauth_token=%@", [requestToken key]]];
 		[[NSWorkspace sharedWorkspace] openURL:url];
+		[response release];
         [linkAccountDelegate performSelector:linkAccountSelector withObject:nil];
-
 	}
 	else
 	{
@@ -317,6 +330,10 @@ foundCharacters:(NSString *)string {
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(accessTokenTicket:didFinishWithData:) didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+	// clean up
+	[fetcher release];
+	[request release];
+	[consumer release];
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
@@ -329,8 +346,8 @@ foundCharacters:(NSString *)string {
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		[defaults setValue:[accessToken key] forKey:@"ImgurKey"];
 		[defaults setValue:[accessToken secret] forKey:@"ImgurSecret"];
+		[response release];
         [authorizeAccountDelegate performSelector:authorizeAccountSelector withObject:nil];
-
 	}
 	else
 	{
