@@ -317,8 +317,6 @@ foundCharacters:(NSString *)string {
 	// make the request
 	OADataFetcher* fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request delegate:self didFinishSelector:@selector(accessTokenTicket:didFinishWithData:) didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
-	
-	return @"Obtaining access token...";
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
