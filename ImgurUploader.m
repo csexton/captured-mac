@@ -16,6 +16,13 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 
 @synthesize imageSelection, imageSelectionData, xmlResponseData, filePathName;
 
+- (void) dealloc {
+	[requestToken release];
+	[accessToken release];
+	
+	[super dealloc];
+}
+
 #pragma mark  Imgur API Access Method
 - (void) performUpload: (NSData *) data
 {
