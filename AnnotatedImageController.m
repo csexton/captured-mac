@@ -32,6 +32,10 @@
 //    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
+//- (void) dealloc
+//{
+//    [super dealloc];
+//}
 - (void)windowWillClose
 {
     // TODO: Clean up memory

@@ -11,10 +11,12 @@
 @interface ABrushStroke : NSObject {
     NSMutableArray * points;
     NSColor *color;
+    CGFloat width;
 }
 
 @property (readwrite, retain) NSMutableArray *points;
 @property (readwrite, retain) NSColor *color;
+@property (readwrite) CGFloat width;
 
 -(void)drawOn:(CGContextRef)context;
 

@@ -13,6 +13,7 @@
 
 @synthesize points;
 @synthesize color;
+@synthesize width;
 
 
 - (id)init
@@ -22,10 +23,16 @@
         // Initialization code here.
         points = [[NSMutableArray alloc] init];
         color = [NSColor redColor];
-
+        width = 12.0;
     }
     
     return self;
+}
+- (void) dealloc
+{
+    [points release];
+    [color release];
+    [super dealloc];
 }
 
 -(void)drawOn:(CGContextRef)context {
@@ -35,7 +42,7 @@
     
     //CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
     CGContextSetRGBStrokeColor(context, [color redComponent], [color greenComponent], [color blueComponent], [color alphaComponent]);
-    CGContextSetLineWidth(context, 3.0 );
+    CGContextSetLineWidth(context, width );
     CGContextSetLineJoin(context, NSRoundLineJoinStyle);
     CGContextSetLineCap(context, NSRoundLineCapStyle);
     

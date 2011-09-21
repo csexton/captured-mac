@@ -17,7 +17,6 @@
     NSColor * brushColor;
 
     NSMutableArray	* arrayOfBrushStrokes;
-    NSMutableArray	* arrayOfHighlighterStrokes;
 	NSMutableArray	* arrayOfPoints;
     
     ABrushStroke *currentStroke;
