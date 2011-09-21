@@ -3,7 +3,7 @@
 //  Captured
 //
 //  Created by Christopher Sexton on 4/13/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Codeography. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>

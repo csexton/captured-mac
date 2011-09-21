@@ -73,6 +73,7 @@
 		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
 		B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */; };
 		B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */; };
+		B5A44F09142A2A5B003B71FD /* ABrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A44F08142A2A5B003B71FD /* ABrushStroke.m */; };
 		B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */; };
 		B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */; };
 		B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */; };
@@ -246,6 +247,8 @@
 		B5A438F412E0ECF3007D2A2D /* DirEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirEvents.m; path = DirEvents/DirEvents.m; sourceTree = "<group>"; };
 		B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconError.png; path = Resources/StatusMenuIconError.png; sourceTree = "<group>"; };
 		B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSuccess.png; path = Resources/StatusMenuIconSuccess.png; sourceTree = "<group>"; };
+		B5A44F07142A2A5B003B71FD /* ABrushStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABrushStroke.h; sourceTree = "<group>"; };
+		B5A44F08142A2A5B003B71FD /* ABrushStroke.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABrushStroke.m; sourceTree = "<group>"; };
 		B5AEC8CC1347CB49001922C8 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropboxPreferences.xib; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */,
 				B5CF8DE2141B9D2300D50721 /* APoint.h */,
 				B5CF8DE3141B9D2300D50721 /* APoint.m */,
+				B5A44F07142A2A5B003B71FD /* ABrushStroke.h */,
+				B5A44F08142A2A5B003B71FD /* ABrushStroke.m */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
 				77C8280C06725ACE000B614F /* CapturedAppDelegate.m */,
 				B52ADBA3130C2B8D00C7A531 /* DDHotKeyCenter.h */,
@@ -842,6 +847,7 @@
 				B50D6F441421B60300A73B54 /* OAToken.m in Sources */,
 				B5CEBBFE1428CE7A00090F31 /* PanelLikeWindow.m in Sources */,
 				B5CEBC04142968CB00090F31 /* GradientView.m in Sources */,
+				B5A44F09142A2A5B003B71FD /* ABrushStroke.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

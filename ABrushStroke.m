@@ -1,30 +1,28 @@
 //
-//  MenuItemWithDict.m
+//  ABrushStroke.m
 //  Captured
 //
-//  Created by Christopher Sexton on 3/17/11.
+//  Created by Christopher Sexton on 9/21/11.
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
-#import "MenuItemWithDict.h"
+#import "ABrushStroke.h"
 
+@implementation ABrushStroke
 
-@implementation MenuItemWithDict
-@synthesize dict;
+@synthesize points;
+@synthesize color;
+
 
 - (id)init
 {
     self = [super init];
     if (self) {
         // Initialization code here.
+
     }
     
     return self;
-}
-
-- (void)dealloc
-{
-    [super dealloc];
 }
 
 @end
