@@ -11,19 +11,15 @@
 
 @implementation ABrushStroke
 
-@synthesize points;
-@synthesize color;
-@synthesize width;
 
-
-- (id)init
+- (id)initWithColor:(NSColor*)c andWidth: (CGFloat)w
 {
     self = [super init];
     if (self) {
         // Initialization code here.
         points = [[NSMutableArray alloc] init];
-        color = [NSColor redColor];
-        width = 12.0;
+        color = [c copy];
+        width = w;
     }
     
     return self;
@@ -33,6 +29,22 @@
     [points release];
     [color release];
     [super dealloc];
+}
+
+-(void)addPoint: (CGPoint)point {
+    APoint * p = [[APoint alloc]initWithCGPoint:point];
+    [points addObject:p]; 
+}
+
+-(void)mouseUpAt: (CGPoint)point {
+    [self addPoint:point];
+
+}
+-(void)mouseDownAt: (CGPoint)point {
+    [self addPoint:point];
+}
+-(void)mouseDragAt: (CGPoint)point {
+    [self addPoint:point];
 }
 
 -(void)drawOn:(CGContextRef)context {

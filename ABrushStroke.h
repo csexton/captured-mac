@@ -7,18 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ADrawable.h"
 
-@interface ABrushStroke : NSObject {
+@interface ABrushStroke : ADrawable {
     NSMutableArray * points;
     NSColor *color;
     CGFloat width;
 }
 
-@property (readwrite, retain) NSMutableArray *points;
-@property (readwrite, retain) NSColor *color;
-@property (readwrite) CGFloat width;
-
--(void)drawOn:(CGContextRef)context;
+-(id)initWithColor:(NSColor*)c andWidth: (CGFloat)w;
+-(void)addPoint: (CGPoint)point;
 
 
 

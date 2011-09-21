@@ -19,16 +19,16 @@
     NSMutableArray	* arrayOfBrushStrokes;
 	NSMutableArray	* arrayOfPoints;
     
-    ABrushStroke *currentStroke;
+    ADrawable *currentStroke;
 
 }
 
-- (CGPoint) rotate:(CGPoint) p by:(CGFloat) theta;
-- (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o;
-- (CGPoint) rotatePoint: (CGPoint)p to: (CGPoint)d around: (CGPoint)o;
-- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2;
+//- (CGPoint) rotate:(CGPoint) p by:(CGFloat) theta;
+//- (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o;
+//- (CGPoint) rotatePoint: (CGPoint)p to: (CGPoint)d around: (CGPoint)o;
+//- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2;
 
-- (void)drawArrowOn:(CGContextRef)context from:(CGPoint)p1 to:(CGPoint)p2;
+//- (void)drawArrowOn:(CGContextRef)context from:(CGPoint)p1 to:(CGPoint)p2;
 - (void)drawBrushStrokesOn:(CGContextRef)context;
 
 - (CGColorSpaceRef) getRGBColorSpace;
