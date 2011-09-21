@@ -60,6 +60,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     return self;
 }
 
+- (void) dealloc
+{
+    [brushColor release];
+    [super dealloc];
+}
+
 - (void)awakeFromNib {
 	colorSpace	= [self getRGBColorSpace];
 	
