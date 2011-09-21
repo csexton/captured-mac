@@ -12,6 +12,8 @@
     BOOL useBrush;
     BOOL useHighlighter;
     BOOL useArrow;
+    
+    NSColor * brushColor;
 
     NSMutableArray	* arrayOfBrushStrokes;
     NSMutableArray	* arrayOfHighlighterStrokes;
@@ -36,5 +38,6 @@
 @property (readwrite) BOOL useBrush;
 @property (readwrite) BOOL useHighlighter;
 @property (readwrite) BOOL useArrow;
+@property (readwrite, retain) NSColor *brushColor;
 
 @end

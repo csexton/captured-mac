@@ -27,8 +27,9 @@
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    
-    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
+    annotateImageView.brushColor = colorWell.color;
+    [self.window setLevel:NSModalPanelWindowLevel];
+//    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
 - (void)windowWillClose
@@ -43,8 +44,11 @@
 - (void)keyDown:(NSEvent *)event {
     [self interpretKeyEvents:[NSArray arrayWithObject:event]];
     NSLog(@"Event %@", event);
-    if ([event keyCode] == 36) {
-        [self closeButton:nil];
+    unsigned short k = [event keyCode];
+    if (k == 36) {
+        [self closeButton:nil]; // Y U STILL PLAY DONK SOUND???
+    } else {
+        [super keyDown:event];
     }
 }
 
@@ -60,7 +64,7 @@
     
     NSRect frame = [self.window frame];
     CGFloat imgX = 0;
-    CGFloat minWidth = 300;
+    CGFloat minWidth = 340;
     frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (70 for full title bar) */ 0;
     if (image.size.width < minWidth) {
         frame.size.width = minWidth; // Minimum width of image   
@@ -81,11 +85,35 @@
     
 }
 
+-(IBAction)brushColorWellChanged:(id)sender{
+ 
+    annotateImageView.brushColor = colorWell.color;
+}
 
+
+-(IBAction)segmentedControlClicked:(id)sender{
+    int selectedSegment = [sender selectedSegment];
+    int clickedSegmentTag = [[sender cell] tagForSegment:selectedSegment];
+    switch (clickedSegmentTag) {
+        case 0:
+            [self useArrow:nil];
+            break;
+        case 1:
+            [self useHighlighter:nil];
+            break;
+        case 2:
+            [self useBrush:nil];
+            break;
+        default:
+            break;
+    }
+    
+}
 -(IBAction)useArrow:(id)sender{
     annotateImageView.useArrow = YES;
     annotateImageView.useBrush = NO;
     annotateImageView.useHighlighter = NO;
+    [colorWell setHidden:YES];
     
     brushButton.state = NSOffState;
     highlighterButton.state = NSOffState;
@@ -95,6 +123,8 @@
     annotateImageView.useArrow = NO;
     annotateImageView.useBrush = YES;
     annotateImageView.useHighlighter = NO;
+    [colorWell setHidden:NO];
+
     arrowButton.state = NSOffState;
     highlighterButton.state = NSOffState;
 }
@@ -102,6 +132,8 @@
     annotateImageView.useArrow = NO;
     annotateImageView.useBrush = NO;
     annotateImageView.useHighlighter = YES;
+    [colorWell setHidden:YES];
+
     arrowButton.state = NSOffState;
     brushButton.state = NSOffState;
 

@@ -14,6 +14,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 @synthesize useBrush;
 @synthesize useHighlighter;
 @synthesize useArrow;
+@synthesize brushColor;
+
 
 
 - (void)setImage:(NSImage *)i {
@@ -53,6 +55,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     arrayOfBrushStrokes	= [[NSMutableArray alloc]init];
     arrayOfHighlighterStrokes	= [[NSMutableArray alloc]init];
+    brushColor = [NSColor redColor];
 
     return self;
 }
@@ -237,8 +240,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
 	NSUInteger i;
 	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
-        CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
+        //CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
+        CGContextSetRGBStrokeColor(context, [brushColor redComponent], [brushColor greenComponent], [brushColor blueComponent], [brushColor alphaComponent]);
 		CGContextSetLineWidth(context, 3.0 );
+        CGContextSetLineJoin(context, NSRoundLineJoinStyle);
+        CGContextSetLineCap(context, NSRoundLineCapStyle);
+
         CGContextSetShadow(context, CGSizeMake(2, -2), 5);
 
 		NSMutableArray * strokePts	= [arrayOfBrushStrokes objectAtIndex:i];
@@ -269,6 +276,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
         CGContextSetRGBStrokeColor(context,1.0,1.0,0.0,0.5);
 		CGContextSetLineWidth(context, 12.0 );
+        CGContextSetLineJoin(context, NSRoundLineJoinStyle);
+        CGContextSetLineCap(context, NSRoundLineCapStyle);
+
         //CGContextSetShadow(context, CGSizeMake(2, -2), 5);
         
 		NSMutableArray * strokePts	= [arrayOfHighlighterStrokes objectAtIndex:i];

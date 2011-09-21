@@ -83,6 +83,8 @@
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
 		B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */; };
 		B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C56460130470F500E396E6 /* NSButton+TextColor.m */; };
+		B5CEBBFE1428CE7A00090F31 /* PanelLikeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */; };
+		B5CEBC04142968CB00090F31 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBC03142968CB00090F31 /* GradientView.m */; };
 		B5CF8DE4141B9D2300D50721 /* AnnotatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */; };
 		B5CF8DE5141B9D2300D50721 /* APoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DE3141B9D2300D50721 /* APoint.m */; };
 		B5CF8DE7141B9D7700D50721 /* AnnotatedImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5CF8DE6141B9D7700D50721 /* AnnotatedImage.xib */; };
@@ -258,6 +260,10 @@
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
 		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
 		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
+		B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelLikeWindow.h; sourceTree = "<group>"; };
+		B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelLikeWindow.m; sourceTree = "<group>"; };
+		B5CEBC02142968CB00090F31 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		B5CEBC03142968CB00090F31 /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
 		B5CF8DE0141B9D2300D50721 /* AnnotatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotatedImageView.h; sourceTree = "<group>"; };
 		B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotatedImageView.m; sourceTree = "<group>"; };
 		B5CF8DE2141B9D2300D50721 /* APoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APoint.h; sourceTree = "<group>"; };
@@ -343,6 +349,8 @@
 				B50909D612E7915B00A32F5E /* ValidateReceipt */,
 				B5CF8DE0141B9D2300D50721 /* AnnotatedImageView.h */,
 				B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */,
+				B5CF8DF0141BA2CD00D50721 /* AnnotatedImageController.h */,
+				B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */,
 				B5CF8DE2141B9D2300D50721 /* APoint.h */,
 				B5CF8DE3141B9D2300D50721 /* APoint.m */,
 				77C8280B06725ACE000B614F /* CapturedAppDelegate.h */,
@@ -371,8 +379,10 @@
 				B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */,
 				B505D3361356970000B91EDE /* ImgurPreferencesController.h */,
 				B505D3371356970000B91EDE /* ImgurPreferencesController.m */,
-				B5CF8DF0141BA2CD00D50721 /* AnnotatedImageController.h */,
-				B5CF8DF1141BA2CD00D50721 /* AnnotatedImageController.m */,
+				B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */,
+				B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */,
+				B5CEBC02142968CB00090F31 /* GradientView.h */,
+				B5CEBC03142968CB00090F31 /* GradientView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -830,6 +840,8 @@
 				B50D6F421421B60300A73B54 /* OARequestParameter.m in Sources */,
 				B50D6F431421B60300A73B54 /* OAServiceTicket.m in Sources */,
 				B50D6F441421B60300A73B54 /* OAToken.m in Sources */,
+				B5CEBBFE1428CE7A00090F31 /* PanelLikeWindow.m in Sources */,
+				B5CEBC04142968CB00090F31 /* GradientView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

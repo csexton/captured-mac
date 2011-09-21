@@ -16,6 +16,9 @@
     IBOutlet NSButton *brushButton;
     IBOutlet NSButton *highlighterButton;
     IBOutlet NSButton *arrowButton;
+    IBOutlet NSColorWell *colorWell;
+    IBOutlet NSSegmentedControl *segmentedControl;
+    IBOutlet NSView *toolBar;
 
 }
 - (void)setImageAndShowWindow:(NSImage*) image;
@@ -24,5 +27,8 @@
 -(IBAction)useArrow:(id)sender;
 -(IBAction)useHighlighter:(id)sender;
 -(IBAction)closeButton:(id)sender;
+-(IBAction)segmentedControlClicked:(id)sender;
+-(IBAction)brushColorWellChanged:(id)sender;
+
 
 @end
