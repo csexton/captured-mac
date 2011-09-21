@@ -1,6 +1,7 @@
 
 #import "AnnotatedImageView.h"
 #import "APoint.h"
+#import "ABrushStroke.h"
 
 #import <math.h>
 
@@ -113,7 +114,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     if (self.useBrush) {
         APoint * tvarAPointObj		= [[APoint alloc]initWithCGPoint:l];
-        [arrayOfPoints addObject:tvarAPointObj];
+        [currentStroke.points addObject:tvarAPointObj];
 
     }
     if (self.useHighlighter) {
@@ -137,10 +138,11 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     if (self.useBrush) {
         // For drawing the line
-        arrayOfPoints	= [[NSMutableArray alloc]init];
-        [arrayOfBrushStrokes addObject:arrayOfPoints];
+        currentStroke = [[ABrushStroke alloc]init];
+        currentStroke.color = brushColor;
+        [arrayOfBrushStrokes addObject:currentStroke];
         APoint * p	= [[APoint alloc]initWithCGPoint:l];
-        [arrayOfPoints addObject:p];
+        [currentStroke.points addObject:p];
     }
     if (self.useHighlighter) {
         // For drawing the line
@@ -162,7 +164,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         currentLocation = l;
     }
     
-    if (self.useBrush || self.useHighlighter) {
+    if (self.useBrush) {
+        APoint * p	= [[APoint alloc]initWithCGPoint:l];
+        [currentStroke.points addObject:p];
+    }
+    
+    if (self.useHighlighter) {
         APoint * p	= [[APoint alloc]initWithCGPoint:l];
         [arrayOfPoints addObject:p];
     }
@@ -232,37 +239,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 }
 
 -(void)drawBrushStrokesOn:(CGContextRef)context {
-    if ([arrayOfBrushStrokes count] == 0) { return; }
-
-    CGContextSaveGState(context);
-
-	NSUInteger tvarIntNumberOfStrokes	= [arrayOfBrushStrokes count];
-    
-	NSUInteger i;
-	for (i = 0; i < tvarIntNumberOfStrokes; i++) {
-        //CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
-        CGContextSetRGBStrokeColor(context, [brushColor redComponent], [brushColor greenComponent], [brushColor blueComponent], [brushColor alphaComponent]);
-		CGContextSetLineWidth(context, 3.0 );
-        CGContextSetLineJoin(context, NSRoundLineJoinStyle);
-        CGContextSetLineCap(context, NSRoundLineCapStyle);
-
-        CGContextSetShadow(context, CGSizeMake(2, -2), 5);
-
-		NSMutableArray * strokePts	= [arrayOfBrushStrokes objectAtIndex:i];
-        
-		NSUInteger tvarIntNumberOfPoints	= [strokePts count];				// always >= 2
-		APoint * tvarLastPointObj			= [strokePts objectAtIndex:0];
-		CGContextBeginPath(context);
-		CGContextMoveToPoint(context,[tvarLastPointObj x],[tvarLastPointObj y]);
-        
-		NSUInteger j;
-		for (j = 1; j < tvarIntNumberOfPoints; j++) {  // note the index starts at 1
-			APoint * tvarCurPointObj			= [strokePts objectAtIndex:j];
-			CGContextAddLineToPoint(context,[tvarCurPointObj x],[tvarCurPointObj y]);
-		}
-		CGContextDrawPath(context,kCGPathStroke);
-	}
-    CGContextRestoreGState(context);
+    for (id s in arrayOfBrushStrokes) {
+        [s drawOn: context];
+    }
 }
 
 -(void)drawHighlighterStrokesOn:(CGContextRef)context {

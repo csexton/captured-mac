@@ -16,6 +16,8 @@
 @property (readwrite, retain) NSMutableArray *points;
 @property (readwrite, retain) NSColor *color;
 
+-(void)drawOn:(CGContextRef)context;
+
 
 
 @end

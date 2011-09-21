@@ -1,6 +1,7 @@
 
 
 #import <Cocoa/Cocoa.h>
+#import "ABrushStroke.h"
 
 @interface AnnotatedImageView : NSView {
 	CGColorSpaceRef colorSpace;
@@ -18,6 +19,8 @@
     NSMutableArray	* arrayOfBrushStrokes;
     NSMutableArray	* arrayOfHighlighterStrokes;
 	NSMutableArray	* arrayOfPoints;
+    
+    ABrushStroke *currentStroke;
 
 }
 
