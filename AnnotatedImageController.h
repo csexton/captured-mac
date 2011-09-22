@@ -26,6 +26,7 @@
 -(IBAction)useArrow:(id)sender;
 -(IBAction)useHighlighter:(id)sender;
 -(IBAction)closeButton:(id)sender;
+-(IBAction)undoButton:(id)sender;
 -(IBAction)segmentedControlClicked:(id)sender;
 -(IBAction)brushColorWellChanged:(id)sender;
 
