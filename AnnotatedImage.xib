@@ -77,7 +77,7 @@
 							<int key="NSvFlags">290</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSButton" id="211626564">
+								<object class="NSButton" id="415386742">
 									<reference key="NSNextResponder" ref="125090389"/>
 									<int key="NSvFlags">265</int>
 									<string key="NSFrame">{{5, 5}, {0, 0}}</string>
@@ -86,7 +86,7 @@
 									<reference key="NSNextKeyView"/>
 									<string key="NSReuseIdentifierKey">_NS:3196</string>
 									<bool key="NSEnabled">YES</bool>
-									<object class="NSButtonCell" key="NSCell" id="486331602">
+									<object class="NSButtonCell" key="NSCell" id="74528298">
 										<int key="NSCellFlags">-2080244224</int>
 										<int key="NSCellFlags2">167772160</int>
 										<string key="NSContents">Undo Button</string>
@@ -96,7 +96,7 @@
 											<int key="NSfFlags">1044</int>
 										</object>
 										<string key="NSCellIdentifier">_NS:3196</string>
-										<reference key="NSControlView" ref="211626564"/>
+										<reference key="NSControlView" ref="415386742"/>
 										<int key="NSButtonFlags">-2038152961</int>
 										<int key="NSButtonFlags2">268435590</int>
 										<string key="NSAlternateContents"/>
@@ -182,7 +182,7 @@
 									<string key="NSFrame">{{318, 12}, {142, 25}}</string>
 									<reference key="NSSuperview" ref="125090389"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="211626564"/>
+									<reference key="NSNextKeyView" ref="415386742"/>
 									<string key="NSReuseIdentifierKey">_NS:161</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="922504542">
@@ -304,7 +304,7 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">undoButton:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="211626564"/>
+						<reference key="destination" ref="415386742"/>
 					</object>
 					<int key="connectionID">91</int>
 				</object>
@@ -376,7 +376,7 @@
 							<reference ref="281373281"/>
 							<reference ref="242840934"/>
 							<reference ref="1048389453"/>
-							<reference ref="211626564"/>
+							<reference ref="415386742"/>
 						</object>
 						<reference key="parent" ref="1023013860"/>
 					</object>
@@ -388,6 +388,7 @@
 							<reference ref="922504542"/>
 						</object>
 						<reference key="parent" ref="125090389"/>
+						<string key="objectName">Upload and Close Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">21</int>
@@ -412,21 +413,22 @@
 						<int key="objectID">75</int>
 						<reference key="object" ref="242840934"/>
 						<reference key="parent" ref="125090389"/>
+						<string key="objectName">Brush Color</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">88</int>
-						<reference key="object" ref="211626564"/>
+						<reference key="object" ref="415386742"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="486331602"/>
+							<reference ref="74528298"/>
 						</object>
 						<reference key="parent" ref="125090389"/>
-						<string key="objectName">Square Button</string>
+						<string key="objectName">Undo Button</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">89</int>
-						<reference key="object" ref="486331602"/>
-						<reference key="parent" ref="211626564"/>
+						<reference key="object" ref="74528298"/>
+						<reference key="parent" ref="415386742"/>
 					</object>
 				</object>
 			</object>
@@ -453,6 +455,7 @@
 					<string>78.IBPluginDependency</string>
 					<string>83.IBPluginDependency</string>
 					<string>88.IBPluginDependency</string>
+					<string>88.notes</string>
 					<string>88.userInterfaceItemIdentifier</string>
 					<string>89.IBPluginDependency</string>
 				</object>
@@ -504,6 +507,33 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSMutableAttributedString">
+						<object class="NSMutableString" key="NSString">
+							<bytes key="NS.bytes">VGhpcyBpcyBoZXJlIGZvciB0aGUga2V5YmluZGluZ3MuIFVzaW5nIGtleURvd24gd291bGQgd29yayBi
+dXQgc3RpbGwgbWFrZSBhICdkb25rJyBzb3VuZC4gU28gbWFraW5nIGludmlzaWJsZSBidXR0b25zIHNl
+ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
+						</object>
+						<object class="NSDictionary" key="NSAttributes">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="NSArray" key="dict.sortedKeys">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<string>NSFont</string>
+								<string>NSParagraphStyle</string>
+							</object>
+							<object class="NSMutableArray" key="dict.values">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSFont">
+									<string key="NSName">Helvetica</string>
+									<double key="NSSize">12</double>
+									<int key="NSfFlags">16</int>
+								</object>
+								<object class="NSParagraphStyle">
+									<int key="NSAlignment">4</int>
+									<nil key="NSTabStops"/>
+								</object>
+							</object>
+						</object>
+					</object>
 					<string>Undo Button</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
