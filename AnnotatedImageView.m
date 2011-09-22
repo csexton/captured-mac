@@ -146,7 +146,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
         [arrayOfBrushStrokes addObject:currentStroke];
         [currentStroke mouseDownAt:l];
     }
-    
+    [[self undoManager] registerUndoWithTarget:self 
+                                      selector:@selector(undoDraw:) 
+                                        object:currentStroke];    
 	[self setNeedsDisplay:YES];
 }
 
@@ -220,6 +222,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 //    [gradient drawInBezierPath:bezierPath angle:-90];    
 //    CGContextRestoreGState(context);
 //}
+
+-(void)undoDraw {
+    [arrayOfBrushStrokes removeLastObject];
+    [self setNeedsDisplay:YES];
+    NSLog(@"undid");
+}
 
 -(void)drawBrushStrokesOn:(CGContextRef)context {
     for (id s in arrayOfBrushStrokes) {

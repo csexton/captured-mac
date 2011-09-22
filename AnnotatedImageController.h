@@ -19,7 +19,6 @@
     IBOutlet NSColorWell *colorWell;
     IBOutlet NSSegmentedControl *segmentedControl;
     IBOutlet NSView *toolBar;
-
 }
 - (void)setImageAndShowWindow:(NSImage*) image;
 

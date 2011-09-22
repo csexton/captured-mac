@@ -36,6 +36,7 @@
 
 - (CGImageRef) nsImageToCGImageRef:(NSImage*)image;
 - (void)saveViewToFile:(NSString *) path;
+-(void)undoDraw;
 
 @property (readwrite) BOOL useBrush;
 @property (readwrite) BOOL useHighlighter;

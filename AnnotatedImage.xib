@@ -77,6 +77,34 @@
 							<int key="NSvFlags">290</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSButton" id="211626564">
+									<reference key="NSNextResponder" ref="125090389"/>
+									<int key="NSvFlags">265</int>
+									<string key="NSFrame">{{5, 5}, {0, 0}}</string>
+									<reference key="NSSuperview" ref="125090389"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView"/>
+									<string key="NSReuseIdentifierKey">_NS:3196</string>
+									<bool key="NSEnabled">YES</bool>
+									<object class="NSButtonCell" key="NSCell" id="486331602">
+										<int key="NSCellFlags">-2080244224</int>
+										<int key="NSCellFlags2">167772160</int>
+										<string key="NSContents">Undo Button</string>
+										<object class="NSFont" key="NSSupport" id="1041151266">
+											<string key="NSName">LucidaGrande</string>
+											<double key="NSSize">13</double>
+											<int key="NSfFlags">1044</int>
+										</object>
+										<string key="NSCellIdentifier">_NS:3196</string>
+										<reference key="NSControlView" ref="211626564"/>
+										<int key="NSButtonFlags">-2038152961</int>
+										<int key="NSButtonFlags2">268435590</int>
+										<string key="NSAlternateContents"/>
+										<string key="NSKeyEquivalent">z</string>
+										<int key="NSPeriodicDelay">400</int>
+										<int key="NSPeriodicInterval">75</int>
+									</object>
+								</object>
 								<object class="NSSegmentedControl" id="281373281">
 									<reference key="NSNextResponder" ref="125090389"/>
 									<int key="NSvFlags">292</int>
@@ -89,11 +117,7 @@
 									<object class="NSSegmentedCell" key="NSCell" id="67831168">
 										<int key="NSCellFlags">67239424</int>
 										<int key="NSCellFlags2">0</int>
-										<object class="NSFont" key="NSSupport" id="1041151266">
-											<string key="NSName">LucidaGrande</string>
-											<double key="NSSize">13</double>
-											<int key="NSfFlags">1044</int>
-										</object>
+										<reference key="NSSupport" ref="1041151266"/>
 										<string key="NSCellIdentifier">_NS:1766</string>
 										<reference key="NSControlView" ref="281373281"/>
 										<object class="NSMutableArray" key="NSSegmentImages">
@@ -158,6 +182,7 @@
 									<string key="NSFrame">{{318, 12}, {142, 25}}</string>
 									<reference key="NSSuperview" ref="125090389"/>
 									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="211626564"/>
 									<string key="NSReuseIdentifierKey">_NS:161</string>
 									<bool key="NSEnabled">YES</bool>
 									<object class="NSButtonCell" key="NSCell" id="922504542">
@@ -175,7 +200,7 @@
 											<int key="NSfFlags">16</int>
 										</object>
 										<string key="NSAlternateContents"/>
-										<string key="NSKeyEquivalent"/>
+										<string type="base64-UTF8" key="NSKeyEquivalent">DQ</string>
 										<int key="NSPeriodicDelay">200</int>
 										<int key="NSPeriodicInterval">25</int>
 									</object>
@@ -275,6 +300,14 @@
 					</object>
 					<int key="connectionID">84</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">undoButton:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="211626564"/>
+					</object>
+					<int key="connectionID">91</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -330,6 +363,9 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">22</int>
 						<reference key="object" ref="1062309623"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+						</object>
 						<reference key="parent" ref="1023013860"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -340,6 +376,7 @@
 							<reference ref="281373281"/>
 							<reference ref="242840934"/>
 							<reference ref="1048389453"/>
+							<reference ref="211626564"/>
 						</object>
 						<reference key="parent" ref="1023013860"/>
 					</object>
@@ -376,6 +413,21 @@
 						<reference key="object" ref="242840934"/>
 						<reference key="parent" ref="125090389"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">88</int>
+						<reference key="object" ref="211626564"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="486331602"/>
+						</object>
+						<reference key="parent" ref="125090389"/>
+						<string key="objectName">Square Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">89</int>
+						<reference key="object" ref="486331602"/>
+						<reference key="parent" ref="211626564"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -387,6 +439,7 @@
 					<string>-3.IBPluginDependency</string>
 					<string>20.IBAttributePlaceholdersKey</string>
 					<string>20.IBPluginDependency</string>
+					<string>20.userInterfaceItemIdentifier</string>
 					<string>21.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
@@ -399,6 +452,9 @@
 					<string>78.IBNSSegmentedControlInspectorSelectedSegmentMetadataKey</string>
 					<string>78.IBPluginDependency</string>
 					<string>83.IBPluginDependency</string>
+					<string>88.IBPluginDependency</string>
+					<string>88.userInterfaceItemIdentifier</string>
+					<string>89.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -406,14 +462,28 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSMutableDictionary">
-						<string key="NS.key.0">ToolTip</string>
-						<object class="IBToolTipAttribute" key="NS.object.0">
-							<string key="name">ToolTip</string>
-							<reference key="object" ref="1048389453"/>
-							<string key="toolTip">Upload screen capture and close this window</string>
+						<bool key="EncodedWithXMLCoder">YES</bool>
+						<object class="NSArray" key="dict.sortedKeys">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>AccessibilityDescription</string>
+							<string>ToolTip</string>
+						</object>
+						<object class="NSMutableArray" key="dict.values">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBAccessibilityAttribute">
+								<string key="name">AccessibilityDescription</string>
+								<reference key="object" ref="1048389453"/>
+								<string key="accessibilityValue">Upload and Close</string>
+							</object>
+							<object class="IBToolTipAttribute">
+								<string key="name">ToolTip</string>
+								<reference key="object" ref="1048389453"/>
+								<string key="toolTip">Upload screen capture and close this window</string>
+							</object>
 						</object>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>Upload and Close</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -433,6 +503,9 @@
 					<integer value="1"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>Undo Button</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -447,7 +520,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">84</int>
+			<int key="maxID">91</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

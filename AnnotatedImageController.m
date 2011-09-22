@@ -45,16 +45,6 @@
     [self autorelease];
 }
 
-- (void)keyDown:(NSEvent *)event {
-    [self interpretKeyEvents:[NSArray arrayWithObject:event]];
-    NSLog(@"Event %@", event);
-    unsigned short k = [event keyCode];
-    if (k == 36) {
-        [self closeButton:nil]; // Y U STILL PLAY DONK SOUND???
-    } else {
-        [super keyDown:event];
-    }
-}
 
 - (void)setImageAndShowWindow:(NSImage*) image {
     
@@ -161,6 +151,10 @@
     
      //[self.window orderOut:nil]; // to hide it
      //[window makeKeyAndOrderFront:nil]; // to show it
+}
+
+-(IBAction)undoButton:(id)sender{
+    [annotateImageView undoDraw];
 }
 
 @end
