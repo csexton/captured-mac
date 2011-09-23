@@ -13,19 +13,37 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 @implementation AnnotatedImageView
 
-@synthesize useBrush;
-@synthesize useHighlighter;
-@synthesize useArrow;
+#pragma mark -
+#pragma mark Getters and Setters
 @synthesize brushColor;
 
 
-
-- (void)setImage:(NSImage *)i {
-    image = i;
-    imageRef = [self nsImageToCGImageRef:i];
-
-    [self setNeedsDisplay:YES];    
+#pragma mark -
+#pragma mark Drawing Tool Selector
+-(void) selectBrushTool { 
+    useBrush = YES;
+    useArrow = NO;
+    useHighlighter = NO;
+    [self discardCursorRects];
+    [self resetCursorRects];
 }
+
+-(void) selectHighlighterTool { 
+    useHighlighter = YES; 
+    useBrush = NO;
+    useArrow = NO;
+    [self discardCursorRects];
+    [self resetCursorRects];
+}
+
+-(void) selectArrowTool { 
+    useArrow = YES; 
+    useBrush = NO;
+    useHighlighter = NO;
+    [self discardCursorRects];
+    [self resetCursorRects];
+}
+
 
 //- (CGPoint)rotate:(CGPoint) p by:(CGFloat) theta {
 //    CGPoint ret;
@@ -58,7 +76,15 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     arrayOfBrushStrokes	= [[NSMutableArray alloc]init];
     brushColor = [NSColor redColor];
 
+
     return self;
+}
+
+- (void)setImage:(NSImage *)i {
+    image = i;
+    imageRef = [self nsImageToCGImageRef:i];
+    
+    [self setNeedsDisplay:YES];    
 }
 
 - (void) dealloc
@@ -70,9 +96,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 - (void)awakeFromNib {
 	colorSpace	= [self getRGBColorSpace];
 	
-    self.useBrush = NO;
-    self.useHighlighter = NO;
-    self.useArrow = NO;
+    useBrush = NO;
+    useHighlighter = NO;
+    useArrow = NO;
+    NSImage * i = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PencilCursor" ofType:@"png"]];
+    pencilCursor = [[NSCursor alloc] initWithImage:i hotSpot:NSMakePoint(0.0, 15.0)];
+    
+    NSImage * j = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HighlighterCursor" ofType:@"png"]];
+    highlighterCursor = [[NSCursor alloc] initWithImage:j hotSpot:NSMakePoint(0.0, 10.0)];
 }
 
 - (CGColorSpaceRef) getRGBColorSpace  { 
@@ -114,7 +145,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
-    if (self.useArrow || self.useBrush || self.useHighlighter) {
+    if (useArrow || useBrush || useHighlighter) {
         [currentStroke mouseUpAt: l];
     }
 
@@ -126,17 +157,17 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
-    if (self.useArrow) {
+    if (useArrow) {
         currentStroke = [[AArrow alloc] init];
         [currentStroke mouseDownAt:l];
         [currentStroke mouseDragAt:l];
         [arrayOfBrushStrokes addObject:currentStroke];
     }
     
-    if (self.useBrush || self.useHighlighter) {
-        if (self.useHighlighter) {
+    if (useBrush || useHighlighter) {
+        if (useHighlighter) {
             // A highlighter is just a brush stroke with a specific size and color
-            currentStroke = [[ABrushStroke alloc] initWithColor:[NSColor colorWithDeviceRed:1.0 green:1.0 blue:0.0 alpha:0.5] 
+            currentStroke = [[ABrushStroke alloc] initWithColor:[NSColor colorWithDeviceRed:1.0 green:0.9 blue:0.0 alpha:0.3] 
                                                        andWidth:12.0];
             
         } else {
@@ -156,12 +187,26 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
-    if (self.useArrow || self.useBrush || self.useHighlighter) {
+    if (useArrow || useBrush || useHighlighter) {
         [currentStroke mouseDragAt:l];
     }
 
 	[self setNeedsDisplay:YES];
 }
+
+
+- (void) resetCursorRects
+{
+    [super resetCursorRects];
+    if(useArrow) {
+        [self addCursorRect: [self bounds] cursor: [NSCursor crosshairCursor]];
+    } else if (useHighlighter) {
+        [self addCursorRect: [self bounds] cursor: highlighterCursor];
+    } else {
+        [self addCursorRect: [self bounds] cursor: pencilCursor];
+    }
+}
+
 
 -(void)undoDraw {
     [arrayOfBrushStrokes removeLastObject];

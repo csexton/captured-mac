@@ -15,6 +15,8 @@
     BOOL useArrow;
     
     NSColor * brushColor;
+    NSCursor * pencilCursor;
+    NSCursor * highlighterCursor;
 
     NSMutableArray	* arrayOfBrushStrokes;
 	NSMutableArray	* arrayOfPoints;
@@ -28,6 +30,10 @@
 //- (CGPoint) rotatePoint: (CGPoint)p to: (CGPoint)d around: (CGPoint)o;
 //- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2;
 
+-(void) selectBrushTool;
+-(void) selectHighlighterTool;
+-(void) selectArrowTool;
+
 //- (void)drawArrowOn:(CGContextRef)context from:(CGPoint)p1 to:(CGPoint)p2;
 - (void)drawBrushStrokesOn:(CGContextRef)context;
 
@@ -38,9 +44,6 @@
 - (void)saveViewToFile:(NSString *) path;
 -(void)undoDraw;
 
-@property (readwrite) BOOL useBrush;
-@property (readwrite) BOOL useHighlighter;
-@property (readwrite) BOOL useArrow;
 @property (readwrite, retain) NSColor *brushColor;
 
 @end

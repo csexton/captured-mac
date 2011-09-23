@@ -76,6 +76,8 @@
 		B5A44F09142A2A5B003B71FD /* ABrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A44F08142A2A5B003B71FD /* ABrushStroke.m */; };
 		B5A44F1B142A6CB1003B71FD /* ADrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A44F1A142A6CB1003B71FD /* ADrawable.m */; };
 		B5A44F1E142A6F9E003B71FD /* AArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A44F1D142A6F9D003B71FD /* AArrow.m */; };
+		B5A44F23142BD8E5003B71FD /* PencilCursor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A44F22142BD8E5003B71FD /* PencilCursor.png */; };
+		B5A44F25142C2212003B71FD /* HighlighterCursor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A44F24142C2212003B71FD /* HighlighterCursor.png */; };
 		B5AEC8CE1347CB49001922C8 /* EMKeychainItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */; };
 		B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */; };
 		B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */; };
@@ -255,6 +257,8 @@
 		B5A44F1A142A6CB1003B71FD /* ADrawable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADrawable.m; sourceTree = "<group>"; };
 		B5A44F1C142A6F9D003B71FD /* AArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AArrow.h; sourceTree = "<group>"; };
 		B5A44F1D142A6F9D003B71FD /* AArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AArrow.m; sourceTree = "<group>"; };
+		B5A44F22142BD8E5003B71FD /* PencilCursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PencilCursor.png; path = Resources/PencilCursor.png; sourceTree = "<group>"; };
+		B5A44F24142C2212003B71FD /* HighlighterCursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HighlighterCursor.png; path = Resources/HighlighterCursor.png; sourceTree = "<group>"; };
 		B5AEC8CC1347CB49001922C8 /* EMKeychainItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMKeychainItem.h; sourceTree = "<group>"; };
 		B5AEC8CD1347CB49001922C8 /* EMKeychainItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMKeychainItem.m; sourceTree = "<group>"; };
 		B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DropboxPreferences.xib; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5A44F24142C2212003B71FD /* HighlighterCursor.png */,
+				B5A44F22142BD8E5003B71FD /* PencilCursor.png */,
 				B50D6F101421334F00A73B54 /* ArrowIconAlt.png */,
 				B50D6F111421334F00A73B54 /* BrushIconAlt.png */,
 				B50D6F121421334F00A73B54 /* HighlighterIconAlt.png */,
@@ -805,6 +811,8 @@
 				B50D6F131421334F00A73B54 /* ArrowIconAlt.png in Resources */,
 				B50D6F141421334F00A73B54 /* BrushIconAlt.png in Resources */,
 				B50D6F151421334F00A73B54 /* HighlighterIconAlt.png in Resources */,
+				B5A44F23142BD8E5003B71FD /* PencilCursor.png in Resources */,
+				B5A44F25142C2212003B71FD /* HighlighterCursor.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

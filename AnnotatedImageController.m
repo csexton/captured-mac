@@ -59,7 +59,7 @@
     NSRect frame = [self.window frame];
     CGFloat imgX = 0;
     CGFloat minWidth = 340;
-    frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (70 for full title bar) */ 0;
+    frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (20 for full title bar) */ 20;
     if (image.size.width < minWidth) {
         frame.size.width = minWidth; // Minimum width of image   
         imgX = (minWidth/2) - (image.size.width/2); // Center the image
@@ -104,9 +104,7 @@
     
 }
 -(IBAction)useArrow:(id)sender{
-    annotateImageView.useArrow = YES;
-    annotateImageView.useBrush = NO;
-    annotateImageView.useHighlighter = NO;
+    [annotateImageView selectArrowTool];
     [colorWell setHidden:YES];
     
     brushButton.state = NSOffState;
@@ -114,18 +112,14 @@
 }
 
 -(IBAction)useBrush:(id)sender{
-    annotateImageView.useArrow = NO;
-    annotateImageView.useBrush = YES;
-    annotateImageView.useHighlighter = NO;
+    [annotateImageView selectBrushTool];
     [colorWell setHidden:NO];
 
     arrowButton.state = NSOffState;
     highlighterButton.state = NSOffState;
 }
 -(IBAction)useHighlighter:(id)sender{
-    annotateImageView.useArrow = NO;
-    annotateImageView.useBrush = NO;
-    annotateImageView.useHighlighter = YES;
+    [annotateImageView selectHighlighterTool];
     [colorWell setHidden:YES];
 
     arrowButton.state = NSOffState;
