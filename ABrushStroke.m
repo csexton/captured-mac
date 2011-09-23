@@ -34,6 +34,7 @@
 -(void)addPoint: (CGPoint)point {
     APoint * p = [[APoint alloc]initWithCGPoint:point];
     [points addObject:p]; 
+    [p release];
 }
 
 -(void)mouseUpAt: (CGPoint)point {

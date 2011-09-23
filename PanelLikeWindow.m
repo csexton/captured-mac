@@ -20,8 +20,8 @@
     return self;
 }
 
-- (void)cancelOperation:(id)sender {
-    [self close];
-}
+//- (void)cancelOperation:(id)sender {
+//    [self close];
+//}
 
 @end

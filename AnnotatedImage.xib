@@ -54,7 +54,7 @@
 				<string key="NSWindowRect">{{196, 240}, {480, 283}}</string>
 				<int key="NSWTFlags">611845120</int>
 				<string key="NSWindowTitle">Captured</string>
-				<string key="NSWindowClass">PanelLikeWindow</string>
+				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="1023013860">
@@ -77,6 +77,34 @@
 							<int key="NSvFlags">290</int>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSButton" id="975233438">
+									<reference key="NSNextResponder" ref="125090389"/>
+									<int key="NSvFlags">268</int>
+									<string key="NSFrame">{{6, 6}, {0, 48}}</string>
+									<reference key="NSSuperview" ref="125090389"/>
+									<reference key="NSWindow"/>
+									<reference key="NSNextKeyView" ref="281373281"/>
+									<string key="NSReuseIdentifierKey">_NS:1491</string>
+									<bool key="NSEnabled">YES</bool>
+									<object class="NSButtonCell" key="NSCell" id="858851555">
+										<int key="NSCellFlags">67239424</int>
+										<int key="NSCellFlags2">134217728</int>
+										<string key="NSContents"/>
+										<object class="NSFont" key="NSSupport" id="1041151266">
+											<string key="NSName">LucidaGrande</string>
+											<double key="NSSize">13</double>
+											<int key="NSfFlags">1044</int>
+										</object>
+										<string key="NSCellIdentifier">_NS:1491</string>
+										<reference key="NSControlView" ref="975233438"/>
+										<int key="NSButtonFlags">-2042347265</int>
+										<int key="NSButtonFlags2">134</int>
+										<string key="NSAlternateContents"/>
+										<string type="base64-UTF8" key="NSKeyEquivalent">Gw</string>
+										<int key="NSPeriodicDelay">400</int>
+										<int key="NSPeriodicInterval">75</int>
+									</object>
+								</object>
 								<object class="NSButton" id="415386742">
 									<reference key="NSNextResponder" ref="125090389"/>
 									<int key="NSvFlags">265</int>
@@ -90,11 +118,7 @@
 										<int key="NSCellFlags">-2080244224</int>
 										<int key="NSCellFlags2">167772160</int>
 										<string key="NSContents">Undo Button</string>
-										<object class="NSFont" key="NSSupport" id="1041151266">
-											<string key="NSName">LucidaGrande</string>
-											<double key="NSSize">13</double>
-											<int key="NSfFlags">1044</int>
-										</object>
+										<reference key="NSSupport" ref="1041151266"/>
 										<string key="NSCellIdentifier">_NS:3196</string>
 										<reference key="NSControlView" ref="415386742"/>
 										<int key="NSButtonFlags">-2038152961</int>
@@ -209,7 +233,7 @@
 							<string key="NSFrameSize">{480, 55}</string>
 							<reference key="NSSuperview" ref="1023013860"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="281373281"/>
+							<reference key="NSNextKeyView" ref="975233438"/>
 							<string key="NSReuseIdentifierKey">_NS:499</string>
 							<string key="NSClassName">GradientView</string>
 						</object>
@@ -308,6 +332,22 @@
 					</object>
 					<int key="connectionID">91</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="639430713"/>
+						<reference key="destination" ref="1001"/>
+					</object>
+					<int key="connectionID">92</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performClose:</string>
+						<reference key="source" ref="639430713"/>
+						<reference key="destination" ref="975233438"/>
+					</object>
+					<int key="connectionID">95</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -377,6 +417,7 @@
 							<reference ref="242840934"/>
 							<reference ref="1048389453"/>
 							<reference ref="415386742"/>
+							<reference ref="975233438"/>
 						</object>
 						<reference key="parent" ref="1023013860"/>
 					</object>
@@ -430,6 +471,21 @@
 						<reference key="object" ref="74528298"/>
 						<reference key="parent" ref="415386742"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">93</int>
+						<reference key="object" ref="975233438"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="858851555"/>
+						</object>
+						<reference key="parent" ref="125090389"/>
+						<string key="objectName">Cancel Button</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">94</int>
+						<reference key="object" ref="858851555"/>
+						<reference key="parent" ref="975233438"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -458,6 +514,8 @@
 					<string>88.notes</string>
 					<string>88.userInterfaceItemIdentifier</string>
 					<string>89.IBPluginDependency</string>
+					<string>93.IBPluginDependency</string>
+					<string>94.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -536,6 +594,8 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 					</object>
 					<string>Undo Button</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -550,7 +610,7 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">91</int>
+			<int key="maxID">95</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -565,12 +625,14 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 							<string>brushColorWellChanged:</string>
 							<string>closeButton:</string>
 							<string>segmentedControlClicked:</string>
+							<string>undoButton:</string>
 							<string>useArrow:</string>
 							<string>useBrush:</string>
 							<string>useHighlighter:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -586,6 +648,7 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 							<string>brushColorWellChanged:</string>
 							<string>closeButton:</string>
 							<string>segmentedControlClicked:</string>
+							<string>undoButton:</string>
 							<string>useArrow:</string>
 							<string>useBrush:</string>
 							<string>useHighlighter:</string>
@@ -602,6 +665,10 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">segmentedControlClicked:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">undoButton:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -704,14 +771,6 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/GradientView.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">PanelLikeWindow</string>
-					<string key="superclassName">NSWindow</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/PanelLikeWindow.h</string>
 					</object>
 				</object>
 			</object>

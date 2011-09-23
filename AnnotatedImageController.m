@@ -17,6 +17,7 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        [window setDelegate:self]; // REALLY???
     }
     
     return self;
@@ -32,30 +33,26 @@
 //    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
-//- (void) dealloc
-//{
-//    [super dealloc];
-//}
-- (void)windowWillClose
+-(void)close
 {
+    [super close];
+}
+- (void) dealloc
+{
+    [super dealloc];
+}
+- (BOOL)windowShouldClose:(id)sender{
     // TODO: Clean up memory
     // http://www.cocoabuilder.com/archive/cocoa/304428-release-nswindowcontroller-after-the-window-is-closed.html
     
     // I don't think works at all
     [self autorelease];
+    return YES;
 }
 
 
+
 - (void)setImageAndShowWindow:(NSImage*) image {
-    
-    
-//    CGFloat originalX = annotateImageView.frame.origin.x;
-//    CGFloat originalY = annotateImageView.frame.origin.y;
-//    CGFloat originalWidth = annotateImageView.frame.size.width;
-//    CGFloat originalHeight = annotateImageView.frame.size.height;
-        
-    
-    
     NSRect frame = [self.window frame];
     CGFloat imgX = 0;
     CGFloat minWidth = 340;
@@ -126,9 +123,7 @@
     brushButton.state = NSOffState;
 
 }
--(IBAction)closeButton:(id)sender{
-    [self close];
-    
+-(IBAction)closeButton:(id)sender{    
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
 	NSDate *now = [[NSDate alloc] init];
@@ -141,7 +136,11 @@
     
     [annotateImageView saveViewToFile:path];
     
+    [self close];
+    
     [AppDelegate processFileEvent:path];
+    
+    [self release];
     
      //[self.window orderOut:nil]; // to hide it
      //[window makeKeyAndOrderFront:nil]; // to show it

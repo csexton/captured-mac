@@ -643,14 +643,14 @@
 		B5A44F21142A75C0003B71FD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
-				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
-				B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */,
-				B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */,
-				B5CEBC02142968CB00090F31 /* GradientView.h */,
-				B5CEBC03142968CB00090F31 /* GradientView.m */,
 				B5CF8DE0141B9D2300D50721 /* AnnotatedImageView.h */,
 				B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */,
+				B5CEBC02142968CB00090F31 /* GradientView.h */,
+				B5CEBC03142968CB00090F31 /* GradientView.m */,
+				B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */,
+				B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */,
+				B5C5645413042BBE00E396E6 /* ViewBackground.h */,
+				B5C5645513042BBE00E396E6 /* ViewBackground.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";

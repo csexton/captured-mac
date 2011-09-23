@@ -94,7 +94,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 }
 
 - (void)awakeFromNib {
-	colorSpace	= [self getRGBColorSpace];
+	colorSpace	=  CGColorSpaceCreateDeviceRGB();
 	
     useBrush = NO;
     useHighlighter = NO;
@@ -104,10 +104,9 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     NSImage * j = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HighlighterCursor" ofType:@"png"]];
     highlighterCursor = [[NSCursor alloc] initWithImage:j hotSpot:NSMakePoint(0.0, 10.0)];
-}
-
-- (CGColorSpaceRef) getRGBColorSpace  { 
-    return CGColorSpaceCreateDeviceRGB();		
+    
+    [i release];
+    [j release];
 }
 
 - (CGImageRef)nsImageToCGImageRef:(NSImage*)nsImage;
@@ -130,6 +129,8 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     [self unlockFocus];    
     NSData *data = [rep representationUsingType:(NSBitmapImageFileType) NSPNGFileType
                              properties:(NSDictionary *)nil];
+    
+    [rep release];
     
     [data writeToFile:path atomically:YES];
 }

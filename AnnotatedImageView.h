@@ -37,7 +37,6 @@
 //- (void)drawArrowOn:(CGContextRef)context from:(CGPoint)p1 to:(CGPoint)p2;
 - (void)drawBrushStrokesOn:(CGContextRef)context;
 
-- (CGColorSpaceRef) getRGBColorSpace;
 - (void)setImage:(NSImage*) i;
 
 - (CGImageRef) nsImageToCGImageRef:(NSImage*)image;
