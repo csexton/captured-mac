@@ -254,7 +254,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">annotateImageView</string>
+						<string key="label">annotatedImageView</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="1062309623"/>
 					</object>
@@ -689,7 +689,7 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>annotateImageView</string>
+							<string>annotateImagedView</string>
 							<string>arrowButton</string>
 							<string>brushButton</string>
 							<string>colorWell</string>
@@ -712,7 +712,7 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>annotateImageView</string>
+							<string>annotatedImageView</string>
 							<string>arrowButton</string>
 							<string>brushButton</string>
 							<string>colorWell</string>
@@ -723,7 +723,7 @@ ZW1zIHRvIGRvIHRoZSB0cmljay4</bytes>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBToOneOutletInfo">
-								<string key="name">annotateImageView</string>
+								<string key="name">annotatedImageView</string>
 								<string key="candidateClassName">AnnotatedImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">

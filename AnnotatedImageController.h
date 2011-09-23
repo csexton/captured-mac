@@ -12,7 +12,7 @@
 @interface AnnotatedImageController : NSWindowController <NSWindowDelegate>{
 @private
     
-    IBOutlet AnnotatedImageView *annotateImageView;
+    IBOutlet AnnotatedImageView *annotatedImageView;
     IBOutlet NSButton *brushButton;
     IBOutlet NSButton *highlighterButton;
     IBOutlet NSButton *arrowButton;

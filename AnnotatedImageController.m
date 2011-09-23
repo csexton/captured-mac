@@ -25,9 +25,9 @@
 - (void)windowDidLoad
 {
     [super windowDidLoad];
-    
+
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-    annotateImageView.brushColor = colorWell.color;
+    annotatedImageView.brushColor = colorWell.color;
     [self.window setLevel:NSModalPanelWindowLevel];
 //    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
@@ -48,27 +48,27 @@
     CGFloat minWidth = 340;
     frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (20 for full title bar) */ 20;
     if (image.size.width < minWidth) {
-        frame.size.width = minWidth; // Minimum width of image   
+        frame.size.width = minWidth; // Minimum width of image
         imgX = (minWidth/2) - (image.size.width/2); // Center the image
     } else {
         frame.size.width = image.size.width+1;
     }
-    
+
     [self.window setFrame: frame display: YES animate: NO];
     [self.window center];
 
-    [annotateImageView setFrame: NSMakeRect(imgX, /* Button Bar Height */ 50, image.size.width+2, image.size.height)];
-    [annotateImageView setImage:image];
+    [annotatedImageView setFrame: NSMakeRect(imgX, /* Button Bar Height */ 50, image.size.width+2, image.size.height)];
+    [annotatedImageView setImage:image];
     [self useArrow:nil];
 
     // Show the window
     [[self window] makeKeyAndOrderFront:self];
-    
+
 }
 
 -(IBAction)brushColorWellChanged:(id)sender{
- 
-    annotateImageView.brushColor = colorWell.color;
+
+    annotatedImageView.brushColor = colorWell.color;
 }
 
 
@@ -88,32 +88,32 @@
         default:
             break;
     }
-    
+
 }
 -(IBAction)useArrow:(id)sender{
-    [annotateImageView selectArrowTool];
+    [annotatedImageView selectArrowTool];
     [colorWell setHidden:YES];
-    
+
     brushButton.state = NSOffState;
     highlighterButton.state = NSOffState;
 }
 
 -(IBAction)useBrush:(id)sender{
-    [annotateImageView selectBrushTool];
+    [annotatedImageView selectBrushTool];
     [colorWell setHidden:NO];
 
     arrowButton.state = NSOffState;
     highlighterButton.state = NSOffState;
 }
 -(IBAction)useHighlighter:(id)sender{
-    [annotateImageView selectHighlighterTool];
+    [annotatedImageView selectHighlighterTool];
     [colorWell setHidden:YES];
 
     arrowButton.state = NSOffState;
     brushButton.state = NSOffState;
 
 }
--(IBAction)closeButton:(id)sender{    
+-(IBAction)closeButton:(id)sender{
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
 	NSDate *now = [[NSDate alloc] init];
@@ -121,23 +121,23 @@
     [dateFormat release];
     [now release];
     NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
-    
+
     NSLog(@"Saving Annotated Image to %@", path);
-    
-    [annotateImageView saveViewToFile:path];
-    
+
+    [annotatedImageView saveViewToFile:path];
+
     [self close];
-    
+
     [AppDelegate processFileEvent:path];
-    
+
     [self release];
-    
+
      //[self.window orderOut:nil]; // to hide it
      //[window makeKeyAndOrderFront:nil]; // to show it
 }
 
 -(IBAction)undoButton:(id)sender{
-    [annotateImageView undoDraw];
+    [annotatedImageView undoDraw];
 }
 
 @end
