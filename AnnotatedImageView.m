@@ -80,17 +80,22 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     return self;
 }
 
+- (void) dealloc
+{
+    [image release];
+    [brushColor release];
+    [pencilCursor release];
+    [highlighterCursor release];
+    [arrayOfBrushStrokes release];
+    [super dealloc];
+    NSLog(@"DEBUG: dealloc AnnotatedImage");
+}
+
 - (void)setImage:(NSImage *)i {
     image = i;
     imageRef = [self nsImageToCGImageRef:i];
     
     [self setNeedsDisplay:YES];    
-}
-
-- (void) dealloc
-{
-    [brushColor release];
-    [super dealloc];
 }
 
 - (void)awakeFromNib {
@@ -159,7 +164,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
     if (useArrow) {
-        currentStroke = [[AArrow alloc] init];
+        currentStroke = [[[AArrow alloc] init] autorelease];
         [currentStroke mouseDownAt:l];
         [currentStroke mouseDragAt:l];
         [arrayOfBrushStrokes addObject:currentStroke];
@@ -168,12 +173,12 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     if (useBrush || useHighlighter) {
         if (useHighlighter) {
             // A highlighter is just a brush stroke with a specific size and color
-            currentStroke = [[ABrushStroke alloc] initWithColor:[NSColor colorWithDeviceRed:1.0 green:0.9 blue:0.0 alpha:0.3] 
-                                                       andWidth:12.0];
+            currentStroke = [[[ABrushStroke alloc] initWithColor:[NSColor colorWithDeviceRed:1.0 green:0.9 blue:0.0 alpha:0.3] 
+                                                       andWidth:12.0] autorelease];
             
         } else {
-            currentStroke = [[ABrushStroke alloc] initWithColor:brushColor 
-                                                       andWidth:3.0];
+            currentStroke = [[[ABrushStroke alloc] initWithColor:brushColor 
+                                                       andWidth:3.0] autorelease];
         }
         [arrayOfBrushStrokes addObject:currentStroke];
         [currentStroke mouseDownAt:l];

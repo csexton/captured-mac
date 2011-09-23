@@ -29,6 +29,7 @@
     [points release];
     [color release];
     [super dealloc];
+    NSLog(@"DEBUG: dealloc ABrushStroke");
 }
 
 -(void)addPoint: (CGPoint)point {

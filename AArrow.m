@@ -20,6 +20,11 @@
     return self;
 }
 
+- (void) dealloc {
+    [super dealloc];
+    NSLog(@"DEBUG: dealloc AArrow");
+}
+
 -(void)mouseUpAt: (CGPoint)point {
 
     p2 = point;
@@ -101,5 +106,7 @@
     CGFloat yDist = (pt2.y - pt1.y);
     return sqrt((xDist * xDist) + (yDist * yDist));
 }
+
+
 
 @end

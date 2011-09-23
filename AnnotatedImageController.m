@@ -19,7 +19,6 @@
         // Initialization code here.
         [window setDelegate:self]; // REALLY???
     }
-    
     return self;
 }
 
@@ -33,20 +32,11 @@
 //    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
--(void)close
-{
-    [super close];
-}
-- (void) dealloc
-{
-    [super dealloc];
-}
 - (BOOL)windowShouldClose:(id)sender{
-    // TODO: Clean up memory
+    // This was great, but didn't work with ARC
     // http://www.cocoabuilder.com/archive/cocoa/304428-release-nswindowcontroller-after-the-window-is-closed.html
-    
-    // I don't think works at all
-    [self autorelease];
+    //    [self autorelease];
+    [AppDelegate removeAnnotatedWindow: self];
     return YES;
 }
 

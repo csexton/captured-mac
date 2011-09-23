@@ -24,6 +24,7 @@
 	BOOL uploadsEnabled;
     NSWindow *window;
     DDHotKeyCenter *hotKeyCenter;
+    NSMutableArray *annotatedWindows;
 
 }
 
@@ -50,6 +51,7 @@
 - (void)showWelcomeWindow;
 - (void)showAnnotateImageWindow;
 - (void)showAnnotateImageWindowWithFile: (NSString*) file;
+- (void)removeAnnotatedWindow: (id) controller;
 
 - (void) primaryHotkeyWithEvent:(NSEvent *)hkEvent;
 - (void) annotateHotkeyWithEvent:(NSEvent *)hkEvent;

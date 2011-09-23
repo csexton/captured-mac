@@ -20,6 +20,8 @@
 		uploadsEnabled = YES;
         [[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"]]];
         hotKeyCenter = [[DDHotKeyCenter alloc] init];
+        
+        annotatedWindows = [[NSMutableArray alloc] init];
 
     }
     return self;
@@ -67,6 +69,12 @@
     AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
     [controller setImageAndShowWindow: image]; 
+    [annotatedWindows addObject:controller];
+    [controller release];
+}
+
+- (void)removeAnnotatedWindow: (id) w {
+    [annotatedWindows removeObjectIdenticalTo:w];
 }
 
 - (void)showAnnotateImageWindow {
