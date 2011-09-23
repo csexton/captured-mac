@@ -94,6 +94,7 @@
     [gradient drawInBezierPath:bezierPath angle:-90];  
     [gradient release];
     CGContextRestoreGState(context); 
+    CFRelease(fillColor);
 }
 
 - (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o {

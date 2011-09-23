@@ -343,7 +343,7 @@ static size_t CHAR_COUNT = 62;
     NSString* escapedSig = [Utilities URLEncode:sigBaseString];
 	
 	// format them all into the signature base string
-	NSString* finalString = [[NSString alloc] initWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig];
+	NSString* finalString = [[[NSString alloc] initWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig] autorelease];
 	
 	return finalString;
 }

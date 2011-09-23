@@ -70,6 +70,7 @@
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
     [controller setImageAndShowWindow: image]; 
     [annotatedWindows addObject:controller];
+    [image release];
     [controller release];
 }
 

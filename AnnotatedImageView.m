@@ -93,6 +93,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void)setImage:(NSImage *)i {
     image = i;
+    [image retain];
     imageRef = [self nsImageToCGImageRef:i];
     
     [self setNeedsDisplay:YES];    
@@ -122,6 +123,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     {
         CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);
         cgImageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+        CFRelease(imageSource);
     }
     return cgImageRef;
 }
