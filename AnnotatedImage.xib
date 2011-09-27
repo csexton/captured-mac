@@ -132,7 +132,7 @@
 								<object class="NSSegmentedControl" id="281373281">
 									<reference key="NSNextResponder" ref="125090389"/>
 									<int key="NSvFlags">292</int>
-									<string key="NSFrame">{{20, 13}, {104, 23}}</string>
+									<string key="NSFrame">{{20, 12}, {104, 24}}</string>
 									<reference key="NSSuperview" ref="125090389"/>
 									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="242840934"/>
@@ -175,7 +175,6 @@
 												<int key="NSSegmentItemImageScaling">0</int>
 											</object>
 										</object>
-										<int key="NSSegmentStyle">5</int>
 									</object>
 								</object>
 								<object class="NSColorWell" id="242840934">
@@ -502,6 +501,8 @@
 					<string>21.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
+					<string>72.IBNSWindowAutoPositionCentersHorizontal</string>
+					<string>72.IBNSWindowAutoPositionCentersVertical</string>
 					<string>72.IBPluginDependency</string>
 					<string>72.NSWindowTemplate.visibleAtLaunch</string>
 					<string>73.IBPluginDependency</string>
@@ -549,6 +550,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<boolean value="YES"/>
+					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="NO"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>

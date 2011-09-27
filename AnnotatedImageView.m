@@ -82,8 +82,14 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void) dealloc
 {
-    [image release];
-    [brushColor release];
+    if (image) {
+        [image release];
+        CFRelease(imageRef);
+    }
+    if (colorSpace) {
+        CFRelease(colorSpace);
+    }
+    //[brushColor release]; // Don't release a retain'd property
     [pencilCursor release];
     [highlighterCursor release];
     [arrayOfBrushStrokes release];
@@ -163,7 +169,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void)mouseDown:(NSEvent *)event{
     
-    CGPoint l	= NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
+    CGPoint l = NSPointToCGPoint([self convertPoint:[event locationInWindow] fromView:nil]);
     
     if (useArrow) {
         currentStroke = [[[AArrow alloc] init] autorelease];
