@@ -63,6 +63,7 @@
 -(IBAction) testSFTPConnection:(id) sender;
 -(IBAction) testS3Connection:(id) sender;
 -(IBAction) linkDropbox:(id) sender;
+-(IBAction) toggleStatusMenuItem:(id) sender;
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild;
 

@@ -155,6 +155,11 @@
 	(void)sender;
 }
 
+-(IBAction) toggleStatusMenuItem:(id)sender
+{
+    [statusMenuController toggleStatusMenuItem:sender];
+}
+
 - (BOOL)startAtLogin
 {
     return [Utilities willStartAtLogin:[Utilities appURL]];

@@ -30,5 +30,7 @@
 	<integer>22</integer>
 	<key>KeybindingAnnotateFlags</key>
 	<integer>1179648</integer>
+	<key>ShowStatusMenuItem</key>
+	<true/>
 </dict>
 </plist>

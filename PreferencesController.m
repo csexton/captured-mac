@@ -364,6 +364,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     //	}
 }
 
+-(IBAction) toggleStatusMenuItem:(id) sender {  
+    [AppDelegate toggleStatusMenuItem: sender];
+}
+
+
 
 
 

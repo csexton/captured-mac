@@ -46,6 +46,7 @@
 - (IBAction)takeAnnotatedScreenCaptureAction:(id) sender;
 - (IBAction)takeScreenCaptureWindowAction:(id) sender;
 - (IBAction)showPreferencesWindow:(id) sender;
+- (IBAction)toggleStatusMenuItem:(id)sender;
 
 - (BOOL)isFirstRun;
 - (void)showWelcomeWindow;

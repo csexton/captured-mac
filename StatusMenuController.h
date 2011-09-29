@@ -43,7 +43,9 @@
 -(void) setStatusFailure;
 -(void) setStatusNormal;
 -(void) setStatusIcon: (NSImage*)icon;
+-(IBAction) addStatusItem;
 
+-(IBAction) toggleStatusMenuItem:(id) sender;
 -(IBAction) quitItemAction:(id) sender;
 -(IBAction) copyURLItemAction:(id) sender;
 -(IBAction) openURLInBrowserAction:(id) sender;

@@ -174,7 +174,20 @@
 	else {
 		NSLog(@"ERROR: Could not load Growl.framework");
 	}
+    
+
+    // Add the menu item
+    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue]){
+        [self addStatusItem];   
+    }
+
 	
+
+    
+}
+
+- (void)addStatusItem
+{
 	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
 	statusIconSelected = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSelected" ofType:@"png"]] retain];
 	statusIconSuccess = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSuccess" ofType:@"png"]] retain];
@@ -185,9 +198,33 @@
 	[statusItem setMenu:statusMenu];
 	[statusItem setImage:statusIcon];
     [statusItem setAlternateImage:statusIconSelected];
-	[statusItem setHighlightMode:YES];
+	[statusItem setHighlightMode:YES];    
+    
 }
 
+
+- (IBAction)toggleStatusMenuItem:(id) sender
+{
+    if ([sender state] == NSOnState) {
+        [self addStatusItem];
+    } else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert setMessageText:@"Menu Bar Icon is Hidden"];
+        [alert setInformativeText:@"It is suggested you keep this option selected. With out it there is no easy way to edit preferences."];
+        
+        [alert beginSheetModalForWindow:[sender window]
+                          modalDelegate:self
+                         didEndSelector:@selector(toggleStatusMenuAlertDidEnd:returnCode:contextInfo:)
+                            contextInfo:sender];
+    }
+}
+
+- (void)toggleStatusMenuAlertDidEnd:(NSAlert *)alert
+                         returnCode:(int)returnCode contextInfo:(id)contextInfo {
+    [alert release];
+    [[statusItem statusBar] removeStatusItem:statusItem];    
+}
 
 -(IBAction) quitItemAction:(id) sender
 {
