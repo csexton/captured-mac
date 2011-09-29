@@ -69,6 +69,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [annotatedShortcutRecorder setDelegate:self];
     [primaryShortcutRecorder setKeyCombo:SRMakeKeyCombo(pKeyCode, pModifierFlags)];
     [annotatedShortcutRecorder setKeyCombo:SRMakeKeyCombo(aKeyCode, aModifierFlags)];
+    
+    // Uncheck "Show status item" if defaults says it is not set
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue]){
+        [showStatusMenuItemCheckBox setState:NSOffState];
+    } 
 }
 
 

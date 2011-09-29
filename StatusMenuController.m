@@ -177,7 +177,8 @@
     
 
     // Add the menu item
-    if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue]){
+    BOOL showMenuItem = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue];
+    if (showMenuItem){
         [self addStatusItem];   
     }
 
@@ -206,6 +207,7 @@
 - (IBAction)toggleStatusMenuItem:(id) sender
 {
     if ([sender state] == NSOnState) {
+        [[NSUserDefaults standardUserDefaults] setValue:@"YES" forKey:@"ShowStatusMenuItem"];
         [self addStatusItem];
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
@@ -223,7 +225,8 @@
 - (void)toggleStatusMenuAlertDidEnd:(NSAlert *)alert
                          returnCode:(int)returnCode contextInfo:(id)contextInfo {
     [alert release];
-    [[statusItem statusBar] removeStatusItem:statusItem];    
+    [[statusItem statusBar] removeStatusItem:statusItem];  
+    [[NSUserDefaults standardUserDefaults] setValue:@"NO" forKey:@"ShowStatusMenuItem"];
 }
 
 -(IBAction) quitItemAction:(id) sender

@@ -31,6 +31,7 @@
     IBOutlet NSTextField *picasaTestLabel;
     
     IBOutlet NSButtonCell *startAtLoginCheckBox;
+    IBOutlet NSButton *showStatusMenuItemCheckBox;
     
     IBOutlet SRRecorderControl *primaryShortcutRecorder;
     IBOutlet SRRecorderControl *annotatedShortcutRecorder;
