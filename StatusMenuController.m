@@ -212,8 +212,8 @@
     } else {
         NSAlert *alert = [[NSAlert alloc] init];
         [alert setAlertStyle:NSWarningAlertStyle];
-        [alert setMessageText:@"Menu Bar Icon is Hidden"];
-        [alert setInformativeText:@"It is suggested you keep this option selected. With out it there is no easy way to edit preferences."];
+        [alert setMessageText:@"Are you sure you want to do that?"];
+        [alert setInformativeText:@"It is suggested you keep this option selected. With the Menu Bar Icon hidden there is no easy way to edit the preferences."];
         
         [alert beginSheetModalForWindow:[sender window]
                           modalDelegate:self
