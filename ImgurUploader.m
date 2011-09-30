@@ -93,7 +93,7 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 							  @"DropboxProvider", @"Type",
 							  uploadUrl, @"ImageURL",
 							  deleteUrl, @"DeleteImageURL",
-							  nil, @"FilePath",
+							  self.filePathName, @"FilePath",
 							  nil];
 		[response release];
 		[self uploadSuccess:dict];
