@@ -176,7 +176,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	
 	// build the signature
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:oauthConsumerSecretKey];
-	[sigBaseString release];
+//	[sigBaseString release];
 	
 	// build the authentication header
 	NSString* authHeader = [Utilities genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:nil];
@@ -249,7 +249,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 	// generate oauth signature
 	NSString* sigBaseString = [Utilities genSigBaseString:[url absoluteString] method:@"GET" fileName:nil consumerKey:oauthConsumerKey nonce:nonce timestamp:timestamp token:token];
 	NSString* oauthSignature = [Utilities getHmacSha1:sigBaseString secretKey:[NSString stringWithFormat:@"%@&%@", oauthConsumerSecretKey, secret]];
-	[sigBaseString release];
+//	[sigBaseString release]; // Analyze says this is not right
 	
 	// build the custom headers
 	NSString* authHeader = [Utilities genAuthHeader:nil consumerKey:oauthConsumerKey signature:oauthSignature nonce:nonce timestamp:timestamp token:token];

@@ -124,7 +124,7 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 - (CGImageRef)nsImageToCGImageRef:(NSImage*)nsImage;
 {
     NSData * imageData = [nsImage TIFFRepresentation];
-    CGImageRef cgImageRef;
+    CGImageRef cgImageRef = nil;
     if(imageData)
     {
         CGImageSourceRef imageSource = CGImageSourceCreateWithData((CFDataRef)imageData,  NULL);

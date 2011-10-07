@@ -230,6 +230,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     CloudUploader *s = [[CloudUploader alloc] init];
     [self runTestConnection:s textField: s3TestLabel];
+    [s release];
 	[pool release];
 }
 
@@ -294,6 +295,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     PicasaUploader *s = [[PicasaUploader alloc] init];
     [self runTestConnection:s textField: picasaTestLabel];
+    [s release];
 	[pool release];
 }
 

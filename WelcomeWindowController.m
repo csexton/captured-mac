@@ -38,7 +38,7 @@
 {
     //[window setBackgroundColor:[NSColor orangeColor]];
     //NSImage *theImage = [NSImage imageNamed:@"background"];
-    NSImage *theImage = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WelcomeWindowBackground" ofType:@"png"]] retain];
+    NSImage *theImage = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"WelcomeWindowBackground" ofType:@"png"]] autorelease];
     
     NSColor *theColor = [NSColor colorWithPatternImage:theImage];
     [window setBackgroundColor:theColor];
