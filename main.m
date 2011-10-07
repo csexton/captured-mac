@@ -12,6 +12,10 @@
 
 #include <curl/curl.h>
 
+// for Validate Receipt:
+const NSString * global_bundleVersion = @"3.0";
+const NSString * global_bundleIdentifier = @"com.codeography.captured-mac";
+
 int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	

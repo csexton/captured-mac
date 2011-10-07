@@ -2,7 +2,7 @@
 //  validatereceipt.m
 //
 //  Created by Ruotger Skupin on 23.10.10.
-//  Copyright 2010 Matthew Stevens, Ruotger Skupin, Apple, Dave Carlton, Fraser Hess, anlumo. All rights reserved.
+//  Copyright 2010-2011 Matthew Stevens, Ruotger Skupin, Apple, Dave Carlton, Fraser Hess, anlumo, David Keegan. All rights reserved.
 //
 
 /*
@@ -120,9 +120,12 @@ NSData * appleRootCert(void)
 			CSSM_DATA certData;
 			SecCertificateGetData((SecCertificateRef)itemRef, &certData);
 			resultData = [NSData dataWithBytes:certData.Data length:certData.Length];
-			SecKeychainItemFreeContent(&list, NULL);
-			VRCFRelease(itemRef);
 		}
+		
+		SecKeychainItemFreeContent(&list, NULL);
+
+		if (itemRef)
+			VRCFRelease(itemRef);
 
 		[name release];
 	}
@@ -265,15 +268,14 @@ NSDictionary * dictionaryWithAppStoreReceipt(NSString * path)
 
 		// Only parse attributes we're interested in
 		if (attr_type > ATTR_START && attr_type < ATTR_END) {
-			NSString *key;
+			NSString *key = nil;
 
 			ASN1_get_object(&p, &length, &type, &xclass, seq_end - p);
 			if (type == V_ASN1_OCTET_STRING) {
-
+                NSData *data = [NSData dataWithBytes:p length:(NSUInteger)length];
+                
 				// Bytes
 				if (attr_type == BUNDLE_ID || attr_type == OPAQUE_VALUE || attr_type == HASH) {
-					NSData *data = [NSData dataWithBytes:p length:(NSUInteger)length];
-
 					switch (attr_type) {
 						case BUNDLE_ID:
 							// This is included for hash generation
@@ -286,8 +288,9 @@ NSDictionary * dictionaryWithAppStoreReceipt(NSString * path)
 							key = kReceiptHash;
 							break;
 					}
-
-					[info setObject:data forKey:key];
+					if (key) {
+                        [info setObject:data forKey:key];
+                    }
 				}
 
 				// Strings
@@ -297,10 +300,6 @@ NSDictionary * dictionaryWithAppStoreReceipt(NSString * path)
 					const unsigned char *str_p = p;
 					ASN1_get_object(&str_p, &str_length, &str_type, &xclass, seq_end - str_p);
 					if (str_type == V_ASN1_UTF8STRING) {
-						NSString *string = [[[NSString alloc] initWithBytes:str_p
-																	 length:(NSUInteger)str_length
-																   encoding:NSUTF8StringEncoding] autorelease];
-
 						switch (attr_type) {
 							case BUNDLE_ID:
 								key = kReceiptBundleIdentifier;
@@ -309,8 +308,14 @@ NSDictionary * dictionaryWithAppStoreReceipt(NSString * path)
 								key = kReceiptVersion;
 								break;
 						}
-
-						[info setObject:string forKey:key];
+                        
+						if (key) {                        
+                            NSString *string = [[NSString alloc] initWithBytes:str_p
+																		length:(NSUInteger)str_length
+                                                                      encoding:NSUTF8StringEncoding];
+                            [info setObject:string forKey:key];
+                            [string release];
+						}
 					}
 				}
 			}
@@ -380,31 +385,41 @@ CFDataRef copy_mac_address(void)
 	return macAddress;
 }
 
+extern const NSString * global_bundleVersion;
+extern const NSString * global_bundleIdentifier;
+
+// in your project define those two somewhere as such:
+// const NSString * global_bundleVersion = @"1.0.2";
+// const NSString * global_bundleIdentifier = @"com.example.SampleApp";
+
 BOOL validateReceiptAtPath(NSString * path)
 {
-	NSString *bundleVersion = nil;
-	NSString *bundleIdentifier = nil;
-#ifndef USE_SAMPLE_RECEIPT
 	// it turns out, it's a bad idea, to use these two NSBundle methods in your app:
 	//
 	// bundleVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
 	// bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 	//
 	// http://www.craftymind.com/2011/01/06/mac-app-store-hacked-how-developers-can-better-protect-themselves/
-
+	//
 	// so use hard coded values instead (probably even somehow obfuscated)
-	bundleVersion = @"3.0";
-	bundleIdentifier = @"com.codeography.captured-mac";
 
+	// analyser warning when USE_SAMPLE_RECEIPT is defined (wontfix)
+	NSString *bundleVersion = (NSString*)global_bundleVersion;
+	NSString *bundleIdentifier = (NSString*)global_bundleIdentifier;
+#ifndef USE_SAMPLE_RECEIPT
 	// avoid making stupid mistakes --> check again
 	NSCAssert([bundleVersion isEqualToString:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]],
 			 @"whoops! check the hard-coded CFBundleShortVersionString!");
 	NSCAssert([bundleIdentifier isEqualToString:[[NSBundle mainBundle] bundleIdentifier]],
 			 @"whoops! check the hard-coded bundle identifier!");
 #else
-	bundleVersion = @"1.0.2";
-	bundleIdentifier = @"com.example.SampleApp";
+	bundleVersion = @"3.0";
+	bundleIdentifier = @"com.codeography.captured-mac";
 #endif
+    
+    NSLog(@"local  %@ version %@", bundleIdentifier, bundleVersion);
+    NSLog(@"global %@ version %@", global_bundleIdentifier, global_bundleVersion);
+
 	NSDictionary * receipt = dictionaryWithAppStoreReceipt(path);
 
 	if (!receipt)
@@ -434,7 +449,7 @@ BOOL validateReceiptAtPath(NSString * path)
 
 	NSMutableData *hash = [NSMutableData dataWithLength:SHA_DIGEST_LENGTH];
 	SHA1([input bytes], [input length], [hash mutableBytes]);
-
+    
 	if ([bundleIdentifier isEqualToString:[receipt objectForKey:kReceiptBundleIdentifier]] &&
 		 [bundleVersion isEqualToString:[receipt objectForKey:kReceiptVersion]] &&
 		 [hash isEqualToData:[receipt objectForKey:kReceiptHash]])
