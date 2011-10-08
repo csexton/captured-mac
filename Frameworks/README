@@ -18,3 +18,19 @@ Code Signing
     codesign -f -v -s "3rd Party Mac Developer Application: Christopher Sexton" ./Growl.framework/Versions/A/Growl
     codesign -f -v -s "3rd Party Mac Developer Application: Christopher Sexton" ./GData.framework/Versions/A/GData
 
+http://developer.apple.com/library/mac/#technotes/tn2206/_index.html Says to do the above here:
+
+Signing Frameworks
+------------------
+Seeing as frameworks are bundles it would seem logical to conclude that you can sign a framework directly. However, this is not the case. To avoid problems when signing frameworks make sure that you sign a specific version as opposed to the whole framework:
+
+    $admin> # This is the wrong way:
+    $admin> codesign -s my-signing-identity ../FooBarBaz.framework
+    $admin> # This is the right way:
+    $admin> codesign -s my-signing-identity ../FooBarBaz.framework/Versions/A
+
+So maybe this will help:
+
+    codesign -f -v -s "3rd Party Mac Developer Application: Christopher Sexton" ./libcurl.framework
+    codesign -f -v -s "3rd Party Mac Developer Application: Christopher Sexton" ./Growl.framework
+    codesign -f -v -s "3rd Party Mac Developer Application: Christopher Sexton" ./GData.framework
