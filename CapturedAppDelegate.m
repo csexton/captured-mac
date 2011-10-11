@@ -68,8 +68,10 @@
 - (void)showAnnotateImageWindowWithFile: (NSString*) file {
     AnnotatedImageController* controller = [[AnnotatedImageController alloc] initWithWindowNibName:@"AnnotatedImage"];
     NSImage * image = [[NSImage alloc] initWithContentsOfFile:file]; 
-    [controller setImageAndShowWindow: image]; 
-    [annotatedWindows addObject:controller];
+    if ([image isValid]) {
+        [controller setImageAndShowWindow: image]; 
+        [annotatedWindows addObject:controller];
+    }
     [image release];
     [controller release];
 }
