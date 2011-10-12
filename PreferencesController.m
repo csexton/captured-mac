@@ -363,8 +363,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
 {
-    NSLog(@"Shortcut Reader Callback 2");
-    
+    // This is called after the above method when the user types in a code, however it is also called when the user clears
+    // the shortcut -- so I just duplicated it. If you call set shortcut with nil code and flags it will be cleared. so 
+    // this works to clear it out when the user deletes the shortcut.
+    [self shortcutRecorder: aRecorder isKeyCode:newKeyCombo.code andFlagsTaken:newKeyCombo.flags reason:nil];
+
     //	if (aRecorder == shortcutRecorder)
     //	{
     //		[self toggleGlobalHotKey: aRecorder];

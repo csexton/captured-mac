@@ -139,7 +139,7 @@
 
 -(IBAction) takeAnnotatedScreenCaptureAction:(id) sender
 {
-	NSString *path = [Utilities invokeScreenCapture: @"-i"];
+	NSString *path = [Utilities invokeScreenCapture: @"-io"];
     [self showAnnotateImageWindowWithFile:path];
 }
 
@@ -204,6 +204,9 @@
     } else {
         // Attempt to re-register the original keybindings
         [self registerGlobalHotKeys];
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:0 forKey:@"KeybindingAnnotateCode"];
+        [defaults setInteger:0 forKey:@"KeybindingAnnotateFlags"];
         // Then say we failed
         return NO;
     }
@@ -224,8 +227,11 @@
         return YES;
     } else {
         // Attempt to re-register the original keybindings
-        [self registerGlobalHotKeys];
+        //[self registerGlobalHotKeys];
         // Then say we failed
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:0 forKey:@"KeybindingAnnotateCode"];
+        [defaults setInteger:0 forKey:@"KeybindingAnnotateFlags"];
         return NO;
     }
 }
