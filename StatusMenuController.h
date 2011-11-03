@@ -14,7 +14,7 @@
     IBOutlet NSMenu *statusMenu;
     IBOutlet BOOL *startAtLogin;
     NSStatusItem * statusItem;
-	IBOutlet NSMenuItem *copyURLMenuItem;
+	IBOutlet NSMenuItem *clipURLMenuItem;
 	IBOutlet NSMenuItem *errorMsgMenuItem;
 	IBOutlet NSMenuItem *errorMsgSepMenuItem;
 	NSString *lastUploadedURL;
@@ -32,7 +32,7 @@
 @property BOOL startAtLogin;
 @property (readwrite, retain) NSString *lastUploadedURL;
 @property (readwrite, retain) NSString *lastUploadedDeleteURL;
-@property (assign) IBOutlet NSMenuItem *copyURLMenuItem;
+@property (assign) IBOutlet NSMenuItem *clipURLMenuItem;
 @property (assign) IBOutlet NSMenu *historyMenu;
 
 -(BOOL) isURLAvaliable;

@@ -12,6 +12,7 @@
 #import "WelcomeWindowController.h"
 #import "PreferencesController.h"
 #import "DDHotKeyCenter.h"
+#import "AbstractUploader.h"
 
 
 #define AppDelegate (CapturedAppDelegate *)[[NSApplication sharedApplication] delegate]
@@ -37,8 +38,8 @@
 
 @property BOOL uploadsEnabled;
 
-- (void)uploadSuccess: (NSDictionary *) url;
-- (void)uploadFailure;
+- (void)uploadSuccess: (AbstractUploader*) uploader with:(NSDictionary *) details;
+- (void)uploadFailure: (AbstractUploader*) uploader with:(NSDictionary *) details;
 - (void)statusProcessing;
 - (void)initEventsController;
 - (void)processFileEvent: (NSString *)path;

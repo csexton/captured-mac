@@ -17,7 +17,7 @@
 @implementation StatusMenuController
 @synthesize lastUploadedURL;
 @synthesize lastUploadedDeleteURL;
-@synthesize copyURLMenuItem;
+@synthesize clipURLMenuItem;
 @synthesize historyMenu;
 
 -(void) setStatusIcon: (NSImage*)icon {
@@ -83,7 +83,7 @@
 	self.lastUploadedDeleteURL = [NSString stringWithString:[dict valueForKey:@"DeleteImageURL"]];
 
     // Copy url to clipboard
-	[copyURLMenuItem setEnabled:YES];
+	[clipURLMenuItem setEnabled:YES];
     BOOL useShort = [[[NSUserDefaults standardUserDefaults] objectForKey:@"UseURLShortener"] boolValue];
 	[Utilities copyUrlToPasteboard:[dict valueForKey:@"ImageURL"] shouldShorten:useShort];
     

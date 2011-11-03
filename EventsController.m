@@ -44,11 +44,6 @@
 @synthesize screenCapturePrefix;
 @synthesize screenCaptureDir;
 @synthesize history;
-@synthesize imgurUploader;
-@synthesize sftpUploader;
-@synthesize cloudUploader;
-@synthesize dropboxUploader;
-@synthesize picasaUploader;
 
 /**
  * Sets up the event listener using SCEvents and sets its delegate to this controller.
@@ -62,11 +57,6 @@
 	self.screenCapturePrefix = [Utilities screenCapturePrefix];
 	self.screenCaptureDir = [Utilities screenCaptureDir];
 	self.history = [[[NSMutableSet alloc] init] autorelease]; 
-	self.imgurUploader = [[[ImgurUploader alloc] init] autorelease];
-	self.sftpUploader = [[[SFTPUploader alloc] init] autorelease];
-	self.cloudUploader = [[[CloudUploader alloc] init] autorelease];
-	self.dropboxUploader = [[[DropboxUploader alloc] init] autorelease];
-	self.picasaUploader = [[[PicasaUploader alloc] init] autorelease];
 
     DirEvents *events = [DirEvents sharedPathWatcher];
     
@@ -104,29 +94,33 @@
 	if ([[NSFileManager defaultManager] fileExistsAtPath:file] ){
         NSString * uploadType = [[NSUserDefaults standardUserDefaults] stringForKey:@"UploadType"];
         
+        AbstractUploader *uploader;
         // To make this simple, these keys must match the values in the GUI exactly. If you want 
         // to add a type, add it in the MainMenu.xib's UploadType combobox
         
         if ([uploadType isEqualToString:@"Imgur"]){
-            [imgurUploader uploadFile:file];
+            uploader = [[ImgurUploader alloc] init];
         } 
         else if ([uploadType isEqualToString:@"Amazon S3"])
         {
-            [cloudUploader uploadFile:file];
+            uploader = [[CloudUploader alloc] init];
         } 
         else if ([uploadType isEqualToString:@"Dropbox"])
         {
-            [dropboxUploader uploadFile:file];
+            uploader = [[DropboxUploader alloc] init];
         } 
         else if ([uploadType isEqualToString:@"SFTP"]) 
         {
-            [sftpUploader uploadFile:file];
+            uploader = [[SFTPUploader alloc] init];
         } 
         else 
         { // Fallback to Imgur
             NSLog(@"Unknown upload type '%@', using Imgur", uploadType);
-            [imgurUploader uploadFile:file];
+            uploader = [[ImgurUploader alloc] init];
         }
+        [uploader uploadFile:file];
+        // Force sync? Have the object destroy itself?
+        //[uploader release];
     }
 	[pool release];
 }

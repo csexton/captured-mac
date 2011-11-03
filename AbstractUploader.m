@@ -52,11 +52,21 @@
 
 - (void) uploadSuccess: (NSDictionary *) dict
 {
-    [AppDelegate uploadSuccess:dict];
+    [AppDelegate uploadSuccess: self with:dict];
+
+    // Auto selfdestruct, this could cause some weirdness since this class kills itself after an upload
+    // The alternative would be to have the app track it in an array and when the upload is complete call
+    // back to the app and have it remove this from that array
+    [self release];
 }
 - (void) uploadFailed: (NSDictionary *) dict
 {
-    [AppDelegate uploadFailure];
+    [AppDelegate uploadFailure: self with: dict];
+
+    // Auto selfdestruct, this could cause some weirdness since this class kills itself after an upload
+    // The alternative would be to have the app track it in an array and when the upload is complete call
+    // back to the app and have it remove this from that array
+    [self release];
 }
 - (NSString*)testConnection
 {

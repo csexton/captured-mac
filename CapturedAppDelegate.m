@@ -103,13 +103,13 @@
 	[statusMenuController setStatusProcessing];
 }
 
-- (void)uploadSuccess: (NSDictionary *) dict {
+- (void)uploadSuccess: (AbstractUploader*) uploader with:(NSDictionary *) dict {
     NSString *url = [dict valueForKey:@"ImageURL"];
 	NSLog(@"Upload succeeded: %@", url);
 	[statusMenuController setStatusSuccess: dict];
 }
 
-- (void)uploadFailure {
+- (void)uploadFailure: (AbstractUploader*) uploader with:(NSDictionary *) dict {
 	NSLog(@"Upload Failed.");
 	[statusMenuController setStatusFailure];
 	[statusMenuController performSelector: @selector(setStatusNormal) withObject: nil afterDelay: 5.0];

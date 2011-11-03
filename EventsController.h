@@ -30,31 +30,17 @@
 
 #import <Foundation/Foundation.h>
 #import "DirEventListenerProtocol.h"
-#import "ImgurUploader.h"
-#import "SFTPUploader.h"
-#import "CloudUploader.h"
-#import "DropboxUploader.h"
-#import "PicasaUploader.h"
 
 @interface EventsController : NSObject <DirEventListenerProtocol> {
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
-	ImgurUploader *imgurUploader;
-	SFTPUploader *sftpUploader;
-	CloudUploader *cloudUploader;
-	DropboxUploader *dropboxUploader;
-	PicasaUploader *picasaUploader;
+
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
-@property (readwrite, retain) ImgurUploader *imgurUploader;
-@property (readwrite, retain) SFTPUploader *sftpUploader;
-@property (readwrite, retain) CloudUploader *cloudUploader;
-@property (readwrite, retain) DropboxUploader *dropboxUploader;
-@property (readwrite, retain) PicasaUploader *picasaUploader;
 
 - (void)setupEventListener;
 - (void)processFile: (NSString*)file;
