@@ -292,11 +292,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 ////// Picasa Settings Binding Methods ////////////////////////////////////////////////////
 
 -(void) runPicasaTestConnecton: (id) sender{
-	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    PicasaUploader *s = [[PicasaUploader alloc] init];
-    [self runTestConnection:s textField: picasaTestLabel];
-    [s release];
-	[pool release];
+//	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
+//    PicasaUploader *s = [[PicasaUploader alloc] init];
+//    [self runTestConnection:s textField: picasaTestLabel];
+//    [s release];
+//	[pool release];
 }
 
 -(IBAction) testPicasaConnection:(id) sender{
