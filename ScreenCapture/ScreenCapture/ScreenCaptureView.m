@@ -12,6 +12,8 @@
 #import "ScreenCaptureView.h"
 
 @implementation ScreenCaptureView
+@synthesize delegate;
+
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -99,35 +101,35 @@
     
 }
 
+
 -(void)drawSelectionOn:(CGContextRef)context {
     if (drawing) {
         CGRect rect = CGRectMake(downLocation.x, downLocation.y, currentLocation.x-downLocation.x, currentLocation.y-downLocation.y);
         CGContextSaveGState(context);
-        CGContextSetRGBStrokeColor(context, 0, 0, 0, 1.0);
-        CGContextSetRGBFillColor(context, 1, 1, 1, 0.3);
+        CGContextSetRGBStrokeColor(context, 1, 1, 1, 0.8);
+        CGContextSetRGBFillColor(context, 1, 1, 1, 0.2);
         CGContextSetLineWidth(context, 1.0);
-//        CGContextSetLineJoin(context, NSBevelLineJoinStyle);
         CGContextSetLineCap(context, NSSquareLineCapStyle);
         CGContextSetShadow(context, CGSizeMake(2, -2), 5);
         CGContextBeginPath(context);
-//        CGContextMoveToPoint(context,downLocation.x,downLocation.y);
-//        CGContextAddLineToPoint(context,downLocation.x,currentLocation.y);
-//        CGContextAddLineToPoint(context,currentLocation.x,currentLocation.y);
-//        CGContextAddLineToPoint(context,currentLocation.x,downLocation.y);
-//        CGContextAddLineToPoint(context,downLocation.x,downLocation.y);
         CGContextFillRect(context, rect);
         CGContextAddRect(context, rect);
-
         CGContextDrawPath(context,kCGPathStroke);
         CGContextRestoreGState(context);
     }
-    
 }
 
 - (void)mouseUp:(NSEvent *)event {
     NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
-    
     [self setNeedsDisplay:YES];
+
+    NSRect r = NSMakeRect(downLocation.x, downLocation.y, currentLocation.x-downLocation.x, currentLocation.y-downLocation.y);
+    
+    drawing = NO;
+    
+    if (delegate && [delegate conformsToProtocol:@protocol(ScreenCaptureDelegate)]) {
+        [delegate rectWasSelected:r];
+    }
     
 }
 
@@ -145,6 +147,8 @@
 
 	[self setNeedsDisplay:YES];
 }
+
+
 
 
 

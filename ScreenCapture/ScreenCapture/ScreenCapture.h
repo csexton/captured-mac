@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ScreenCapture : NSObject <NSWindowDelegate>
+@protocol ScreenCaptureDelegate <NSObject>
+@required
+-(void) rectWasSelected: (NSRect)rect;
+@end
 
+@interface ScreenCapture : NSObject <NSWindowDelegate, ScreenCaptureDelegate>
 @property (retain) NSWindow *window;
-
-
 - (void) takeScreenShot;
 
 @end

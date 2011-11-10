@@ -25,6 +25,7 @@
 //		ProcessSerialNumber psn = { 0, kCurrentProcess };
 //		TransformProcessType(&psn, kProcessTransformToBackgroundApplication);
 
+
     self.screenCapture = [[ScreenCapture alloc] init];
     [self.screenCapture takeScreenShot];    
     
