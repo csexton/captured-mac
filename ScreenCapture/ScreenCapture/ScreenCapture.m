@@ -17,7 +17,7 @@
     // Create the window
     NSRect frame = [[NSScreen mainScreen] frame];
     self.window  = [[NSWindow alloc] initWithContentRect:frame
-                                                     styleMask:NSResizableWindowMask
+                                                     styleMask:NSBorderlessWindowMask
                                                        backing:NSBackingStoreBuffered
                                                          defer:NO];
     
@@ -30,7 +30,7 @@
     [self.window setAcceptsMouseMovedEvents:YES];
     [self.window setOpaque:NO];
     [self.window setLevel:CGShieldingWindowLevel()];
-    [self.window setBackgroundColor:[NSColor colorWithDeviceRed:0.2 green:0.2 blue:0.2 alpha:0.0]];
+    [self.window setBackgroundColor:[NSColor colorWithDeviceRed:0.2 green:0.2 blue:0.2 alpha:0.2]];
     
     // Little hack to prevent resizing
     [self.window setMinSize:[window frame].size];

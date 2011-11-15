@@ -44,6 +44,8 @@
 
 - (BOOL)acceptsFirstResponder {return YES;}
 - (BOOL)becomeFirstResponder {return YES;}
+- (BOOL)canBecomeKeyWindow {return YES;}
+
 
 - (void)viewDidLoad {
     NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);

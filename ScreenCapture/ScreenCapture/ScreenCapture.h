@@ -17,4 +17,6 @@
 @property (retain) NSWindow *window;
 - (void) takeScreenShot;
 
+void CGImageWriteToFile(CGImageRef image, NSString *path);
+
 @end
