@@ -17,6 +17,8 @@
 @property (retain) NSWindow *window;
 - (void) takeScreenShot;
 
+-(void) createOverlayOnScreen: (NSScreen*)screen;
+
 void CGImageWriteToFile(CGImageRef image, NSString *path);
 
 @end

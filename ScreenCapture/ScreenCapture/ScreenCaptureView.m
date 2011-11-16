@@ -28,7 +28,6 @@
 }
 - (BOOL)acceptsFirstResponder {return YES;}
 - (BOOL)becomeFirstResponder {return YES;}
-- (BOOL)canBecomeKeyWindow {return YES;}
 
 - (void) resetCursorRects
 {

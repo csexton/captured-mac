@@ -14,19 +14,25 @@
 @synthesize window;
 
 -(void) takeScreenShot {
+    for (NSScreen* screen in [NSScreen screens]) {
+        [self createOverlayOnScreen:screen];
+    }
+//    [self createOverlayOnScreen:[[NSScreen screens] objectAtIndex:1]];
+}
+-(void) createOverlayOnScreen: (NSScreen*)screen {
     
+
+    NSRect frame = [screen frame];
+    frame.size.width = frame.size.width-500;
+    frame.size.height = frame.size.height-500;
+
+
     // Create the window
-    NSRect frame = [[NSScreen mainScreen] frame];
     self.window  = [[ScreenCaptureWindow alloc] initWithContentRect:frame
-                                                     styleMask:NSBorderlessWindowMask
-                                                       backing:NSBackingStoreBuffered
-                                                         defer:NO];
-    
-//    NSRect frame = NSMakeRect(200, 200, 200, 200);
-//    self.window  = [[NSWindow alloc] initWithContentRect:frame
-//                                               styleMask:NSResizableWindowMask
-//                                                 backing:NSBackingStoreBuffered
-//                                                   defer:NO];
+                                                          styleMask:NSBorderlessWindowMask
+                                                            backing:NSBackingStoreBuffered
+                                                              defer:NO
+                                                             screen:screen];
     [self.window setDelegate:self];
     [self.window setAcceptsMouseMovedEvents:YES];
     [self.window setOpaque:NO];
@@ -36,27 +42,23 @@
     // Little hack to prevent resizing
     [self.window setMinSize:[window frame].size];
     [self.window setMaxSize:[window frame].size];
-    
-//    [self.window setBackgroundColor:[NSColor clearColor]];
-//    [NSCursor setHiddenUntilMouseMoves:YES];
-
-//    [window setFrame:[[NSScreen mainScreen] frame] display:YES]; //TODO: for each screen
-    
+        
     // Create the subview
-    NSRect viewFrame = NSMakeRect(0, 0,  0,  0);
+    NSRect viewFrame = NSMakeRect(0,0,0,0);
     
     ScreenCaptureView *subview = [[ScreenCaptureView alloc] initWithFrame:viewFrame ];
     subview.delegate = self;
-
+    
     [[self.window contentView] addSubview:subview];
     [self.window setContentView:subview];
-
+    
     [self.window makeFirstResponder:subview];
-//    [self.window makeKeyAndOrderFront:NSApp];
-    [self.window orderFrontRegardless];
-
+    [self.window makeKeyAndOrderFront:NSApp];
+//    [self.window orderFrontRegardless];
     
 }
+
+
 
 void CGImageWriteToFile(CGImageRef image, NSString *path) {
     CFURLRef url = (CFURLRef)[NSURL fileURLWithPath:path];
@@ -83,14 +85,15 @@ void CGImageWriteToFile(CGImageRef image, NSString *path) {
     NSRect rect = NSRectFromString(rectStr);
     
     //yFromBottom = screenHeight - windowHeight - yFromTop
-    float screenHeight = [[NSScreen mainScreen] frame].size.height;
+    
+    float screenHeight = [self.window.screen frame].size.height;
     float newy = screenHeight - rect.origin.y - rect.size.height;
     CGRect invertedRect = CGRectMake(rect.origin.x, newy, rect.size.width, rect.size.height);
     
     NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/caps.png"];  
     
     //[[[[NSScreen mainScreen] deviceDescription] @"NSScreenNumber"] unsignedIntValue]
-    CGDirectDisplayID display = (CGDirectDisplayID) [[[[NSScreen mainScreen] deviceDescription] objectForKey:@"NSScreenNumber"] unsignedIntValue] ;
+    CGDirectDisplayID display = (CGDirectDisplayID) [[[self.window.screen deviceDescription] objectForKey:@"NSScreenNumber"] unsignedIntValue] ;
     CGImageRef cgImg = CGDisplayCreateImageForRect(display,invertedRect);
     
     CGImageWriteToFile(cgImg, path);

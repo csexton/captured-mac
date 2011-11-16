@@ -15,7 +15,7 @@
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)windowStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)deferCreation {
 	DebugWhereAmI;
     NSRect screenRect = [[NSScreen mainScreen] frame];
-	if ((self = [super initWithContentRect:NSMakeRect(screenRect.origin.x, screenRect.origin.y, NSWidth(screenRect) - 20.0, NSHeight(screenRect))
+	if ((self = [super initWithContentRect:NSMakeRect(screenRect.origin.x, screenRect.origin.y, NSWidth(screenRect), NSHeight(screenRect))
                                  styleMask:NSBorderlessWindowMask
                                    backing:NSBackingStoreBuffered defer:deferCreation])) {
 		[self setOpaque:NO];
