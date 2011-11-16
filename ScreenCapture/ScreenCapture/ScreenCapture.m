@@ -8,6 +8,7 @@
 
 #import "ScreenCapture.h"
 #import "ScreenCaptureView.h"
+#import "ScreenCaptureWindow.h"
 
 @implementation ScreenCapture
 @synthesize window;
@@ -16,7 +17,7 @@
     
     // Create the window
     NSRect frame = [[NSScreen mainScreen] frame];
-    self.window  = [[NSWindow alloc] initWithContentRect:frame
+    self.window  = [[ScreenCaptureWindow alloc] initWithContentRect:frame
                                                      styleMask:NSBorderlessWindowMask
                                                        backing:NSBackingStoreBuffered
                                                          defer:NO];

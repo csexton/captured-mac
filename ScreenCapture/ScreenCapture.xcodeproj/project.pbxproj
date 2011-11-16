@@ -13,6 +13,7 @@
 		B518C00514645B5C00B8F158 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B518C00314645B5C00B8F158 /* Credits.rtf */; };
 		B518C00814645B5C00B8F158 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B518C00714645B5C00B8F158 /* AppDelegate.m */; };
 		B518C00B14645B5C00B8F158 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B518C00914645B5C00B8F158 /* MainMenu.xib */; };
+		B551F3DA147355E300FE6200 /* ScreenCaptureWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B551F3D9147355E300FE6200 /* ScreenCaptureWindow.m */; };
 		B59BAB001469B5E1009F1E6F /* ScreenCaptureView.m in Sources */ = {isa = PBXBuildFile; fileRef = B59BAAFF1469B5E1009F1E6F /* ScreenCaptureView.m */; };
 		B59BAB031469B6BC009F1E6F /* ScreenCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = B59BAB021469B6BC009F1E6F /* ScreenCapture.m */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 		B518C00614645B5C00B8F158 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B518C00714645B5C00B8F158 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B518C00A14645B5C00B8F158 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B551F3D8147355E300FE6200 /* ScreenCaptureWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScreenCaptureWindow.h; path = ScreenCapture/ScreenCaptureWindow.h; sourceTree = "<group>"; };
+		B551F3D9147355E300FE6200 /* ScreenCaptureWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScreenCaptureWindow.m; path = ScreenCapture/ScreenCaptureWindow.m; sourceTree = "<group>"; };
 		B59BAAFE1469B5E1009F1E6F /* ScreenCaptureView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScreenCaptureView.h; path = ScreenCapture/ScreenCaptureView.h; sourceTree = "<group>"; };
 		B59BAAFF1469B5E1009F1E6F /* ScreenCaptureView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScreenCaptureView.m; path = ScreenCapture/ScreenCaptureView.m; sourceTree = "<group>"; };
 		B59BAB011469B6BC009F1E6F /* ScreenCapture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScreenCapture.h; path = ScreenCapture/ScreenCapture.h; sourceTree = "<group>"; };
@@ -52,6 +55,8 @@
 		B518BFE514645B5C00B8F158 = {
 			isa = PBXGroup;
 			children = (
+				B551F3D8147355E300FE6200 /* ScreenCaptureWindow.h */,
+				B551F3D9147355E300FE6200 /* ScreenCaptureWindow.m */,
 				B59BAB011469B6BC009F1E6F /* ScreenCapture.h */,
 				B59BAB021469B6BC009F1E6F /* ScreenCapture.m */,
 				B59BAAFE1469B5E1009F1E6F /* ScreenCaptureView.h */,
@@ -180,6 +185,7 @@
 				B518C00814645B5C00B8F158 /* AppDelegate.m in Sources */,
 				B59BAB001469B5E1009F1E6F /* ScreenCaptureView.m in Sources */,
 				B59BAB031469B6BC009F1E6F /* ScreenCapture.m in Sources */,
+				B551F3DA147355E300FE6200 /* ScreenCaptureWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
