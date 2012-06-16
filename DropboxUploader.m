@@ -136,20 +136,29 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 {
 	NSString* textResponse = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	NSString* result = [[textResponse JSONValue] valueForKey:@"result"];
-	if ([result isEqualToString:@"winner!"])
+	NSString* error = [[textResponse JSONValue] valueForKey:@"error"];
+	if (result)
 	{
-		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+		if ([result isEqualToString:@"winner!"])
+		{
+			NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"DropboxProvider", @"Type",
 							  uploadUrl, @"ImageURL",
 							  deleteUrl, @"DeleteImageURL",
 							  filePath, @"FilePath",
 							  nil];
-		[self uploadSuccess:dict];
+			[self uploadSuccess:dict];
+		}
+		else
+		{
+			[self uploadFailed:nil];
+			NSLog(@"Upload failed with message %@", result);
+		}
 	}
-	else
+	else if (error)
 	{
 		[self uploadFailed:nil];
-		NSLog(@"Upload failed with error message %@", result);
+		NSLog(@"Upload failed with error message %@", error);
 	}
 	[textResponse release];
 }
