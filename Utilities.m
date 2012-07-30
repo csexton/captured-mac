@@ -201,7 +201,7 @@ static size_t CHAR_COUNT = 62;
         [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
         [sourceImage setScalesWhenResized:YES];
         [sourceImage setSize:smallSize];
-        [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+        [sourceImage drawAtPoint:NSZeroPoint fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
         [smallImage unlockFocus];
         
         if (smallSize.height > newSize.height) {
