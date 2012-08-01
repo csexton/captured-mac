@@ -941,6 +941,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -967,6 +968,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1029,6 +1031,7 @@
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "App Store Release";
