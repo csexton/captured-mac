@@ -189,12 +189,13 @@
 
 - (void)addStatusItem
 {
-	statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
-	statusIconSelected = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSelected" ofType:@"png"]] retain];
-	statusIconSuccess = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconSuccess" ofType:@"png"]] retain];
-	statusIconColor = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconColor" ofType:@"png"]] retain];
-	statusIconDisabled = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconDisabled" ofType:@"png"]] retain];
-	statusIconError = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIconError" ofType:@"png"]] retain];
+	//statusIcon = [[[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"StatusMenuIcon" ofType:@"png"]] retain];
+    statusIcon = [NSImage imageNamed:@"StatusMenuIcon"];
+	statusIconSelected = [NSImage imageNamed:@"StatusMenuIconSelected"];
+	statusIconSuccess = [NSImage imageNamed:@"StatusMenuIconSuccess"];
+	statusIconColor = [NSImage imageNamed:@"StatusMenuIconColor"];
+	statusIconDisabled = [NSImage imageNamed:@"StatusMenuIconDisabled"];
+	statusIconError = [NSImage imageNamed:@"StatusMenuIconError"];
 	statusItem = [[[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength] retain];
 	[statusItem setMenu:statusMenu];
 	[statusItem setImage:statusIcon];
