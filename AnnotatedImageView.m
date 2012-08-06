@@ -111,10 +111,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     useBrush = NO;
     useHighlighter = NO;
     useArrow = NO;
-    NSImage * i = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"PencilCursor" ofType:@"png"]];
+    NSImage * i = [NSImage imageNamed:@"BrushCursor"];
     pencilCursor = [[NSCursor alloc] initWithImage:i hotSpot:NSMakePoint(0.0, 15.0)];
     
-    NSImage * j = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"HighlighterCursor" ofType:@"png"]];
+    NSImage * j = [NSImage imageNamed:@"HighlighterCursor"];
     highlighterCursor = [[NSCursor alloc] initWithImage:j hotSpot:NSMakePoint(0.0, 10.0)];
     
     [i release];

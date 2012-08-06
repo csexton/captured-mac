@@ -59,6 +59,9 @@
 		B52FB07F15CF6F8800D8DB8E /* StatusMenuIconError@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB07C15CF6F8800D8DB8E /* StatusMenuIconError@2x.png */; };
 		B52FB08015CF6F8800D8DB8E /* StatusMenuIconSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB07D15CF6F8800D8DB8E /* StatusMenuIconSelected@2x.png */; };
 		B52FB08115CF6F8800D8DB8E /* StatusMenuIconSuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB07E15CF6F8800D8DB8E /* StatusMenuIconSuccess@2x.png */; };
+		B52FB08315CF72AB00D8DB8E /* HighlighterCursor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB08215CF72AB00D8DB8E /* HighlighterCursor@2x.png */; };
+		B52FB08615CF72E700D8DB8E /* BrushCursor.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB08415CF72E700D8DB8E /* BrushCursor.png */; };
+		B52FB08715CF72E700D8DB8E /* BrushCursor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB08515CF72E700D8DB8E /* BrushCursor@2x.png */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
 		B56521C0134C087B00870F8E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
@@ -237,6 +240,9 @@
 		B52FB07C15CF6F8800D8DB8E /* StatusMenuIconError@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StatusMenuIconError@2x.png"; path = "Resources/StatusMenuIconError@2x.png"; sourceTree = "<group>"; };
 		B52FB07D15CF6F8800D8DB8E /* StatusMenuIconSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StatusMenuIconSelected@2x.png"; path = "Resources/StatusMenuIconSelected@2x.png"; sourceTree = "<group>"; };
 		B52FB07E15CF6F8800D8DB8E /* StatusMenuIconSuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "StatusMenuIconSuccess@2x.png"; path = "Resources/StatusMenuIconSuccess@2x.png"; sourceTree = "<group>"; };
+		B52FB08215CF72AB00D8DB8E /* HighlighterCursor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HighlighterCursor@2x.png"; path = "Resources/HighlighterCursor@2x.png"; sourceTree = "<group>"; };
+		B52FB08415CF72E700D8DB8E /* BrushCursor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BrushCursor.png; path = Resources/BrushCursor.png; sourceTree = "<group>"; };
+		B52FB08515CF72E700D8DB8E /* BrushCursor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BrushCursor@2x.png"; path = "Resources/BrushCursor@2x.png"; sourceTree = "<group>"; };
 		B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconColor.png; path = Resources/StatusMenuIconColor.png; sourceTree = "<group>"; };
 		B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconDisabled.png; path = Resources/StatusMenuIconDisabled.png; sourceTree = "<group>"; };
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -442,6 +448,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B52FB08415CF72E700D8DB8E /* BrushCursor.png */,
+				B52FB08515CF72E700D8DB8E /* BrushCursor@2x.png */,
+				B52FB08215CF72AB00D8DB8E /* HighlighterCursor@2x.png */,
 				B52FB07C15CF6F8800D8DB8E /* StatusMenuIconError@2x.png */,
 				B52FB07D15CF6F8800D8DB8E /* StatusMenuIconSelected@2x.png */,
 				B52FB07E15CF6F8800D8DB8E /* StatusMenuIconSuccess@2x.png */,
@@ -835,6 +844,9 @@
 				B52FB07F15CF6F8800D8DB8E /* StatusMenuIconError@2x.png in Resources */,
 				B52FB08015CF6F8800D8DB8E /* StatusMenuIconSelected@2x.png in Resources */,
 				B52FB08115CF6F8800D8DB8E /* StatusMenuIconSuccess@2x.png in Resources */,
+				B52FB08315CF72AB00D8DB8E /* HighlighterCursor@2x.png in Resources */,
+				B52FB08615CF72E700D8DB8E /* BrushCursor.png in Resources */,
+				B52FB08715CF72E700D8DB8E /* BrushCursor@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
