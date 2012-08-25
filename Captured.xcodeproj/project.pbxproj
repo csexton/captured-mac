@@ -91,6 +91,12 @@
 		B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
 		B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
+		B5B45D7D15D00E9300CC3C86 /* BrushIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7915D00E9300CC3C86 /* BrushIcon@2x.png */; };
+		B5B45D7E15D00E9300CC3C86 /* BrushIconAlt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7A15D00E9300CC3C86 /* BrushIconAlt@2x.png */; };
+		B5B45D7F15D00E9300CC3C86 /* HighlighterIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7B15D00E9300CC3C86 /* HighlighterIcon@2x.png */; };
+		B5B45D8015D00E9300CC3C86 /* HighlighterIconAlt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7C15D00E9300CC3C86 /* HighlighterIconAlt@2x.png */; };
+		B5B45D8415D00F7800CC3C86 /* ArrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D8215D00F7800CC3C86 /* ArrowIcon@2x.png */; };
+		B5B45D8515D00F7800CC3C86 /* ArrowIconAlt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D8315D00F7800CC3C86 /* ArrowIconAlt@2x.png */; };
 		B5C5645613042BBE00E396E6 /* ViewBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645513042BBE00E396E6 /* ViewBackground.m */; };
 		B5C564581304310E00E396E6 /* WelcomeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5C564571304310E00E396E6 /* WelcomeWindow.xib */; };
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
@@ -282,6 +288,12 @@
 		B5AEC8DC134ABD67001922C8 /* DropboxPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxPreferencesController.h; sourceTree = "<group>"; };
 		B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxPreferencesController.m; sourceTree = "<group>"; };
 		B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIcon.png; path = Resources/StatusMenuIcon.png; sourceTree = "<group>"; };
+		B5B45D7915D00E9300CC3C86 /* BrushIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BrushIcon@2x.png"; path = "Resources/BrushIcon@2x.png"; sourceTree = "<group>"; };
+		B5B45D7A15D00E9300CC3C86 /* BrushIconAlt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "BrushIconAlt@2x.png"; path = "Resources/BrushIconAlt@2x.png"; sourceTree = "<group>"; };
+		B5B45D7B15D00E9300CC3C86 /* HighlighterIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HighlighterIcon@2x.png"; path = "Resources/HighlighterIcon@2x.png"; sourceTree = "<group>"; };
+		B5B45D7C15D00E9300CC3C86 /* HighlighterIconAlt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "HighlighterIconAlt@2x.png"; path = "Resources/HighlighterIconAlt@2x.png"; sourceTree = "<group>"; };
+		B5B45D8215D00F7800CC3C86 /* ArrowIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ArrowIcon@2x.png"; path = "Resources/ArrowIcon@2x.png"; sourceTree = "<group>"; };
+		B5B45D8315D00F7800CC3C86 /* ArrowIconAlt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ArrowIconAlt@2x.png"; path = "Resources/ArrowIconAlt@2x.png"; sourceTree = "<group>"; };
 		B5C5645413042BBE00E396E6 /* ViewBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewBackground.h; sourceTree = "<group>"; };
 		B5C5645513042BBE00E396E6 /* ViewBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewBackground.m; sourceTree = "<group>"; };
 		B5C564571304310E00E396E6 /* WelcomeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeWindow.xib; sourceTree = "<group>"; };
@@ -448,6 +460,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B5B45D8215D00F7800CC3C86 /* ArrowIcon@2x.png */,
+				B5B45D8315D00F7800CC3C86 /* ArrowIconAlt@2x.png */,
+				B5B45D7915D00E9300CC3C86 /* BrushIcon@2x.png */,
+				B5B45D7A15D00E9300CC3C86 /* BrushIconAlt@2x.png */,
+				B5B45D7B15D00E9300CC3C86 /* HighlighterIcon@2x.png */,
+				B5B45D7C15D00E9300CC3C86 /* HighlighterIconAlt@2x.png */,
 				B52FB08415CF72E700D8DB8E /* BrushCursor.png */,
 				B52FB08515CF72E700D8DB8E /* BrushCursor@2x.png */,
 				B52FB08215CF72AB00D8DB8E /* HighlighterCursor@2x.png */,
@@ -847,6 +865,12 @@
 				B52FB08315CF72AB00D8DB8E /* HighlighterCursor@2x.png in Resources */,
 				B52FB08615CF72E700D8DB8E /* BrushCursor.png in Resources */,
 				B52FB08715CF72E700D8DB8E /* BrushCursor@2x.png in Resources */,
+				B5B45D7D15D00E9300CC3C86 /* BrushIcon@2x.png in Resources */,
+				B5B45D7E15D00E9300CC3C86 /* BrushIconAlt@2x.png in Resources */,
+				B5B45D7F15D00E9300CC3C86 /* HighlighterIcon@2x.png in Resources */,
+				B5B45D8015D00E9300CC3C86 /* HighlighterIconAlt@2x.png in Resources */,
+				B5B45D8415D00F7800CC3C86 /* ArrowIcon@2x.png in Resources */,
+				B5B45D8515D00F7800CC3C86 /* ArrowIconAlt@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
