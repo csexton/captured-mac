@@ -118,6 +118,12 @@
             NSLog(@"Unknown upload type '%@', using Imgur", uploadType);
             uploader = [[ImgurUploader alloc] init];
         }
+        
+        if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ScaleImageByHalf"] boolValue]) {
+          [Utilities scaleImageFileInPlace:file scale:0.5];
+        }
+
+
         [uploader uploadFile:file];
         // Force sync? Have the object destroy itself?
         //[uploader release];

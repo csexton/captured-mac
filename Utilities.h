@@ -23,6 +23,7 @@
 +(BOOL) willStartAtLogin:(NSURL *)itemURL;
 +(void) setStartAtLogin:(NSURL *)itemURL enabled:(BOOL)enabled;
 +(NSImage*) thumbnailWithFileMaintainWidth: (NSString*)path size:(NSSize)newSize;
++(BOOL) scaleImageFileInPlace: (NSString*)path scale:(float)scale;
 +(NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize;
 +(void) growlError:(NSString*) str;
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey;

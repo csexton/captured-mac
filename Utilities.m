@@ -224,6 +224,48 @@ static size_t CHAR_COUNT = 62;
 
 
 
++ (BOOL) scaleImageFileInPlace: (NSString*)path scale:(float)scale {
+    //NSLog(@"Start resize image for history menu thumbnail");
+    NSImage *sourceImage;
+    NSImage *smallImage;
+    
+    sourceImage = [[[NSImage alloc] initWithContentsOfFile:path] autorelease];
+    
+    // Report an error if the source isn't a valid image
+    if (![sourceImage isValid]) {
+        @throw [NSException
+                exceptionWithName:@"FileNotFoundException"
+                reason:@"Original image was not valid, the uploader may not have set the FilePath key"
+                userInfo:nil];
+        return NO; // Why do we get here?
+    } else {
+        
+        NSSize smallSize = [sourceImage size];
+        smallSize.width *= scale;
+        smallSize.height *= scale;
+
+        smallImage = [[[NSImage alloc] initWithSize:smallSize] autorelease];
+        [smallImage lockFocus];
+        [[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+        [sourceImage setScalesWhenResized:YES];
+        [sourceImage setSize:smallSize];
+        [sourceImage compositeToPoint:NSZeroPoint operation:NSCompositeCopy];
+        [smallImage unlockFocus];
+    
+        
+        // Cache the reduced image
+        NSData *imageData = [smallImage TIFFRepresentation];
+        NSBitmapImageRep *imageRep = [NSBitmapImageRep imageRepWithData:imageData];
+        NSDictionary *imageProps = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:1.0] forKey:NSImageCompressionFactor];
+        imageData = [imageRep representationUsingType:NSPNGFileType properties:imageProps];
+        [imageData writeToFile:path atomically:NO];
+    }
+    
+    return YES;
+}
+
+
+
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
     //NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;

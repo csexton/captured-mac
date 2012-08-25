@@ -32,5 +32,7 @@
 	<integer>1179648</integer>
 	<key>ShowStatusMenuItem</key>
 	<true/>
+	<key>ScaleImageByHalf</key>
+	<false/>
 </dict>
 </plist>
