@@ -16,6 +16,14 @@
 		B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */; };
 		B505D3351356966D00B91EDE /* ImgurPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B505D3341356966D00B91EDE /* ImgurPreferences.xib */; };
 		B505D3391356970000B91EDE /* ImgurPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B505D3371356970000B91EDE /* ImgurPreferencesController.m */; };
+		B508CBCA15E8644F006D153A /* Colors.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBC815E8644F006D153A /* Colors.png */; };
+		B508CBCB15E8644F006D153A /* Colors@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBC915E8644F006D153A /* Colors@2x.png */; };
+		B508CBD215E8675D006D153A /* General.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBD015E8675D006D153A /* General.png */; };
+		B508CBD315E8675D006D153A /* General@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBD115E8675D006D153A /* General@2x.png */; };
+		B508CBD515E869D8006D153A /* Keyboard.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBD415E869D8006D153A /* Keyboard.png */; };
+		B508CBD715E869E3006D153A /* Keyboard@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBD615E869E3006D153A /* Keyboard@2x.png */; };
+		B508CBD915E86E30006D153A /* Advanced@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBD815E86E30006D153A /* Advanced@2x.png */; };
+		B508CBDB15E86E54006D153A /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B508CBDA15E86E54006D153A /* Advanced.png */; };
 		B50909C812E790BF00A32F5E /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909B812E790BF00A32F5E /* ASIDataCompressor.m */; };
 		B50909C912E790BF00A32F5E /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BA12E790BF00A32F5E /* ASIDataDecompressor.m */; };
 		B50909CA12E790BF00A32F5E /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = B50909BC12E790BF00A32F5E /* ASIDownloadCache.m */; };
@@ -68,11 +76,8 @@
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B58291AC141EEB0C00CC2C41 /* Keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = B58291AB141EEB0C00CC2C41 /* Keybindings.png */; };
-		B588DD331336DB6800221E3D /* Advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2E1336DB6800221E3D /* Advanced.png */; };
-		B588DD341336DB6800221E3D /* General.png in Resources */ = {isa = PBXBuildFile; fileRef = B588DD2F1336DB6800221E3D /* General.png */; };
 		B588DD351336DB6800221E3D /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B588DD311336DB6800221E3D /* PreferencesController.m */; };
 		B588DD361336DB6800221E3D /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B588DD321336DB6800221E3D /* Preferences.xib */; };
-		B588DD391336DCB500221E3D /* Colors.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD371336DCB500221E3D /* Colors.tiff */; };
 		B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */ = {isa = PBXBuildFile; fileRef = B588DD381336DCB500221E3D /* Updates.tiff */; };
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
@@ -167,6 +172,14 @@
 		B505D3341356966D00B91EDE /* ImgurPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImgurPreferences.xib; sourceTree = "<group>"; };
 		B505D3361356970000B91EDE /* ImgurPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurPreferencesController.h; sourceTree = "<group>"; };
 		B505D3371356970000B91EDE /* ImgurPreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImgurPreferencesController.m; sourceTree = "<group>"; };
+		B508CBC815E8644F006D153A /* Colors.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Colors.png; path = Resources/Colors.png; sourceTree = "<group>"; };
+		B508CBC915E8644F006D153A /* Colors@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Colors@2x.png"; path = "Resources/Colors@2x.png"; sourceTree = "<group>"; };
+		B508CBD015E8675D006D153A /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = General.png; path = Resources/General.png; sourceTree = "<group>"; };
+		B508CBD115E8675D006D153A /* General@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "General@2x.png"; path = "Resources/General@2x.png"; sourceTree = "<group>"; };
+		B508CBD415E869D8006D153A /* Keyboard.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Keyboard.png; path = Resources/Keyboard.png; sourceTree = "<group>"; };
+		B508CBD615E869E3006D153A /* Keyboard@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Keyboard@2x.png"; path = "Resources/Keyboard@2x.png"; sourceTree = "<group>"; };
+		B508CBD815E86E30006D153A /* Advanced@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Advanced@2x.png"; path = "Resources/Advanced@2x.png"; sourceTree = "<group>"; };
+		B508CBDA15E86E54006D153A /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Advanced.png; path = Resources/Advanced.png; sourceTree = "<group>"; };
 		B50909B612E790BF00A32F5E /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASICacheDelegate.h; path = HTTPRequest/ASICacheDelegate.h; sourceTree = "<group>"; };
 		B50909B712E790BF00A32F5E /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ASIDataCompressor.h; path = HTTPRequest/ASIDataCompressor.h; sourceTree = "<group>"; };
 		B50909B812E790BF00A32F5E /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ASIDataCompressor.m; path = HTTPRequest/ASIDataCompressor.m; sourceTree = "<group>"; };
@@ -254,12 +267,9 @@
 		B5665DCF12E54D490024ADEF /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B5665DD112E54D520024ADEF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B58291AB141EEB0C00CC2C41 /* Keybindings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Keybindings.png; sourceTree = "<group>"; };
-		B588DD2E1336DB6800221E3D /* Advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Advanced.png; sourceTree = "<group>"; };
-		B588DD2F1336DB6800221E3D /* General.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = General.png; sourceTree = "<group>"; };
 		B588DD301336DB6800221E3D /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		B588DD311336DB6800221E3D /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		B588DD321336DB6800221E3D /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
-		B588DD371336DCB500221E3D /* Colors.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Colors.tiff; sourceTree = "<group>"; };
 		B588DD381336DCB500221E3D /* Updates.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Updates.tiff; sourceTree = "<group>"; };
 		B58A585B1462D9A500F5F25F /* Captured.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Captured.entitlements; sourceTree = "<group>"; };
 		B59D6F941331CF4100FAA935 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
@@ -460,6 +470,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B508CBDA15E86E54006D153A /* Advanced.png */,
+				B508CBD815E86E30006D153A /* Advanced@2x.png */,
+				B508CBD615E869E3006D153A /* Keyboard@2x.png */,
+				B508CBD415E869D8006D153A /* Keyboard.png */,
+				B508CBD015E8675D006D153A /* General.png */,
+				B508CBD115E8675D006D153A /* General@2x.png */,
+				B508CBC815E8644F006D153A /* Colors.png */,
+				B508CBC915E8644F006D153A /* Colors@2x.png */,
 				B5B45D8215D00F7800CC3C86 /* ArrowIcon@2x.png */,
 				B5B45D8315D00F7800CC3C86 /* ArrowIconAlt@2x.png */,
 				B5B45D7915D00E9300CC3C86 /* BrushIcon@2x.png */,
@@ -483,13 +501,10 @@
 				B5CF8DF5141BAEDD00D50721 /* ArrowIcon.png */,
 				B5CF8DF3141BAA0800D50721 /* BrushIcon.png */,
 				B51E850A133CD9C900B1824C /* StatusMenuIconSelected.png */,
-				B588DD371336DCB500221E3D /* Colors.tiff */,
 				B588DD381336DCB500221E3D /* Updates.tiff */,
 				B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */,
 				B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */,
 				B51A1FCC12E393EB006C7840 /* Credits.html */,
-				B588DD2E1336DB6800221E3D /* Advanced.png */,
-				B588DD2F1336DB6800221E3D /* General.png */,
 				B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */,
 				B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */,
 				B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */,
@@ -840,10 +855,7 @@
 				B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */,
 				B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */,
 				B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */,
-				B588DD331336DB6800221E3D /* Advanced.png in Resources */,
-				B588DD341336DB6800221E3D /* General.png in Resources */,
 				B588DD361336DB6800221E3D /* Preferences.xib in Resources */,
-				B588DD391336DCB500221E3D /* Colors.tiff in Resources */,
 				B588DD3A1336DCB500221E3D /* Updates.tiff in Resources */,
 				B51E850B133CD9C900B1824C /* StatusMenuIconSelected.png in Resources */,
 				B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */,
@@ -871,6 +883,14 @@
 				B5B45D8015D00E9300CC3C86 /* HighlighterIconAlt@2x.png in Resources */,
 				B5B45D8415D00F7800CC3C86 /* ArrowIcon@2x.png in Resources */,
 				B5B45D8515D00F7800CC3C86 /* ArrowIconAlt@2x.png in Resources */,
+				B508CBCA15E8644F006D153A /* Colors.png in Resources */,
+				B508CBCB15E8644F006D153A /* Colors@2x.png in Resources */,
+				B508CBD215E8675D006D153A /* General.png in Resources */,
+				B508CBD315E8675D006D153A /* General@2x.png in Resources */,
+				B508CBD515E869D8006D153A /* Keyboard.png in Resources */,
+				B508CBD715E869E3006D153A /* Keyboard@2x.png in Resources */,
+				B508CBD915E86E30006D153A /* Advanced@2x.png in Resources */,
+				B508CBDB15E86E54006D153A /* Advanced.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
