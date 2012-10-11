@@ -107,6 +107,8 @@
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
 		B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */; };
 		B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C56460130470F500E396E6 /* NSButton+TextColor.m */; };
+		B5C773C815F0FCAB008CE017 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C773C715F0FCAB008CE017 /* EventsController.m */; };
+		B5C773CA15F2AFE4008CE017 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C773C915F2AFE4008CE017 /* Foundation.framework */; };
 		B5CEBBFE1428CE7A00090F31 /* PanelLikeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */; };
 		B5CEBC04142968CB00090F31 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBC03142968CB00090F31 /* GradientView.m */; };
 		B5CF8DE4141B9D2300D50721 /* AnnotatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CF8DE1141B9D2300D50721 /* AnnotatedImageView.m */; };
@@ -312,6 +314,9 @@
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
 		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
 		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
+		B5C773C615F0FCAB008CE017 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
+		B5C773C715F0FCAB008CE017 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
+		B5C773C915F2AFE4008CE017 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelLikeWindow.h; sourceTree = "<group>"; };
 		B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelLikeWindow.m; sourceTree = "<group>"; };
 		B5CEBC02142968CB00090F31 /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
@@ -370,6 +375,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5C773CA15F2AFE4008CE017 /* Foundation.framework in Frameworks */,
 				B50D6F001420F04800A73B54 /* libz.1.2.5.dylib in Frameworks */,
 				CFFA70CB134955840016D54E /* GData.framework in Frameworks */,
 				B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */,
@@ -446,6 +452,7 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				B5C773C915F2AFE4008CE017 /* Foundation.framework */,
 				B58A585B1462D9A500F5F25F /* Captured.entitlements */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
@@ -1017,7 +1024,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1044,7 +1051,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1107,7 +1114,7 @@
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.8;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "App Store Release";

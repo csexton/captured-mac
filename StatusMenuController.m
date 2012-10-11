@@ -9,6 +9,7 @@
 #import <Growl/Growl.h>
 #import "ImgurUploader.h"
 
+
 #import "StatusMenuController.h"
 #import "CapturedAppDelegate.h"
 #import "Utilities.h"
@@ -86,6 +87,23 @@
 	[clipURLMenuItem setEnabled:YES];
     BOOL useShort = [[[NSUserDefaults standardUserDefaults] objectForKey:@"UseURLShortener"] boolValue];
 	[Utilities copyUrlToPasteboard:[dict valueForKey:@"ImageURL"] shouldShorten:useShort];
+    
+    
+    //Initalize new notification
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    //Set the title of the notification
+    [notification setTitle:@"My Title"];
+    //Set the text of the notification
+    [notification setInformativeText:@"My Text"];
+    //Set the time and date on which the nofication will be deliverd (for example 20 secons later than the current date and time)
+    [notification setDeliveryDate:[NSDate dateWithTimeInterval:20 sinceDate:[NSDate date]]];
+    //Set the sound, this can be either nil for no sound, NSUserNotificationDefaultSoundName for the default sound (tri-tone) and a string of a .caf file that is in the bundle (filname and extension)
+    [notification setSoundName:NSUserNotificationDefaultSoundName];
+    
+    //Get the default notification center
+    NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    //Scheldule our NSUserNotification
+    [center scheduleNotification:notification];
     
     // Send growl notification
     [GrowlApplicationBridge notifyWithTitle:@"Captured"
