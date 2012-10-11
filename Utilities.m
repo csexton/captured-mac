@@ -10,7 +10,6 @@
 
 #import "Utilities.h"
 #import "UrlShortener.h"
-#import <Growl/Growl.h>
 #import <CommonCrypto/CommonHMAC.h>
 
 static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -300,16 +299,6 @@ static size_t CHAR_COUNT = 62;
     }
 
     return smallImage;
-}
-+ (void) growlError:(NSString*) str{
-    NSLog(@"Notifying user of error: '%@'", str);
-    [GrowlApplicationBridge notifyWithTitle:@"Captured had a Problem"
-                                description:str
-                           notificationName:@"Error"
-                                   iconData:nil
-                                   priority:0
-                                   isSticky:NO
-                               clickContext:[NSDate date]];
 }
 
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey

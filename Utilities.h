@@ -25,7 +25,6 @@
 +(NSImage*) thumbnailWithFileMaintainWidth: (NSString*)path size:(NSSize)newSize;
 +(BOOL) scaleImageFileInPlace: (NSString*)path scale:(float)scale;
 +(NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize;
-+(void) growlError:(NSString*) str;
 +(NSString*) getHmacSha1:(NSString*)stringToSign secretKey:(NSString*)secretKey;
 +(NSString*)URLEncode:(NSString*)stringToEncode;
 +(NSString*)createUniqueFilename:(NSInteger) numChars;

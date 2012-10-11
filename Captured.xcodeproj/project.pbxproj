@@ -12,7 +12,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
 		B5015B13131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict in Resources */ = {isa = PBXBuildFile; fileRef = B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */; };
 		B505D3351356966D00B91EDE /* ImgurPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B505D3341356966D00B91EDE /* ImgurPreferences.xib */; };
 		B505D3391356970000B91EDE /* ImgurPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B505D3371356970000B91EDE /* ImgurPreferencesController.m */; };
@@ -95,7 +94,6 @@
 		B5AEC8D8134ABB31001922C8 /* DropboxPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AEC8D7134ABB31001922C8 /* DropboxPreferences.xib */; };
 		B5AEC8DE134ABD68001922C8 /* DropboxPreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AEC8DD134ABD67001922C8 /* DropboxPreferencesController.m */; };
 		B5B1696312DF89A300D42AC1 /* StatusMenuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B1696212DF89A300D42AC1 /* StatusMenuIcon.png */; };
-		B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B5015B10131B51B900E7FA35 /* Growl.framework */; };
 		B5B45D7D15D00E9300CC3C86 /* BrushIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7915D00E9300CC3C86 /* BrushIcon@2x.png */; };
 		B5B45D7E15D00E9300CC3C86 /* BrushIconAlt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7A15D00E9300CC3C86 /* BrushIconAlt@2x.png */; };
 		B5B45D7F15D00E9300CC3C86 /* HighlighterIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B5B45D7B15D00E9300CC3C86 /* HighlighterIcon@2x.png */; };
@@ -107,7 +105,6 @@
 		B5C5645C1304317100E396E6 /* WelcomeWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C5645B1304317100E396E6 /* WelcomeWindowController.m */; };
 		B5C5645E13043B9100E396E6 /* WelcomeWindowBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */; };
 		B5C56461130470F600E396E6 /* NSButton+TextColor.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C56460130470F500E396E6 /* NSButton+TextColor.m */; };
-		B5C773C815F0FCAB008CE017 /* EventsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5C773C715F0FCAB008CE017 /* EventsController.m */; };
 		B5C773CA15F2AFE4008CE017 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5C773C915F2AFE4008CE017 /* Foundation.framework */; };
 		B5CEBBFE1428CE7A00090F31 /* PanelLikeWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */; };
 		B5CEBC04142968CB00090F31 /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CEBC03142968CB00090F31 /* GradientView.m */; };
@@ -149,7 +146,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
-				B5B34206131B5417000D7D92 /* Growl.framework in CopyFiles */,
 				B56521C0134C087B00870F8E /* GData.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -169,7 +165,6 @@
 		77C8280C06725ACE000B614F /* CapturedAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CapturedAppDelegate.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Captured_Info.plist */ = {isa = PBXFileReference; explicitFileType = text.plist.xml; fileEncoding = 4; path = Captured_Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5015B10131B51B900E7FA35 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Growl.framework; path = Frameworks/Growl.framework; sourceTree = "<group>"; };
 		B5015B12131B52DD00E7FA35 /* Growl Registration Ticket.growlRegDict */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "Growl Registration Ticket.growlRegDict"; path = "Resources/Growl Registration Ticket.growlRegDict"; sourceTree = "<group>"; };
 		B505D3341356966D00B91EDE /* ImgurPreferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImgurPreferences.xib; sourceTree = "<group>"; };
 		B505D3361356970000B91EDE /* ImgurPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImgurPreferencesController.h; sourceTree = "<group>"; };
@@ -314,8 +309,6 @@
 		B5C5645D13043B9100E396E6 /* WelcomeWindowBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WelcomeWindowBackground.png; path = Resources/WelcomeWindowBackground.png; sourceTree = "<group>"; };
 		B5C5645F130470F500E396E6 /* NSButton+TextColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSButton+TextColor.h"; sourceTree = "<group>"; };
 		B5C56460130470F500E396E6 /* NSButton+TextColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSButton+TextColor.m"; sourceTree = "<group>"; };
-		B5C773C615F0FCAB008CE017 /* EventsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsController.h; sourceTree = "<group>"; };
-		B5C773C715F0FCAB008CE017 /* EventsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsController.m; sourceTree = "<group>"; };
 		B5C773C915F2AFE4008CE017 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		B5CEBBFC1428CE7A00090F31 /* PanelLikeWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanelLikeWindow.h; sourceTree = "<group>"; };
 		B5CEBBFD1428CE7A00090F31 /* PanelLikeWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanelLikeWindow.m; sourceTree = "<group>"; };
@@ -378,7 +371,6 @@
 				B5C773CA15F2AFE4008CE017 /* Foundation.framework in Frameworks */,
 				B50D6F001420F04800A73B54 /* libz.1.2.5.dylib in Frameworks */,
 				CFFA70CB134955840016D54E /* GData.framework in Frameworks */,
-				B5015B11131B51B900E7FA35 /* Growl.framework in Frameworks */,
 				B52ADBA7130C2DA700C7A531 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				B5E9015612DEC349004F71B6 /* CoreServices.framework in Frameworks */,
@@ -452,7 +444,6 @@
 		29B97314FDCFA39411CA2CEA /* Captured */ = {
 			isa = PBXGroup;
 			children = (
-				B5C773C915F2AFE4008CE017 /* Foundation.framework */,
 				B58A585B1462D9A500F5F25F /* Captured.entitlements */,
 				B5C564591304312300E396E6 /* Views */,
 				7756732906782D8800D1FEB8 /* Models */,
@@ -529,11 +520,11 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5C773C915F2AFE4008CE017 /* Foundation.framework */,
 				B50D6EFF1420F04800A73B54 /* libz.1.2.5.dylib */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 				CFFA70CA134955840016D54E /* GData.framework */,
-				B5015B10131B51B900E7FA35 /* Growl.framework */,
 				B52ADBA6130C2DA700C7A531 /* Carbon.framework */,
 				B5E9015512DEC349004F71B6 /* CoreServices.framework */,
 				B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */,

@@ -8,10 +8,9 @@
 
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
-#import <Growl/Growl.h>
 
 
-@interface StatusMenuController : NSObject <GrowlApplicationBridgeDelegate, NSUserNotificationCenterDelegate> {
+@interface StatusMenuController : NSObject <NSUserNotificationCenterDelegate> {
     IBOutlet NSMenu *statusMenu;
     IBOutlet BOOL *startAtLogin;
     NSStatusItem * statusItem;
@@ -55,6 +54,5 @@
 -(void) createHistoryMenuItem: (NSDictionary *) dict;
 -(BOOL) enableHistoryMenu;
 
-- (void) growlNotificationWasClicked:(id)clickContext;
 
 @end

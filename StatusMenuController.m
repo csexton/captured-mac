@@ -6,7 +6,6 @@
 //  Copyright 2011 Codeography. All rights reserved.
 //
 
-#import <Growl/Growl.h>
 #import "ImgurUploader.h"
 
 
@@ -43,34 +42,22 @@
 }
 -(void) setStatusProcessing {
 	[self setStatusIcon: statusIconColor];
-    [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Uploading Screenshot"
-                           notificationName:@"Upload Started"
-                                   iconData:nil
-                                   priority:0
-                                   isSticky:NO
-                               clickContext:[NSDate date]];
+
     [errorMsgMenuItem setHidden:YES];
     [errorMsgSepMenuItem setHidden:YES];
 }
 -(void) setStatusFailure {
 	[self setStatusIcon: statusIconError];
     
-    [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Failed to Upload Screenshot. \n\nClick here to edit Captured's Preferences."
-                           notificationName:@"Upload Failed"
-                                   iconData:nil
-                                   priority:0
-                                   isSticky:NO
-                               clickContext:@"errorMessageClicked"];
+    // TODO:  NSUserNotificationCenter error alert!!!
+    
     [errorMsgMenuItem setHidden:NO];
     [errorMsgSepMenuItem setHidden:NO];
 }
 
-- (void) growlNotificationWasClicked:(id)clickContext{
-    if (clickContext && [clickContext isEqualToString:@"errorMessageClicked"]) {
-        [AppDelegate showPreferencesWindow:nil];
-    }
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
+    NSLog(@"Ouch!");
 }
 
 -(void) setStatusSuccess: (NSDictionary*)dict {
@@ -92,11 +79,11 @@
     //Initalize new notification
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     //Set the title of the notification
-    [notification setTitle:@"My Title"];
+    [notification setTitle:@"Upload Finished"];
     //Set the text of the notification
-    [notification setInformativeText:@"My Text"];
+    [notification setInformativeText:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"];
     //Set the time and date on which the nofication will be deliverd (for example 20 secons later than the current date and time)
-    [notification setDeliveryDate:[NSDate dateWithTimeInterval:20 sinceDate:[NSDate date]]];
+    [notification setDeliveryDate:[NSDate dateWithTimeInterval:0 sinceDate:[NSDate date]]];
     //Set the sound, this can be either nil for no sound, NSUserNotificationDefaultSoundName for the default sound (tri-tone) and a string of a .caf file that is in the bundle (filname and extension)
     [notification setSoundName:NSUserNotificationDefaultSoundName];
     
@@ -104,15 +91,7 @@
     NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
     //Scheldule our NSUserNotification
     [center scheduleNotification:notification];
-    
-    // Send growl notification
-    [GrowlApplicationBridge notifyWithTitle:@"Captured"
-                                description:@"Successfully Uploaded Screenshot and Copied the URL to the Clipboard"
-                           notificationName:@"Upload Finished"
-                                   iconData:nil
-                                   priority:0
-                                   isSticky:NO
-                               clickContext:[NSDate date]];
+
    
     // Jump to the background thread to do the resizing
     [self performSelectorInBackground: @selector(createHistoryMenuItem:) withObject: dict];
@@ -181,28 +160,11 @@
 
 -(void) awakeFromNib
 {
-    NSBundle *myBundle = [NSBundle bundleForClass:[CapturedAppDelegate class]];
-	NSString *growlPath = [[myBundle privateFrameworksPath] stringByAppendingPathComponent:@"Growl.framework"];
-	NSBundle *growlBundle = [NSBundle bundleWithPath:growlPath];
-    
-	if (growlBundle && [growlBundle load]) {
-		// Register ourselves as a Growl delegate
-		[GrowlApplicationBridge setGrowlDelegate:self];
-	}
-	else {
-		NSLog(@"ERROR: Could not load Growl.framework");
-	}
-    
-
     // Add the menu item
     BOOL showMenuItem = [[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue];
     if (showMenuItem){
         [self addStatusItem];   
     }
-
-	
-
-    
 }
 
 - (void)addStatusItem
