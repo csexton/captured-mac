@@ -33,9 +33,9 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
     NSURL *imgurURL = [NSURL URLWithString:@"http://api.imgur.com/2/upload.xml"];	
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:imgurURL];
     [request setDelegate:self];
-    [request setPostValue:[NSString stringWithString:API_KEY] forKey:@"key"];
-    [request setPostValue:[NSString stringWithString:@"Uploaded by Captured for Mac"] forKey:@"caption"];
-    [request setPostValue:[NSString stringWithString:@"Screen Capture"] forKey:@"title"];
+    [request setPostValue:API_KEY forKey:@"key"];
+    [request setPostValue:@"Uploaded by Captured for Mac" forKey:@"caption"];
+    [request setPostValue:@"Screen Capture" forKey:@"title"];
     [request setData:imageSelectionData  forKey:@"image"]; 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploadStarting"
                                                         object:self];
@@ -109,18 +109,18 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 }
 
 #pragma mark ASIFormData Delegate Methods
-- (void) requestFinished: (ASIFormDataRequest *) request {
-	NSData * myData = [request rawResponseData];
+- (void) requestFinished: (ASIFormDataRequest *) request {    
+    NSLog(@"responseString %@", [request responseString]);
 	
 	if (request.responseStatusCode != 200) {
 		NSLog(@"Upload Failed");
 		NSLog(@"Imgur responseStatusCode: %d", request.responseStatusCode);
-		NSLog(@"Imgur Response: %@", [[[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding] autorelease]);
+		NSLog(@"Imgur Response: %@", [request responseString]);
 		[self requestFailed:nil];
 	}
 	else{
-		NSLog(@"Imgur Response: %@", [[[NSString alloc] initWithData:myData encoding:NSUTF8StringEncoding] autorelease]);
-		NSString * body = [NSString stringWithFormat:@"%.*s",[myData length], [myData bytes]];
+		NSLog(@"Imgur Response: %@", [request responseString]);
+		NSString * body = [request responseString];
 		NSDictionary *dict = [self parseResponseForURL:body];
         [self uploadSuccess:dict];
 	}
