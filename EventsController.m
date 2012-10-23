@@ -30,8 +30,6 @@
 
 #import "EventsController.h"
 #import "Utilities.h"
-#import "DirEvents.h"
-#import "DirEvent.h"
 #import "CapturedAppDelegate.h"
 #import "ImgurUploader.h"
 #import "SFTPUploader.h"
@@ -45,49 +43,8 @@
 @synthesize screenCaptureDir;
 @synthesize history;
 
-/**
- * Sets up the event listener using SCEvents and sets its delegate to this controller.
- * The event stream is started by calling startWatchingPaths: while passing the paths
- * to be watched.
- */
-- (void)setupEventListener
-{
-	// Load this into a member var so we don't have to read the plist every time the 
-	// event gets fired	
-	self.screenCapturePrefix = [Utilities screenCapturePrefix];
-	self.screenCaptureDir = [Utilities screenCaptureDir];
-	self.history = [[[NSMutableSet alloc] init] autorelease]; 
 
-    DirEvents *events = [DirEvents sharedPathWatcher];
-    
-    [events setDelegate:self];
-	    
-	NSMutableArray *paths = [NSMutableArray arrayWithObject:screenCaptureDir];
-	
-	// Start receiving events
-	[events startWatchingPaths:paths];
-	
-	events.ignoreEventsFromSubDirs = YES;
 
-	// Display a description of the stream
-	//NSLog(@"%@", [events streamDescription]);	
-}
-
-/**
- * This is the only method to be implemented to conform to the SCEventListenerProtocol.
- * As this is only an example the event received is simply printed to the console.
- */
-- (void)pathWatcher:(DirEvents *)pathWatcher eventOccurred:(DirEvent *)event
-{
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"EnableDesktopWatcher"]) {
-        
-        NSArray *list = [self findFilesWithPrefix:screenCapturePrefix inDir:screenCaptureDir];
-        
-        for (NSString *path in list) {
-            [self processFile:path];
-        }
-    }
-}
 
 - (void)processFile: (NSString*)file {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];

@@ -29,20 +29,17 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "DirEventListenerProtocol.h"
 
-@interface EventsController : NSObject <DirEventListenerProtocol> {
+@interface EventsController : NSObject {
     NSString *screenCapturePrefix;
     NSString *screenCaptureDir;
 	NSMutableSet *history;
-
 }
 
 @property (readwrite, retain) NSString *screenCapturePrefix;
 @property (readwrite, retain) NSString *screenCaptureDir;
 @property (readwrite, retain) NSMutableSet *history;
 
-- (void)setupEventListener;
 - (void)processFile: (NSString*)file;
 - (NSArray *)findFilesWithPrefix: (NSString*)prefix inDir:(NSString*)basepath;
 

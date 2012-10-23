@@ -136,7 +136,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
 
 - (void)saveViewToFile:(NSString *) path
 {
-    //NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:@"Desktop/annotated.png"];    
     [self lockFocus];
     NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:[self bounds]];
     [self unlockFocus];    

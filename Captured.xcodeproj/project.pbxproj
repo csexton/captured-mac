@@ -81,8 +81,6 @@
 		B59D6F951331CF4100FAA935 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = B59D6F941331CF4100FAA935 /* Defaults.plist */; };
 		B59D6FA113329BE300FAA935 /* MenuItemWithDict.m in Sources */ = {isa = PBXBuildFile; fileRef = B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */; };
 		B5A437C912E0C820007D2A2D /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A437C812E0C820007D2A2D /* Utilities.m */; };
-		B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F112E0ECF3007D2A2D /* DirEvent.m */; };
-		B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A438F412E0ECF3007D2A2D /* DirEvents.m */; };
 		B5A43B5C12E20172007D2A2D /* StatusMenuIconError.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */; };
 		B5A43B9812E20481007D2A2D /* StatusMenuIconSuccess.png in Resources */ = {isa = PBXBuildFile; fileRef = B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */; };
 		B5A44F09142A2A5B003B71FD /* ABrushStroke.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A44F08142A2A5B003B71FD /* ABrushStroke.m */; };
@@ -274,11 +272,6 @@
 		B59D6FA013329BE100FAA935 /* MenuItemWithDict.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuItemWithDict.m; sourceTree = "<group>"; };
 		B5A437C712E0C820007D2A2D /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		B5A437C812E0C820007D2A2D /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		B5A438F012E0ECF3007D2A2D /* DirEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvent.h; path = DirEvents/DirEvent.h; sourceTree = "<group>"; };
-		B5A438F112E0ECF3007D2A2D /* DirEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirEvent.m; path = DirEvents/DirEvent.m; sourceTree = "<group>"; };
-		B5A438F212E0ECF3007D2A2D /* DirEventListenerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEventListenerProtocol.h; path = DirEvents/DirEventListenerProtocol.h; sourceTree = "<group>"; };
-		B5A438F312E0ECF3007D2A2D /* DirEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DirEvents.h; path = DirEvents/DirEvents.h; sourceTree = "<group>"; };
-		B5A438F412E0ECF3007D2A2D /* DirEvents.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DirEvents.m; path = DirEvents/DirEvents.m; sourceTree = "<group>"; };
 		B5A43B5B12E20172007D2A2D /* StatusMenuIconError.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconError.png; path = Resources/StatusMenuIconError.png; sourceTree = "<group>"; };
 		B5A43B9712E20481007D2A2D /* StatusMenuIconSuccess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = StatusMenuIconSuccess.png; path = Resources/StatusMenuIconSuccess.png; sourceTree = "<group>"; };
 		B5A44F07142A2A5B003B71FD /* ABrushStroke.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABrushStroke.h; sourceTree = "<group>"; };
@@ -389,7 +382,6 @@
 			children = (
 				B5A44F1F142A74A1003B71FD /* AnnotatedImage */,
 				B5A44F20142A750A003B71FD /* Controllers */,
-				B52AAEAA12DFAC7D00609367 /* DirEvents */,
 				B5E9016312DEC36E004F71B6 /* HTTPRequest */,
 				CFDD04221332D89300C8160E /* JSON */,
 				B5AEC8CB13477AFD001922C8 /* KeyChain */,
@@ -628,18 +620,6 @@
 				B51ABACD141C7B9C004E5B9C /* SRValidator.m */,
 			);
 			name = ShortcutRecorder;
-			sourceTree = "<group>";
-		};
-		B52AAEAA12DFAC7D00609367 /* DirEvents */ = {
-			isa = PBXGroup;
-			children = (
-				B5A438F012E0ECF3007D2A2D /* DirEvent.h */,
-				B5A438F112E0ECF3007D2A2D /* DirEvent.m */,
-				B5A438F212E0ECF3007D2A2D /* DirEventListenerProtocol.h */,
-				B5A438F312E0ECF3007D2A2D /* DirEvents.h */,
-				B5A438F412E0ECF3007D2A2D /* DirEvents.m */,
-			);
-			name = DirEvents;
 			sourceTree = "<group>";
 		};
 		B588DD251336873C00221E3D /* Uploaders */ = {
@@ -904,8 +884,6 @@
 				B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */,
 				B52AAEB512DFADEB00609367 /* EventsController.m in Sources */,
 				B5A437C912E0C820007D2A2D /* Utilities.m in Sources */,
-				B5A438F512E0ECF3007D2A2D /* DirEvent.m in Sources */,
-				B5A438F612E0ECF3007D2A2D /* DirEvents.m in Sources */,
 				B50909C812E790BF00A32F5E /* ASIDataCompressor.m in Sources */,
 				B50909C912E790BF00A32F5E /* ASIDataDecompressor.m in Sources */,
 				B50909CA12E790BF00A32F5E /* ASIDownloadCache.m in Sources */,
