@@ -8,7 +8,7 @@
 
 #import "DropboxPreferencesController.h"
 #import "DropboxUploader.h"
-
+#import <DropboxOSX/DropboxOSX.h>
 
 @implementation DropboxPreferencesController
 
@@ -19,12 +19,22 @@
         // Initialization code here.
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(authHelperStateChangedNotification:) name:DBAuthHelperOSXStateChangedNotification object:[DBAuthHelperOSX sharedHelper]];
+    
     return self;
 }
 
 - (void)dealloc
 {
     [super dealloc];
+}
+
+- (void)authHelperStateChangedNotification:(NSNotification *)notification {
+    if ([[DBSession sharedSession] isLinked]) {
+        // You can now start using the API!
+        [uploader getAccountInfo];
+        [self showApproprateView];
+    }
 }
 
 -(void)awakeFromNib {

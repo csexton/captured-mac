@@ -7,10 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <DropboxOSX/DropboxOSX.h>
 
 #import "AbstractUploader.h"
 
-@interface DropboxUploader : AbstractUploader
+@interface DropboxUploader : AbstractUploader <DBRestClientDelegate> {
+    DBRestClient *restClient;
+}
 
 - (void)linkAccount;
 - (void)getAccountInfo;

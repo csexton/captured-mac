@@ -11,11 +11,25 @@
 #import "DropboxUploader.h"
 #import <DropboxOSX/DropboxOSX.h>
 
-// these are the Dropbox API keys, keep them safe
-static NSString* oauthConsumerKey = @"4zwv9noh6qesnob";
-static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
-
 @implementation DropboxUploader
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
+        restClient.delegate = self;
+    }
+    
+    return self;
+}
+
+- (void)dealloc
+{
+	[restClient release];
+	
+    [super dealloc];
+}
 
 - (void)uploadFile:(NSString*)sourceFile
 {
@@ -24,90 +38,52 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
     // generate a unique filename
     NSString* tempNam = [Utilities createUniqueFilename:5];
     
-    // set up the session, we are using the app folder
-    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
-    
-    // if we're not linked, we can't do anything yet, so inform the user
-    if (![session isLinked])
+    // if we're not linked, we can't do anything yet, log it and exit
+    if (![[DBSession sharedSession] isLinked])
     {
         [self uploadFailed:nil];
-        [session release];
         NSLog(@"Cannot upload to Dropbox, account is not linked");
         return;
     }
     
-    // set this as our session and create the rest client
-    [DBSession setSharedSession:session];
-    DBRestClient* restClient = [[DBRestClient alloc] initWithSession:session];
-    
     // do the upload
     [restClient uploadFile:tempNam toPath:@"/Captured/" withParentRev:nil fromPath:sourceFile];
-    
-    // clean up
-    [restClient release];
-    [session release];
 }
 
 - (void)linkAccount {
-    // set up the session, we are using the app folder
-    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
-    [DBSession setSharedSession:session];
-    
     // call the authenticator, which will link the account
     [[DBAuthHelperOSX sharedHelper] authenticate];
-    
-    // clean up
-    [session release];
 }
 
 - (void)getAccountInfo {
     // create the session, must already be linked
-    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
-    if (![session isLinked])
-    {
-        [session release];
+    if (![[DBSession sharedSession] isLinked])
         return;
-    }
     
     // create the rest client so we can load the account info
-    [DBSession setSharedSession:session];
-    DBRestClient* restClient = [[DBRestClient alloc] initWithSession:session];
     [restClient loadAccountInfo];
-    
+}
+
+- (void)restClient:(DBRestClient*)client loadedAccountInfo:(DBAccountInfo*)info
+{
     // store the display name from the account
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:[restClient valueForKey:@"DropboxDisplayName"]];
-    
-    // clean up
-    [restClient release];
-    [session release];
+    [defaults setValue:[info displayName] forKey:@"DropboxDisplayName"];
 }
 
 - (BOOL)isAccountLinked
 {
-    // set up the session, we are using the app folder
-    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
-    BOOL isLinked = [session isLinked];
-    [session release];
-    
-    return isLinked;
+    return [[DBSession sharedSession] isLinked];
 }
 
 - (void)unlinkAccount
 {
-    // create the session, must be linked in order to unlink
-    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
-    if (![session isLinked])
-    {
-        [session release];
+    // must be linked in order to unlink
+    if (![[DBSession sharedSession] isLinked])
         return;
-    }
     
     // unlink the account
-    [session unlinkAll];
-    
-    // clean up
-    [session release];
+    [[DBSession sharedSession] unlinkAll];
 }
 
 @end
