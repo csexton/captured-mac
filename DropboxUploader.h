@@ -12,13 +12,9 @@
 
 @interface DropboxUploader : AbstractUploader
 
-- (NSString*)linkAccount:(NSString*)email password:(NSString*)password;
+- (void)linkAccount;
 - (void)getAccountInfo;
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end

@@ -13,8 +13,6 @@
 @interface DropboxPreferencesController : NSViewController {
 @private
     IBOutlet NSBox *box;
-    IBOutlet NSTextField *dropboxUser;
-    IBOutlet NSTextField *dropboxPassword;
     IBOutlet NSView *linkedView;
     IBOutlet NSView *loginView;
     IBOutlet NSTextField *linkedAccountLabel;

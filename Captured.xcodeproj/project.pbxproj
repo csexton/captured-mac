@@ -118,6 +118,8 @@
 		B5E9015F12DEC35D004F71B6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E9015E12DEC35D004F71B6 /* SystemConfiguration.framework */; };
 		B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9024C12DEC480004F71B6 /* StatusMenuController.m */; };
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
+		CF034C93166C0D780061593B /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF034C92166C0D780061593B /* DropboxOSX.framework */; };
+		CF034C9A166C5F2F0061593B /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF034C92166C0D780061593B /* DropboxOSX.framework */; };
 		CF1742B113273F890021D91B /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
 		CF368800133523A7003703C7 /* UrlShortener.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3687FF133523A7003703C7 /* UrlShortener.m */; };
@@ -147,6 +149,7 @@
 			files = (
 				CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */,
 				B56521C0134C087B00870F8E /* GData.framework in CopyFiles */,
+				CF034C9A166C5F2F0061593B /* DropboxOSX.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,6 +332,7 @@
 		B5E9024B12DEC480004F71B6 /* StatusMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusMenuController.h; sourceTree = "<group>"; };
 		B5E9024C12DEC480004F71B6 /* StatusMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusMenuController.m; sourceTree = "<group>"; };
 		B5E902D412DECC85004F71B6 /* Captured_Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Captured_Icon.icns; sourceTree = "<group>"; };
+		CF034C92166C0D780061593B /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxOSX.framework; path = Frameworks/DropboxOSX.framework; sourceTree = "<group>"; };
 		CF1742B013273F890021D91B /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Frameworks/libcurl.framework; sourceTree = "<group>"; };
 		CF3687FE133523A6003703C7 /* UrlShortener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlShortener.h; sourceTree = "<group>"; };
 		CF3687FF133523A7003703C7 /* UrlShortener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlShortener.m; sourceTree = "<group>"; };
@@ -368,6 +372,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF034C93166C0D780061593B /* DropboxOSX.framework in Frameworks */,
 				B5C773CA15F2AFE4008CE017 /* Foundation.framework in Frameworks */,
 				B50D6F001420F04800A73B54 /* libz.1.2.5.dylib in Frameworks */,
 				CFFA70CB134955840016D54E /* GData.framework in Frameworks */,
@@ -520,6 +525,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CF034C92166C0D780061593B /* DropboxOSX.framework */,
 				B5C773C915F2AFE4008CE017 /* Foundation.framework */,
 				B50D6EFF1420F04800A73B54 /* libz.1.2.5.dylib */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,

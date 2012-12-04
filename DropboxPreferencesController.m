@@ -46,19 +46,11 @@
 }
 
 -(IBAction)linkAccounts:(id)sender {
+    [uploader linkAccount];
     
-    NSString *user = [dropboxUser stringValue];
-    NSString *pass = [dropboxPassword stringValue];
-
-    NSString *ret = [uploader linkAccount:user password:pass];
-    
-    if (ret != nil) {
-        [errorLabel setStringValue:ret];
-    }
     [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {
-    [dropboxPassword setStringValue:@""];
     [box setContentView:loginView];
     [uploader unlinkAccount];
     
