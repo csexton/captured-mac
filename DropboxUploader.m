@@ -43,6 +43,7 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
     // do the upload
     [restClient uploadFile:tempNam toPath:@"/Captured/" withParentRev:nil fromPath:sourceFile];
     
+    // clean up
     [restClient release];
     [session release];
 }
@@ -54,16 +55,30 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
     
     // call the authenticator, which will link the account
     [[DBAuthHelperOSX sharedHelper] authenticate];
+    
+    // clean up
     [session release];
 }
 
 - (void)getAccountInfo {
+    // create the session, must already be linked
     DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
+    if (![session isLinked])
+    {
+        [session release];
+        return;
+    }
+    
+    // create the rest client so we can load the account info
     [DBSession setSharedSession:session];
     DBRestClient* restClient = [[DBRestClient alloc] initWithSession:session];
     [restClient loadAccountInfo];
+    
+    // store the display name from the account
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:[restClient valueForKey:@"DropboxDisplayName"]];
+    
+    // clean up
     [restClient release];
     [session release];
 }
@@ -80,8 +95,18 @@ static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 
 - (void)unlinkAccount
 {
+    // create the session, must be linked in order to unlink
     DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
+    if (![session isLinked])
+    {
+        [session release];
+        return;
+    }
+    
+    // unlink the account
     [session unlinkAll];
+    
+    // clean up
     [session release];
 }
 
