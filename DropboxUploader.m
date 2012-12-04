@@ -48,6 +48,7 @@
     
     // do the upload
     [restClient uploadFile:tempNam toPath:@"/Captured/" withParentRev:nil fromPath:sourceFile];
+	[self uploadStarted];
 }
 
 - (void)linkAccount {
@@ -69,6 +70,27 @@
     // store the display name from the account
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:[info displayName] forKey:@"DropboxDisplayName"];
+}
+
+- (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
+{
+    [restClient loadSharableLinkForFile:destPath];
+}
+
+- (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
+{
+    [self uploadFailed:nil];
+}
+
+- (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link forFile:(NSString*)path
+{
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"DropboxProvider", @"Type",
+                          link, @"ImageURL",
+                          link, @"DeleteImageURL",
+                          filePath, @"FilePath",
+                          nil];
+    [self uploadSuccess:dict];
 }
 
 - (BOOL)isAccountLinked
