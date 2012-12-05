@@ -17,7 +17,7 @@
 {
     self = [super init];
     if (self) {
-        restClient = [[[DBRestClient alloc] initWithSession:[DBSession sharedSession]] autorelease];
+        restClient = [[DBRestClient alloc] initWithSession:[DBSession sharedSession]];
         restClient.delegate = self;
     }
     
