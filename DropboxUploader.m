@@ -75,6 +75,7 @@
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
     [restClient loadSharableLinkForFile:destPath];
+    //[restClient loadStreamableURLForFile:destPath]; //this is if we want to support direct links
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
@@ -82,12 +83,26 @@
     [self uploadFailed:nil];
 }
 
+// the link generated from this call leads to a Dropbox-hosted page, with share options
 - (void)restClient:(DBRestClient*)restClient loadedSharableLink:(NSString*)link forFile:(NSString*)path
 {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           @"DropboxProvider", @"Type",
                           link, @"ImageURL",
                           link, @"DeleteImageURL",
+                          filePath, @"FilePath",
+                          nil];
+    [self uploadSuccess:dict];
+}
+
+// the link generated from this call points directly to the image
+- (void)restClient:(DBRestClient*)restClient loadedStreamableURL:(NSURL*)url forFile:(NSString*)path;
+{
+    NSString* link = [url absoluteString];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                          @"DropboxProvider", @"Type",
+                          link, @"ImageURL",
+                          path, @"DeleteImageURL",
                           filePath, @"FilePath",
                           nil];
     [self uploadSuccess:dict];
