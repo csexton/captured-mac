@@ -117,6 +117,10 @@
     if (![[DBSession sharedSession] isLinked])
         return;
     
+    // clear the display name from the account
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults removeObjectForKey:@"DropboxDisplayName"];
+
     // unlink the account
     [[DBSession sharedSession] unlinkAll];
 }
