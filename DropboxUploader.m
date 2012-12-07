@@ -37,7 +37,7 @@
     NSString* tempNam = [Utilities createUniqueFilename:5];
     
     // if we're not linked, we can't do anything yet, log it and exit
-    if (![[DBSession sharedSession] isLinked])
+    if (![self isAccountLinked])
     {
         [self uploadFailed:nil];
         NSLog(@"Cannot upload to Dropbox, account is not linked");
@@ -52,15 +52,6 @@
 - (void)linkAccount {
     // call the authenticator, which will link the account
     [[DBAuthHelperOSX sharedHelper] authenticate];
-}
-
-- (void)getAccountInfo {
-    // create the session, must already be linked
-    if (![[DBSession sharedSession] isLinked])
-        return;
-    
-    // create the rest client so we can load the account info
-    [restClient loadAccountInfo];
 }
 
 - (void)restClient:(DBRestClient*)client loadedAccountInfo:(DBAccountInfo*)info
@@ -114,13 +105,9 @@
 - (void)unlinkAccount
 {
     // must be linked in order to unlink
-    if (![[DBSession sharedSession] isLinked])
+    if (![self isAccountLinked])
         return;
     
-    // clear the display name from the account
-    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    [defaults removeObjectForKey:@"DropboxDisplayName"];
-
     // unlink the account
     [[DBSession sharedSession] unlinkAll];
 }

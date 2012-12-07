@@ -16,7 +16,6 @@
 }
 
 - (void)linkAccount;
-- (void)getAccountInfo;
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
 
