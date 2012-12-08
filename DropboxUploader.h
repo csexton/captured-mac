@@ -7,18 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <DropboxOSX/DropboxOSX.h>
 
 #import "AbstractUploader.h"
 
-@interface DropboxUploader : AbstractUploader
+@interface DropboxUploader : AbstractUploader <DBRestClientDelegate> {
+    DBRestClient *restClient;
+}
 
-- (NSString*)linkAccount:(NSString*)email password:(NSString*)password;
-- (void)getAccountInfo;
+- (void)linkAccount;
 - (BOOL)isAccountLinked;
 - (void)unlinkAccount;
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
 @end

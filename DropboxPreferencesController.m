@@ -9,7 +9,6 @@
 #import "DropboxPreferencesController.h"
 #import "DropboxUploader.h"
 
-
 @implementation DropboxPreferencesController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -37,8 +36,6 @@
 
 -(void)showApproprateView{
     if ([uploader isAccountLinked]) {
-        NSString* name = [[NSUserDefaults standardUserDefaults] stringForKey:@"DropboxDisplayName"];
-        [displayName setStringValue:[NSString stringWithFormat:@"This computer is linked to %@'s Dropbox Account.",name]];
         [box setContentView:linkedView];
     } else {
         [box setContentView:loginView];
@@ -46,19 +43,11 @@
 }
 
 -(IBAction)linkAccounts:(id)sender {
+    [uploader linkAccount];
     
-    NSString *user = [dropboxUser stringValue];
-    NSString *pass = [dropboxPassword stringValue];
-
-    NSString *ret = [uploader linkAccount:user password:pass];
-    
-    if (ret != nil) {
-        [errorLabel setStringValue:ret];
-    }
     [self showApproprateView];
 }
 -(IBAction)unlinkAccounts:(id)sender {
-    [dropboxPassword setStringValue:@""];
     [box setContentView:loginView];
     [uploader unlinkAccount];
     

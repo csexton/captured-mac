@@ -343,52 +343,6 @@ static size_t CHAR_COUNT = 62;
     return str;
 }
 
-+ (NSString*)genRandString {
-	CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
-	
-	//get the string representation of the UUID
-	NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
-	
-	CFRelease(uuidObj);
-	
-	return [uuidString autorelease];
-}
-
-+ (NSString*)genSigBaseString:(NSString*)url method:(NSString*)method fileName:(NSString*)fileName consumerKey:(NSString*)consumerKey nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
-
-	// this looks kind of ugly but these parameters have to be in this order, as far as i can tell
-	NSString* sigBaseString = @"";
-	if (fileName)
-		sigBaseString = [NSString stringWithFormat:@"file=%@&", fileName];
-	sigBaseString = [sigBaseString stringByAppendingFormat:@"oauth_consumer_key=%@&oauth_nonce=%@&oauth_signature_method=HMAC-SHA1&oauth_timestamp=%lu", consumerKey, nonce, timestamp];
-	if (token)
-		sigBaseString = [sigBaseString stringByAppendingFormat:@"&oauth_token=%@", token];
-	sigBaseString = [sigBaseString stringByAppendingString:@"&oauth_version=1.0"];
-	
-	// url-encode the parts that need to be url-encoded
-	NSString* escapedUrl = [Utilities URLEncode:url];
-    NSString* escapedSig = [Utilities URLEncode:sigBaseString];
-	
-	// format them all into the signature base string
-	NSString* finalString = [[[NSString alloc] initWithFormat:@"%@&%@&%@", method, escapedUrl, escapedSig] autorelease];
-	
-	return finalString;
-}
-
-// this method builds up the Authorization header that we will need to send in the request
-+ (NSString*)genAuthHeader:(NSString*)fileName consumerKey:(NSString*)consumerKey signature:(NSString*)signature nonce:(NSString*)nonce timestamp:(unsigned long)timestamp token:(NSString*)token {
-	
-	NSString* header = @"OAuth ";
-	if (fileName)
-		header = [header stringByAppendingFormat:@"file=\"%@\", ", fileName];
-	header = [header stringByAppendingFormat:@"oauth_consumer_key=\"%@\", oauth_signature_method=\"HMAC-SHA1\", oauth_signature=\"%@\", oauth_timestamp=\"%lu\", oauth_nonce=\"%@\"", consumerKey, signature, timestamp, nonce];
-	if (token)
-		header = [header stringByAppendingFormat:@", oauth_token=\"%@\"", token];
-	header = [header stringByAppendingString:@", oauth_version=\"1.0\""];
-	
-	return header;
-}
-
 @end
 
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";

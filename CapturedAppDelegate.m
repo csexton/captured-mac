@@ -5,6 +5,7 @@
 #import "PreferencesController.h"
 #import "AnnotatedImageController.h"
 
+#import <DropboxOSX/DropboxOSX.h>
 
 @implementation CapturedAppDelegate
 
@@ -12,6 +13,9 @@
 @synthesize welcomeWindowController;
 @synthesize window;
 
+// these are the Dropbox API keys, keep them safe
+static NSString* oauthConsumerKey = @"4zwv9noh6qesnob";
+static NSString* oauthConsumerSecretKey = @"folukm6dwd1l93r";
 
 -(id)init {
     self = [super init];
@@ -39,7 +43,12 @@
 	}
     
     [self registerGlobalHotKeys];
-            
+    
+    // set up the shared dropbox session, we want to initialize this here regardless of whether the user
+    // is using dropbox as an uploader
+    DBSession *session = [[DBSession alloc] initWithAppKey:oauthConsumerKey appSecret:oauthConsumerSecretKey root:kDBRootDropbox];
+    [DBSession setSharedSession:session];
+
 //    [[NSApplication sharedApplication] setActivationPolicy: NSApplicationActivationPolicyRegular];
     
     if ([self isFirstRun])
