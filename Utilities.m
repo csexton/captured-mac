@@ -222,7 +222,7 @@ static size_t CHAR_COUNT = 62;
 }
 
 
-
+/*
 + (BOOL) scaleImageFileInPlace: (NSString*)path scale:(float)scale {
     //NSLog(@"Start resize image for history menu thumbnail");
     NSImage *sourceImage;
@@ -262,7 +262,56 @@ static size_t CHAR_COUNT = 62;
     
     return YES;
 }
+*/
 
++ (BOOL) scaleImageFileInPlace: (NSString*)path scale:(float)scale {
+    // get an image ref for the existing file
+    CGDataProviderRef dataProvider = CGDataProviderCreateWithFilename([path UTF8String]);
+    CGImageRef imageRef = CGImageCreateWithPNGDataProvider(dataProvider, NULL, NO, kCGRenderingIntentDefault);
+    CGDataProviderRelease(dataProvider);
+    
+    // calculate the new size
+    int width = CGImageGetWidth(imageRef) * scale;
+    int height = CGImageGetHeight(imageRef) * scale;
+    
+    // create a new context for the resized image
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height,
+                                                 CGImageGetBitsPerComponent(imageRef),
+                                                 CGImageGetBytesPerRow(imageRef),
+                                                 CGImageGetColorSpace(imageRef),
+                                                 CGImageGetAlphaInfo(imageRef));
+    
+    // if the above step failed, we're done
+    if (context == NULL) {
+        CGImageRelease(imageRef);
+        return NO;
+    }
+    
+    // draw image to context, effectively resizing it
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGImageRelease(imageRef);
+    
+    // extract resulting image from context
+    CGImageRef imgRef = CGBitmapContextCreateImage(context);
+    CGContextRelease(context);
+    
+    // create a bitmap representation so we can save the file
+    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+    if (!bitmapRep) {
+        CGImageRelease(imgRef);
+        return NO;
+    }
+    
+    // overwrite the existing screenshot with the resized image
+	NSData* data = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
+    [data writeToFile:path atomically:NO];
+    
+    // clean up
+    CGImageRelease(imgRef);
+    [bitmapRep release];
+    
+    return YES;
+}
 
 
 + (NSImage*) thumbnailWithFile: (NSString*)path size:(NSSize)newSize {
