@@ -77,7 +77,8 @@
         }
         
         if ([[[NSUserDefaults standardUserDefaults] objectForKey:@"ScaleImageByHalf"] boolValue]) {
-          [Utilities scaleImageFileInPlace:file scale:0.5];
+            if (![Utilities scaleImageFileInPlace:file scale:0.5])
+                NSLog(@"Failed to scale image");
         }
 
 
