@@ -275,7 +275,7 @@ static size_t CHAR_COUNT = 62;
     int height = CGImageGetHeight(imageRef) * scale;
 
     // alloc a block for our new image
-    int bytesToAlloc = CGImageGetBytesPerRow(imageRef) * height;
+    size_t bytesToAlloc = CGImageGetBytesPerRow(imageRef) * height;
     char* buf = malloc(bytesToAlloc);
     if (buf == NULL) {
         NSLog(@"Failed to allocate memory for image resize");
