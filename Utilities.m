@@ -274,27 +274,17 @@ static size_t CHAR_COUNT = 62;
     int width = CGImageGetWidth(imageRef) * scale;
     int height = CGImageGetHeight(imageRef) * scale;
 
-    // alloc a block for our new image
-    size_t bytesToAlloc = CGImageGetBytesPerRow(imageRef) * height;
-    char* buf = malloc(bytesToAlloc);
-    if (buf == NULL) {
-        NSLog(@"Failed to allocate memory for image resize");
-        CGImageRelease(imageRef);
-        return NO;
-    }
-    
     // create a new context for the resized image
-    CGContextRef context = CGBitmapContextCreate(buf, width, height,
+    CGContextRef context = CGBitmapContextCreate(NULL, width, height,
                                                  CGImageGetBitsPerComponent(imageRef),
                                                  CGImageGetBytesPerRow(imageRef),
                                                  CGImageGetColorSpace(imageRef),
-                                                 CGImageGetAlphaInfo(imageRef));
+                                                 kCGImageAlphaPremultipliedLast);
     
     // if the above step failed, we're done
     if (context == NULL) {
         NSLog(@"Failed to create context for resized image");
         CGImageRelease(imageRef);
-        free(buf);
         return NO;
     }
     
@@ -305,7 +295,6 @@ static size_t CHAR_COUNT = 62;
     // extract resulting image from context
     CGImageRef imgRef = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
-    free(buf);
     
     // create a bitmap representation so we can save the file
     NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
