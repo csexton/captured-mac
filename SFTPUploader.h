@@ -15,4 +15,6 @@
 	CURL* handle;
 }
 
+- (void)uploadThread:(NSString*)sourceFile;
+
 @end

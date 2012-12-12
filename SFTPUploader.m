@@ -52,9 +52,14 @@
     return url;
 }
 
-
 - (void)uploadFile:(NSString*)sourceFile
 {
+    [self performSelectorInBackground:@selector(uploadThread:) withObject:sourceFile];
+}
+
+- (void)uploadThread:(NSString*)sourceFile {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
 	// generate a unique filename
 	NSString* tempNam = [Utilities createUniqueFilename:5];
 	
@@ -123,6 +128,8 @@
 	{
 		[self uploadFailed:nil];
 	}
+    
+    [pool release];
 }
 
 - (NSString*)testConnection
