@@ -107,6 +107,7 @@
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	FILE* fp = fopen([sourceFile cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
+    curl_easy_setopt(handle, CURLOPT_TIMEOUT, 30);
 
 	// do the upload
 	[self uploadStarted];
@@ -175,6 +176,7 @@
     curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
     if (keyPassword)
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_TIMEOUT, 10);
 
 	CURLcode rc = curl_easy_perform(handle);
 	curl_easy_cleanup(handle);
