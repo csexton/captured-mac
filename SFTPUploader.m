@@ -62,12 +62,12 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
+	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
+	NSString* imageUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
 	NSString* publicKeyFile = [defaults stringForKey:@"SFTPPublicKeyFile"];
 	NSString* privateKeyFile = [defaults stringForKey:@"SFTPPrivateKeyFile"];
 	NSString* keyPassword = [defaults stringForKey:@"SFTPKeyPassword"];
-	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
-	NSString* imageUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
-        
+    
     // get the password from the keychain
     NSString* password = nil;
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
@@ -134,6 +134,9 @@
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
 	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
+	NSString* publicKeyFile = [defaults stringForKey:@"SFTPPublicKeyFile"];
+	NSString* privateKeyFile = [defaults stringForKey:@"SFTPPrivateKeyFile"];
+	NSString* keyPassword = [defaults stringForKey:@"SFTPKeyPassword"];
     
     // FIXME: Duplicate code
     // get the password from the keychain
@@ -157,11 +160,16 @@
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
 	// allow only password auth for now
-	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD);
+	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD | CURLSSH_AUTH_PUBLICKEY);
 	
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
-	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+    if (password)
+    	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    if (keyPassword)
+		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
 
 	CURLcode rc = curl_easy_perform(handle);
 	if (rc != CURLE_OK)
