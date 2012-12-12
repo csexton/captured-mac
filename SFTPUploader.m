@@ -24,8 +24,8 @@
 
 - (void)dealloc
 {
-    [super dealloc];
 	curl_easy_cleanup(handle);
+    [super dealloc];
 }
 
 - (NSString*)formatPath: (NSString*) targetDir
@@ -62,6 +62,9 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSString* host = [defaults stringForKey:@"SFTPHost"];
 	NSString* username = [defaults stringForKey:@"SFTPUser"];
+	NSString* publicKeyFile = [defaults stringForKey:@"SFTPPublicKeyFile"];
+	NSString* privateKeyFile = [defaults stringForKey:@"SFTPPrivateKeyFile"];
+	NSString* keyPassword = [defaults stringForKey:@"SFTPKeyPassword"];
 	NSString* targetDir = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPPath"]];
 	NSString* imageUrl = [Utilities removeAnyTrailingSlashes:[defaults stringForKey:@"SFTPURL"]];
         
@@ -87,13 +90,17 @@
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
 	// allow only password auth for now
-	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD);
+	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD | CURLSSH_AUTH_PUBLICKEY);
 	
 	// set the curl options
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
 	if (password)
 		curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    if (keyPassword)
+		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	FILE* fp = fopen([sourceFile cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
