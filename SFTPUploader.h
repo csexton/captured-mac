@@ -12,7 +12,6 @@
 #import "AbstractUploader.h"
 
 @interface SFTPUploader : AbstractUploader {
-	CURL* handle;
 }
 
 - (void)uploadThread:(NSString*)sourceFile;

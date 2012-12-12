@@ -16,7 +16,6 @@
 {
     self = [super init];
     if (self) {
-		handle = curl_easy_init();
     }
     
     return self;
@@ -24,7 +23,6 @@
 
 - (void)dealloc
 {
-	curl_easy_cleanup(handle);
     [super dealloc];
 }
 
@@ -88,7 +86,7 @@
 	imageUrl = [NSString stringWithFormat:@"%@/%@", imageUrl, tempNam];
 
 	// reset the handle
-	curl_easy_reset(handle);
+    CURL* handle = curl_easy_init();
 	
 	// capture messages in a user-friendly format
 	char buf[CURL_ERROR_SIZE];
@@ -114,6 +112,7 @@
 	[self uploadStarted];
 	CURLcode rc = curl_easy_perform(handle);
 	fclose(fp);
+	curl_easy_cleanup(handle);
 	if (rc == CURLE_OK)
 	{
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -157,10 +156,9 @@
 
 	// set the url to just do an ls of the target dir
     NSString* url = [NSString stringWithFormat:@"sftp://%@%@", host, [self formatPath:targetDir]];
-
 	
 	// reset the curl handle
-	curl_easy_reset(handle);
+    CURL* handle = curl_easy_init();
 	
 	// capture messages in a user-friendly format
 	char buf[CURL_ERROR_SIZE];
@@ -179,6 +177,7 @@
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
 
 	CURLcode rc = curl_easy_perform(handle);
+	curl_easy_cleanup(handle);
 	if (rc != CURLE_OK)
 		testResponse = [NSString stringWithFormat:@"Error: %s", buf];
 	
