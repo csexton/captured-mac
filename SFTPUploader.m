@@ -52,6 +52,7 @@
 
 - (void)uploadFile:(NSString*)sourceFile
 {
+    [self uploadStarted];
     [self performSelectorOnMainThread:@selector(uploadThread:) withObject:sourceFile waitUntilDone:NO];
 }
 
@@ -108,7 +109,6 @@
     curl_easy_setopt(handle, CURLOPT_TIMEOUT, 30);
 
 	// do the upload
-	[self uploadStarted];
 	CURLcode rc = curl_easy_perform(handle);
 	fclose(fp);
 	curl_easy_cleanup(handle);
