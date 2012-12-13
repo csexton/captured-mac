@@ -52,7 +52,7 @@
 
 - (void)uploadFile:(NSString*)sourceFile
 {
-    [self performSelectorInBackground:@selector(uploadThread:) withObject:sourceFile];
+    [self performSelectorOnMainThread:@selector(uploadThread:) withObject:sourceFile waitUntilDone:NO];
 }
 
 - (void)uploadThread:(NSString*)sourceFile {
