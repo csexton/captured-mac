@@ -92,7 +92,7 @@
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
-	// allow only password auth for now
+	// set the types of authentication that we are going to allow
 	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD | CURLSSH_AUTH_PUBLICKEY);
 	
 	// set the curl options
@@ -165,7 +165,7 @@
 	char buf[CURL_ERROR_SIZE];
 	curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, buf);
 	
-	// allow only password auth for now
+	// set the types of authentication that we are going to allow
 	curl_easy_setopt(handle, CURLOPT_SSH_AUTH_TYPES, CURLSSH_AUTH_PASSWORD | CURLSSH_AUTH_PUBLICKEY);
 	
 	curl_easy_setopt(handle, CURLOPT_URL, [url cStringUsingEncoding:NSASCIIStringEncoding]);
