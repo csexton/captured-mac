@@ -289,6 +289,39 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     }
 }
 
+-(IBAction) openPublicKey:(id)sender {
+    int i; // Loop counter.
+    
+    NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"pub", @"PUB", nil];
+    
+    // Create the File Open Dialog class.
+    NSOpenPanel* openDlg = [NSOpenPanel openPanel];
+    [openDlg setExtensionHidden:YES];    
+    [openDlg setFloatingPanel:YES];
+    [openDlg setCanChooseDirectories:NO];
+    [openDlg setCanChooseFiles:YES];
+    [openDlg setAllowsMultipleSelection:YES];
+    [openDlg setAllowedFileTypes:fileTypes];
+        
+    [openDlg setDirectoryURL:[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@".ssh"]]];
+    // Display the dialog.  If the OK button was pressed,
+    // process the files.
+    if ( [openDlg runModal] == NSOKButton ) {
+        NSString* pubKeyFile = [[openDlg URL] path];
+        //[sftpPublicKeyField setStringValue:pubKeyFile];
+        NSString* privKeyFile = [pubKeyFile stringByReplacingOccurrencesOfString:@".pub"
+                                                               withString:@""];
+        //[sftpPrivateKeyField setStringValue:privKeyFile];
+        
+        NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setValue:pubKeyFile  forKey:@"SFTPPublicKeyFile"];
+        [defaults setValue:privKeyFile forKey:@"SFTPPrivateKeyFile"];
+        [defaults synchronize];
+
+
+    }
+}
+
 ////// Picasa Settings Binding Methods ////////////////////////////////////////////////////
 
 -(void) runPicasaTestConnecton: (id) sender{

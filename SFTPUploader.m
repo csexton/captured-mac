@@ -99,6 +99,10 @@
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
 	if (password)
 		curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
+    NSString* pk = [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding];
+    NSLog(@"%@", pk);
+    pk = [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding];
+    NSLog(@"%@", pk);
     curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
     curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
     if (keyPassword)

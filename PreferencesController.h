@@ -30,6 +30,10 @@
     IBOutlet NSTextField *imgurTestLabel;
     IBOutlet NSTextField *picasaTestLabel;
     
+    IBOutlet NSTextField *sftpPublicKeyField;
+    IBOutlet NSTextField *sftpPrivateKeyField;
+
+    
     IBOutlet NSButtonCell *startAtLoginCheckBox;
     IBOutlet NSButton *showStatusMenuItemCheckBox;
     
@@ -65,6 +69,9 @@
 -(IBAction) testS3Connection:(id) sender;
 -(IBAction) linkDropbox:(id) sender;
 -(IBAction) toggleStatusMenuItem:(id) sender;
+
+-(IBAction) openPublicKey:(id) sender;
+
 
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textFeild;
 
