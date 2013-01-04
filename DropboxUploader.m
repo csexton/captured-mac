@@ -44,8 +44,21 @@
         return;
     }
     
+    // get the name of the dropbox folder from the user prefs
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    NSString* path = [defaults valueForKey:@"DropboxFolder"];
+    if (path == nil) {
+        // if no folder specified, use Captured folder
+        path = @"/Captured";
+    } else {
+        // folder name must begin with a slash (could be empty string, so check len)
+        if ([path length] == 0 || [path characterAtIndex:0] != '/') {
+            path = [NSString stringWithFormat:@"/%@", path];
+        }
+    }
+    
     // do the upload
-    [restClient uploadFile:tempNam toPath:@"/Captured/" withParentRev:nil fromPath:sourceFile];
+    [restClient uploadFile:tempNam toPath:path withParentRev:nil fromPath:sourceFile];
 	[self uploadStarted];
 }
 
