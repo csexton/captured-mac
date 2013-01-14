@@ -46,7 +46,7 @@
     
     // get the name of the dropbox folder from the user prefs
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    NSString* path = [defaults valueForKey:@"DropboxFolder"];
+    NSString* path = [defaults valueForKey:@"DropboxDirName"];
     if (path == nil) {
         // if no folder specified, use Captured folder
         path = @"/Captured";
