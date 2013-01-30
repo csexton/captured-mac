@@ -4,6 +4,8 @@
 <dict>
 	<key>EnableDesktopWatcher</key>
 	<true/>
+	<key>S3FileNameLength</key>
+	<integer>5</integer>
 	<key>FirstRun</key>
 	<true/>
 	<key>ImgurKey</key>

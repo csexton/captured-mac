@@ -21,6 +21,7 @@
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
 	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
     NSString* publicUrl = [defaults stringForKey:@"S3URL"];
+    NSInteger nameLength = [defaults integerForKey:@"S3FileNameLength"];
 
 	BOOL reducedRedundancy = [defaults boolForKey:@"S3ReducedRedundancyStorage"];
 	
@@ -32,7 +33,7 @@
 	}
 	
 	// generate a unique filename
-	NSString* tempNam = [Utilities createUniqueFilename:5];
+	NSString* tempNam = [Utilities createUniqueFilename:nameLength];
     
     if (publicUrl) {
         publicUrl = [Utilities removeAnyTrailingSlashes: publicUrl];

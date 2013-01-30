@@ -376,7 +376,7 @@ static size_t CHAR_COUNT = 62;
 
 +(NSString*)createUniqueFilename:(NSInteger) numChars
 {
-	char buf[32];
+	char buf[64];
 	srand(time(NULL));
 	for (int i = 0; i < numChars; i++)
 		buf[i] = alNum[rand() % CHAR_COUNT];
