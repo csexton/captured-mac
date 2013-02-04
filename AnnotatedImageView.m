@@ -94,7 +94,6 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     [highlighterCursor release];
     [arrayOfBrushStrokes release];
     [super dealloc];
-    NSLog(@"DEBUG: dealloc AnnotatedImage");
 }
 
 - (void)setImage:(NSImage *)i {

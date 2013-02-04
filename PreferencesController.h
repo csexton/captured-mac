@@ -5,7 +5,7 @@
 #import "SRRecorderControl.h"
 
 
-@interface PreferencesController : NSWindowController <NSToolbarDelegate> {
+@interface PreferencesController : NSWindowController <NSToolbarDelegate, NSWindowDelegate> {
 
 	IBOutlet NSToolbar *bar;
 	IBOutlet NSView *generalPreferenceView;
@@ -22,6 +22,7 @@
     IBOutlet NSView *dropboxLinkedPreferences;
     NSView *dropboxPreferences;
     NSView *imgurPreferences;
+    DropboxPreferencesController *dropboxPreferencesController;
 
     IBOutlet NSView *picasaPreferences;
 
@@ -55,6 +56,7 @@
 + (void)sharedWillChangeValueForKey: (NSString *)key;
 + (void)sharedDidChangeValueForKey: (NSString *)key;
 
+- (void)windowDidBecomeKey:(NSNotification *)notification;
 + (NSString *)nibName;
 -(NSView *)viewForTag:(int)tag;
 -(IBAction)switchView:(id)sender;

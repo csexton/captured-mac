@@ -22,7 +22,6 @@
 
 - (void) dealloc {
     [super dealloc];
-    NSLog(@"DEBUG: dealloc AArrow");
 }
 
 -(void)mouseUpAt: (CGPoint)point {

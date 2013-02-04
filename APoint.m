@@ -27,7 +27,6 @@
 - (void) dealloc
 {
     [super dealloc];
-    NSLog(@"DEBUG: dealloc APoint");
 }
 
 @end

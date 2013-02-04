@@ -229,7 +229,6 @@
 				if (![states[depth] parser:self shouldAcceptToken:tok]) {
 					NSString *tokenName = [self tokenName:tok];
 					NSString *stateName = [states[depth] name];
-					NSLog(@"STATE: %@", states[depth]);
 					self.error = [NSString stringWithFormat:@"Token '%@' not expected %@", tokenName, stateName];
 					states[depth] = kSBJsonStreamParserStateError;
 					return SBJsonStreamParserError;

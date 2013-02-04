@@ -57,7 +57,7 @@
 
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification {
-    NSLog(@"Ouch!");
+    NSLog(@"Status Menu Controller - didActivateNotification!");
 }
 
 -(void) setStatusSuccess: (NSDictionary*)dict {

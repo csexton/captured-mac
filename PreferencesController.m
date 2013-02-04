@@ -34,6 +34,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     } 
 }
 
+- (void)windowDidBecomeKey:(NSNotification *)notification
+{
+    [dropboxPreferencesController showApproprateView]; // Hacky hack
+}
+
 + (NSString *)nibName
 {
    return @"Preferences";
@@ -47,7 +52,8 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 -(void)awakeFromNib{
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     
-    dropboxPreferences = [[[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil] view];
+    dropboxPreferencesController = [[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil];
+    dropboxPreferences = [dropboxPreferencesController view];
     imgurPreferences = [[[ImgurPreferencesController alloc] initWithNibName:@"ImgurPreferences" bundle:nil] view];
 
 	[self.window setContentSize:[generalPreferenceView frame].size];
