@@ -413,7 +413,7 @@ BOOL validateReceiptAtPath(NSString * path)
 	NSCAssert([bundleIdentifier isEqualToString:[[NSBundle mainBundle] bundleIdentifier]],
 			 @"whoops! check the hard-coded bundle identifier!");
 #else
-	bundleVersion = @"3.0";
+	bundleVersion = @"3.1";
 	bundleIdentifier = @"com.codeography.captured-mac";
 #endif
     
