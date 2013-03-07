@@ -26,8 +26,14 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 #pragma mark  Imgur API Access Method
 - (void) performUpload: (NSData *) data
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
-                                                        object:self];
+    @try {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
+                                                            object:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to post notification %@", exception.reason);
+    }
+
 	imageSelectionData = data;
 	
     NSURL *imgurURL = [NSURL URLWithString:@"http://api.imgur.com/2/upload.xml"];	
@@ -36,20 +42,39 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
     [request setPostValue:API_KEY forKey:@"key"];
     [request setPostValue:@"Uploaded by Captured for Mac" forKey:@"caption"];
     [request setPostValue:@"Screen Capture" forKey:@"title"];
-    [request setData:imageSelectionData  forKey:@"image"]; 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploadStarting"
-                                                        object:self];
+    [request setData:imageSelectionData  forKey:@"image"];
+    
+    @try {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploadStarting"
+                                                            object:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to post notification %@", exception.reason);
+    }
+    
     [request startAsynchronous];
-	
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
-                                                        object:self];
+    
+    @try {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
+                                                            object:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to post notification %@", exception.reason);
+    }
+
 }
 
 - (void) performUploadWithToken: (NSData *) data
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
-                                                        object:self];
-	
+    @try {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusPreparing"
+                                                            object:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to post notification %@", exception.reason);
+    }
+
+    	
 	NSURL* url = [NSURL URLWithString:@"http://api.imgur.com/2/upload.json"];
 	OAConsumer* consumer = [[OAConsumer alloc] initWithKey:imgurConsumerKey secret:imgurConsumerSecret];
 	OAMutableURLRequest* request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer token:accessToken realm:nil signatureProvider:nil];
@@ -73,9 +98,14 @@ NSString* imgurConsumerSecret = @"dfc121fc4ae74e8298d03eefad638632";
 	[fetcher release];
 	[request release];
 	[consumer release];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
-                                                        object:self];
+    
+    @try {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusUploading"
+                                                            object:nil];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"Failed to post notification %@", exception.reason);
+    }
 }
 - (void)postImage:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {

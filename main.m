@@ -13,7 +13,7 @@
 #include <curl/curl.h>
 
 // for Validate Receipt:
-const NSString * global_bundleVersion = @"3.1";
+const NSString * global_bundleVersion = @"3.2";
 const NSString * global_bundleIdentifier = @"com.codeography.captured-mac";
 
 int main (int argc, const char * argv[]) {
