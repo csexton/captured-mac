@@ -22,8 +22,9 @@
 	NSString* bucket = [defaults stringForKey:@"S3Bucket"];
     NSString* publicUrl = [defaults stringForKey:@"S3URL"];
     NSInteger nameLength = [defaults integerForKey:@"S3FileNameLength"];
-
 	BOOL reducedRedundancy = [defaults boolForKey:@"S3ReducedRedundancyStorage"];
+    BOOL privateUpload = [defaults boolForKey:@"S3PrivateUpload"];
+    NSInteger minutesToExpiration = [defaults integerForKey:@"S3MinutesToExpiration"];
 	
 	// validate the inputs
 	if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0)
@@ -40,6 +41,14 @@
         publicUrl = [NSString stringWithFormat:@"%@/%@", publicUrl, tempNam];
     }else {
         publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam];
+    }
+    
+    // if this is a private upload, then we generate the parameters necessary to share it, and use that for the upload url
+    if (privateUpload) {
+        NSInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
+        NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucket, tempNam];
+        NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
+        publicUrl = [publicUrl stringByAppendingFormat:@"?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", accessKey, base64String, (long) expirationTime];
     }
 	[self setUploadUrl:publicUrl];
 	
@@ -61,9 +70,13 @@
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
-	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\nx-amz-acl:public-read\n", httpVerb, contentType, timestamp];
-	if (reducedRedundancy)
+	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\n", httpVerb, contentType, timestamp];
+    if (!privateUpload) {
+        stringToSign = [stringToSign stringByAppendingString:@"x-amz-acl:public-read\n"];
+    }
+	if (reducedRedundancy) {
 		stringToSign = [stringToSign stringByAppendingFormat:@"x-amz-storage-class:REDUCED_REDUNDANCY\n"];
+    }
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
 
 	// create the headers
@@ -71,9 +84,13 @@
 	[request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String] forHTTPHeaderField:@"Authorization"];
 	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
 	[request addValue:timestamp forHTTPHeaderField:@"Date"];
-	[request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
-	if (reducedRedundancy)
+    if (privateUpload) {
+    } else {
+        [request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
+    }
+	if (reducedRedundancy) {
 		[request addValue:@"REDUCED_REDUNDANCY" forHTTPHeaderField:@"x-amz-storage-class"];
+    }
 	unsigned long long fileSize = [[[[[[NSFileManager alloc] init] autorelease] attributesOfItemAtPath:sourceFile error:nil] objectForKey:NSFileSize] unsignedLongLongValue];
 	[request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 	
