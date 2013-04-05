@@ -84,8 +84,7 @@
 	[request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String] forHTTPHeaderField:@"Authorization"];
 	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
 	[request addValue:timestamp forHTTPHeaderField:@"Date"];
-    if (privateUpload) {
-    } else {
+    if (!privateUpload) {
         [request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
     }
 	if (reducedRedundancy) {
@@ -141,6 +140,18 @@
 {
 	[self uploadFailed:nil];
 	NSLog(@"Error while uploading to cloud provider: %@", error);
+}
+
+- (NSString*) generateUrl:(NSString*) bucket object:(NSString*) object minutesToExpiration:(NSUInteger) minutesToExpiration
+{
+    NSUInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
+    NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucket, object];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
+	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
+    NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
+    NSString* url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", bucket, object, accessKey, base64String, (long) expirationTime];
+    return url;
 }
 
 - (NSString*)testConnection
