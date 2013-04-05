@@ -43,13 +43,12 @@
         publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam];
     }
     
-    // if this is a private upload, then we generate the parameters necessary to share it, and use that for the upload url
+    // if this is a private upload, then we need to generate a URL with query params to allow access
     if (privateUpload) {
-        NSInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
-        NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucket, tempNam];
-        NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
-        publicUrl = [publicUrl stringByAppendingFormat:@"?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", accessKey, base64String, (long) expirationTime];
+        publicUrl = [CloudUploader generateUrl:publicUrl bucket:bucket object:tempNam minutesToExpiration:minutesToExpiration];
     }
+    
+    // set the upload url for the response
 	[self setUploadUrl:publicUrl];
 	
 	// format the url
@@ -142,7 +141,7 @@
 	NSLog(@"Error while uploading to cloud provider: %@", error);
 }
 
-- (NSString*) generateUrl:(NSString*) bucket object:(NSString*) object minutesToExpiration:(NSUInteger) minutesToExpiration
++ (NSString*) generateUrl:(NSString*)baseUrl bucket:(NSString*)bucket object:(NSString*)object minutesToExpiration:(NSUInteger)minutesToExpiration
 {
     NSUInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
     NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucket, object];
@@ -150,7 +149,7 @@
 	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
 	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
     NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
-    NSString* url = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", bucket, object, accessKey, base64String, (long) expirationTime];
+    NSString* url = [NSString stringWithFormat:@"%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", baseUrl, accessKey, base64String, (long) expirationTime];
     return url;
 }
 
