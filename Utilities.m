@@ -385,6 +385,18 @@ static size_t CHAR_COUNT = 62;
 	return [NSString stringWithCString:buf encoding:NSASCIIStringEncoding];
 }
 
++ (NSString*)generateS3TempURL:(NSString*)baseUrl bucketName:(NSString*)bucketName objectName:(NSString*)objectName minutesToExpiration:(NSUInteger)minutesToExpiration
+{
+    NSUInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
+    NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucketName, objectName];
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
+	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
+    NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
+    NSString* url = [NSString stringWithFormat:@"%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", baseUrl, accessKey, base64String, (long) expirationTime];
+    return url;
+}
+
 + (NSString*)removeAnyTrailingSlashes: (NSString*)str
 {
     if (str) {

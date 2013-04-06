@@ -45,7 +45,7 @@
     
     // if this is a private upload, then we need to generate a URL with query params to allow access
     if (privateUpload) {
-        publicUrl = [CloudUploader generateUrl:publicUrl bucket:bucket object:tempNam minutesToExpiration:minutesToExpiration];
+        publicUrl = [Utilities generateS3TempURL:publicUrl bucketName:bucket objectName:tempNam minutesToExpiration:minutesToExpiration];
     }
     
     // set the upload url for the response
@@ -139,18 +139,6 @@
 {
 	[self uploadFailed:nil];
 	NSLog(@"Error while uploading to cloud provider: %@", error);
-}
-
-+ (NSString*) generateUrl:(NSString*)baseUrl bucket:(NSString*)bucket object:(NSString*)object minutesToExpiration:(NSUInteger)minutesToExpiration
-{
-    NSUInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
-    NSString* stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long) expirationTime, bucket, object];
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* accessKey = [defaults stringForKey:@"S3AccessKey"];
-	NSString* secretKey = [defaults stringForKey:@"S3SecretKey" ];
-    NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
-    NSString* url = [NSString stringWithFormat:@"%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", baseUrl, accessKey, base64String, (long) expirationTime];
-    return url;
 }
 
 - (NSString*)testConnection

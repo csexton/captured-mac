@@ -15,6 +15,5 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
-+ (NSString*) generateUrl:(NSString*)baseUrl bucket:(NSString*)bucket object:(NSString*)object minutesToExpiration:(NSUInteger)minutesToExpiration;
 
 @end

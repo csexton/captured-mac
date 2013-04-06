@@ -29,6 +29,7 @@
 +(NSString*)URLEncode:(NSString*)stringToEncode;
 +(NSString*)createUniqueFilename:(NSInteger) numChars;
 +(NSString*)removeAnyTrailingSlashes: (NSString*)str;
++ (NSString*)generateS3TempURL:(NSString*)baseUrl bucketName:(NSString*)bucketName objectName:(NSString*)objectName minutesToExpiration:(NSUInteger)minutesToExpiration;
 
 @end
 
