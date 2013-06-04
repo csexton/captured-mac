@@ -75,8 +75,6 @@
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
     if (keychainItem){
         password = keychainItem.password;
-    } else {
-        NSLog(@"No password found for SFTP User '%@' in the keychain", username);
     }
 
 	// format the urls
@@ -105,8 +103,8 @@
     pk = [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding];
     if (pk)
         NSLog(@"%s", pk);
-    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
     if (keyPassword)
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
@@ -153,8 +151,6 @@
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
     if (keychainItem){
         password = keychainItem.password;
-    } else {
-        NSLog(@"No password found for SFTP User '%@' in the keychain", username);
     }
 
 	// set the url to just do an ls of the target dir
@@ -174,8 +170,8 @@
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
     if (password)
     	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
+    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
     if (keyPassword)
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
     curl_easy_setopt(handle, CURLOPT_TIMEOUT, 10);
