@@ -97,16 +97,19 @@
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
 	if (password)
 		curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
-    const char* pk = [publicKeyFile cStringUsingEncoding:NSASCIIStringEncoding];
-    if (pk)
-        NSLog(@"%s", pk);
-    pk = [privateKeyFile cStringUsingEncoding:NSASCIIStringEncoding];
-    if (pk)
-        NSLog(@"%s", pk);
-    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
-    if (keyPassword)
+    const char* pk = [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding];
+    if (pk) {
+        NSLog(@"Using public key file %s", pk);
+        curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, pk);
+    }
+    pk = [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding];
+    if (pk) {
+        NSLog(@"Using private key file %s", pk);
+        curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, pk);
+    }
+    if (keyPassword) {
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
+    }
 	curl_easy_setopt(handle, CURLOPT_UPLOAD, 1);
 	FILE* fp = fopen([sourceFile cStringUsingEncoding:NSASCIIStringEncoding], "rb");
 	curl_easy_setopt(handle, CURLOPT_READDATA, fp);
@@ -170,8 +173,14 @@
 	curl_easy_setopt(handle, CURLOPT_USERNAME, [username cStringUsingEncoding:NSASCIIStringEncoding]);
     if (password)
     	curl_easy_setopt(handle, CURLOPT_PASSWORD, [password cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
-    curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding]);
+    const char* pk = [[publicKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding];
+    if (pk) {
+        curl_easy_setopt(handle, CURLOPT_SSH_PUBLIC_KEYFILE, pk);
+    }
+    pk = [[privateKeyFile stringByExpandingTildeInPath] cStringUsingEncoding:NSASCIIStringEncoding];
+    if (pk) {
+        curl_easy_setopt(handle, CURLOPT_SSH_PRIVATE_KEYFILE, pk);
+    }
     if (keyPassword)
 		curl_easy_setopt(handle, CURLOPT_KEYPASSWD, [keyPassword cStringUsingEncoding:NSASCIIStringEncoding]);
     curl_easy_setopt(handle, CURLOPT_TIMEOUT, 10);
