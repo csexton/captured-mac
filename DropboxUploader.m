@@ -76,8 +76,8 @@
 
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath metadata:(DBMetadata*)metadata
 {
-    //[restClient loadSharableLinkForFile:destPath];
-    [restClient loadStreamableURLForFile:destPath]; //this is if we want to support direct links
+    [restClient loadSharableLinkForFile:destPath];
+    //[restClient loadStreamableURLForFile:destPath]; //this is if we want to support direct links
 }
 
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
