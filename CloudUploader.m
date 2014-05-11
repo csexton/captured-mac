@@ -79,6 +79,7 @@
 		stringToSign = [stringToSign stringByAppendingFormat:@"x-amz-storage-class:REDUCED_REDUNDANCY\n"];
     }
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
+    [usLocale release];
 
 	// create the headers
 	NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
