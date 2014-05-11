@@ -66,6 +66,8 @@
 	NSString* contentType = @"image/png";
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:@"EEE',' dd MMM yyyy HH:mm:ss 'GMT'"];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:usLocale];
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
