@@ -297,20 +297,15 @@ static size_t CHAR_COUNT = 62;
     CGImageRef imgRef = CGBitmapContextCreateImage(context);
     CGContextRelease(context);
     
-    // create a bitmap representation so we can save the file
-    NSBitmapImageRep *bitmapRep = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
-    if (!bitmapRep) {
-        CGImageRelease(imgRef);
-        return NO;
-    }
-    
-    // overwrite the existing screenshot with the resized image
-	NSData* data = [bitmapRep representationUsingType:NSPNGFileType properties:nil];
-    [data writeToFile:path atomically:NO];
+    // write it out to png
+    CFURLRef url = (CFURLRef) [NSURL fileURLWithPath:path];
+    CGImageDestinationRef dest = CGImageDestinationCreateWithURL(url, kUTTypePNG, 1, NULL);
+    CGImageDestinationAddImage(dest, imgRef, nil);
+    CGImageDestinationFinalize(dest);
     
     // clean up
+    CFRelease(dest);
     CGImageRelease(imgRef);
-    [bitmapRep release];
     
     return YES;
 }

@@ -66,6 +66,8 @@
 	NSString* contentType = @"image/png";
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:@"EEE',' dd MMM yyyy HH:mm:ss 'GMT'"];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:usLocale];
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
@@ -77,6 +79,7 @@
 		stringToSign = [stringToSign stringByAppendingFormat:@"x-amz-storage-class:REDUCED_REDUNDANCY\n"];
     }
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
+    [usLocale release];
 
 	// create the headers
 	NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
