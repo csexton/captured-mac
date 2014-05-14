@@ -25,13 +25,13 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 {
 	if (_sharedPrefsWindowController) {
         [_sharedPrefsWindowController willChangeValueForKey:key];
-    } 
+    }
 }
 + (void)sharedDidChangeValueForKey: (NSString *)key
 {
 	if (_sharedPrefsWindowController) {
         [_sharedPrefsWindowController didChangeValueForKey:key];
-    } 
+    }
 }
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
@@ -51,7 +51,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 -(void)awakeFromNib{
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-    
+
     dropboxPreferencesController = [[DropboxPreferencesController alloc] initWithNibName:@"DropboxPreferences" bundle:nil];
     dropboxPreferences = [dropboxPreferencesController view];
     imgurPreferences = [[[ImgurPreferencesController alloc] initWithNibName:@"ImgurPreferences" bundle:nil] view];
@@ -60,13 +60,13 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 	[[self.window contentView] addSubview:generalPreferenceView];
 	[bar setSelectedItemIdentifier:@"General"];
 	[self.window center];
-        
+
 	NSString * type = [defaults stringForKey:@"UploadType"];
-    
+
     [uploadType selectItemWithObjectValue:type];
     [self selectUploaderViewWithType:type];
-    
-    // Keybindings    
+
+    // Keybindings
     NSInteger pKeyCode = [defaults integerForKey:@"KeybindingPrimaryCode"];
 	NSInteger pModifierFlags = [defaults integerForKey:@"KeybindingPrimaryFlags"];
     NSInteger aKeyCode = [defaults integerForKey:@"KeybindingAnnotateCode"];
@@ -75,11 +75,11 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [annotatedShortcutRecorder setDelegate:self];
     [primaryShortcutRecorder setKeyCombo:SRMakeKeyCombo(pKeyCode, pModifierFlags)];
     [annotatedShortcutRecorder setKeyCombo:SRMakeKeyCombo(aKeyCode, aModifierFlags)];
-    
+
     // Uncheck "Show status item" if defaults says it is not set
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"ShowStatusMenuItem"] boolValue]){
         [showStatusMenuItemCheckBox setState:NSOffState];
-    } 
+    }
 }
 
 
@@ -94,38 +94,38 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     return view;
 }
 -(NSRect)newFrameForNewContentView:(NSView *)view {
-	
+
     NSRect newFrameRect = [self.window frameRectForContentRect:[view frame]];
     NSRect oldFrameRect = [self.window frame];
     NSSize newSize = newFrameRect.size;
-    NSSize oldSize = oldFrameRect.size;    
+    NSSize oldSize = oldFrameRect.size;
     NSRect frame = [self.window frame];
     frame.size = newSize;
     frame.origin.y -= (newSize.height - oldSize.height);
-    
+
     return frame;
 }
 
 -(IBAction)switchView:(id)sender {
-	
+
 	int tag = [sender tag];
-	
+
 	NSView *view = [self viewForTag:tag];
 	NSView *previousView = [self viewForTag: currentViewTag];
 	currentViewTag = tag;
 	NSRect newFrame = [self newFrameForNewContentView:view];
-	
+
 	[NSAnimationContext beginGrouping];
 	[[NSAnimationContext currentContext] setDuration:0.1];
-	
+
 	if ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask)
 	    [[NSAnimationContext currentContext] setDuration:1.0];
-	
+
 	[[[self.window contentView] animator] replaceSubview:previousView with:view];
 	[[self.window animator] setFrame:newFrame display:YES];
-	
+
 	[NSAnimationContext endGrouping];
-	
+
 }
 
 
@@ -155,9 +155,9 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 -(void) selectUploaderViewWithType: (NSString *) type {
-    
+
     [uploaderBox setTitle: [NSString stringWithFormat: @"%@ Settings", type]];
-    
+
     if ([type isEqualToString: @"Imgur"]) {
         [uploaderBox setContentView:imgurPreferences];
     }
@@ -183,8 +183,8 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 -(IBAction) openBitlyPage:(id) sender{
-    
-	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://bit.ly/a/account"]];
+
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"https://bitly.com/a/your_api_key"]];
 }
 
 -(IBAction) testSFTPConnection:(id) sender{
@@ -196,37 +196,37 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 ////// Dropbox Settings Binding Methods ////////////////////////////////////////////////////
 -(IBAction) linkDropbox: (id) sender{
-    
+
 
     [uploaderBox setContentView:dropboxLinkedPreferences];
 
-    
-    
-    // This works, but I want it ot be modal 
+
+
+    // This works, but I want it ot be modal
 //    OAuthController* ctl = [[OAuthController alloc] init];
 //    [ctl showWindow:nil];
 
-       
+
 //    //progressPanel is an IBOutlet to the NSPanel
 //    if(!linkDropboxPanel)
 //        [NSBundle loadNibNamed:@"OAuthWindow" owner:self];
-//    
+//
 //    [NSApp beginSheet: linkDropboxPanel
 //       modalForWindow: window
 //        modalDelegate: nil
 //       didEndSelector: nil
 //          contextInfo: nil];
-//    
+//
 //    //modalSession is an instance variable
 //    NSModalSession modalSession = [NSApp beginModalSessionForWindow:linkDropboxPanel];
-//        
+//
 //    [NSApp runModalSession:modalSession];
-    
+
 //----
 //    NSWindow * win = [ctl window];
 //    [NSApp runModalForWindow: [ctl window]];
 
-    
+
 }
 
 ////// S3 Settings Binding Methods ////////////////////////////////////////////////////
@@ -243,10 +243,10 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 -(void) runTestConnection: (id)uploader textField: (NSTextField *)textField {
     NSString* ret = [uploader testConnection];
     if (ret == nil) {
-        [textField performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Success!" waitUntilDone:YES];    
+        [textField performSelectorOnMainThread:@selector(setStringValue:) withObject:@"Success!" waitUntilDone:YES];
 
     } else {
-        [textField performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];    
+        [textField performSelectorOnMainThread:@selector(setStringValue:) withObject:ret waitUntilDone:YES];
     }
 }
 
@@ -270,7 +270,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 -(NSString *) sftpPassword {
     //Grab the keychain item.
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
-    
+
     if (keychainItem) {
         return keychainItem.password;
     } else {
@@ -281,7 +281,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
     // See if there is an existing keychain item
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured SFTP" withUsername:@""];
-    
+
     if (keychainItem) {
         // Update the password
         if (password) {
@@ -297,16 +297,16 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 
 -(IBAction) openPublicKey:(id)sender {
     NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"pub", @"PUB", nil];
-    
+
     // Create the File Open Dialog class.
     NSOpenPanel* openDlg = [NSOpenPanel openPanel];
-    [openDlg setExtensionHidden:YES];    
+    [openDlg setExtensionHidden:YES];
     [openDlg setFloatingPanel:YES];
     [openDlg setCanChooseDirectories:NO];
     [openDlg setCanChooseFiles:YES];
     [openDlg setAllowsMultipleSelection:YES];
     [openDlg setAllowedFileTypes:fileTypes];
-        
+
     [openDlg setDirectoryURL:[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@".ssh"]]];
     // Display the dialog.  If the OK button was pressed,
     // process the files.
@@ -316,7 +316,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
         NSString* privKeyFile = [pubKeyFile stringByReplacingOccurrencesOfString:@".pub"
                                                                withString:@""];
         //[sftpPrivateKeyField setStringValue:privKeyFile];
-        
+
         NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
         [defaults setValue:pubKeyFile  forKey:@"SFTPPublicKeyFile"];
         [defaults setValue:privKeyFile forKey:@"SFTPPrivateKeyFile"];
@@ -345,7 +345,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 -(NSString *) picasaPassword {
 
     EMGenericKeychainItem *keychainItem = [EMGenericKeychainItem genericKeychainItemForService:@"Captured Picasa" withUsername:@""];
-    
+
     if (keychainItem) {
         return keychainItem.password;
     } else {
@@ -382,26 +382,26 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     //	if (aRecorder == shortcutRecorder)
     //	{
     //		BOOL isTaken = NO;
-    //		
+    //
     //		KeyCombo kc = [delegateDisallowRecorder keyCombo];
-    //		
+    //
     //		if (kc.code == keyCode && kc.flags == flags) isTaken = YES;
-    //		
+    //
     //		*aReason = [delegateDisallowReasonField stringValue];
-    //		
+    //
     //		return isTaken;
     //	}
-    //	
-    
-    
+    //
+
+
     return isTaken;
-    
+
 }
 
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
 {
     // This is called after the above method when the user types in a code, however it is also called when the user clears
-    // the shortcut -- so I just duplicated it. If you call set shortcut with nil code and flags it will be cleared. so 
+    // the shortcut -- so I just duplicated it. If you call set shortcut with nil code and flags it will be cleared. so
     // this works to clear it out when the user deletes the shortcut.
     [self shortcutRecorder: aRecorder isKeyCode:newKeyCombo.code andFlagsTaken:newKeyCombo.flags reason:nil];
 
@@ -411,7 +411,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     //	}
 }
 
--(IBAction) toggleStatusMenuItem:(id) sender {  
+-(IBAction) toggleStatusMenuItem:(id) sender {
     [AppDelegate toggleStatusMenuItem: sender];
 }
 
