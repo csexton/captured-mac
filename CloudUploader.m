@@ -165,11 +165,14 @@
 	// build up the data to sign
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:@"EEE',' dd MMM yyyy HH:mm:ss 'GMT'"];
+    NSLocale *usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:usLocale];
 	NSTimeZone *timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
 	[dateFormatter setTimeZone:timeZone];
 	NSString* timestamp = [dateFormatter stringFromDate:[NSDate date]];
 	NSString* stringToSign = [NSString stringWithFormat:@"%@\n\n\n%@\n", httpVerb, timestamp];
 	stringToSign = [stringToSign stringByAppendingFormat:@"/%@", bucket];
+    [usLocale release];
 	
 	// create the headers
 	NSString* base64String = [Utilities getHmacSha1:stringToSign secretKey:secretKey];
