@@ -296,8 +296,6 @@ static PreferencesController *_sharedPrefsWindowController = nil;
 }
 
 -(IBAction) openPublicKey:(id)sender {
-    int i; // Loop counter.
-
     NSArray* fileTypes = [[NSArray alloc] initWithObjects:@"pub", @"PUB", nil];
 
     // Create the File Open Dialog class.

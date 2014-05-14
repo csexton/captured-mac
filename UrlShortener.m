@@ -50,7 +50,7 @@
     NSNumber* statusCode = (NSNumber*) [[json JSONValue] valueForKey:@"status_code"];
     if ([statusCode intValue] != 200) {
         NSLog(@"Unable to shorten URL with Bit.ly, falling back to the full URL.");
-        NSLog(@"Bit.ly Response: %.*s", [data length], [data bytes]);
+        NSLog(@"Bit.ly Response: %.*s", (int) [data length], [data bytes]);
         return longUrl;
     }
     
