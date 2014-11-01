@@ -71,7 +71,7 @@
 		B52FB08715CF72E700D8DB8E /* BrushCursor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B52FB08515CF72E700D8DB8E /* BrushCursor@2x.png */; };
 		B5388EE312DF8E2A002F64BA /* StatusMenuIconColor.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE112DF8E2A002F64BA /* StatusMenuIconColor.png */; };
 		B5388EE412DF8E2A002F64BA /* StatusMenuIconDisabled.png in Resources */ = {isa = PBXBuildFile; fileRef = B5388EE212DF8E2A002F64BA /* StatusMenuIconDisabled.png */; };
-		B56521C0134C087B00870F8E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; };
+		B56521C0134C087B00870F8E /* GData.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CFFA70CA134955840016D54E /* GData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B5665DD012E54D490024ADEF /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DCF12E54D490024ADEF /* IOKit.framework */; };
 		B5665DD212E54D520024ADEF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5665DD112E54D520024ADEF /* Security.framework */; };
 		B58291AC141EEB0C00CC2C41 /* Keybindings.png in Resources */ = {isa = PBXBuildFile; fileRef = B58291AB141EEB0C00CC2C41 /* Keybindings.png */; };
@@ -117,9 +117,9 @@
 		B5E9024D12DEC480004F71B6 /* StatusMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E9024C12DEC480004F71B6 /* StatusMenuController.m */; };
 		B5E902D512DECC85004F71B6 /* Captured_Icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = B5E902D412DECC85004F71B6 /* Captured_Icon.icns */; };
 		CF034C93166C0D780061593B /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF034C92166C0D780061593B /* DropboxOSX.framework */; };
-		CF034C9A166C5F2F0061593B /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF034C92166C0D780061593B /* DropboxOSX.framework */; };
+		CF034C9A166C5F2F0061593B /* DropboxOSX.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF034C92166C0D780061593B /* DropboxOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CF1742B113273F890021D91B /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
-		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; };
+		CF1742B8132740320021D91B /* libcurl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CF1742B013273F890021D91B /* libcurl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		CF368800133523A7003703C7 /* UrlShortener.m in Sources */ = {isa = PBXBuildFile; fileRef = CF3687FF133523A7003703C7 /* UrlShortener.m */; };
 		CFB327E0132B125400B388E0 /* SFTPUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFB327DF132B125400B388E0 /* SFTPUploader.m */; };
 		CFD6D67F133157930065567C /* CloudUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = CFD6D67E133157930065567C /* CloudUploader.m */; };
@@ -800,7 +800,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0610;
 			};
 			buildConfigurationList = 26FC0A880875C7B200E6366F /* Build configuration list for PBXProject "Captured" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -995,8 +995,8 @@
 		26FC0A850875C7B200E6366F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Captured.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1016,7 +1016,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1026,6 +1026,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Captured.entitlements;
 				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1043,7 +1044,7 @@
 				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1051,7 +1052,6 @@
 		26FC0A890875C7B200E6366F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -1064,7 +1064,6 @@
 		26FC0A8A0875C7B200E6366F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Christopher Sexton";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -1077,7 +1076,6 @@
 		B5665E6212E5DDAE0024ADEF /* App Store Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Christopher Sexton";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1092,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Captured.entitlements;
+				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1106,7 +1105,7 @@
 				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = Captured;
-				SDKROOT = macosx10.8;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = "App Store Release";
