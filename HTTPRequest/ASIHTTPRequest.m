@@ -3914,15 +3914,8 @@ static NSOperationQueue *sharedQueue = nil;
 	
 	// From http://www.cocoadev.com/index.pl?DeterminingOSVersion
 	// We won't bother to check for systems prior to 10.4, since ASIHTTPRequest only works on 10.5+
-    OSErr err;
-    SInt32 versionMajor, versionMinor, versionBugFix;
-	err = Gestalt(gestaltSystemVersionMajor, &versionMajor);
-	if (err != noErr) return nil;
-	err = Gestalt(gestaltSystemVersionMinor, &versionMinor);
-	if (err != noErr) return nil;
-	err = Gestalt(gestaltSystemVersionBugFix, &versionBugFix);
-	if (err != noErr) return nil;
-	OSVersion = [NSString stringWithFormat:@"%u.%u.%u", versionMajor, versionMinor, versionBugFix];
+    NSProcessInfo* info = [NSProcessInfo processInfo];
+    OSVersion = [info operatingSystemVersionString];
 	
 #endif
 	// Takes the form "My Application 1.0 (Macintosh; Mac OS X 10.5.7; en_GB)"

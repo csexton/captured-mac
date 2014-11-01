@@ -118,8 +118,8 @@ static size_t CHAR_COUNT = 62;
             LSSharedFileListItemRef item = (LSSharedFileListItemRef)itemObject;
 			
             UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-            CFURLRef URL = NULL;
-            OSStatus err = LSSharedFileListItemResolve(item, resolutionFlags, &URL, /*outRef*/ NULL);
+            CFErrorRef err;
+            CFURLRef URL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, &err);
             if (err == noErr) {
                 foundIt = CFEqual(URL, itemURL);
                 CFRelease(URL);
