@@ -50,10 +50,10 @@ NSString * SRStringForKeyCode( NSInteger keyCode )
 NSString * SRStringForCarbonModifierFlags( NSUInteger flags )
 {
     NSString *modifierFlagsString = [NSString stringWithFormat:@"%@%@%@%@", 
-		( flags & controlKey ? [NSString stringWithFormat:@"%C", KeyboardControlGlyph] : @"" ),
-		( flags & optionKey ? [NSString stringWithFormat:@"%C", KeyboardOptionGlyph] : @"" ),
-		( flags & shiftKey ? [NSString stringWithFormat:@"%C", KeyboardShiftGlyph] : @"" ),
-		( flags & cmdKey ? [NSString stringWithFormat:@"%C", KeyboardCommandGlyph] : @"" )];
+		( flags & controlKey ? [NSString stringWithFormat:@"%C", (unichar)KeyboardControlGlyph] : @"" ),
+		( flags & optionKey ? [NSString stringWithFormat:@"%C", (unichar)KeyboardOptionGlyph] : @"" ),
+		( flags & shiftKey ? [NSString stringWithFormat:@"%C", (unichar)KeyboardShiftGlyph] : @"" ),
+		( flags & cmdKey ? [NSString stringWithFormat:@"%C", (unichar)KeyboardCommandGlyph] : @"" )];
 	return modifierFlagsString;
 }
 

@@ -310,7 +310,7 @@ static PreferencesController *_sharedPrefsWindowController = nil;
     [openDlg setDirectoryURL:[NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingPathComponent:@".ssh"]]];
     // Display the dialog.  If the OK button was pressed,
     // process the files.
-    if ( [openDlg runModal] == NSOKButton ) {
+    if ( [openDlg runModal] == NSModalResponseOK ) {
         NSString* pubKeyFile = [[openDlg URL] path];
         //[sftpPublicKeyField setStringValue:pubKeyFile];
         NSString* privKeyFile = [pubKeyFile stringByReplacingOccurrencesOfString:@".pub"
