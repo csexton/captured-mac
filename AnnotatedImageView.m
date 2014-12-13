@@ -115,9 +115,10 @@ static inline double radians (double degrees) {return degrees * M_PI/180;} // Fr
     
     NSImage * j = [NSImage imageNamed:@"HighlighterCursor"];
     highlighterCursor = [[NSCursor alloc] initWithImage:j hotSpot:NSMakePoint(0.0, 10.0)];
-    
-    [i release];
-    [j release];
+
+  // Caused a crash in yosimete:
+  //[i release];
+  //[j release];
 }
 
 - (CGImageRef)nsImageToCGImageRef:(NSImage*)nsImage;
