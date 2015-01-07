@@ -1,2 +1,0 @@
-#!/bin/sh
-defaults read com.codeography.captured-mac

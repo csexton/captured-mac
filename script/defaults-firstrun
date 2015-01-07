@@ -1,2 +1,0 @@
-#!/bin/sh
-defaults delete com.codeography.captured-mac FirstRun
