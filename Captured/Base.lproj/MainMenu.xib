@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B17" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7702"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -668,7 +668,7 @@
         </menu>
         <menu id="3u8-Ux-8jC" userLabel="StatusMenu">
             <items>
-                <menuItem title="Item 1" id="5rg-nt-KOg">
+                <menuItem title="Preferences..." id="5rg-nt-KOg">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="doSomethingWithMenuSelection:" target="Voe-Tx-rLC" id="I98-CM-Krl"/>

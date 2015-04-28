@@ -15,6 +15,8 @@ class SettingsWindowController: NSWindowController {
   
   // MARK: Initializers
 
+  /*
+
   override init() {
     super.init()
     NSBundle.mainBundle().loadNibNamed("Settings", owner: self, topLevelObjects: nil)
@@ -29,6 +31,7 @@ class SettingsWindowController: NSWindowController {
   required init?(coder aCoder: NSCoder) {
     super.init(coder: aCoder)
   }
+*/
 
 
 }

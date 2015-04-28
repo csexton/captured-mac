@@ -1,10 +1,6 @@
 //
 //  AppDelegate.swift
 //  Captured
-//
-//  Created by Christopher Sexton on 12/13/14.
-//  Copyright (c) 2014 Codeography. All rights reserved.
-//
 
 import Cocoa
 
@@ -29,12 +25,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
   override func awakeFromNib() {
-    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-    self.statusItem!.menu = self.statusMenu
-    var icon = NSImage(named: "StatusMenu")
+    let icon = NSImage(named: "StatusMenu")
     icon?.setTemplate(true)
-    self.statusItem!.image = icon
-    self.statusItem!.highlightMode = true
+
+    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
+
+    if let item = self.statusItem {
+      item.menu = self.statusMenu
+      item.image = icon
+      item.highlightMode = true
+    }
 
     /*
     NSImage *icon = [NSImage imageNamed:@"iconName"];
@@ -55,10 +55,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 
   func showSettings(sender: AnyObject?) {
-    settingsWindow = SettingsWindowController(windowNibName: "Settings");
-    println(settingsWindow);
+    if settingsWindow == nil {
+      settingsWindow = SettingsWindowController(windowNibName: "Settings")
+    }
 
-    settingsWindow!.showWindow(sender)
+    settingsWindow!.window?.orderFront(nil)
+
+    //    settingsWindow!.showWindow(sender)
+
+
+    println(settingsWindow);
   }
 
 
