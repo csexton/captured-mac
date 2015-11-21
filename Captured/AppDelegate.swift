@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   override func awakeFromNib() {
     let icon = NSImage(named: "StatusMenu")
-    icon?.setTemplate(true)
+    icon?.template = true
 
     self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
 
@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   }
 
   @IBAction func doSomethingWithMenuSelection(sender : AnyObject?) {
-    println("Action pressed")
+    print("Action pressed")
     showSettings(sender)
   }
 
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //    settingsWindow!.showWindow(sender)
 
 
-    println(settingsWindow);
+    print(settingsWindow);
   }
 
 

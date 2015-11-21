@@ -14,6 +14,7 @@
 		B57AA1EC1A5C870C00EA1784 /* SettingsTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57AA1EB1A5C870C00EA1784 /* SettingsTableCellView.swift */; };
 		B5A322B21A3CBCF900D93D10 /* Settings.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A322B11A3CBCF900D93D10 /* Settings.xib */; };
 		B5A322B41A3CBD9200D93D10 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A322B31A3CBD9200D93D10 /* SettingsWindowController.swift */; };
+		B5B017271BF9584D00E1C8CC /* Prefix.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B017261BF9584D00E1C8CC /* Prefix.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 		B57AA1EB1A5C870C00EA1784 /* SettingsTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableCellView.swift; sourceTree = "<group>"; };
 		B5A322B11A3CBCF900D93D10 /* Settings.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Settings.xib; sourceTree = "<group>"; };
 		B5A322B31A3CBD9200D93D10 /* SettingsWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		B5B017251BF957B200E1C8CC /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		B5B017261BF9584D00E1C8CC /* Prefix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Prefix.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,8 @@
 				B5A322B11A3CBCF900D93D10 /* Settings.xib */,
 				B5A322B31A3CBD9200D93D10 /* SettingsWindowController.swift */,
 				B57AA1EB1A5C870C00EA1784 /* SettingsTableCellView.swift */,
+				B5B017251BF957B200E1C8CC /* Prefix.pch */,
+				B5B017261BF9584D00E1C8CC /* Prefix.m */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -159,6 +164,8 @@
 		B51819BD1A3CBAB800D88CB3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = Codeography;
 				TargetAttributes = {
@@ -215,6 +222,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5B017271BF9584D00E1C8CC /* Prefix.m in Sources */,
 				B57AA1EC1A5C870C00EA1784 /* SettingsTableCellView.swift in Sources */,
 				B5A322B41A3CBD9200D93D10 /* SettingsWindowController.swift in Sources */,
 				B51819CB1A3CBAB800D88CB3 /* AppDelegate.swift in Sources */,
@@ -332,10 +340,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Captured/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Captured/Captured-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -343,10 +355,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Captured/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Captured/Captured-Bridging-Header.h";
 			};
 			name = Release;
 		};
