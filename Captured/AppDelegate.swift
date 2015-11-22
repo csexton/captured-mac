@@ -1,71 +1,62 @@
 //
 //  AppDelegate.swift
 //  Captured
+//
+//  Created by Christopher Sexton on 11/20/15.
+//  Copyright © 2015 Christopher Sexton. All rights reserved.
+//
 
 import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-  var settingsWindow: SettingsWindowController?
-
-  @IBOutlet var statusMenu: NSMenu!
-  var statusItem: NSStatusItem? = nil
-
-
-
+  // MARK: App Delegates
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
+    createStatusMenu()
+
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
     // Insert code here to tear down your application
   }
 
+  // MARK: Preferences Window
 
-  override func awakeFromNib() {
-    let icon = NSImage(named: "StatusMenu")
-    icon?.template = true
+  var preferencesController: NSWindowController?
 
-    self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-
-    if let item = self.statusItem {
-      item.menu = self.statusMenu
-      item.image = icon
-      item.highlightMode = true
+  @IBAction func showPreferences(sender : AnyObject) {
+    if (preferencesController == nil) {
+      let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
+      preferencesController = storyboard.instantiateInitialController() as? NSWindowController
     }
-
-    /*
-    NSImage *icon = [NSImage imageNamed:@"iconName"];
-    //This is the only way to be compatible to all ~30 menu styles (e.g. dark mode) available in Yosemite
-    [normalImage setTemplate:YES];
-    statusItem.button.image = normalImage;
-
-    // register with an array of types you'd like to accept
-    [statusItem.button.window registerForDraggedTypes:@[NSFilenamesPboardType]];
-    statusItem.button.window.delegate = self;
-*/
+    if (preferencesController != nil) { preferencesController!.showWindow(sender) }
   }
 
-  @IBAction func doSomethingWithMenuSelection(sender : AnyObject?) {
-    print("Action pressed")
-    showSettings(sender)
-  }
+  // MARK: Status Menu
 
+  let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
-  func showSettings(sender: AnyObject?) {
-    if settingsWindow == nil {
-      settingsWindow = SettingsWindowController(windowNibName: "Settings")
+  func createStatusMenu() {
+    if let button = statusItem.button {
+      if let image = NSImage(named: "StatusMenu") {
+        image.template = true
+        button.image = image
+      }
     }
+    let menu = NSMenu()
 
-    settingsWindow!.window?.orderFront(nil)
+    menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
+    menu.addItem(NSMenuItem.separatorItem())
+    menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
 
-    //    settingsWindow!.showWindow(sender)
+    statusItem.menu = menu
 
-
-    print(settingsWindow);
   }
+
+
 
 
 }

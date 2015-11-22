@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9060"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="zr9-td-UPk">
+            <objects>
+                <windowController id="hJN-nS-tkV" sceneMemberID="viewController">
+                    <window key="window" title="Captured" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="G9P-5Y-a5f">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+                    </window>
+                    <connections>
+                        <segue destination="P2R-xK-aOU" kind="relationship" relationship="window.shadowedContentViewController" id="CH6-3X-Mg8"/>
+                    </connections>
+                </windowController>
+                <customObject id="i36-gV-QgA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="498" y="215"/>
+        </scene>
+        <!--Preferences View Controller-->
+        <scene sceneID="FQc-vw-dal">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="P2R-xK-aOU" customClass="PreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" image="NSPreferencesGeneral" id="DZq-Hw-NoI"/>
+                        <tabViewItem identifier="" image="NSUserAccounts" id="H9C-EL-QmK"/>
+                        <tabViewItem image="KeyboardPreferences" id="6d3-iR-ck0"/>
+                    </tabViewItems>
+                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Fdc-bs-lBx">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="P2R-xK-aOU" id="5Lu-w5-TfC"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <segue destination="a5B-ZA-Ppl" kind="relationship" relationship="tabItems" id="mOY-vP-Gys"/>
+                        <segue destination="yaz-Nj-fpE" kind="relationship" relationship="tabItems" id="cD1-ba-lql"/>
+                        <segue destination="rt1-pN-RZt" kind="relationship" relationship="tabItems" id="dWS-8d-idE"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="gOQ-we-RSq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="207"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="xro-cF-P7H">
+            <objects>
+                <viewController title="General" id="a5B-ZA-Ppl" sceneMemberID="viewController">
+                    <view key="view" id="Tlh-fH-F9r">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-f7-djq">
+                                <rect key="frame" x="18" y="164" width="104" height="18"/>
+                                <animations/>
+                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="coZ-EW-3l5">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
+                                <rect key="frame" x="18" y="135" width="169" height="18"/>
+                                <animations/>
+                                <buttonCell key="cell" type="check" title="Play Sound after Upload" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rdO-zv-EKx">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1HE-WN-NqF">
+                                <rect key="frame" x="18" y="104" width="71" height="18"/>
+                                <animations/>
+                                <buttonCell key="cell" type="check" title="Enabled" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="bed-CJ-j3b">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1494" y="738"/>
+        </scene>
+        <!--Accounts-->
+        <scene sceneID="obD-ao-oqg">
+            <objects>
+                <viewController title="Accounts" id="yaz-Nj-fpE" customClass="AccountPreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="z7a-fy-5U6">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="82" horizontalPageScroll="10" verticalLineScroll="82" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ox-Fa-jKd">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="265"/>
+                                <clipView key="contentView" ambiguous="YES" id="Vev-KQ-A43">
+                                    <rect key="frame" x="1" y="1" width="398" height="263"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="80" viewBased="YES" id="Uy7-Lc-Avl">
+                                            <rect key="frame" x="0.0" y="0.0" width="398" height="263"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <animations/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <tableViewGridLines key="gridStyleMask" horizontal="YES"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="395" minWidth="40" maxWidth="1000" id="bFV-i1-DV6">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="hFc-pk-Iin">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView identifier="accountCell" id="RAV-Xr-FBA" customClass="AccountTableCellView" customModule="Captured" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="395" height="80"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVj-NE-1up">
+                                                                    <rect key="frame" x="0.0" y="53" width="379" height="17"/>
+                                                                    <animations/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Account Name" id="0dC-Dt-Scp">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-ht-D1y">
+                                                                    <rect key="frame" x="0.0" y="28" width="388" height="17"/>
+                                                                    <animations/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Account Type" id="PAZ-Se-d28">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-pk-mvL">
+                                                                    <rect key="frame" x="326" y="23" width="64" height="32"/>
+                                                                    <animations/>
+                                                                    <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sfc-i6-2Tw">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="editAccount:" target="yaz-Nj-fpE" id="XUW-Aj-hUA"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <animations/>
+                                                            <connections>
+                                                                <outlet property="nameField" destination="OVj-NE-1up" id="Imd-no-WTm"/>
+                                                                <outlet property="typeField" destination="k9C-ht-D1y" id="L05-4b-taN"/>
+                                                            </connections>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="yaz-Nj-fpE" id="EL2-QV-8cK"/>
+                                                <outlet property="delegate" destination="yaz-Nj-fpE" id="72v-e7-9Kc"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                    <animations/>
+                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </clipView>
+                                <animations/>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="NOj-I2-28f">
+                                    <rect key="frame" x="1" y="283" width="398" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="opS-6B-0Gm">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <animations/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YeW-pn-MZC">
+                                <rect key="frame" x="303" y="264" width="95" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Add New" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rl9-yh-IU0">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="PXJ-eY-vLX" kind="sheet" identifier="accountSheetSegue" id="KAU-4l-60T"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Uy7-Lc-Avl" id="0YY-Dz-tS9"/>
+                    </connections>
+                </viewController>
+                <customObject id="RRh-pT-cbP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="788"/>
+        </scene>
+        <!--Account Details View Controller-->
+        <scene sceneID="j8E-DI-Mmy">
+            <objects>
+                <viewController id="PXJ-eY-vLX" customClass="AccountDetailsViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="EVQ-s5-kjp">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UQH-V7-kbc">
+                                <rect key="frame" x="179" y="252" width="81" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="TUY-Af-Y2R">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismiss:" target="PXJ-eY-vLX" id="EYR-Cv-1c3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="Os4-mJ-YcA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066" y="1224"/>
+        </scene>
+        <!--Keyboard-->
+        <scene sceneID="YzM-TO-7px">
+            <objects>
+                <viewController title="Keyboard" id="rt1-pN-RZt" sceneMemberID="viewController">
+                    <view key="view" id="29G-4a-ZMC">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dy-EN-Kfo">
+                                <rect key="frame" x="18" y="263" width="62" height="17"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keyboard" id="Tgm-YX-1Yz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <animations/>
+                    </view>
+                </viewController>
+                <customObject id="Er1-wS-Qsx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="632" y="788"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="KeyboardPreferences" width="32" height="32"/>
+        <image name="NSPreferencesGeneral" width="32" height="32"/>
+        <image name="NSUserAccounts" width="32" height="32"/>
+    </resources>
+</document>
