@@ -8,14 +8,18 @@
 
 import Cocoa
 
-class AccountDetailsViewController: NSViewController {
+class AccountDetailViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
-  @IBAction func dismiss(sender: AnyObject) {
+
+  @IBAction func cancelButton(sender: AnyObject) {
+    self.dismissController(self)
+  }
+  @IBAction func saveButton(sender: AnyObject) {
     self.dismissController(self)
   }
 }

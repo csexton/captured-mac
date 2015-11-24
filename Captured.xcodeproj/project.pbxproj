@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */; };
+		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
 		B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */; };
 		B5888A701BFFEE7D00DEA068 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A6F1BFFEE7D00DEA068 /* ViewController.swift */; };
 		B5888A721BFFEE7D00DEA068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5888A711BFFEE7D00DEA068 /* Assets.xcassets */; };
@@ -17,7 +19,12 @@
 		B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A9B1C00183700DEA068 /* PreferencesViewController.swift */; };
 		B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
-		B5A8481F1C00F2D6000B5490 /* AccountDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailsViewController.swift */; };
+		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
+		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
+		B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */; };
+		B5FB98801C0156B0006BC590 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987F1C0156B0006BC590 /* Account.swift */; };
+		B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +44,23 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B5FB987A1C015211006BC590 /* Embedded Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */,
+			);
+			name = "Embedded Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
 		B5888A6A1BFFEE7D00DEA068 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5888A6F1BFFEE7D00DEA068 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +77,11 @@
 		B5888A9B1C00183700DEA068 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
-		B5A8481E1C00F2D6000B5490 /* AccountDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailsViewController.swift; sourceTree = "<group>"; };
+		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
+		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
+		B5FB987F1C0156B0006BC590 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				B5888A6C1BFFEE7D00DEA068 /* Captured */,
+				B5FB987E1C015378006BC590 /* Carthage */,
 				B5888A7E1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A891BFFEE7D00DEA068 /* CapturedUITests */,
 				B5888A6B1BFFEE7D00DEA068 /* Products */,
@@ -114,7 +143,12 @@
 				B5888A9B1C00183700DEA068 /* PreferencesViewController.swift */,
 				B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */,
 				B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */,
-				B5A8481E1C00F2D6000B5490 /* AccountDetailsViewController.swift */,
+				B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */,
+				B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */,
+				B5FB987F1C0156B0006BC590 /* Account.swift */,
+				B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */,
+				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
+				B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -137,6 +171,14 @@
 			path = CapturedUITests;
 			sourceTree = "<group>";
 		};
+		B5FB987E1C015378006BC590 /* Carthage */ = {
+			isa = PBXGroup;
+			children = (
+				B5FB98781C0151A4006BC590 /* MASShortcut.framework */,
+			);
+			name = Carthage;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,6 +189,7 @@
 				B5888A661BFFEE7D00DEA068 /* Sources */,
 				B5888A671BFFEE7D00DEA068 /* Frameworks */,
 				B5888A681BFFEE7D00DEA068 /* Resources */,
+				B5FB987A1C015211006BC590 /* Embedded Frameworks */,
 			);
 			buildRules = (
 			);
@@ -268,12 +311,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */,
+				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
 				B5888A701BFFEE7D00DEA068 /* ViewController.swift in Sources */,
 				B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */,
+				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
+				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,
 				B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */,
+				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
-				B5A8481F1C00F2D6000B5490 /* AccountDetailsViewController.swift in Sources */,
+				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

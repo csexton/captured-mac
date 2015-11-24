@@ -12,18 +12,16 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
   @IBOutlet weak var tableView: NSTableView!
   @IBAction func editAccount(sender: AnyObject) {
-    self.performSegueWithIdentifier("accountSheetSegue", sender: self)
+    self.performSegueWithIdentifier("imgurSheetSegue", sender: self)
     print("yay")
   }
 
   var objects : NSMutableArray! = NSMutableArray()
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.objects.addObject("imgur")
-    self.objects.addObject("s3")
-    self.objects.addObject("imgur")
-    self.objects.addObject("sftp")
+    self.objects.addObject([ "name": "Default Imgur", "type": "imgur" ])
 
     self.tableView.reloadData()
 
@@ -46,8 +44,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     let cellview = tableView.makeViewWithIdentifier("accountCell", owner: self)
 
     if let cell = cellview as? AccountTableCellView {
-      cell.nameField!.stringValue = self.objects.objectAtIndex(row) as! String
-      cell.typeField!.stringValue = self.objects.objectAtIndex(row) as! String
+      cell.objectValue = self.objects.objectAtIndex(row) as! NSDictionary
     }
 
     return cellview
@@ -57,4 +54,27 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     return false
   }
 
+  @IBOutlet var newAccountMenu: NSMenu!
+  @IBAction func newAccountButton(sender: AnyObject) {
+    newAccountMenu.popUpMenuPositioningItem(newAccountMenu.itemAtIndex(0), atLocation: NSEvent.mouseLocation(), inView: nil)
+  }
+
+  @IBAction func createNewAccountFromMenu(sender: NSMenuItem) {
+    print(sender)
+    // Choose which segue to show based on the tag for the menu item
+    switch sender.tag {
+    case 1:
+      self.performSegueWithIdentifier("s3SheetSegue", sender: self)
+    case 2:
+      self.performSegueWithIdentifier("dropboxSheetSegue", sender: self)
+    case 3:
+      self.performSegueWithIdentifier("sftpSheetSegue", sender: self)
+    case 4:
+      self.performSegueWithIdentifier("imgurSheetSegue", sender: self)
+    default:
+      print("Unknown Account type. Did you set the tag value on the menu item?")
+    }
+
+
+  }
 }

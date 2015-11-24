@@ -1,1 +1,2 @@
 github "shpakovski/MASShortcut" "2.3.2"
+github "dropbox/SwiftyDropbox" "1.0"
