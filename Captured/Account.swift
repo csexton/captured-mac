@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class Account {
+class Account:  NSObject {
 
   var type : String
   var name : String

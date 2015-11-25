@@ -15,12 +15,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
+
+
+    setDefaultDefaults()
     createStatusMenu()
 
+
+    let i = "/Users/csexton/src/captured-mac/Captured/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png"
+    let u = ImgurUploader(withOptions: oauthOpts)
+    let b = u.upload(i as String)
+    print(b)
+
+    
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
-    // Insert code here to tear down your application
+    // Insert code here to tear down your applicat
+  }
+
+  func setDefaultDefaults() {
+    if let path = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist") {
+      let defaultDict: [String : AnyObject] = NSDictionary(contentsOfFile: path)! as! [String : AnyObject]
+      NSUserDefaults.standardUserDefaults().registerDefaults(defaultDict)
+    }
   }
 
   // MARK: Preferences Window

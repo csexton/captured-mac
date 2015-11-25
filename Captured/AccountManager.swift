@@ -8,6 +8,6 @@
 
 import Cocoa
 
-class AccountManager {
+class AccountManager: NSObject {
 
 }

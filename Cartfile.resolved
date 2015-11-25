@@ -1,2 +1,3 @@
+github "JustHTTP/Just" "v0.4.4"
 github "shpakovski/MASShortcut" "2.3.2"
-github "dropbox/SwiftyDropbox" "1.0"
+github "dropbox/SwiftyDropbox" "1.0.1"
