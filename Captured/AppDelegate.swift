@@ -7,25 +7,65 @@
 //
 
 import Cocoa
+import AppKit
+import Carbon
+
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+  var hotKeyCenter = DDHotKeyCenter.sharedHotKeyCenter()
+
+  dynamic var accountsArrayController = NSArrayController()
+
   // MARK: App Delegates
+
+  func applicationWillFinishLaunching(notification: NSNotification) {
+    // Prevent launching and process the command line
+  }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
 
-
     setDefaultDefaults()
     createStatusMenu()
 
+    let arr : [AnyObject] = (NSUserDefaults.standardUserDefaults().objectForKey("Accounts") as! Array)
 
-    let i = "/Users/csexton/src/captured-mac/Captured/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png"
-    let u = ImgurUploader(withOptions: oauthOpts)
-    let b = u.upload(i as String)
-    print(b)
+    let a = Account(withDict: arr[0] as! [String:AnyObject])
 
+    print(a.name)
+
+
+//    if (false) {
+//      let oauthOpts = [
+//        "access_token":"2e40ee182ffc627094a9ce2d7e929f9182a6f646",
+//        "expires_in": "2419200",
+//        "token_type":"bearer",
+//        "refresh_token":"564a90a92dd7e71ed6ff38a9b327fb63c94dcecc",
+//        "account_id": "147584",
+//        "account_username":"csexton",
+//      ]
+//      let anonOpts = [
+//        "client_id": (NSUserDefaults.standardUserDefaults().objectForKey("ImgurClientID") as! String)
+//      ]
+//      
+//      let i = "/Users/csexton/src/captured-mac/Captured/Assets.xcassets/AppIcon.appiconset/icon_128x128@2x.png"
+//      let u = ImgurUploader(withOptions: anonOpts)
+//      let b = u.upload(i as String)
+//      
+//    }
+
+    if (true) {
+      //asyncCompletionHandler: { (result: HTTPResult!) -> Void in
+
+      hotKeyCenter.registerHotKeyWithKeyCode(UInt16(kVK_ANSI_V), modifierFlags: (NSEventModifierFlags.ControlKeyMask.rawValue), task: { _ in
+
+        print("hot")
+
+        })
+
+    }
     
   }
 

@@ -23,9 +23,7 @@ class ImgurUploader {
 
     let r = Just.post(
       "https://api.imgur.com/3/image",
-      headers: [
-        "Authorization": "Client-ID \(apiKey())",
-      ],
+      headers: [ "Authorization": authHeader() ],
       data: [
         "title": "Screen Capture",
         "description": "Uploaded by Captured for Mac",
@@ -33,15 +31,20 @@ class ImgurUploader {
       files: ["image": .URL(fileURL, nil)]
     )
 
-
     if (r.ok) { /* success! */ }
 
     return r.ok
 
   }
 
-  func apiKey() -> String {
-    return NSUserDefaults.standardUserDefaults().objectForKey("ImgurAnonClientID") as! String
+  func authHeader() -> String {
+    if (options["access_token"] != nil) {
+      return "Client-Bearer \(options["access_token"]!)"
+    }
+    else {
+      return "Client-ID \(options["client_id"]!)"
+    }
   }
+
 
 }

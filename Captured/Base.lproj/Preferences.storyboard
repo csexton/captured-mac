@@ -478,15 +478,6 @@ Gw
                                     <action selector="urlOption:" target="PXJ-eY-vLX" id="KeB-X6-TPv"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Hm-Tz-jiC">
-                                <rect key="frame" x="20" y="121" width="37" height="17"/>
-                                <animations/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="zHD-mb-JCf">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDV-JD-nWX">
                                 <rect key="frame" x="18" y="230" width="111" height="17"/>
                                 <animations/>
@@ -507,9 +498,44 @@ Gw
                                     <action selector="urlOption:" target="PXJ-eY-vLX" id="Ucd-iT-aSP"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwP-kB-YYH">
+                                <rect key="frame" x="31" y="133" width="141" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Login with Imgur" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tX0-Ri-eXZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="linkAccount:" target="PXJ-eY-vLX" id="2cb-6x-GCq"/>
+                                </connections>
+                            </button>
+                            <textField hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cm3-jF-1re">
+                                <rect key="frame" x="177" y="139" width="96" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="PIN" drawsBackground="YES" id="aY9-vw-bUs">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tPP-fV-6eH">
+                                <rect key="frame" x="275" y="133" width="119" height="32"/>
+                                <animations/>
+                                <buttonCell key="cell" type="push" title="Link Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uiP-3k-fSM">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="confirmAccount:" target="PXJ-eY-vLX" id="5se-Dj-4cD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                     </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="tPP-fV-6eH" id="CkB-TU-RCO"/>
+                        <outlet property="pinField" destination="cm3-jF-1re" id="keC-Qu-iXD"/>
+                    </connections>
                 </viewController>
                 <customObject id="Os4-mJ-YcA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -2,14 +2,30 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>Accounts</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>Default Imgur</string>
+			<key>Type</key>
+			<string>imgur</string>
+			<key>Identifier</key>
+			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
+			<key>PreventDelete</key>
+			<true/>
+			<key>Options</key>
+			<dict>
+				<key>client_id</key>
+				<string>252eab4a4dee27d</string>
+			</dict>
+		</dict>
+	</array>
+	<key>New item</key>
+	<string></string>
 	<key>ImgurClientSecret</key>
 	<string>c99183d23bc09116999bdfb30974d53805f34feb</string>
 	<key>ImgurClientID</key>
 	<string>252eab4a4dee27d</string>
-	<key>ImgurAnonClientSecret</key>
-	<string>c73205a14664215d8a96322c837e1b3eb62e5e3a</string>
-	<key>ImgurAnonClientID</key>
-	<string>ad759383054786b</string>
 	<key>NumberOfHistoryItems</key>
 	<integer>10</integer>
 	<key>PlaySoundAfterUpload</key>

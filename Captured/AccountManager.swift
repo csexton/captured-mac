@@ -10,4 +10,17 @@ import Cocoa
 
 class AccountManager: NSObject {
 
+  var array : [Account] = Array()
+  var defaults = NSUserDefaults.standardUserDefaults()
+
+  func load() {
+    if let accts = (defaults.objectForKey("Accounts") as? [[String:AnyObject]]) {
+
+      for acct in accts {
+        print(acct)
+        array.append(Account(withDict: acct))
+      }
+    }
+  }
+
 }
