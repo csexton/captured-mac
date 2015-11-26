@@ -38,7 +38,21 @@ class ImgurDetailViewController: NSViewController {
         "pin": pinField.stringValue,
       ],
       asyncCompletionHandler: { (result: HTTPResult!) -> Void in
-        if (result.ok) { /* success! */ }
+        if (result.ok) {
+
+          if var r = self.representedObject as? [String:AnyObject]{
+            if let jsonData = result.json as? [String:AnyObject] {
+              r["access_token"] = jsonData["access_token"]
+              r["refresh_token"] = jsonData["access_token"]
+              r["token_type"] = jsonData["token_type"]
+              print(r)
+            }
+          }
+        }
+        else {
+          print("Error!!!!")
+        }
+
     })
 
 
@@ -49,6 +63,7 @@ class ImgurDetailViewController: NSViewController {
     self.dismissController(self)
   }
   @IBAction func saveButton(sender: AnyObject) {
+    AccountManager.sharedInstance.update(representedObject as! [String:AnyObject])
     self.dismissController(self)
   }
 

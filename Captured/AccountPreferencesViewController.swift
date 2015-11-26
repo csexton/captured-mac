@@ -12,16 +12,18 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
   @IBOutlet weak var tableView: NSTableView!
   @IBAction func editAccount(sender: AnyObject) {
-    self.performSegueWithIdentifier("imgurSheetSegue", sender: self)
+
+    let row = tableView.rowForView(sender as! NSView)
+    self.performSegueWithIdentifier("imgurSheetSegue", sender: accounts.dictonaryAtIndex(row))
     print("yay")
   }
 
-  var objects : NSMutableArray! = NSMutableArray()
+  var accounts = AccountManager.sharedInstance
 
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    self.objects.addObject([ "name": "Default Imgur", "type": "imgur" ])
+    accounts.load()
 
     self.tableView.reloadData()
 
@@ -37,14 +39,14 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
   // MARK: Delegate Methods
 
   func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-    return self.objects.count
+    return accounts.count()
   }
 
   func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?, row: Int) -> NSView? {
     let cellview = tableView.makeViewWithIdentifier("accountCell", owner: self)
 
     if let cell = cellview as? AccountTableCellView {
-      cell.objectValue = self.objects.objectAtIndex(row) as! NSDictionary
+      cell.objectValue = accounts.dictonaryAtIndex(row)
     }
 
     return cellview
@@ -64,17 +66,24 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     // Choose which segue to show based on the tag for the menu item
     switch sender.tag {
     case 1:
-      self.performSegueWithIdentifier("s3SheetSegue", sender: self)
+      self.performSegueWithIdentifier("s3SheetSegue", sender: nil)
     case 2:
-      self.performSegueWithIdentifier("dropboxSheetSegue", sender: self)
+      self.performSegueWithIdentifier("dropboxSheetSegue", sender: nil)
     case 3:
-      self.performSegueWithIdentifier("sftpSheetSegue", sender: self)
+      self.performSegueWithIdentifier("sftpSheetSegue", sender: nil)
     case 4:
-      self.performSegueWithIdentifier("imgurSheetSegue", sender: self)
+      self.performSegueWithIdentifier("imgurSheetSegue", sender: nil)
     default:
       print("Unknown Account type. Did you set the tag value on the menu item?")
     }
-
-
   }
+
+  override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    if let controller = segue.destinationController as? NSViewController {
+      if let account = sender as? [String:AnyObject] {
+        controller.representedObject = account
+      }
+    }
+  }
+
 }

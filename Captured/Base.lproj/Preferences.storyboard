@@ -142,7 +142,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.name" id="8yG-Vo-t2e"/>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.Name" id="whn-YY-pf2"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-ht-D1y">
@@ -153,6 +153,9 @@
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.Type" id="hVo-XB-29P"/>
+                                                                    </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-pk-mvL">
                                                                     <rect key="frame" x="326" y="23" width="64" height="32"/>
@@ -529,6 +532,18 @@ Gw
                                     <action selector="confirmAccount:" target="PXJ-eY-vLX" id="5se-Dj-4cD"/>
                                 </connections>
                             </button>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZw-M9-hwj">
+                                <rect key="frame" x="63" y="258" width="96" height="22"/>
+                                <animations/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="WjA-5y-hYb">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="PXJ-eY-vLX" name="value" keyPath="representedObject.Name" id="grk-qa-N2I"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <animations/>
                     </view>
@@ -538,6 +553,7 @@ Gw
                     </connections>
                 </viewController>
                 <customObject id="Os4-mJ-YcA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="b47-dE-J7d"/>
             </objects>
             <point key="canvasLocation" x="1039" y="514"/>
         </scene>

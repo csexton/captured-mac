@@ -3,7 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>Accounts</key>
-	<array>
+	<dict>
+		<key>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</key>
 		<dict>
 			<key>Name</key>
 			<string>Default Imgur</string>
@@ -11,7 +12,7 @@
 			<string>imgur</string>
 			<key>Identifier</key>
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
-			<key>PreventDelete</key>
+			<key>ReadOnly</key>
 			<true/>
 			<key>Options</key>
 			<dict>
@@ -19,7 +20,7 @@
 				<string>252eab4a4dee27d</string>
 			</dict>
 		</dict>
-	</array>
+	</dict>
 	<key>New item</key>
 	<string></string>
 	<key>ImgurClientSecret</key>

@@ -15,8 +15,7 @@ import Carbon
 class AppDelegate: NSObject, NSApplicationDelegate {
 
   var hotKeyCenter = DDHotKeyCenter.sharedHotKeyCenter()
-
-  dynamic var accountsArrayController = NSArrayController()
+  var accountManager = AccountManager.sharedInstance
 
   // MARK: App Delegates
 
@@ -27,15 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   func applicationDidFinishLaunching(aNotification: NSNotification) {
     // Insert code here to initialize your application
 
+
+    
     setDefaultDefaults()
     createStatusMenu()
 
-    let arr : [AnyObject] = (NSUserDefaults.standardUserDefaults().objectForKey("Accounts") as! Array)
-
-    let a = Account(withDict: arr[0] as! [String:AnyObject])
-
-    print(a.name)
-
+    accountManager.load()
 
 //    if (false) {
 //      let oauthOpts = [
