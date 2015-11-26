@@ -10,14 +10,14 @@ import Cocoa
 
 class AccountManager: NSObject {
 
-  var accounts : [[String:AnyObject]] = Array()
+  var accounts : [NSMutableDictionary] = Array()
   var defaults = NSUserDefaults.standardUserDefaults()
 
   static let sharedInstance = AccountManager()
 
   func load() {
     accounts.removeAll()
-    if let accts = (defaults.objectForKey("Accounts") as? [[String:AnyObject]]) {
+    if let accts = (defaults.objectForKey("Accounts") as? [NSMutableDictionary]) {
       for acct in accts {
         print(acct)
         accounts.append(acct)
@@ -29,20 +29,22 @@ class AccountManager: NSObject {
     return accounts.count
   }
 
-  func dictonaryAtIndex(i:Int) -> ([String:AnyObject]) {
-    return accounts[i]
+  func accountAtIndex(i:Int) -> (Account) {
+    return Account(withDict: accounts[i])
   }
 
-  func update(updated:[String:AnyObject]) {
-    if let identifier = updated["Identifier"] as? String {
+  func update(updated:Account) {
+
+    var newRecord: Bool = true
+
       for i in 0...(accounts.count-1) {
-        if accounts[i]["Identifier"] as! String == identifier {
-          accounts[i] = updated
+        if accounts[i]["Identifier"] as! String == updated.identifier {
+          newRecord = false
+          accounts[i] = updated.toDict()
         }
       }
-    }
-    else {
-      accounts.append(updated)
+    if (newRecord) {
+      accounts.append(updated.toDict())
     }
 
     defaults.setObject(accounts, forKey: "Accounts");

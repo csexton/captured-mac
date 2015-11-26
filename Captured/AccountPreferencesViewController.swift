@@ -14,7 +14,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
   @IBAction func editAccount(sender: AnyObject) {
 
     let row = tableView.rowForView(sender as! NSView)
-    self.performSegueWithIdentifier("imgurSheetSegue", sender: accounts.dictonaryAtIndex(row))
+    self.performSegueWithIdentifier("imgurSheetSegue", sender: accounts.accountAtIndex(row))
     print("yay")
   }
 
@@ -46,7 +46,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     let cellview = tableView.makeViewWithIdentifier("accountCell", owner: self)
 
     if let cell = cellview as? AccountTableCellView {
-      cell.objectValue = accounts.dictonaryAtIndex(row)
+      cell.objectValue = accounts.accountAtIndex(row)
     }
 
     return cellview
@@ -80,7 +80,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
   override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
     if let controller = segue.destinationController as? NSViewController {
-      if let account = sender as? [String:AnyObject] {
+      if let account = sender as? NSMutableDictionary {
         controller.representedObject = account
       }
     }

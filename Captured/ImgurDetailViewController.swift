@@ -63,7 +63,7 @@ class ImgurDetailViewController: NSViewController {
     self.dismissController(self)
   }
   @IBAction func saveButton(sender: AnyObject) {
-    AccountManager.sharedInstance.update(representedObject as! [String:AnyObject])
+    AccountManager.sharedInstance.update(representedObject as! Account)
     self.dismissController(self)
   }
 

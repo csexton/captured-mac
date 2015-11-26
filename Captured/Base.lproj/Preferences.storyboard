@@ -142,7 +142,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.Name" id="whn-YY-pf2"/>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.name" id="gyi-31-qak"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-ht-D1y">
@@ -154,7 +154,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.Type" id="hVo-XB-29P"/>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.type" id="8Zy-ss-J4Y"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-pk-mvL">
