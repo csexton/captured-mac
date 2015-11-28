@@ -12,7 +12,7 @@ class Account:  NSObject {
 
   dynamic var type : String
   dynamic var name : String
-  var preventDelete : Bool
+//  var readOnly : Bool
   var identifier : String
   var options : [String:AnyObject]
 
@@ -29,9 +29,15 @@ class Account:  NSObject {
   }
 
   init(withDict opts: NSMutableDictionary) {
+//    if let o = opts["Type"] as? String { type = o }
+//    if let o = opts["Name"] as? String { name = o }
+//    if let o = opts["ReadOnly"] as? Bool {readOnly = o }
+//    if let o = opts["Identifier"] as? String { identifier = o }
+//    if let o = opts["Options"] as? [String:AnyObject] { options = o }
+//
     type = opts["Type"] as! String
     name  = opts["Name"] as! String
-    preventDelete = opts["PreventDelete"] as! Bool
+//    readOnly = opts["ReadOnly"] as! Bool
     identifier = opts["Identifier"] as! String
     options = opts["Options"] as! [String:AnyObject]
 

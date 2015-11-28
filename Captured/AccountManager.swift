@@ -48,6 +48,10 @@ class AccountManager: NSObject {
     }
 
     defaults.setObject(accounts, forKey: "Accounts");
+
+    NSNotificationCenter
+      .defaultCenter()
+      .postNotificationName("AccountsUpdated", object: self)
   }
 
 }

@@ -63,6 +63,7 @@ class ImgurDetailViewController: NSViewController {
     self.dismissController(self)
   }
   @IBAction func saveButton(sender: AnyObject) {
+    endEditing()
     AccountManager.sharedInstance.update(representedObject as! Account)
     self.dismissController(self)
   }
@@ -70,6 +71,12 @@ class ImgurDetailViewController: NSViewController {
 
   func defaults(key:String) -> String {
     return NSUserDefaults.standardUserDefaults().objectForKey(key) as! String
+  }
+
+  func endEditing() {
+    // http://pinkstone.co.uk/how-to-remove-focus-from-an-nstextfield/
+    //   Give up first repsonder status and therefore end editing
+    self.view.window?.makeFirstResponder(nil)
   }
 
 

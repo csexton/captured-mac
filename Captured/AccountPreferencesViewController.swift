@@ -28,6 +28,13 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     self.tableView.reloadData()
 
     // Do any additional setup after loading the view.
+    let nc = NSNotificationCenter.defaultCenter()
+    nc.addObserver(self.tableView, selector: "reloadData", name: "AccountsUpdated", object: nil)
+
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self.tableView)
   }
 
   override var representedObject: AnyObject? {
@@ -80,7 +87,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
   override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
     if let controller = segue.destinationController as? NSViewController {
-      if let account = sender as? NSMutableDictionary {
+      if let account = sender as? Account {
         controller.representedObject = account
       }
     }

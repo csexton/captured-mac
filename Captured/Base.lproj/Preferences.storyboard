@@ -541,7 +541,7 @@ Gw
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="PXJ-eY-vLX" name="value" keyPath="representedObject.Name" id="grk-qa-N2I"/>
+                                    <binding destination="PXJ-eY-vLX" name="value" keyPath="representedObject.name" id="a8F-20-52R"/>
                                 </connections>
                             </textField>
                         </subviews>

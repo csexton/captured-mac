@@ -33,6 +33,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     accountManager.load()
 
+    var sc = ScreenCapture()
+    sc.run(.MouseSelection)
+    print(sc.path)
+
 //    if (false) {
 //      let oauthOpts = [
 //        "access_token":"2e40ee182ffc627094a9ce2d7e929f9182a6f646",

@@ -30,7 +30,17 @@ class CapturedUITests: XCTestCase {
     
     func testExample() {
         // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+      
+      let app = XCUIApplication()
+      app.typeKey(",", modifierFlags:.Command)
+      app.windows["Captured"].toolbars.buttons["Accounts"].click()
+      
+      let accountsWindow = app.windows["Accounts"]
+      accountsWindow.buttons["Add Account"].click()
+      // Failed to find matching element please file bug (bugreport.apple.com) and provide output from Console.app
+      accountsWindow.tables.cells.containingType(.Button, identifier:"Edit").element.typeText("Tester")
+      accountsWindow.sheets.buttons["Save"].click()
+      //Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
 }

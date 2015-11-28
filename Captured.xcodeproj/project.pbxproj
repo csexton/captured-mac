@@ -30,6 +30,7 @@
 		B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
+		B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B391001C0A68A400E057AF /* ScreenCapture.swift */; };
 		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
 		B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */; };
@@ -102,6 +103,7 @@
 		B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		B5B391001C0A68A400E057AF /* ScreenCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapture.swift; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
 		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5FB987F1C0156B0006BC590 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */,
 				B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */,
 				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
+				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B50F2F8C1C060167004AB2B1 /* DDHotKeyTextField.m in Sources */,
+				B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */,
 				B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */,
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
