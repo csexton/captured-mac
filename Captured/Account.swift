@@ -10,9 +10,9 @@ import Cocoa
 
 class Account:  NSObject {
 
-  dynamic var type : String
-  dynamic var name : String
-//  var readOnly : Bool
+  var type : String
+  var name : String
+  var readOnly : Bool
   var identifier : String
   var options : [String:AnyObject]
 
@@ -29,24 +29,24 @@ class Account:  NSObject {
   }
 
   init(withDict opts: NSMutableDictionary) {
-//    if let o = opts["Type"] as? String { type = o }
-//    if let o = opts["Name"] as? String { name = o }
-//    if let o = opts["ReadOnly"] as? Bool {readOnly = o }
-//    if let o = opts["Identifier"] as? String { identifier = o }
-//    if let o = opts["Options"] as? [String:AnyObject] { options = o }
-//
-    type = opts["Type"] as! String
-    name  = opts["Name"] as! String
-//    readOnly = opts["ReadOnly"] as! Bool
-    identifier = opts["Identifier"] as! String
-    options = opts["Options"] as! [String:AnyObject]
+    type = "Default"
+    name  = ""
+    identifier = ""
+    readOnly = false
+    options = [:]
 
+    if let o = opts["Type"] as? String { type = o }
+    if let o = opts["Name"] as? String { name = o }
+    if let o = opts["ReadOnly"] as? Bool {readOnly = o }
+    if let o = opts["Identifier"] as? String { identifier = o }
+    if let o = opts["Options"] as? [String:AnyObject] { options = o }
   }
 
   func toDict() -> (NSMutableDictionary) {
     return [
       "Type": type,
       "Name": name,
+      "ReadOnly": readOnly,
       "Identifier": identifier,
       "Options": options
     ]

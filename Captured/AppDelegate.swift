@@ -33,9 +33,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     accountManager.load()
 
-    var sc = ScreenCapture()
-    sc.run(.MouseSelection)
-    print(sc.path)
+//    var sc = ScreenCapture()
+//    sc.run(.MouseSelection)
+//    print(sc.path)
 
 //    if (false) {
 //      let oauthOpts = [
