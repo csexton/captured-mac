@@ -16,7 +16,6 @@ class ImgurDetailViewController: NSViewController {
     // Do view setup here.
   }
 
-
   @IBOutlet weak var pinField: NSTextField!
   @IBOutlet weak var confirmButton: NSButton!
   @IBAction func linkAccount(sender: AnyObject) {
@@ -26,6 +25,7 @@ class ImgurDetailViewController: NSViewController {
     confirmButton.hidden = false
 
   }
+
   @IBAction func confirmAccount(sender: AnyObject) {
 
     // curl -X POST -F "client_id=252eab4a4dee27d" -F "client_secret=c99183d23bc09116999bdfb30974d53805f34feb" -F "grant_type=pin" -F "pin=e0a4eb5feb" https://api.imgur.com/oauth2/token
@@ -39,29 +39,28 @@ class ImgurDetailViewController: NSViewController {
       ],
       asyncCompletionHandler: { (result: HTTPResult!) -> Void in
         if (result.ok) {
-
-          if var r = self.representedObject as? [String:AnyObject]{
+          if let r = self.representedObject as? Account {
             if let jsonData = result.json as? [String:AnyObject] {
-              r["access_token"] = jsonData["access_token"]
-              r["refresh_token"] = jsonData["access_token"]
-              r["token_type"] = jsonData["token_type"]
-              print(r)
+              r.options["account_id"] = jsonData["account_id"] as? String
+              r.options["access_token"] = jsonData["access_token"] as? String
+              r.options["refresh_token"] = jsonData["refresh_token"] as? String
+              r.options["account_username"] = jsonData["account_username"] as? String
             }
           }
         }
         else {
           print("Error!!!!")
         }
-
     })
-
-
   }
+
   @IBAction func urlOption(sender: AnyObject) {
   }
+
   @IBAction func cancelButton(sender: AnyObject) {
     self.dismissController(self)
   }
+
   @IBAction func saveButton(sender: AnyObject) {
     endEditing()
     AccountManager.sharedInstance.update(representedObject as! Account)
@@ -78,6 +77,5 @@ class ImgurDetailViewController: NSViewController {
     //   Give up first repsonder status and therefore end editing
     self.view.window?.makeFirstResponder(nil)
   }
-
 
 }

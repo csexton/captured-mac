@@ -27,11 +27,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Insert code here to initialize your application
 
 
-    
+
     setDefaultDefaults()
+    accountManager.load()
     createStatusMenu()
 
-    accountManager.load()
+    //accountManager.arrayController = accountsArrayController
 
 //    var sc = ScreenCapture()
 //    sc.run(.MouseSelection)
@@ -85,11 +86,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var preferencesController: NSWindowController?
 
   @IBAction func showPreferences(sender : AnyObject) {
+
+    NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     if (preferencesController == nil) {
       let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
       preferencesController = storyboard.instantiateInitialController() as? NSWindowController
     }
-    if (preferencesController != nil) { preferencesController!.showWindow(sender) }
+    if (preferencesController != nil) {
+      preferencesController!.showWindow(sender)
+    }
   }
 
   // MARK: Status Menu

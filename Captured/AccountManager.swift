@@ -30,7 +30,7 @@ class AccountManager: NSObject {
   }
 
   func accountAtIndex(i:Int) -> (Account) {
-    return Account(withDict: accounts[i])
+    return Account(dictionary: accounts[i])
   }
 
   func update(updated:Account) {

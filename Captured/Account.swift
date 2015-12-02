@@ -10,46 +10,54 @@ import Cocoa
 
 class Account:  NSObject {
 
-  var type : String
-  var name : String
-  var readOnly : Bool
-  var identifier : String
-  var options : [String:AnyObject]
+  var type = "none"
+  var name = ""
+  var readOnly:Bool = Bool(false)
+  var identifier:String = ""
+  var options = [String:String]()
 
-  var settings = [String: String]()
+  // MARK: Initers
 
-  convenience init(withType type: String, name:String, identifier:String, opts:[String:AnyObject]) {
-    let d = [
-      "Type": type,
-      "Name": name,
-      "Identifier": identifier,
-      "Options": opts,
-    ]
-    self.init(withDict: d as! NSMutableDictionary)
+  init (type:String, name:String, readOnly:Bool, identifier:String, options:[String:String]) {
+    self.type = type
+    self.name = name
+    self.readOnly = readOnly
+    self.identifier = identifier
+    self.options = options
+
   }
 
-  init(withDict opts: NSMutableDictionary) {
-    type = "Default"
-    name  = ""
-    identifier = ""
-    readOnly = false
-    options = [:]
-
-    if let o = opts["Type"] as? String { type = o }
-    if let o = opts["Name"] as? String { name = o }
-    if let o = opts["ReadOnly"] as? Bool {readOnly = o }
-    if let o = opts["Identifier"] as? String { identifier = o }
-    if let o = opts["Options"] as? [String:AnyObject] { options = o }
+  override init() {
+    super.init()
   }
 
-  func toDict() -> (NSMutableDictionary) {
-    return [
-      "Type": type,
-      "Name": name,
-      "ReadOnly": readOnly,
+  // MARK: Methods
+  func mergeOptions(dict: [String:String]) {
+    for (key, value) in dict {
+      options[key] = value
+    }
+  }
+
+
+  // MARK: Martialing to Plist
+
+  required convenience init(dictionary: NSMutableDictionary) {
+    self.init()
+    type = dictionary.objectForKey("Type") as! String
+    name = dictionary.objectForKey("Name") as! String
+    readOnly = dictionary["ReadOnly"] as! Bool
+    identifier = dictionary.objectForKey("Identifier") as! String
+    options = dictionary.objectForKey("Options") as! [String:String]
+  }
+
+  func toDict() -> NSMutableDictionary {
+    return NSMutableDictionary(dictionary: [
+      "Type":type,
+      "Name":name,
+      "ReadOnly": Bool(readOnly),
       "Identifier": identifier,
       "Options": options
-    ]
+    ])
   }
 
 }

@@ -23,8 +23,6 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
   override func viewDidLoad() {
     super.viewDidLoad()
 
-    accounts.load()
-
     self.tableView.reloadData()
 
     // Do any additional setup after loading the view.

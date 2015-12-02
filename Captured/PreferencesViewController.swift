@@ -19,7 +19,7 @@ class PreferencesViewController: NSTabViewController {
   override func tabView(tabView: NSTabView, willSelectTabViewItem tabViewItem: NSTabViewItem?) {
     super.tabView(tabView, willSelectTabViewItem: tabViewItem)
 
-    _ = tabView.selectedTabViewItem
+    //_ = tabView.selectedTabViewItem
     //        if (currentTabViewItem != nil) {
     //            currentTabViewItem!.view!.hidden = true
     //        }

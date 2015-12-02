@@ -1,3 +1,4 @@
 github "shpakovski/MASShortcut"
 github "JustHTTP/Just"
 github "dropbox/SwiftyDropbox"
+github "matthewpalmer/Locksmith"
