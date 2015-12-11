@@ -14,8 +14,16 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
   @IBAction func editAccount(sender: AnyObject) {
 
     let row = tableView.rowForView(sender as! NSView)
-    self.performSegueWithIdentifier("imgurSheetSegue", sender: accounts.accountAtIndex(row))
-    print("yay")
+    let account = accounts.accountAtIndex(row)
+
+    switch account.type {
+    case "Imgur":
+      self.performSegueWithIdentifier("imgurSheetSegue", sender: account)
+    case "S3":
+      self.performSegueWithIdentifier("s3SheetSegue", sender: account)
+    default:
+      print("Unknown Account type. Did you set the tag value on the menu item?")
+    }
   }
 
   var accounts = AccountManager.sharedInstance
@@ -67,17 +75,16 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
   }
 
   @IBAction func createNewAccountFromMenu(sender: NSMenuItem) {
-    print(sender)
     // Choose which segue to show based on the tag for the menu item
     switch sender.tag {
     case 1:
-      self.performSegueWithIdentifier("s3SheetSegue", sender: nil)
+      self.performSegueWithIdentifier("s3SheetSegue", sender: S3Account())
     case 2:
       self.performSegueWithIdentifier("dropboxSheetSegue", sender: nil)
     case 3:
       self.performSegueWithIdentifier("sftpSheetSegue", sender: nil)
     case 4:
-      self.performSegueWithIdentifier("imgurSheetSegue", sender: nil)
+      self.performSegueWithIdentifier("imgurSheetSegue", sender: ImgurAccount())
     default:
       print("Unknown Account type. Did you set the tag value on the menu item?")
     }

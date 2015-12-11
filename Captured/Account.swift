@@ -10,25 +10,18 @@ import Cocoa
 
 class Account:  NSObject {
 
-  var type = "none"
-  var name = ""
-  var readOnly:Bool = Bool(false)
-  var identifier:String = ""
+  dynamic var name = ""
+  var readOnly = Bool(false)
+  var identifier : String = NSUUID().UUIDString
   var options = [String:String]()
+  var type : String = ""
+  
 
   // MARK: Initers
 
-  init (type:String, name:String, readOnly:Bool, identifier:String, options:[String:String]) {
-    self.type = type
-    self.name = name
-    self.readOnly = readOnly
-    self.identifier = identifier
-    self.options = options
-
-  }
-
   override init() {
     super.init()
+    type = accountType()
   }
 
   // MARK: Methods
@@ -38,11 +31,13 @@ class Account:  NSObject {
     }
   }
 
+  func accountType() -> String {
+    return "None"
+  }
 
-  // MARK: Martialing to Plist
+  // MARK: Marshalling to Plist
 
-  required convenience init(dictionary: NSMutableDictionary) {
-    self.init()
+  init(dictionary: NSMutableDictionary) {
     type = dictionary.objectForKey("Type") as! String
     name = dictionary.objectForKey("Name") as! String
     readOnly = dictionary["ReadOnly"] as! Bool
@@ -59,5 +54,7 @@ class Account:  NSObject {
       "Options": options
     ])
   }
+
+
 
 }

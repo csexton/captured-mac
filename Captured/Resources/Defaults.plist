@@ -8,7 +8,22 @@
 			<key>Name</key>
 			<string>Default Imgur</string>
 			<key>Type</key>
-			<string>imgur</string>
+			<string>Imgur</string>
+			<key>Identifier</key>
+			<string>E31AA727-7F9E-4B8A-881C-5F91F5BE0189</string>
+			<key>ReadOnly</key>
+			<false/>
+			<key>Options</key>
+			<dict>
+				<key>client_id</key>
+				<string>252eab4a4dee27d</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Default Imgur</string>
+			<key>Type</key>
+			<string>AnonImgur</string>
 			<key>Identifier</key>
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 			<key>ReadOnly</key>
@@ -20,17 +35,17 @@
 			</dict>
 		</dict>
 	</array>
-	<key>New item</key>
-	<string></string>
-	<key>ImgurClientSecret</key>
-	<string>c99183d23bc09116999bdfb30974d53805f34feb</string>
-	<key>ImgurClientID</key>
-	<string>252eab4a4dee27d</string>
 	<key>NumberOfHistoryItems</key>
 	<integer>10</integer>
 	<key>PlaySoundAfterUpload</key>
 	<true/>
 	<key>FirstRun</key>
 	<true/>
+	<key>New item</key>
+	<string></string>
+	<key>ImgurClientSecret</key>
+	<string>c99183d23bc09116999bdfb30974d53805f34feb</string>
+	<key>ImgurClientID</key>
+	<string>252eab4a4dee27d</string>
 </dict>
 </plist>
