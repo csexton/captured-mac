@@ -22,6 +22,7 @@
 		B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9DF1C18B7D70085577D /* S3Account.swift */; };
 		B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */; };
 		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
+		B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */; };
 		B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */; };
 		B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */; };
 		B5888A721BFFEE7D00DEA068 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5888A711BFFEE7D00DEA068 /* Assets.xcassets */; };
@@ -97,6 +98,7 @@
 		B55BB9DF1C18B7D70085577D /* S3Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Account.swift; sourceTree = "<group>"; };
 		B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3DetailViewController.swift; sourceTree = "<group>"; };
 		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
+		B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTableCellView.swift; sourceTree = "<group>"; };
 		B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgSafeUploader.swift; sourceTree = "<group>"; };
 		B5888A6A1BFFEE7D00DEA068 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
 				B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */,
 				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
+				B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */,
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
+				B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */,
 				B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */,
 				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
 				B50F2F7B1C051402004AB2B1 /* ImgurUploader.swift in Sources */,

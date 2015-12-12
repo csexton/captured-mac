@@ -21,7 +21,7 @@
                 </windowController>
                 <customObject id="i36-gV-QgA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="-25"/>
+            <point key="canvasLocation" x="-750" y="-255"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="FQc-vw-dal">
@@ -50,7 +50,7 @@
                 </tabViewController>
                 <customObject id="gOQ-we-RSq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="286" y="-33"/>
+            <point key="canvasLocation" x="-154" y="-261"/>
         </scene>
         <!--General-->
         <scene sceneID="xro-cF-P7H">
@@ -86,7 +86,7 @@
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-94" y="542"/>
+            <point key="canvasLocation" x="-812" y="214"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="obD-ao-oqg">
@@ -128,7 +128,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVj-NE-1up">
-                                                                    <rect key="frame" x="0.0" y="53" width="379" height="17"/>
+                                                                    <rect key="frame" x="15" y="45" width="302" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Account Name" id="0dC-Dt-Scp">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -139,18 +139,18 @@
                                                                     </connections>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-ht-D1y">
-                                                                    <rect key="frame" x="0.0" y="28" width="388" height="17"/>
+                                                                    <rect key="frame" x="15" y="20" width="297" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Account Type" id="PAZ-Se-d28">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.type" id="8Zy-ss-J4Y"/>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.displayType" id="VZp-YS-rph"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-pk-mvL">
-                                                                    <rect key="frame" x="326" y="23" width="64" height="32"/>
+                                                                    <rect key="frame" x="321" y="23" width="64" height="32"/>
                                                                     <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sfc-i6-2Tw">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -178,7 +178,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="NOj-I2-28f">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="opS-6B-0Gm">
@@ -208,28 +208,28 @@
                 <customObject id="RRh-pT-cbP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="oFb-KM-b8b">
                     <items>
+                        <menuItem title="Imgur" tag="4" id="SGy-jC-7vE">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="J2e-P8-QhI"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="Amazon S3" tag="1" id="rcN-uX-G7n">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="3mW-pw-M5X"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Dropbox" tag="2" id="OZN-4e-Eh2">
+                        <menuItem title="Dropbox" tag="2" enabled="NO" id="OZN-4e-Eh2">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="37u-dC-uTU"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="SFTP" tag="3" id="Bkv-Vj-yln">
+                        <menuItem title="SFTP" tag="3" enabled="NO" id="Bkv-Vj-yln">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="f1b-sf-NP4"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Imgur" tag="4" id="SGy-jC-7vE">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="J2e-P8-QhI"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="zNU-Uz-4TV"/>
@@ -239,7 +239,7 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="1461" y="-33"/>
+            <point key="canvasLocation" x="432" y="-261"/>
         </scene>
         <!--Amazon S3 Settings-->
         <scene sceneID="sO2-u9-GSc">
@@ -375,7 +375,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ogy-jE-VY6">
-                                <rect key="frame" x="14" y="13" width="139" height="32"/>
+                                <rect key="frame" x="142" y="13" width="139" height="32"/>
                                 <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qck-os-Trz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -384,14 +384,6 @@ Gw
                                     <action selector="testConnectionButton:" target="9mh-Wm-Shx" id="cna-v0-Cmv"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epF-ba-lD7">
-                                <rect key="frame" x="18" y="263" width="73" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amazon S3" id="rJZ-4N-RZM">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykv-g4-NQB">
                                 <rect key="frame" x="134" y="91" width="76" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WV8-6H-Fc7" id="jt0-wv-HMt">
@@ -409,6 +401,24 @@ Gw
                                     <binding destination="9mh-Wm-Shx" name="selectedIndex" keyPath="representedObject.fileNameLengthIndex" id="RgS-Qt-GVO"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOH-fq-iu5">
+                                <rect key="frame" x="14" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NRL-77-dlz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="9mh-Wm-Shx" id="8nc-Fs-DZx"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epF-ba-lD7">
+                                <rect key="frame" x="18" y="260" width="143" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amazon S3 Account" id="rJZ-4N-RZM">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -422,7 +432,7 @@ Gw
                 <customObject id="RXX-Oi-EgS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="HDd-wm-0S9"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="486"/>
+            <point key="canvasLocation" x="723" y="274"/>
         </scene>
         <!--Imgur Detail-->
         <scene sceneID="j8E-DI-Mmy">
@@ -455,17 +465,43 @@ Gw
                                     <action selector="cancelButton:" target="PXJ-eY-vLX" id="Fle-eC-Xxu"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jT-Q3-fn2">
+                                <rect key="frame" x="14" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C9m-fJ-9SA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="PXJ-eY-vLX" id="M7V-2t-abG"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xQ6-jz-2b1">
+                                <rect key="frame" x="18" y="260" width="143" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Imgur Account" id="1x2-Gx-swy">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="XhG-HQ-Qc2">
-                                <rect key="frame" x="-1" y="56" width="452" height="244"/>
+                                <rect key="frame" x="-1" y="57" width="452" height="195"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="2iu-2d-b4U">
                                         <view key="view" ambiguous="YES" id="8b9-ZZ-Mvd">
-                                            <rect key="frame" x="0.0" y="0.0" width="452" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
+                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
+                                                    <rect key="frame" x="15" y="27" width="430" height="98"/>
+                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="jln-do-1SN">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwP-kB-YYH">
-                                                    <rect key="frame" x="153" y="127" width="141" height="32"/>
+                                                    <rect key="frame" x="160" y="126" width="141" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Login with Imgur" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tX0-Ri-eXZ">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -474,24 +510,16 @@ Gw
                                                         <action selector="linkAccount:" target="PXJ-eY-vLX" id="2cb-6x-GCq"/>
                                                     </connections>
                                                 </button>
-                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
-                                                    <rect key="frame" x="18" y="33" width="430" height="90"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="jln-do-1SN">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Link Account" identifier="" id="1HB-Iz-QM7">
                                         <view key="view" id="xlU-od-bbb">
-                                            <rect key="frame" x="10" y="33" width="446" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VF9-yt-jAK">
-                                                    <rect key="frame" x="118" y="103" width="96" height="22"/>
+                                                    <rect key="frame" x="121" y="153" width="96" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="PIN" drawsBackground="YES" id="zOZ-op-5LH">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -499,7 +527,7 @@ Gw
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uCR-vI-2RM">
-                                                    <rect key="frame" x="216" y="97" width="119" height="32"/>
+                                                    <rect key="frame" x="219" y="147" width="119" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Link Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jkP-bq-Jgb">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -513,22 +541,22 @@ Gw
                                     </tabViewItem>
                                     <tabViewItem label="Spinner" identifier="" id="6lL-qR-8fx">
                                         <view key="view" id="kwm-tS-jYO">
-                                            <rect key="frame" x="0.0" y="0.0" width="452" height="244"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="t0f-YP-VFu">
-                                                    <rect key="frame" x="215" y="136" width="16" height="16"/>
+                                                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="t0f-YP-VFu">
+                                                    <rect key="frame" x="210" y="81" width="32" height="32"/>
                                                 </progressIndicator>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Edit Account" identifier="2" id="0NJ-9g-OAl">
                                         <view key="view" id="5l4-2o-gFP">
-                                            <rect key="frame" x="10" y="33" width="446" height="214"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VZw-M9-hwj">
-                                                    <rect key="frame" x="80" y="166" width="96" height="22"/>
+                                                    <rect key="frame" x="145" y="158" width="219" height="22"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="WjA-5y-hYb">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -539,7 +567,7 @@ Gw
                                                     </connections>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hHX-BM-dQT">
-                                                    <rect key="frame" x="161" y="110" width="159" height="18"/>
+                                                    <rect key="frame" x="144" y="122" width="159" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Copy URL to Webpage" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="aPX-or-GwY">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -549,7 +577,7 @@ Gw
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sDV-JD-nWX">
-                                                    <rect key="frame" x="47" y="111" width="111" height="17"/>
+                                                    <rect key="frame" x="30" y="123" width="111" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="URL Settings:" id="RNM-bw-5bv">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -557,7 +585,7 @@ Gw
                                                     </textFieldCell>
                                                 </textField>
                                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r2e-uo-APa">
-                                                    <rect key="frame" x="161" y="88" width="179" height="18"/>
+                                                    <rect key="frame" x="144" y="100" width="179" height="18"/>
                                                     <buttonCell key="cell" type="radio" title="Copy URL to Direct Image" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="LrJ-cg-dPM">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -566,9 +594,9 @@ Gw
                                                         <action selector="urlOption:" target="PXJ-eY-vLX" id="Ucd-iT-aSP"/>
                                                     </connections>
                                                 </button>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pbX-fF-wtl">
-                                                    <rect key="frame" x="35" y="166" width="39" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Imgur" id="mKs-c1-4De">
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2C-J2-wZA">
+                                                    <rect key="frame" x="30" y="163" width="111" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name:" id="fk8-Gh-ycm">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -579,16 +607,6 @@ Gw
                                     </tabViewItem>
                                 </tabViewItems>
                             </tabView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7jT-Q3-fn2">
-                                <rect key="frame" x="14" y="13" width="80" height="32"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="C9m-fJ-9SA">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteButton:" target="PXJ-eY-vLX" id="7NP-N9-tvt"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -601,7 +619,7 @@ Gw
                 <customObject id="Os4-mJ-YcA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="b47-dE-J7d"/>
             </objects>
-            <point key="canvasLocation" x="781" y="514"/>
+            <point key="canvasLocation" x="243" y="274"/>
         </scene>
         <!--Shortcuts-->
         <scene sceneID="YzM-TO-7px">
@@ -638,18 +656,39 @@ Gw
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="EmM-JE-h4i">
+                                                        <tableCellView identifier="shortcutCell" id="EmM-JE-h4i" customClass="ShortcutTableCellView" customModule="Captured" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="395" height="80"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Cb-eP-Sgz">
-                                                                    <rect key="frame" x="1" y="60" width="100" height="17"/>
+                                                                    <rect key="frame" x="15" y="45" width="301" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="w8J-9e-Jcz">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="EmM-JE-h4i" name="value" keyPath="objectValue.name" id="1eF-1O-dzb"/>
+                                                                    </connections>
                                                                 </textField>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5dA-Se-6SR">
+                                                                    <rect key="frame" x="15" y="20" width="301" height="17"/>
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="MIK-Vy-XKZ">
+                                                                        <font key="font" metaFont="system" size="11"/>
+                                                                        <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="EmM-JE-h4i" name="value" keyPath="objectValue.displayDescription" id="VUf-xy-IK7"/>
+                                                                    </connections>
+                                                                </textField>
+                                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-53-ilV">
+                                                                    <rect key="frame" x="320" y="23" width="64" height="32"/>
+                                                                    <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SbI-1J-63W">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                </button>
                                                             </subviews>
                                                             <connections>
                                                                 <outlet property="textField" destination="3Cb-eP-Sgz" id="UIS-FS-0Z7"/>
@@ -658,12 +697,16 @@ Gw
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="rt1-pN-RZt" id="pE4-QZ-Ipz"/>
+                                                <outlet property="delegate" destination="rt1-pN-RZt" id="tOs-PW-Llp"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Vj0-d0-cYJ">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="9q7-7f-G5A">
@@ -671,6 +714,14 @@ Gw
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dy-EN-Kfo">
+                                <rect key="frame" x="18" y="273" width="62" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keyboard" id="Tgm-YX-1Yz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="98x-Ep-Z5w">
                                 <rect key="frame" x="265" y="264" width="121" height="32"/>
                                 <buttonCell key="cell" type="push" title="Add Shortcut" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b0X-jb-GSn">
@@ -681,20 +732,15 @@ Gw
                                     <segue destination="uwZ-IE-g6F" kind="sheet" id="SOU-Hs-JR1"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dy-EN-Kfo">
-                                <rect key="frame" x="18" y="273" width="62" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keyboard" id="Tgm-YX-1Yz">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="51q-Pj-TX9" id="Jn3-FM-HuJ"/>
+                    </connections>
                 </viewController>
                 <customObject id="Er1-wS-Qsx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392" y="586"/>
+            <point key="canvasLocation" x="-262" y="264"/>
         </scene>
         <!--Shortcuts Detail View Controller-->
         <scene sceneID="rHC-hg-a2K">
@@ -732,7 +778,7 @@ Gw
                 </viewController>
                 <customObject id="7Tg-Ow-g60" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="72" y="1137"/>
+            <point key="canvasLocation" x="-262" y="759"/>
         </scene>
     </scenes>
     <resources>

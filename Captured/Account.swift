@@ -15,6 +15,12 @@ class Account:  NSObject {
   var identifier : String = NSUUID().UUIDString
   var options = [String:String]()
   var type : String = ""
+
+  var displayType : String {
+    get {
+      return "\(type) Account"
+    }
+  }
   
 
   // MARK: Initers

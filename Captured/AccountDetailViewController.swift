@@ -28,11 +28,13 @@ class AccountDetailViewController: NSViewController {
   }
   @IBAction func deleteButton(sender: AnyObject) {
     if dialogOKCancel("Confirm Delete",
-                      text: "Are you sure you want to delete this account?",
-                      buttonOk: "Yep, delete it.",
-                      buttonCancel: "Nevermind") {
-      AccountManager.sharedInstance.delete(representedObject as! Account)
-      self.dismissController(self)
+      text: "Are you sure you want to delete this account?",
+      buttonOk: "Yep, delete it.",
+      buttonCancel: "Nevermind") {
+        if let account = representedObject as? Account {
+          AccountManager.sharedInstance.delete(account)
+        }
+        self.dismissController(self)
     }
   }
   

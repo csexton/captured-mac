@@ -11,7 +11,7 @@ import Foundation
 class AnonImgurAccount : Account {
 
   override func accountType() -> String {
-    return "Imgur"
+    return "Anonymous Imgur"
   }
 
 }

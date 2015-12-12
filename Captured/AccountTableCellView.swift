@@ -11,6 +11,7 @@ import Cocoa
 class AccountTableCellView: NSTableCellView {
 
   
+  @IBOutlet weak var image: NSImageView!
   @IBOutlet weak var nameField: NSTextField!
   @IBOutlet weak var typeField: NSTextField!
     override func drawRect(dirtyRect: NSRect) {

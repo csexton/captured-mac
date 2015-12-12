@@ -9,11 +9,18 @@
 import Cocoa
 
 class AccountManager: NSObject {
-  
+
+  enum AccountTypes : String {
+    case Imgur = "Imgur"
+    case S3 = "Amazon S3"
+    case Dropbox = "Dropbox"
+    case AnonImgur = "anonymous Imgur"
+  }
+
+  static let sharedInstance = AccountManager()
+
   var accounts : [NSMutableDictionary] = Array()
   var defaults = NSUserDefaults.standardUserDefaults()
-  
-  static let sharedInstance = AccountManager()
   
   func load() {
     accounts.removeAll()
@@ -48,8 +55,7 @@ class AccountManager: NSObject {
       accounts.append(updated.toDict())
     }
     
-    defaults.setObject(accounts, forKey: "Accounts");
-    
+    saveAll()
     notifyUpdates()
   }
   
@@ -75,11 +81,11 @@ class AccountManager: NSObject {
   func accountFactory(dictionary:NSMutableDictionary) -> (Account) {
     if let type = dictionary["Type"] as? String {
       switch (type) {
-      case "AnonImgur":
+      case "Anonymous Imgur":
         return AnonImgurAccount(dictionary: dictionary)
       case "Imgur":
         return ImgurAccount(dictionary: dictionary)
-      case "S3":
+      case "Amazon S3":
         return S3Account(dictionary: dictionary)
       default:
         return Account(dictionary: dictionary)

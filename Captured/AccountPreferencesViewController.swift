@@ -10,7 +10,20 @@ import Cocoa
 
 class AccountPreferencesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
+  enum Segues : String {
+    case Imgur = "imgurSheetSegue"
+    case S3 = "s3SheetSegue"
+    case SFTP = "sftpSheetSegue"
+    case Dropbox = "dropboxSheetSegue"
+  }
+
+  var accounts = AccountManager.sharedInstance
+
+  // Pragma Mark: Outlets and Actions
+
   @IBOutlet weak var tableView: NSTableView!
+  @IBOutlet var newAccountMenu: NSMenu!
+
   @IBAction func editAccount(sender: AnyObject) {
 
     let row = tableView.rowForView(sender as! NSView)
@@ -18,15 +31,34 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
     switch account.type {
     case "Imgur":
-      self.performSegueWithIdentifier("imgurSheetSegue", sender: account)
+      self.performSegue(.Imgur, sender: account)
     case "S3":
-      self.performSegueWithIdentifier("s3SheetSegue", sender: account)
+      self.performSegue(.S3, sender: account)
+    default:
+      print("Unknown Account type. Did you set the tag value on the menu item?")
+    }
+  }
+  @IBAction func newAccountButton(sender: AnyObject) {
+    newAccountMenu.popUpMenuPositioningItem(newAccountMenu.itemAtIndex(0), atLocation: NSEvent.mouseLocation(), inView: nil)
+  }
+
+  @IBAction func createNewAccountFromMenu(sender: NSMenuItem) {
+    // Choose which segue to show based on the tag for the menu item
+    switch sender.tag {
+    case 1:
+      self.performSegue(.S3, sender: S3Account())
+    case 2:
+      self.performSegue(.Dropbox, sender: nil)
+    case 3:
+      self.performSegue(.SFTP, sender: nil)
+    case 4:
+      self.performSegue(.Imgur, sender: ImgurAccount())
     default:
       print("Unknown Account type. Did you set the tag value on the menu item?")
     }
   }
 
-  var accounts = AccountManager.sharedInstance
+
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -69,25 +101,8 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     return false
   }
 
-  @IBOutlet var newAccountMenu: NSMenu!
-  @IBAction func newAccountButton(sender: AnyObject) {
-    newAccountMenu.popUpMenuPositioningItem(newAccountMenu.itemAtIndex(0), atLocation: NSEvent.mouseLocation(), inView: nil)
-  }
-
-  @IBAction func createNewAccountFromMenu(sender: NSMenuItem) {
-    // Choose which segue to show based on the tag for the menu item
-    switch sender.tag {
-    case 1:
-      self.performSegueWithIdentifier("s3SheetSegue", sender: S3Account())
-    case 2:
-      self.performSegueWithIdentifier("dropboxSheetSegue", sender: nil)
-    case 3:
-      self.performSegueWithIdentifier("sftpSheetSegue", sender: nil)
-    case 4:
-      self.performSegueWithIdentifier("imgurSheetSegue", sender: ImgurAccount())
-    default:
-      print("Unknown Account type. Did you set the tag value on the menu item?")
-    }
+  func performSegue(identifier: Segues, sender: AnyObject?) {
+    super.performSegueWithIdentifier(identifier.rawValue, sender: sender)
   }
 
   override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {

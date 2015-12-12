@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   var hotKeyCenter = DDHotKeyCenter.sharedHotKeyCenter()
   var accountManager = AccountManager.sharedInstance
+  var shortcutManager = ShortcutManager.sharedInstance
 
   // MARK: App Delegates
 
@@ -27,6 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     setDefaultDefaults()
     accountManager.load()
+    shortcutManager.load()
     createStatusMenu()
 
 
