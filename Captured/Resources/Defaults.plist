@@ -11,10 +11,12 @@
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 			<key>Name</key>
 			<string>Select Area to Capture</string>
+			<key>Action</key>
+			<string>Spicy Joe</string>
 			<key>HotkeyFlags</key>
-			<integer>0</integer>
+			<integer>1179648</integer>
 			<key>HotkeyCode</key>
-			<integer>1</integer>
+			<integer>23</integer>
 		</dict>
 	</array>
 	<key>Accounts</key>

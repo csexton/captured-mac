@@ -15,6 +15,15 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
   var shortcuts = ShortcutManager.sharedInstance
 
   @IBOutlet weak var tableView: NSTableView!
+
+  @IBAction func editAccount(sender: AnyObject) {
+
+    let row = tableView.rowForView(sender as! NSView)
+    let shortcut = shortcuts.shortcutAtIndex(row)
+    super.performSegueWithIdentifier("shortcutSheetSegue", sender: shortcut)
+  }
+
+  // Pragma Mark: View Controller Delegates
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -25,7 +34,18 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
     nc.addObserver(self.tableView, selector: "reloadData", name: "AccountsUpdated", object: nil)
   }
 
-  // MARK: Delegate Methods
+  override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {
+    if let controller = segue.destinationController as? NSViewController {
+      if let shortcut = sender as? Shortcut {
+        controller.representedObject = shortcut
+      }
+      else {
+        controller.representedObject = Shortcut()
+      }
+    }
+  }
+
+  // MARK: Table Delegate Methods
 
   func numberOfRowsInTableView(tableView: NSTableView) -> Int {
     return shortcuts.count()

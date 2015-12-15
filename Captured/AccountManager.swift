@@ -77,6 +77,21 @@ class AccountManager: NSObject {
     notifyUpdates()
     
   }
+
+  func indexForAccountWithIdentifier(id:String) -> (Int) {
+    for i in 0...(accounts.count-1) {
+      if accounts[i]["Identifier"] as! String == id {
+        return i
+      }
+    }
+    return -1
+  }
+
+  func eachAccount(block: (Account) -> (Void)) {
+    for d in accounts {
+      block(Account(dictionary: d))
+    }
+  }
   
   func accountFactory(dictionary:NSMutableDictionary) -> (Account) {
     if let type = dictionary["Type"] as? String {

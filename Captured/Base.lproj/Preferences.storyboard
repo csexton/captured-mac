@@ -688,6 +688,9 @@ Gw
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="editAccount:" target="rt1-pN-RZt" id="P4y-qe-72g"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <connections>
@@ -729,7 +732,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="uwZ-IE-g6F" kind="sheet" id="SOU-Hs-JR1"/>
+                                    <segue destination="uwZ-IE-g6F" kind="sheet" identifier="shortcutSheetSegue" id="SOU-Hs-JR1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -773,10 +776,84 @@ Gw
                                     <action selector="cancelButton:" target="uwZ-IE-g6F" id="SRH-Zv-H0v"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcA-3f-ZB5">
+                                <rect key="frame" x="18" y="263" width="414" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="HW9-HE-mu0">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.name" id="En0-PX-Cy7"/>
+                                </connections>
+                            </textField>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I6O-gQ-WBU" customClass="MASShortcutView">
+                                <rect key="frame" x="188" y="221" width="163" height="22"/>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ttx-em-Vn8">
+                                <rect key="frame" x="60" y="224" width="122" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Keyboard Shortcut:" id="x8u-k2-Tx2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ou-8h-zIS">
+                                <rect key="frame" x="135" y="194" width="47" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Action:" id="MOa-op-0HL">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhN-5f-14H">
+                                <rect key="frame" x="186" y="189" width="168" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Select Area to Annotate" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OBy-wO-vib" id="Usm-na-rCw">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="78E-oz-xpk">
+                                        <items>
+                                            <menuItem title="Select Area to Capture" id="ccq-xV-rWE"/>
+                                            <menuItem title="Select Window to Capture" id="h8e-1b-ZeZ"/>
+                                            <menuItem title="Select Area to Annotate" state="on" id="OBy-wO-vib"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ioF-di-dZ9">
+                                <rect key="frame" x="188" y="158" width="166" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="UvJ-P7-ZHk" id="Z2u-Qm-ZcP">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="Nnt-Ny-hXH">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="UvJ-P7-ZHk"/>
+                                            <menuItem title="Item 2" id="akG-38-Fre"/>
+                                            <menuItem title="Item 3" id="8EO-e7-cK7"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="fRz-Nk-mgO" name="contentValues" keyPath="values.Accounts" id="nTB-JX-0mL"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1nL-RG-dLO">
+                                <rect key="frame" x="126" y="163" width="58" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Account:" id="Pbw-FZ-K5n">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="accountPopUp" destination="ioF-di-dZ9" id="Uil-0O-Rqy"/>
+                        <outlet property="shortcutField" destination="I6O-gQ-WBU" id="DfL-Oc-ynI"/>
+                    </connections>
                 </viewController>
                 <customObject id="7Tg-Ow-g60" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="fRz-Nk-mgO"/>
             </objects>
             <point key="canvasLocation" x="-262" y="759"/>
         </scene>
