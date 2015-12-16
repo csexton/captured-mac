@@ -31,7 +31,11 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
     self.tableView.reloadData()
 
     let nc = NSNotificationCenter.defaultCenter()
-    nc.addObserver(self.tableView, selector: "reloadData", name: "AccountsUpdated", object: nil)
+    nc.addObserver(self.tableView, selector: "reloadData", name: "ShortcutsUpdated", object: nil)
+  }
+
+  deinit {
+    NSNotificationCenter.defaultCenter().removeObserver(self.tableView)
   }
 
   override func prepareForSegue(segue: NSStoryboardSegue, sender: AnyObject?) {

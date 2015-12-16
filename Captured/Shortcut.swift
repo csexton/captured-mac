@@ -12,18 +12,15 @@ import MASShortcut
 class Shortcut: NSObject {
 
   dynamic var name = ""
+  dynamic var summary = ""
   var action : String = "Select Area to Capture"
   var identifier : String = NSUUID().UUIDString
   var accountIdentifier : String = ""
   var hotkeyFlags : Int = 0
   var hotkeyCode : Int = 0
   var shortcutValue: MASShortcut?
-
-  var displayDescription: String {
-    get {
-      return "I am a Shortcut"
-    }
-  }
+  dynamic var playSound = Bool(false)
+  dynamic var scaleImage = Bool(false)
 
   override init() {
     super.init()
@@ -34,9 +31,12 @@ class Shortcut: NSObject {
 
   init(dictionary: NSMutableDictionary) {
     name = dictionary.objectForKey("Name") as! String
+    summary = dictionary.objectForKey("Summary") as! String
     action = dictionary.objectForKey("Action") as! String
     identifier = dictionary.objectForKey("Identifier") as! String
     accountIdentifier = dictionary.objectForKey("AccountIdentifier") as! String
+    playSound = dictionary["PlaySound"] as! Bool
+    scaleImage = dictionary["ScaleImage"] as! Bool
 
     if (dictionary.objectForKey("HotkeyFlags") != nil) && (dictionary.objectForKey("HotkeyFlags") != nil) {
       let flags = UInt((dictionary.objectForKey("HotkeyFlags")?.integerValue)!)
@@ -51,12 +51,17 @@ class Shortcut: NSObject {
   func toDict() -> NSMutableDictionary {
     return NSMutableDictionary(dictionary: [
       "Name":name,
+      "Summary":summary,
       "Action":action,
       "AccountIdentifier":accountIdentifier,
       "Identifier": identifier,
       "HotkeyFlags": String(shortcutValue!.modifierFlags),
-      "HotkeyCode": String(shortcutValue!.keyCode)
+      "HotkeyCode": String(shortcutValue!.keyCode),
+      "PlaySound": Bool(playSound),
+      "ScaleImage": Bool(scaleImage),
+
     ])
   }
+
 
 }

@@ -9,14 +9,16 @@
 import Cocoa
 import AppKit
 import Carbon
+import MASShortcut
+
 
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-  var hotKeyCenter = DDHotKeyCenter.sharedHotKeyCenter()
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance
+  var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
 
   // MARK: App Delegates
 
@@ -31,18 +33,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     shortcutManager.load()
     createStatusMenu()
 
-
-    if (true) {
-      //asyncCompletionHandler: { (result: HTTPResult!) -> Void in
-
-      hotKeyCenter.registerHotKeyWithKeyCode(UInt16(kVK_ANSI_V), modifierFlags: (NSEventModifierFlags.ControlKeyMask.rawValue), task: { _ in
-
-        print("hot")
-
-        })
-
-    }
-    
+    registerGlobalHotKeys()
+    setupNotificationListeners()
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
@@ -93,8 +85,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   }
 
+  // Pragma Mark: Manage Global Hotkey
 
+  func setupNotificationListeners() {
+    let nc = NSNotificationCenter.defaultCenter()
+    nc.addObserver(self, selector: "registerGlobalHotKeys", name: "ShortcutsUpdated", object: nil)
+  }
 
+  func registerGlobalHotKeys() {
+    shortcutMonitor.unregisterAllShortcuts()
+    shortcutManager.each { (shortcut) -> (Void) in
+      self.registerHotKey(shortcut)
+    }
+  }
+
+  private func registerHotKey(shortcut:Shortcut) {
+    if let sc = shortcut.shortcutValue {
+      print("Registering \(sc)")
+
+      let key = sc.keyCodeString
+      print(key)
+            let menuItem = NSMenuItem(title: shortcut.name, action: Selector("menuShortcut:"), keyEquivalent: key)
+            menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
+            menuItem.keyEquivalent = key
+            statusItem.menu!.addItem(menuItem)
+
+      shortcutMonitor.registerShortcut(sc) {
+        print($0)
+      }
+
+//      self.hotKeyCenter.registerHotKeyWithKeyCode(UInt16(sc.keyCode), modifierFlags: sc.modifierFlags, task: { _ in
+//        self.runShortcut(shortcut)
+//      })
+    }
+  }
+
+  private func runShortcut(shortcut:Shortcut) {
+    print(shortcut)
+  }
 
 }
 

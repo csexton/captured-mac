@@ -21,7 +21,7 @@
                 </windowController>
                 <customObject id="i36-gV-QgA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-750" y="-255"/>
+            <point key="canvasLocation" x="-998" y="-1063"/>
         </scene>
         <!--Preferences View Controller-->
         <scene sceneID="FQc-vw-dal">
@@ -31,6 +31,7 @@
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="DZq-Hw-NoI"/>
                         <tabViewItem identifier="" image="NSUserAccounts" id="H9C-EL-QmK"/>
                         <tabViewItem image="KeyboardPreferences" id="6d3-iR-ck0"/>
+                        <tabViewItem image="NSApplicationIcon" id="AOR-7H-gv9"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="Fdc-bs-lBx">
@@ -46,11 +47,12 @@
                         <segue destination="a5B-ZA-Ppl" kind="relationship" relationship="tabItems" id="mOY-vP-Gys"/>
                         <segue destination="yaz-Nj-fpE" kind="relationship" relationship="tabItems" id="cD1-ba-lql"/>
                         <segue destination="rt1-pN-RZt" kind="relationship" relationship="tabItems" id="dWS-8d-idE"/>
+                        <segue destination="rd1-7m-vgG" kind="relationship" relationship="tabItems" id="Zeo-VN-Ahy"/>
                     </connections>
                 </tabViewController>
                 <customObject id="gOQ-we-RSq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="-261"/>
+            <point key="canvasLocation" x="-278" y="-1073"/>
         </scene>
         <!--General-->
         <scene sceneID="xro-cF-P7H">
@@ -86,7 +88,122 @@
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-812" y="214"/>
+            <point key="canvasLocation" x="-1516" y="-110"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="lc5-nZ-HQl">
+            <objects>
+                <viewController title="About" id="rd1-7m-vgG" customClass="AboutPreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="yve-0s-058">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Td-oO-iN0">
+                                <rect key="frame" x="18" y="263" width="414" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Captured was built with ❤️ by Christopher Sexton" id="uMT-WJ-SSl">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzg-hG-mv4">
+                                <rect key="frame" x="162" y="227" width="128" height="32"/>
+                                <buttonCell key="cell" type="push" title="Visit Webpage" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hSH-dn-5HV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="visitWebpageButton:" target="rd1-7m-vgG" id="lJp-b4-b91"/>
+                                </connections>
+                            </button>
+                            <scrollView fixedFrame="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukW-i7-MIN">
+                                <rect key="frame" x="20" y="20" width="410" height="194"/>
+                                <clipView key="contentView" ambiguous="YES" id="8n9-pg-O36">
+                                    <rect key="frame" x="1" y="1" width="408" height="192"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="SX1-fb-wdu">
+                                            <rect key="frame" x="0.0" y="0.0" width="408" height="192"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <size key="minSize" width="408" height="192"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                            <attributedString key="textStorage">
+                                                <fragment>
+                                                    <string key="content">Acknowledgements:
+
+Jorge Velásquez for his contributions to the code, inspiration and motivation.
+
+Jonathan Haggard for this shiny status menu icon.
+
+</string>
+                                                    <attributes>
+                                                        <font key="NSFont" size="12" name="Helvetica"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                            <tabStops>
+                                                                <textTab alignment="left" location="36">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="72">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="108">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="144">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="180">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="216">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="252">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="288">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="324">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="360">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="396">
+                                                                    <options/>
+                                                                </textTab>
+                                                                <textTab alignment="left" location="432">
+                                                                    <options/>
+                                                                </textTab>
+                                                            </tabStops>
+                                                        </paragraphStyle>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="408" height="192"/>
+                                            <size key="maxSize" width="463" height="10000000"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="xzC-np-xbT">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="UOw-EO-al3">
+                                    <rect key="frame" x="-100" y="-100" width="16" height="192"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="wst-SP-513" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1004" y="-72"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="obD-ao-oqg">
@@ -140,17 +257,17 @@
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k9C-ht-D1y">
                                                                     <rect key="frame" x="15" y="20" width="297" height="17"/>
-                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Account Type" id="PAZ-Se-d28">
+                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Account Summary" id="PAZ-Se-d28">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.displayType" id="VZp-YS-rph"/>
+                                                                        <binding destination="RAV-Xr-FBA" name="value" keyPath="objectValue.summary" id="jZD-ue-iK0"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0h2-pk-mvL">
-                                                                    <rect key="frame" x="321" y="23" width="64" height="32"/>
+                                                                    <rect key="frame" x="320" y="23" width="64" height="32"/>
                                                                     <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Sfc-i6-2Tw">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -196,6 +313,14 @@
                                     <action selector="newAccountButton:" target="yaz-Nj-fpE" id="DGV-OO-5Y7"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ff-3U-txi">
+                                <rect key="frame" x="18" y="273" width="61" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Accounts" id="IRN-HJ-G7h">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -239,7 +364,7 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="432" y="-261"/>
+            <point key="canvasLocation" x="-141" y="-72"/>
         </scene>
         <!--Amazon S3 Settings-->
         <scene sceneID="sO2-u9-GSc">
@@ -360,7 +485,7 @@ Gw
                                 <rect key="frame" x="134" y="122" width="271" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional, leave this blank for default S3 URL" id="mBM-kI-jJe">
                                     <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -432,7 +557,7 @@ Gw
                 <customObject id="RXX-Oi-EgS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="HDd-wm-0S9"/>
             </objects>
-            <point key="canvasLocation" x="723" y="274"/>
+            <point key="canvasLocation" x="199" y="830"/>
         </scene>
         <!--Imgur Detail-->
         <scene sceneID="j8E-DI-Mmy">
@@ -488,7 +613,7 @@ Gw
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="2iu-2d-b4U">
-                                        <view key="view" ambiguous="YES" id="8b9-ZZ-Mvd">
+                                        <view key="view" id="8b9-ZZ-Mvd">
                                             <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -547,11 +672,19 @@ Gw
                                                 <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="t0f-YP-VFu">
                                                     <rect key="frame" x="210" y="81" width="32" height="32"/>
                                                 </progressIndicator>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAU-et-nRG">
+                                                    <rect key="frame" x="13" y="138" width="421" height="17"/>
+                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Requesting Imgur Access Token" id="rsR-HH-ZcW">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Edit Account" identifier="2" id="0NJ-9g-OAl">
-                                        <view key="view" id="5l4-2o-gFP">
+                                        <view key="view" ambiguous="YES" id="5l4-2o-gFP">
                                             <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -619,7 +752,7 @@ Gw
                 <customObject id="Os4-mJ-YcA" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="b47-dE-J7d"/>
             </objects>
-            <point key="canvasLocation" x="243" y="274"/>
+            <point key="canvasLocation" x="-278" y="830"/>
         </scene>
         <!--Shortcuts-->
         <scene sceneID="YzM-TO-7px">
@@ -675,11 +808,11 @@ Gw
                                                                     <rect key="frame" x="15" y="20" width="301" height="17"/>
                                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="MIK-Vy-XKZ">
                                                                         <font key="font" metaFont="system" size="11"/>
-                                                                        <color key="textColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="EmM-JE-h4i" name="value" keyPath="objectValue.displayDescription" id="VUf-xy-IK7"/>
+                                                                        <binding destination="EmM-JE-h4i" name="value" keyPath="objectValue.summary" id="ACt-oM-c01"/>
                                                                     </connections>
                                                                 </textField>
                                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4x-53-ilV">
@@ -718,8 +851,8 @@ Gw
                                 </scroller>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dy-EN-Kfo">
-                                <rect key="frame" x="18" y="273" width="62" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keyboard" id="Tgm-YX-1Yz">
+                                <rect key="frame" x="18" y="273" width="125" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Keyboard Shortcuts" id="Tgm-YX-1Yz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -743,7 +876,7 @@ Gw
                 </viewController>
                 <customObject id="Er1-wS-Qsx" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="264"/>
+            <point key="canvasLocation" x="-1018" y="-72"/>
         </scene>
         <!--Shortcuts Detail View Controller-->
         <scene sceneID="rHC-hg-a2K">
@@ -778,7 +911,7 @@ Gw
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OcA-3f-ZB5">
                                 <rect key="frame" x="18" y="263" width="414" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="HW9-HE-mu0">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Captured Upload Action" id="HW9-HE-mu0">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -798,9 +931,17 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1nL-RG-dLO">
+                                <rect key="frame" x="79" y="163" width="105" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Upload Account:" id="Pbw-FZ-K5n">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1ou-8h-zIS">
-                                <rect key="frame" x="135" y="194" width="47" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Action:" id="MOa-op-0HL">
+                                <rect key="frame" x="37" y="194" width="145" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Screen Capture Action:" id="MOa-op-0HL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -808,20 +949,19 @@ Gw
                             </textField>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhN-5f-14H">
                                 <rect key="frame" x="186" y="189" width="168" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Select Area to Annotate" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="OBy-wO-vib" id="Usm-na-rCw">
+                                <popUpButtonCell key="cell" type="push" title="Select Window" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="h8e-1b-ZeZ" id="Usm-na-rCw">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" id="78E-oz-xpk">
                                         <items>
-                                            <menuItem title="Select Area to Capture" id="ccq-xV-rWE"/>
-                                            <menuItem title="Select Window to Capture" id="h8e-1b-ZeZ"/>
-                                            <menuItem title="Select Area to Annotate" state="on" id="OBy-wO-vib"/>
+                                            <menuItem title="Select Area" state="on" id="ccq-xV-rWE"/>
+                                            <menuItem title="Select Window" tag="1" id="h8e-1b-ZeZ"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ioF-di-dZ9">
-                                <rect key="frame" x="188" y="158" width="166" height="26"/>
+                                <rect key="frame" x="186" y="158" width="168" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="UvJ-P7-ZHk" id="Z2u-Qm-ZcP">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -837,11 +977,31 @@ Gw
                                     <binding destination="fRz-Nk-mgO" name="contentValues" keyPath="values.Accounts" id="nTB-JX-0mL"/>
                                 </connections>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1nL-RG-dLO">
-                                <rect key="frame" x="126" y="163" width="58" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Account:" id="Pbw-FZ-K5n">
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZf-IA-mtF">
+                                <rect key="frame" x="186" y="134" width="90" height="18"/>
+                                <buttonCell key="cell" type="check" title="Play Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="lpz-Yq-UGd">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.playSound" id="e8A-ak-QKM"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tPT-0E-39g">
+                                <rect key="frame" x="186" y="108" width="151" height="18"/>
+                                <buttonCell key="cell" type="check" title="Scale Images by 50%" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="STL-Br-YRE">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.scaleImage" id="YkJ-Rl-dQf"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oy6-vk-dZi">
+                                <rect key="frame" x="204" y="88" width="230" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Resize Large Retina Display Captures" id="Ktd-7d-Jdr">
+                                    <font key="font" metaFont="system" size="11"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -849,17 +1009,20 @@ Gw
                     </view>
                     <connections>
                         <outlet property="accountPopUp" destination="ioF-di-dZ9" id="Uil-0O-Rqy"/>
+                        <outlet property="actionPopUp" destination="JhN-5f-14H" id="meL-GK-6HT"/>
                         <outlet property="shortcutField" destination="I6O-gQ-WBU" id="DfL-Oc-ynI"/>
                     </connections>
                 </viewController>
                 <customObject id="7Tg-Ow-g60" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="fRz-Nk-mgO"/>
+                <tabViewItem identifier="" image="NSPreferencesGeneral" id="vhg-8s-Uca"/>
             </objects>
-            <point key="canvasLocation" x="-262" y="759"/>
+            <point key="canvasLocation" x="-1018" y="355"/>
         </scene>
     </scenes>
     <resources>
         <image name="KeyboardPreferences" width="32" height="32"/>
+        <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSUserAccounts" width="32" height="32"/>
     </resources>

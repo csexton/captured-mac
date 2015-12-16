@@ -69,11 +69,19 @@ class ShortcutManager: NSObject {
     notifyUpdates()
     
   }
+
+  func each(block: (Shortcut) -> (Void)) {
+    for d in shortcuts {
+      block(Shortcut(dictionary: d))
+    }
+  }
+
   
   private func saveAll() {
     defaults.setObject(shortcuts, forKey: "Shortcuts");
   }
-  
+
+
   private func notifyUpdates() {
     NSNotificationCenter
       .defaultCenter()

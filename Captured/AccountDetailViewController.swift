@@ -23,6 +23,9 @@ class AccountDetailViewController: NSViewController {
   @IBAction func saveButton(sender: AnyObject) {
     endEditing()
 
+
+    
+
     AccountManager.sharedInstance.update(representedObject as! Account)
     self.dismissController(self)
   }
