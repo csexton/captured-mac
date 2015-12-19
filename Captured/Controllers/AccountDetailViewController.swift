@@ -48,6 +48,19 @@ class AccountDetailViewController: NSViewController {
   }
 
   // MARK: Helpful methods
+
+  func validatePresence(field:NSTextField) -> Bool {
+    if field.stringValue.isEmpty {
+      field.placeholderAttributedString = NSMutableAttributedString(
+        string:"Cannot Be Blank",
+        attributes: [NSForegroundColorAttributeName : NSColor.redColor()]
+      )
+      return false
+    }
+
+    return true
+  }
+
   
   func defaults(key:String) -> String {
     return NSUserDefaults.standardUserDefaults().objectForKey(key) as! String

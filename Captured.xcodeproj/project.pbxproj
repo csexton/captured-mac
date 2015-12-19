@@ -106,7 +106,7 @@
 		B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgSafeUploader.swift; sourceTree = "<group>"; };
 		B5888A6A1BFFEE7D00DEA068 /* Captured.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Captured.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Captured/AppDelegate.swift; sourceTree = "<group>"; };
+		B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B5888A711BFFEE7D00DEA068 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5888A741BFFEE7D00DEA068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B5888A761BFFEE7D00DEA068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
-		B5B391001C0A68A400E057AF /* ScreenCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScreenCapture.swift; path = Captured/ScreenCapture.swift; sourceTree = "<group>"; };
+		B5B391001C0A68A400E057AF /* ScreenCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapture.swift; sourceTree = "<group>"; };
 		B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonImgurAccount.swift; sourceTree = "<group>"; };
 		B5E238BF1C11FDC600568742 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
@@ -165,6 +165,7 @@
 		B50F2F711C03FF6B004AB2B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
 				B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */,
 				B5FB987F1C0156B0006BC590 /* Account.swift */,
 				B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */,
@@ -254,8 +255,6 @@
 			isa = PBXGroup;
 			children = (
 				B5888A6C1BFFEE7D00DEA068 /* Captured */,
-				B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */,
-				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
 				B5FB987E1C015378006BC590 /* Carthage */,
 				B5888A7E1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A891BFFEE7D00DEA068 /* CapturedUITests */,
@@ -286,6 +285,8 @@
 				B50F2F791C0513DD004AB2B1 /* Uploaders */,
 				B580EA3A1C21EDB800794567 /* Views */,
 				B59315B11C24FE3300E7DD86 /* Command.swift */,
+				B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */,
+				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -312,7 +313,6 @@
 		B59315B41C25AA0100E7DD86 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
 				B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */,
 			);
 			path = Enums;

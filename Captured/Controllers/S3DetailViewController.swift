@@ -25,5 +25,25 @@ class S3DetailViewController: AccountDetailViewController {
   
   @IBAction func testConnectionButton(sender: AnyObject) {
   }
-  
+
+  override func saveButton(sender: AnyObject) {
+    
+    if (validateFields()) {
+      if let account = representedObject as? S3Account {
+        account.summary = "Upload to S3 Bucket \"\(bucketNameField.stringValue)\""
+      }
+      super.saveButton(sender)
+    }
+  }
+
+  func validateFields() -> Bool {
+    endEditing()
+    return (
+      validatePresence(accessKeyField)
+      &&
+      validatePresence(secretKeyField)
+      &&
+      validatePresence(bucketNameField)
+    )
+  }
 }

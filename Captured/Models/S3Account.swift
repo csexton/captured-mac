@@ -10,7 +10,7 @@ import Cocoa
 
 class S3Account: Account {
   override func accountType() -> String {
-    return "S3"
+    return "Amazon S3"
   }
 
   dynamic var accessKey : String? {

@@ -15,12 +15,6 @@ class ScreenCapture  {
     case WindowSelection = "-W"
   }
 
-  var opts: CommandOptions
-
-  init(options:CommandOptions) {
-    opts = options
-  }
-
   func run(option:CommandOptions, completion:(path:String) -> (Void)) {
     NSLog("%@", "Start Capture Screen")
     let dateFormat: NSDateFormatter = NSDateFormatter()

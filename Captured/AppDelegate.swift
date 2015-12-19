@@ -73,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
   func createStatusMenu() {
-    setStatus(.Normal)
+    setGlobalState(.Normal)
     let menu = NSMenu()
 
     menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
@@ -82,14 +82,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     statusItem.menu = menu
   }
 
-  func setStatus(status:CapturedState) {
+  func setGlobalState(state:CapturedState.States) {
     if let button = statusItem.button {
-      let image = imageForStatus(status)
+      let image = imageForState(state)
       button.image = image
     }
   }
 
-  func imageForStatus(status:CapturedState) -> NSImage {
+  func imageForState(status:CapturedState.States) -> NSImage {
     var img : NSImage?
 
     switch(status) {
@@ -110,12 +110,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     return img!
   }
 
+  // MARK: Global App State
+
+  func stateDidChange(state:CapturedState) {
+    print(state.current)
+    setGlobalState(state.current)
+
+  }
+
   // MARK: Manage Global HotKey and Shortcuts
 
   private func setupNotificationListeners() {
     let nc = NSNotificationCenter.defaultCenter()
-    let name = CapturedNotifications.ShortcutsDidUpdate.rawValue
-    nc.addObserver(self, selector: "registerShortcuts", name: name, object: nil)
+    let shortcut = CapturedNotifications.ShortcutsDidUpdate.rawValue
+    let state = CapturedNotifications.StateDidChange.rawValue
+    
+    nc.addObserver(self, selector: "registerShortcuts", name: shortcut, object: nil)
+    nc.addObserverForName(shortcut, object: nil, queue: nil) { _ in
+      self.registerShortcuts()
+    }
+    
+    nc.addObserverForName(state, object: nil, queue: nil) { notification in
+      if let info = notification.userInfo as? [String:AnyObject] {
+//        if let s = info["state"] as? Int, newState = CapturedState(rawValue: s) {
+//          self.stateDidChange(newState)
+//        }
+        if let s = info["state"] as? CapturedState {
+          self.stateDidChange(s)
+        }
+      }
+    }
   }
 
   func registerShortcuts() {
@@ -151,24 +175,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
       menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
       menuItem.representedObject = shortcut
       menuItem.tag = magicShortcutMenuItemTag
-      //menuItem.image = NSImage(imageLiteral: "StatusMenu")
 
       statusItem.menu!.addItem(menuItem)
     }
   }
 
   private func runShortcut(shortcut:Shortcut) {
-
-
-    setStatus(.Normal)
-    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-      let cmd = Command(shortcut: shortcut)
-      cmd.run()
-
-      dispatch_async(dispatch_get_main_queue()) {
-        // TODO: Update UI
-      }
-    }
+    Command(shortcut: shortcut).runAsync()
   }
 
   @IBAction func menuShortcut(sender:NSMenuItem) {

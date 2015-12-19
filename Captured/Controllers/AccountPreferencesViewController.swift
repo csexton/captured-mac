@@ -32,7 +32,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     switch account.type {
     case "Imgur":
       self.performSegue(.Imgur, sender: account)
-    case "S3":
+    case "Amazon S3":
       self.performSegue(.S3, sender: account)
     default:
       print("Unknown Account type. Did you set the tag value on the menu item?")

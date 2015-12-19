@@ -13,7 +13,7 @@ class Shortcut: NSObject {
 
   dynamic var name = ""
   dynamic var summary = ""
-  var action : String = "Select Area to Capture"
+  var action : String = "SelectArea"
   var identifier : String = NSUUID().UUIDString
   var accountIdentifier : String = ""
   var hotkeyFlags : Int = 0
@@ -61,6 +61,17 @@ class Shortcut: NSObject {
       "ScaleImage": Bool(scaleImage),
 
     ])
+  }
+
+  // MARK: ScreenCapture
+
+  func screenCaptureOptions() -> (ScreenCapture.CommandOptions) {
+    switch(action) {
+    case "SelectWindow":
+      return .WindowSelection
+    default:
+      return .MouseSelection
+    }
   }
 
 
