@@ -16,9 +16,21 @@ import MASShortcut
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+  enum CommandStatus {
+    case Normal
+    case Disabled
+    case Active
+    case Success
+    case Error
+  }
+
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance
   var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
+
+  // The magic tag that is used to denote a menu item is for a "shortcut." This
+  // is used to remove all menu items associated with a tag.
+  let magicShortcutMenuItemTag = 13
 
   // MARK: App Delegates
 
@@ -33,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     shortcutManager.load()
     createStatusMenu()
 
-    registerGlobalHotKeys()
+    registerShortcuts()
     setupNotificationListeners()
   }
 
@@ -69,59 +81,108 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
   func createStatusMenu() {
-    if let button = statusItem.button {
-      if let image = NSImage(named: "StatusMenu") {
-        image.template = true
-        button.image = image
-      }
-    }
+    setStatus(.Error)
     let menu = NSMenu()
 
     menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
     menu.addItem(NSMenuItem.separatorItem())
-    menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
 
     statusItem.menu = menu
-
   }
 
-  // Pragma Mark: Manage Global Hotkey
+  func setStatus(status:CommandStatus) {
+    if let button = statusItem.button {
+      let image = imageForStatus(status)
+      button.image = image
+    }
+  }
 
-  func setupNotificationListeners() {
+  func imageForStatus(status:CommandStatus) -> NSImage {
+    var img : NSImage?
+
+    switch(status) {
+    case .Normal:
+      img = NSImage(named: "StatusMenu")!
+      img!.template = true
+    case .Disabled:
+      img = NSImage(named: "StatusMenuDisabled")!
+      img!.template = true
+    case .Active:
+      img = NSImage(named: "StatusMenuActive")!
+    case .Success:
+      img = NSImage(named: "StatusMenuSuccess")!
+    case .Error:
+      img = NSImage(named: "StatusMenuError")!
+    }
+
+    return img!
+  }
+
+  // MARK: Manage Global HotKey and Shortcuts
+
+  private func setupNotificationListeners() {
     let nc = NSNotificationCenter.defaultCenter()
-    nc.addObserver(self, selector: "registerGlobalHotKeys", name: "ShortcutsUpdated", object: nil)
+    nc.addObserver(self, selector: "registerShortcuts", name: "ShortcutsUpdated", object: nil)
   }
 
-  func registerGlobalHotKeys() {
+  func registerShortcuts() {
+    var items = [NSMenuItem]()
+    for item in statusItem.menu!.itemArray {
+      if (item.tag == magicShortcutMenuItemTag) {
+        items.append(item)
+      }
+    }
+
+    for item in items {
+      statusItem.menu!.removeItem(item)
+    }
+
     shortcutMonitor.unregisterAllShortcuts()
     shortcutManager.each { (shortcut) -> (Void) in
       self.registerHotKey(shortcut)
+      self.createShortcutMenu(shortcut)
     }
   }
 
   private func registerHotKey(shortcut:Shortcut) {
     if let sc = shortcut.shortcutValue {
-      print("Registering \(sc)")
-
-      let key = sc.keyCodeString
-      print(key)
-            let menuItem = NSMenuItem(title: shortcut.name, action: Selector("menuShortcut:"), keyEquivalent: key)
-            menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
-            menuItem.keyEquivalent = key
-            statusItem.menu!.addItem(menuItem)
-
       shortcutMonitor.registerShortcut(sc) {
-        print($0)
+        self.runShortcut(shortcut)
       }
+    }
+  }
 
-//      self.hotKeyCenter.registerHotKeyWithKeyCode(UInt16(sc.keyCode), modifierFlags: sc.modifierFlags, task: { _ in
-//        self.runShortcut(shortcut)
-//      })
+  private func createShortcutMenu(shortcut:Shortcut) {
+    if let sc = shortcut.shortcutValue {
+      let menuItem = NSMenuItem(title: shortcut.name, action: Selector("menuShortcut:"), keyEquivalent: sc.keyCodeString)
+      menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
+      menuItem.representedObject = shortcut
+      menuItem.tag = magicShortcutMenuItemTag
+      //menuItem.image = NSImage(imageLiteral: "StatusMenu")
+
+      statusItem.menu!.addItem(menuItem)
     }
   }
 
   private func runShortcut(shortcut:Shortcut) {
-    print(shortcut)
+
+
+    setStatus(.Normal)
+    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
+      let cmd = Command(shortcut: shortcut)
+      cmd.run()
+
+      dispatch_async(dispatch_get_main_queue()) {
+        // TODO: Update UI
+      }
+    }
+  }
+
+  @IBAction func menuShortcut(sender:NSMenuItem) {
+    print(sender.representedObject)
+    if let shortcut = sender.representedObject as? Shortcut {
+      runShortcut(shortcut)
+    }
   }
 
 }
