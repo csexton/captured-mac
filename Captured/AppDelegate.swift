@@ -16,14 +16,6 @@ import MASShortcut
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-  enum CommandStatus {
-    case Normal
-    case Disabled
-    case Active
-    case Success
-    case Error
-  }
-
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance
   var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
@@ -81,7 +73,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
 
   func createStatusMenu() {
-    setStatus(.Error)
+    setStatus(.Normal)
     let menu = NSMenu()
 
     menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
@@ -90,14 +82,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     statusItem.menu = menu
   }
 
-  func setStatus(status:CommandStatus) {
+  func setStatus(status:CapturedState) {
     if let button = statusItem.button {
       let image = imageForStatus(status)
       button.image = image
     }
   }
 
-  func imageForStatus(status:CommandStatus) -> NSImage {
+  func imageForStatus(status:CapturedState) -> NSImage {
     var img : NSImage?
 
     switch(status) {
@@ -122,7 +114,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
   private func setupNotificationListeners() {
     let nc = NSNotificationCenter.defaultCenter()
-    nc.addObserver(self, selector: "registerShortcuts", name: "ShortcutsUpdated", object: nil)
+    let name = CapturedNotifications.ShortcutsDidUpdate.rawValue
+    nc.addObserver(self, selector: "registerShortcuts", name: name, object: nil)
   }
 
   func registerShortcuts() {

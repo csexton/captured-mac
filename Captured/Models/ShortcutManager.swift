@@ -83,9 +83,8 @@ class ShortcutManager: NSObject {
 
 
   private func notifyUpdates() {
-    NSNotificationCenter
-      .defaultCenter()
-      .postNotificationName("ShortcutsUpdated", object: self)
+    let name = CapturedNotifications.ShortcutsDidUpdate.rawValue
+    NSNotificationCenter.defaultCenter().postNotificationName(name, object: self)
   }
 
 }

@@ -67,7 +67,8 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
 
     // Do any additional setup after loading the view.
     let nc = NSNotificationCenter.defaultCenter()
-    nc.addObserver(self.tableView, selector: "reloadData", name: "AccountsUpdated", object: nil)
+    let name = CapturedNotifications.AccountsDidUpdate.rawValue
+    nc.addObserver(self.tableView, selector: "reloadData", name: name, object: nil)
 
   }
 

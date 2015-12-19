@@ -124,9 +124,8 @@ class AccountManager: NSObject {
   }
   
   private func notifyUpdates() {
-    NSNotificationCenter
-      .defaultCenter()
-      .postNotificationName("AccountsUpdated", object: self)
+    let name = CapturedNotifications.AccountsDidUpdate.rawValue
+    NSNotificationCenter.defaultCenter().postNotificationName(name, object: self)
   }
   
 }

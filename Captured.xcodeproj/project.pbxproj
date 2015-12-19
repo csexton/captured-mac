@@ -34,6 +34,8 @@
 		B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A9B1C00183700DEA068 /* PreferencesViewController.swift */; };
 		B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */; };
 		B59315B21C24FE3300E7DD86 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B11C24FE3300E7DD86 /* Command.swift */; };
+		B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B51C25AA3F00E7DD86 /* CapturedState.swift */; };
+		B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
 		B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; };
@@ -118,6 +120,8 @@
 		B5888A9B1C00183700DEA068 /* PreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		B5888A9D1C001E2600DEA068 /* AccountPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPreferencesViewController.swift; sourceTree = "<group>"; };
 		B59315B11C24FE3300E7DD86 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		B59315B51C25AA3F00E7DD86 /* CapturedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedState.swift; sourceTree = "<group>"; };
+		B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedNotifications.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
@@ -272,6 +276,7 @@
 		B5888A6C1BFFEE7D00DEA068 /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				B59315B41C25AA0100E7DD86 /* Enums */,
 				B50F2F811C06000F004AB2B1 /* Vendor */,
 				B50F2F761C04054F004AB2B1 /* Resources */,
 				B5888A711BFFEE7D00DEA068 /* Assets.xcassets */,
@@ -302,6 +307,15 @@
 				B5888A8C1BFFEE7D00DEA068 /* Info.plist */,
 			);
 			path = CapturedUITests;
+			sourceTree = "<group>";
+		};
+		B59315B41C25AA0100E7DD86 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
+				B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		B5FB987E1C015378006BC590 /* Carthage */ = {
@@ -458,6 +472,8 @@
 				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
 				B50F2F7B1C051402004AB2B1 /* ImgurUploader.swift in Sources */,
 				B50F2F891C060089004AB2B1 /* DDHotKeyUtilities.m in Sources */,
+				B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */,
+				B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */,
 				B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */,
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
 				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,

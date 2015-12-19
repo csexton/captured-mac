@@ -31,7 +31,8 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
     self.tableView.reloadData()
 
     let nc = NSNotificationCenter.defaultCenter()
-    nc.addObserver(self.tableView, selector: "reloadData", name: "ShortcutsUpdated", object: nil)
+    let name = CapturedNotifications.ShortcutsDidUpdate.rawValue
+    nc.addObserver(self.tableView, selector: "reloadData", name: name, object: nil)
   }
 
   deinit {
