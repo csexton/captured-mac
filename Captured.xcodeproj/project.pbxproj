@@ -36,6 +36,7 @@
 		B59315B21C24FE3300E7DD86 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B11C24FE3300E7DD86 /* Command.swift */; };
 		B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B51C25AA3F00E7DD86 /* CapturedState.swift */; };
 		B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */; };
+		B59315BA1C265A3200E7DD86 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B91C265A3200E7DD86 /* Upload.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
 		B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; };
@@ -122,6 +123,7 @@
 		B59315B11C24FE3300E7DD86 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B59315B51C25AA3F00E7DD86 /* CapturedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedState.swift; sourceTree = "<group>"; };
 		B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedNotifications.swift; sourceTree = "<group>"; };
+		B59315B91C265A3200E7DD86 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */,
 				B50F2F7C1C051415004AB2B1 /* Uploader.swift */,
 				B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */,
+				B59315B91C265A3200E7DD86 /* Upload.swift */,
 			);
 			path = Uploaders;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
 				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,
 				B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */,
+				B59315BA1C265A3200E7DD86 /* Upload.swift in Sources */,
 				B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */,
 				B50F2F751C03FFEB004AB2B1 /* ShortcutManager.swift in Sources */,
 				B59315B21C24FE3300E7DD86 /* Command.swift in Sources */,

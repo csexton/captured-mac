@@ -74,5 +74,9 @@ class Shortcut: NSObject {
     }
   }
 
+  func getAccount() -> Account? {
+    return AccountManager.sharedInstance.accountWithIdentifier(accountIdentifier)
+  }
+
 
 }

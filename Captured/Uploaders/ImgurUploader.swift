@@ -9,17 +9,19 @@
 import Cocoa
 import Just
 
-class ImgurUploader {
+class ImgurUploader : Uploader {
 
   let options : [String:String]
 
-  init(withOptions opts:[String:String]) {
-    options = opts
+  private var linkURL : String?
+
+  required init(account:Account) {
+    options = account.options
   }
 
-  func upload(filePath: String) -> Bool {
+  func upload(path:String) -> Bool {
 
-    let fileURL = NSURL.fileURLWithPath(filePath as String)
+    let fileURL = NSURL.fileURLWithPath(path as String)
 
     let r = Just.post(
       "https://api.imgur.com/3/image",
@@ -30,15 +32,26 @@ class ImgurUploader {
       ],
       files: ["image": .URL(fileURL, nil)]
     )
+    if (r.ok) {
 
-    if (r.ok) { /* success! */ }
+      if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
+        linkURL = link
+      }
+      NSLog("Response from Imgur: \(r.json!)")
+    }
+    else {
+      NSLog("Response from Imgur: \(r)")
+    }
 
     return r.ok
+  }
 
+  func url() -> String? {
+    return linkURL
   }
 
   func authHeader() -> String {
-    if (options["access_token"] != nil) {
+    if (self.options["access_token"] != nil) {
       return "Client-Bearer \(options["access_token"]!)"
     }
     else {

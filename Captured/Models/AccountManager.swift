@@ -118,7 +118,7 @@ class AccountManager: NSObject {
     }
     return Account(dictionary: dictionary)
   }
-  
+
   private func saveAll() {
     defaults.setObject(accounts, forKey: "Accounts");
   }

@@ -9,13 +9,14 @@
 import Cocoa
 
 class ScreenCapture  {
-
   enum CommandOptions: String {
     case MouseSelection = "-i"
     case WindowSelection = "-W"
   }
 
-  func run(option:CommandOptions, completion:(path:String) -> (Void)) {
+  var path : String?
+
+  func run(option:CommandOptions, success:(path:String) -> (Void)) {
     NSLog("%@", "Start Capture Screen")
     let dateFormat: NSDateFormatter = NSDateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd-HH-mm-ss-SSSSSS"
@@ -29,7 +30,7 @@ class ScreenCapture  {
     task.launch()
     task.waitUntilExit()
     if (task.terminationStatus==0) {
-      completion(path: path)
+      success(path: path)
     }
   }
 

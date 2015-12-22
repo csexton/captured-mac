@@ -35,7 +35,7 @@ class AccountPreferencesViewController: NSViewController, NSTableViewDataSource,
     case "Amazon S3":
       self.performSegue(.S3, sender: account)
     default:
-      print("Unknown Account type. Did you set the tag value on the menu item?")
+      print("Unknown Account type. Make sure the type field is set for this account.")
     }
   }
   @IBAction func newAccountButton(sender: AnyObject) {

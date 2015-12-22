@@ -50,7 +50,7 @@
 			<key>Summary</key>
 			<string>Upload to imgur with out an account</string>
 			<key>Type</key>
-			<string>Anonymous Imgur</string>
+			<string>Imgur</string>
 			<key>Identifier</key>
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 			<key>ReadOnly</key>

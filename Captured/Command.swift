@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Cocoa
 
 class Command {
   
@@ -18,25 +18,21 @@ class Command {
   }
   
   private func run(){
-    print(self.shortcut.accountIdentifier)
-    runScreenCapture()
-    runUpload()
-    resetGlobalStateAfterDelay()
-  }
-
-  private func runScreenCapture() {
-    print("run screen capture for \(shortcut.name)")
-    let sc = ScreenCapture()
-    sc.run(shortcut.screenCaptureOptions()) { path in
+    ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
       CapturedState.broadcastStateChange(.Active)
-      print("captured \(path)")
+
+      if let account = self.shortcut.getAccount() {
+        Upload(account: account, path: path).run() { upload in
+          print(upload)
+          if let url = upload.url {
+            self.copyToPasteboard(url)
+          }
+          self.resetGlobalStateAfterDelay()
+        }
+      }
     }
   }
 
-  private func runUpload() {
-    print("run upload for \(shortcut.accountIdentifier)")
-  }
-  
   
   func runAsync(){
     dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
@@ -50,6 +46,14 @@ class Command {
       CapturedState.broadcastStateChange(.Normal)
     }
   }
+
+  private func copyToPasteboard(text: String) {
+      let pasteboard = NSPasteboard.generalPasteboard()
+      pasteboard.clearContents()
+      pasteboard.setString(text, forType: NSPasteboardTypeString)
+  }
+
+
   
 }
 
