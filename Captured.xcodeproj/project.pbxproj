@@ -176,8 +176,9 @@
 				B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */,
 				B55BB9DF1C18B7D70085577D /* S3Account.swift */,
 			);
-			path = Models;
-			sourceTree = "<group>";
+			name = Models;
+			path = Captured;
+			sourceTree = SOURCE_ROOT;
 		};
 		B50F2F761C04054F004AB2B1 /* Resources */ = {
 			isa = PBXGroup;
@@ -196,8 +197,9 @@
 				B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */,
 				B59315B91C265A3200E7DD86 /* Upload.swift */,
 			);
-			path = Uploaders;
-			sourceTree = "<group>";
+			name = Uploaders;
+			path = Captured;
+			sourceTree = SOURCE_ROOT;
 		};
 		B50F2F811C06000F004AB2B1 /* Vendor */ = {
 			isa = PBXGroup;
@@ -233,8 +235,9 @@
 				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
 				B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */,
 			);
-			path = Controllers;
-			sourceTree = "<group>";
+			name = Controllers;
+			path = Captured;
+			sourceTree = SOURCE_ROOT;
 		};
 		B580EA3A1C21EDB800794567 /* Views */ = {
 			isa = PBXGroup;
@@ -242,8 +245,9 @@
 				B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */,
 				B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */,
 			);
-			path = Views;
-			sourceTree = "<group>";
+			name = Views;
+			path = Captured;
+			sourceTree = SOURCE_ROOT;
 		};
 		B580EA3B1C21EE0100794567 /* Storyboards */ = {
 			isa = PBXGroup;
@@ -318,8 +322,9 @@
 			children = (
 				B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */,
 			);
-			path = Enums;
-			sourceTree = "<group>";
+			name = Enums;
+			path = Captured;
+			sourceTree = SOURCE_ROOT;
 		};
 		B5FB987E1C015378006BC590 /* Carthage */ = {
 			isa = PBXGroup;

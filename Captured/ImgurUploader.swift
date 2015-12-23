@@ -40,6 +40,7 @@ class ImgurUploader : Uploader {
       NSLog("Response from Imgur: \(r.json!)")
     }
     else {
+      CapturedState.broadcastStateChange(.Error)
       NSLog("Response from Imgur: \(r)")
     }
 
@@ -51,12 +52,16 @@ class ImgurUploader : Uploader {
   }
 
   func authHeader() -> String {
+    var ret = ""
     if (self.options["access_token"] != nil) {
-      return "Client-Bearer \(options["access_token"]!)"
+      ret = "Client-Bearer \(options["access_token"]!)"
     }
     else {
-      return "Client-ID \(options["client_id"]!)"
+      if let clientID = options["client_id"] {
+        ret = "Client-ID \(clientID)"
+      }
     }
+    return ret
   }
 
 
