@@ -24,7 +24,7 @@ class Command {
       CapturedState.broadcastStateChange(.Active)
 
       if (self.shortcut.scaleImage) {
-        self.scaleImageFileInPlace3(path)
+        self.scaleImageFileInPlace(path)
       }
 
       if let account = self.shortcut.getAccount() {
@@ -60,15 +60,16 @@ class Command {
 
   private func scaleImageFileInPlace(path:String) -> Bool {
     
-    // get an image ref for the existing file
+    // Get an image ref for the existing file
     let dataProvider = CGDataProviderCreateWithFilename(path)
+
     let imageRef = CGImageCreateWithPNGDataProvider(dataProvider, nil, false, .RenderingIntentDefault)
     
-    // calculate the new size
+    // Calculate the new size
     let width = CGImageGetWidth(imageRef) / 2
     let height = CGImageGetHeight(imageRef) / 2
     
-    // create a new context for the resized image
+    // Create a new context for the resized image
     let context = CGBitmapContextCreate(nil, width, height,
       CGImageGetBitsPerComponent(imageRef),
       CGImageGetBytesPerRow(imageRef),
@@ -98,77 +99,9 @@ class Command {
     return true;
   }
 
-  func scaleImageFileInPlace2(path:String) {
-    let org = NSImage(contentsOfFile: path)!
-    let width = org.size.width / 2
-    let height = org.size.height / 2
-
-    let img = NSImage(size: CGSizeMake(width, height))
-
-    img.lockFocus()
-    let ctx = NSGraphicsContext.currentContext()
-    ctx?.imageInterpolation = .High
-    org.drawInRect(NSMakeRect(0, 0, width, height), fromRect: NSMakeRect(0, 0, org.size.width, org.size.height), operation: .CompositeCopy, fraction: 1)
-    img.unlockFocus()
-
-
-//    if let imgRep = img.representations[0] as? NSBitmapImageRep
-//    {
-//      if let data = imgRep.representationUsingType(NSBitmapImageFileType.NSPNGFileType, properties: [:])
-//      {
-//        data.writeToFile(path, atomically: false)
-//      }
-//    }
-
-//    CGImageRef cgRef = [image CGImageForProposedRect:NULL
-//      context:nil
-//      hints:nil];
-
-    let cgr = img.CGImageForProposedRect(nil, context: ctx, hints: nil)
-//    NSBitmapImageRep *newRep = [[NSBitmapImageRep alloc] initWithCGImage:cgRef];
-    let bir = NSBitmapImageRep(CGImage: cgr!)
-//    [newRep setSize:[image size]];   // if you want the same resolution
-    bir.size = img.size
-//    NSData *pngData = [newRep representationUsingType:NSPNGFileType properties:nil];
-    let data = bir.representationUsingType(.NSBMPFileType, properties: [:])
-//    [pngData writeToFile:path atomically:YES];
-    data?.writeToFile(path, atomically: false)
-//    [newRep autorelease];
 
 
 
-  }
-
-  private func scaleImageFileInPlace3(path:String) {
-    let image = NSImage(contentsOfFile: path)!
-    
-    let h = Int(image.size.height / 2)
-    let w = Int(image.size.width / 2)
-    
-    let bir = NSBitmapImageRep(
-      bitmapDataPlanes: nil,
-      pixelsWide: w,
-      pixelsHigh: h,
-      bitsPerSample: 8,
-      samplesPerPixel: 4,
-      hasAlpha: true,
-      isPlanar: false,
-      colorSpaceName: NSCalibratedRGBColorSpace,
-      bytesPerRow: 0,
-      bitsPerPixel: 0)
-
-    NSGraphicsContext.saveGraphicsState()
-    let ctx = NSGraphicsContext(bitmapImageRep: bir!)
-    NSGraphicsContext.setCurrentContext(ctx)
-    image.drawInRect(NSRect(x: 0, y: 0, width: w, height: h))
-    NSGraphicsContext.restoreGraphicsState()
-    
-    if let resizedRep = bir!.representationUsingType(.NSPNGFileType, properties: [:]) {
-      resizedRep.writeToFile(path, atomically: true)
-    }
-  }
-  
-  
 
 }
 
