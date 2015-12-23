@@ -39,6 +39,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     registerShortcuts()
     setupNotificationListeners()
+
+
+    let controller = AnnotatedImageController(windowNibName: "AnnotatedImage")
+    controller.showWindow(self)
+//    if let image = NSImage(contentsOfFile: "/Users/csexton/Desktop/resized.png") {
+//      controller.setImageAndShowWindow(image)
+//    }
+
+
+
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
