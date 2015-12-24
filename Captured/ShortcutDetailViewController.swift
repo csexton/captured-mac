@@ -19,7 +19,11 @@ class ShortcutsDetailViewController: NSViewController {
     // Do view setup here.
 
     populateAccountPopUp()
-    populateAccountPopUp()
+
+
+    if let shortcut = representedObject as? Shortcut {
+      actionPopUp.selectItemWithTag(tagForActionType(shortcut.action))
+    }
 
   }
 
@@ -83,6 +87,14 @@ class ShortcutsDetailViewController: NSViewController {
       return "SelectWindow"
     default:
       return "SelectArea"
+    }
+  }
+  func tagForActionType(type:String) -> Int{
+    switch (type) {
+    case "SelectWindow":
+      return 1
+    default:
+      return 0
     }
   }
 }
