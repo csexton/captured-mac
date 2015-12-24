@@ -19,6 +19,7 @@ class Shortcut: NSObject {
   var hotkeyFlags : Int = 0
   var hotkeyCode : Int = 0
   var shortcutValue: MASShortcut?
+  dynamic var annotateImage = Bool(false)
   dynamic var playSound = Bool(false)
   dynamic var scaleImage = Bool(false)
 
@@ -35,6 +36,7 @@ class Shortcut: NSObject {
     action = dictionary.objectForKey("Action") as! String
     identifier = dictionary.objectForKey("Identifier") as! String
     accountIdentifier = dictionary.objectForKey("AccountIdentifier") as! String
+    annotateImage = dictionary["AnnotateImage"] as! Bool
     playSound = dictionary["PlaySound"] as! Bool
     scaleImage = dictionary["ScaleImage"] as! Bool
 
@@ -57,6 +59,7 @@ class Shortcut: NSObject {
       "Identifier": identifier,
       "HotkeyFlags": String(shortcutValue!.modifierFlags),
       "HotkeyCode": String(shortcutValue!.keyCode),
+      "AnnotateImage": Bool(annotateImage),
       "PlaySound": Bool(playSound),
       "ScaleImage": Bool(scaleImage),
 

@@ -33,6 +33,7 @@ class ImgurUploader : Uploader {
       files: ["image": .URL(fileURL, nil)]
     )
     if (r.ok) {
+      CapturedState.broadcastStateChange(.Success)
 
       if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
         linkURL = link

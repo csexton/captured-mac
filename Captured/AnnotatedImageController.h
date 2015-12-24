@@ -20,7 +20,11 @@
     IBOutlet NSSegmentedControl *segmentedControl;
     IBOutlet NSView *toolBar;
 }
-- (void)setImageAndShowWindow:(NSImage*) image;
+
+@property dispatch_semaphore_t semaphore;
+@property NSString* imageFilePath;
+@property BOOL userCanceled;
+- (void)showWindowAndAnnotateImageInPlace:(NSString*) path;
 
 -(IBAction)useBrush:(id)sender;
 -(IBAction)useArrow:(id)sender;

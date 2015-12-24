@@ -14,6 +14,7 @@ import ImageIO
 class Command {
   
   var shortcut : Shortcut
+
   
   init(shortcut:Shortcut) {
     self.shortcut = shortcut
@@ -21,7 +22,14 @@ class Command {
   
   private func run(){
     ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
+      if (self.shortcut.annotateImage) {
+        let a = Annotator()
+        a.annotateImageFileInPlace(path)
+        if (a.userCanceled) { return }
+      }
+
       CapturedState.broadcastStateChange(.Active)
+
 
       if (self.shortcut.scaleImage) {
         self.scaleImageFileInPlace(path)

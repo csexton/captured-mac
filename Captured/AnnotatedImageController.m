@@ -23,6 +23,8 @@
 - (void)windowDidLoad
 {
   [super windowDidLoad];
+
+  self.userCanceled = YES;
   
   // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
   annotatedImageView.brushColor = colorWell.color;
@@ -36,12 +38,16 @@
   // http://www.cocoabuilder.com/archive/cocoa/304428-release-nswindowcontroller-after-the-window-is-closed.html
   //    [self autorelease];
   //[AppDelegate removeAnnotatedWindow: self];
+  dispatch_semaphore_signal(self.semaphore);
   return YES;
 }
 
 
+- (void)showWindowAndAnnotateImageInPlace:(NSString*) path {
 
-- (void)setImageAndShowWindow:(NSImage*) image {
+  self.imageFilePath = path;
+  NSImage * image = [[NSImage alloc] initWithContentsOfFile:path];
+  
   NSRect frame = [self.window frame];
   CGFloat imgX = 0;
   CGFloat minWidth = 340;
@@ -113,23 +119,16 @@
   
 }
 -(IBAction)closeButton:(id)sender{
-  NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-  [dateFormat setDateFormat:@"yyyy-MM-dd-HH-mm-ss-SSSSSS"];
-  NSDate *now = [[NSDate alloc] init];
-  NSString *timestamp = [dateFormat stringFromDate:now];
-  NSString* path = [NSString stringWithFormat:@"%@captured-%@.png", NSTemporaryDirectory(), timestamp];
+
+  self.userCanceled = NO;
+
+  NSLog(@"Saving Annotated Image to %@", self.imageFilePath);
   
-  NSLog(@"Saving Annotated Image to %@", path);
-  
-  [annotatedImageView saveViewToFile:path];
+  [annotatedImageView saveViewToFile:self.imageFilePath];
   
   [self close];
   
-  NSLog(@"TODO : Close and process file");
-  //[AppDelegate processFileEvent:path];
-  
-  //[self.window orderOut:nil]; // to hide it
-  //[window makeKeyAndOrderFront:nil]; // to show it
+  dispatch_semaphore_signal(self.semaphore);
 }
 
 -(IBAction)undoButton:(id)sender{

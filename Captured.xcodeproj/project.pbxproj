@@ -30,6 +30,7 @@
 		B57152EC1C2B55830016758F /* ADrawable.m in Sources */ = {isa = PBXBuildFile; fileRef = B57152E81C2B55830016758F /* ADrawable.m */; };
 		B57152ED1C2B55830016758F /* APoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B57152EA1C2B55830016758F /* APoint.m */; };
 		B57152F11C2B58AE0016758F /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B57152F01C2B58AE0016758F /* GradientView.m */; };
+		B57152FC1C2BB2840016758F /* Annotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57152FB1C2BB2840016758F /* Annotator.swift */; };
 		B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */; };
 		B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */; };
 		B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */; };
@@ -126,6 +127,7 @@
 		B57152EA1C2B55830016758F /* APoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APoint.m; sourceTree = "<group>"; };
 		B57152EF1C2B58AE0016758F /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		B57152F01C2B58AE0016758F /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		B57152FB1C2BB2840016758F /* Annotator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotator.swift; sourceTree = "<group>"; };
 		B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTableCellView.swift; sourceTree = "<group>"; };
 		B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgSafeUploader.swift; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 				B57152DC1C2B54FA0016758F /* AnnotatedImageController.m */,
 				B57152DD1C2B54FA0016758F /* AnnotatedImageView.h */,
 				B57152DE1C2B54FA0016758F /* AnnotatedImageView.m */,
+				B57152FB1C2BB2840016758F /* Annotator.swift */,
 			);
 			name = AnnotatedImage;
 			sourceTree = "<group>";
@@ -521,6 +524,7 @@
 				B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */,
 				B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */,
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
+				B57152FC1C2BB2840016758F /* Annotator.swift in Sources */,
 				B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */,
 				B57152E41C2B55300016758F /* ABrushStroke.m in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,

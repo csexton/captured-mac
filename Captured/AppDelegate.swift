@@ -20,6 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   var shortcutManager = ShortcutManager.sharedInstance
   var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
 
+  var annotatedWindow : AnnotatedImageController?
+
   // The magic tag that is used to denote a menu item is for a "shortcut." This
   // is used to remove all menu items associated with a tag.
   let magicShortcutMenuItemTag = 13
@@ -40,12 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     registerShortcuts()
     setupNotificationListeners()
 
-
-    let controller = AnnotatedImageController(windowNibName: "AnnotatedImage")
-    controller.showWindow(self)
-//    if let image = NSImage(contentsOfFile: "/Users/csexton/Desktop/resized.png") {
-//      controller.setImageAndShowWindow(image)
-//    }
 
 
 

@@ -1023,6 +1023,16 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-Zy-zFb">
+                                <rect key="frame" x="49" y="134" width="118" height="18"/>
+                                <buttonCell key="cell" type="check" title="Annotate Image" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MKc-lL-nuO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.annotateImage" id="UPR-rd-Ueb"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
