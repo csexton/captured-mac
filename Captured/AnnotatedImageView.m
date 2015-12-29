@@ -5,12 +5,6 @@
 
 #import <math.h>
 
-#define DEG2RAD(x)  ((x) * M_PI / 180.0)
-#define RAD2DEG(x)  ((x) * 180 / M_PI)
-
-static inline double radians(double degrees) {
-  return degrees * M_PI / 180;
-}                                                                          // From Apple Docs
 
 @implementation AnnotatedImageView
 
@@ -44,29 +38,6 @@ static inline double radians(double degrees) {
   [self discardCursorRects];
   [self resetCursorRects];
 }
-
-//- (CGPoint)rotate:(CGPoint) p by:(CGFloat) theta {
-//    CGPoint ret;
-//    ret.x = (p.x * cos(theta)) - (p.y * sin(theta));
-//    ret.y = (p.y * cos(theta)) + (p.x * sin(theta));
-//    return ret;
-//}
-//
-//- (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o {
-//    CGFloat ret = atan2(p.y - o.y, p.x - o.x);
-//    return ret;
-//}
-//
-//- (CGPoint) rotatePoint: (CGPoint)p to: (CGPoint)d around: (CGPoint)o {
-//    CGFloat theta = [self angleBetweenPoint:d and:o];
-//    return [self rotate:p by:theta];
-//}
-//
-//- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2 {
-//    CGFloat xDist = (p2.x - p1.x);
-//    CGFloat yDist = (p2.y - p1.y);
-//    return sqrt((xDist * xDist) + (yDist * yDist));
-//}
 
 - (id)initWithFrame:(NSRect)frame {
   if (!(self = [super initWithFrame:frame])) {
@@ -166,8 +137,9 @@ static inline double radians(double degrees) {
     [arrayOfBrushStrokes addObject:currentStroke];
     [currentStroke mouseDownAt:l];
   }
+  SEL selector = NSSelectorFromString(@"undoDraw:");
   [[self undoManager] registerUndoWithTarget:self
-                                    selector:@selector(undoDraw:)
+                                    selector:selector
                                       object:currentStroke];
   [self setNeedsDisplay:YES];
 }
@@ -214,16 +186,13 @@ static inline double radians(double degrees) {
   CGContextSetFillColorSpace(context, colorSpace);
   CGContextSetStrokeColorSpace(context, colorSpace);
 
-  CGFloat fillColor[4] = {
-    0.0, 0.0, 0.0, 1.0
-  };
+  CGFloat fillColor[4] = { 0.0, 0.0, 0.0, 1.0 };
   CGContextSetFillColor(context, fillColor);
   CGContextFillRect(context, CGRectMake(0.0, 0.0, rect.size.width, rect.size.height));
 
   if (image) {
     CGContextDrawImage(context, CGRectMake(0.0, 0.0, rect.size.width, rect.size.height), imageRef);
   }
-  //[self drawArrowOn:context from:downLocation to:currentLocation];
   [self drawBrushStrokesOn:context];
 }
 

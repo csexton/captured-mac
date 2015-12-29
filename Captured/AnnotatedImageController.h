@@ -24,8 +24,8 @@
 @property dispatch_semaphore_t semaphore;
 @property NSString *imageFilePath;
 @property BOOL userCanceled;
-- (void)showWindowAndAnnotateImageInPlace:(NSString *)path;
 
+- (void)showWindowAndAnnotateImageInPlace:(NSString *)path;
 - (IBAction)useBrush:(id)sender;
 - (IBAction)useArrow:(id)sender;
 - (IBAction)useHighlighter:(id)sender;

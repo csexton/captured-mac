@@ -22,16 +22,10 @@
   ADrawable *currentStroke;
 }
 
-//- (CGPoint) rotate:(CGPoint) p by:(CGFloat) theta;
-//- (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o;
-//- (CGPoint) rotatePoint: (CGPoint)p to: (CGPoint)d around: (CGPoint)o;
-//- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2;
-
 - (void)selectBrushTool;
 - (void)selectHighlighterTool;
 - (void)selectArrowTool;
 
-//- (void)drawArrowOn:(CGContextRef)context from:(CGPoint)p1 to:(CGPoint)p2;
 - (void)drawBrushStrokesOn:(CGContextRef)context;
 
 - (void)setImage:(NSImage *)i;

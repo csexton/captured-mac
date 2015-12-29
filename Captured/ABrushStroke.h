@@ -19,6 +19,4 @@
 - (id)initWithColor:(NSColor *)c andWidth:(CGFloat)w;
 - (void)addPoint:(CGPoint)point;
 
-
-
 @end

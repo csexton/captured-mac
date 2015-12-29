@@ -29,14 +29,9 @@
   [self.window
    setLevel:NSModalPanelWindowLevel];
   [[NSColorPanel sharedColorPanel] setShowsAlpha:YES];
-  //    [self.window setBackgroundColor:[NSColor colorWithCalibratedRed:0.0 green:0.0 blue:0.0 alpha:0.7]];
 }
 
 - (BOOL)windowShouldClose:(id)sender {
-  // This was great, but didn't work with ARC
-  // http://www.cocoabuilder.com/archive/cocoa/304428-release-nswindowcontroller-after-the-window-is-closed.html
-  //    [self autorelease];
-  //[AppDelegate removeAnnotatedWindow: self];
   dispatch_semaphore_signal(self.semaphore);
   return YES;
 }
@@ -47,11 +42,11 @@
 
   NSRect frame = [self.window frame];
   CGFloat imgX = 0;
-  CGFloat minWidth = 340;
+  CGFloat minWidthOfImage = 340;
   frame.size.height = image.size.height + /* Button Bar Height */ 50 + /* Window Frame (20 for full title bar) */ 20;
-  if (image.size.width < minWidth) {
-    frame.size.width = minWidth; // Minimum width of image
-    imgX = (minWidth / 2) - (image.size.width / 2); // Center the image
+  if (image.size.width < minWidthOfImage) {
+    frame.size.width = minWidthOfImage;
+    imgX = (minWidthOfImage / 2) - (image.size.width / 2); // Center the image
   } else {
     frame.size.width = image.size.width + 1;
   }
@@ -74,8 +69,8 @@
 }
 
 - (IBAction)segmentedControlClicked:(id)sender {
-  int selectedSegment = [sender selectedSegment];
-  int clickedSegmentTag = [[sender cell] tagForSegment:selectedSegment];
+  long selectedSegment = [sender selectedSegment];
+  long clickedSegmentTag = [[sender cell] tagForSegment:selectedSegment];
   switch (clickedSegmentTag)
   {
     case 0:
