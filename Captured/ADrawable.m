@@ -10,21 +10,27 @@
 
 @implementation ADrawable
 
-- (id)init
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+- (id)init {
+  self = [super init];
+  if (self) {
+    // Initialization code here.
+  }
+  return self;
 }
 
--(void)drawOn:(CGContextRef)context{}
+- (void)drawOn:(CGContextRef)context {
+}
 
--(void)addPoint: (CGPoint)point{}
--(void)mouseDownAt: (CGPoint)point{}
--(void)mouseDragAt: (CGPoint)point{}
--(void)mouseUpAt: (CGPoint)point{}
+- (void)addPoint:(CGPoint)point {
+}
+
+- (void)mouseDownAt:(CGPoint)point {
+}
+
+- (void)mouseDragAt:(CGPoint)point {
+}
+
+- (void)mouseUpAt:(CGPoint)point {
+}
 
 @end

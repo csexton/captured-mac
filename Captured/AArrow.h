@@ -9,11 +9,11 @@
 #import "ADrawable.h"
 
 @interface AArrow : ADrawable {
-    CGPoint p1;
-    CGPoint p2;
+  CGPoint p1;
+  CGPoint p2;
 }
 
-- (CGFloat) distanceBetweenPoint: (CGPoint)p1 and: (CGPoint) p2;
-- (CGFloat) angleBetweenPoint: (CGPoint)p and: (CGPoint)o;
+- (CGFloat)distanceBetweenPoint:(CGPoint)p1 and:(CGPoint)p2;
+- (CGFloat)angleBetweenPoint:(CGPoint)p and:(CGPoint)o;
 
 @end

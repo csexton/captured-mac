@@ -11,13 +11,13 @@
 #import "ADrawable.h"
 
 @interface ABrushStroke : ADrawable {
-    NSMutableArray * points;
-    NSColor *color;
-    CGFloat width;
+  NSMutableArray *points;
+  NSColor *color;
+  CGFloat width;
 }
 
--(id)initWithColor:(NSColor*)c andWidth: (CGFloat)w;
--(void)addPoint: (CGPoint)point;
+- (id)initWithColor:(NSColor *)c andWidth:(CGFloat)w;
+- (void)addPoint:(CGPoint)point;
 
 
 

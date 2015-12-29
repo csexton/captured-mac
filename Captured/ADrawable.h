@@ -10,8 +10,8 @@
 
 @interface ADrawable : NSObject
 
--(void)drawOn:(CGContextRef)context;
--(void)mouseDownAt: (CGPoint)point;
--(void)mouseDragAt: (CGPoint)point;
--(void)mouseUpAt: (CGPoint)point;
+- (void)drawOn:(CGContextRef)context;
+- (void)mouseDownAt:(CGPoint)point;
+- (void)mouseDragAt:(CGPoint)point;
+- (void)mouseUpAt:(CGPoint)point;
 @end
