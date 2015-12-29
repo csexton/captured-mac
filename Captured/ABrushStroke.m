@@ -8,6 +8,7 @@
 
 #import "ABrushStroke.h"
 #import "APoint.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @implementation ABrushStroke
 
@@ -49,8 +50,8 @@
     //CGContextSetRGBStrokeColor(context,0.886, 0.294, 0.223, 0.9);
     CGContextSetRGBStrokeColor(context, [color redComponent], [color greenComponent], [color blueComponent], [color alphaComponent]);
     CGContextSetLineWidth(context, width );
-    CGContextSetLineJoin(context, NSRoundLineJoinStyle);
-    CGContextSetLineCap(context, NSRoundLineCapStyle);
+    CGContextSetLineJoin(context,kCGLineJoinRound);
+    CGContextSetLineCap(context, kCGLineCapRound);
     
     CGContextSetShadow(context, CGSizeMake(2, -2), 5);
         
