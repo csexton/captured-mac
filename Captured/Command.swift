@@ -39,6 +39,7 @@ class Command {
         Upload(account: account, path: path).run() { upload in
           if let url = upload.url {
             self.copyToPasteboard(url)
+            self.postUserNotification(account, url: url, path: path)
           }
         }
       }
@@ -63,6 +64,23 @@ class Command {
       let pasteboard = NSPasteboard.generalPasteboard()
       pasteboard.clearContents()
       pasteboard.setString(text, forType: NSPasteboardTypeString)
+  }
+
+  private func postUserNotification(account: Account, url:String, path:String) {
+    if (NSUserDefaults.standardUserDefaults().boolForKey("EnableNotifications")) {
+      let notification = NSUserNotification()
+      notification.title = "Uploaded to \(account.name)"
+      notification.subtitle = "Link added to Clipboard"
+      notification.informativeText = url
+      notification.userInfo = ["url": url]
+      notification.soundName = NSUserNotificationDefaultSoundName
+      
+      // Not confinced this is a good idea. May prefer not to load this into memory
+      // just to stay light on the system resources.
+      notification.contentImage = NSImage(contentsOfFile: path)
+      
+      NSUserNotificationCenter.defaultUserNotificationCenter().deliverNotification(notification)
+    }
   }
 
 

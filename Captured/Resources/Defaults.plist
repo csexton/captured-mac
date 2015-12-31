@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>EnableDockIcon</key>
+	<true/>
+	<key>EnableNotifications</key>
+	<true/>
+	<key>EnableUploads</key>
+	<true/>
 	<key>Shortcuts</key>
 	<array>
 		<dict>
@@ -10,11 +16,11 @@
 			<key>AccountIdentifier</key>
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 			<key>Name</key>
-			<string>SelectArea</string>
+			<string>Select Area - Default Imgur</string>
 			<key>Summary</key>
-			<string>Upload to Imgur</string>
+			<string>Upload to Default Imgur on ⇧⌘5</string>
 			<key>Action</key>
-			<string>Spicy Joe</string>
+			<string>SelectArea</string>
 			<key>HotkeyFlags</key>
 			<integer>1179648</integer>
 			<key>HotkeyCode</key>
@@ -70,8 +76,8 @@
 	<true/>
 	<key>FirstRun</key>
 	<true/>
-	<key>New item</key>
-	<string></string>
+	<key>StartAtLogin</key>
+	<true/>
 	<key>ImgurClientSecret</key>
 	<string>c99183d23bc09116999bdfb30974d53805f34feb</string>
 	<key>ImgurClientID</key>

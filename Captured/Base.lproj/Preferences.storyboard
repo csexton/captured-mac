@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <scenes>
@@ -68,6 +67,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.StartAtLogin" id="fQc-7g-FFK"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
                                 <rect key="frame" x="18" y="135" width="169" height="18"/>
@@ -82,11 +84,25 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.EnableUploads" id="hXR-4c-ZIo"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-LA-nsK">
+                                <rect key="frame" x="18" y="76" width="99" height="18"/>
+                                <buttonCell key="cell" type="check" title="Notifications" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="oAm-gS-RzW">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.EnableNotifications" id="0Je-Ja-xZ3"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="7Q2-kI-bf6"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
         </scene>
@@ -1033,11 +1049,30 @@ Gw
                                     <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.annotateImage" id="UPR-rd-Ueb"/>
                                 </connections>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nix-Eu-zKF">
+                                <rect key="frame" x="18" y="63" width="414" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GQA-9l-gRG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FE2-6E-hQ5">
+                                <rect key="frame" x="15" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KIn-Mw-rJo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="uwZ-IE-g6F" id="ssk-Zh-vdN"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="accountPopUp" destination="ioF-di-dZ9" id="Uil-0O-Rqy"/>
                         <outlet property="actionPopUp" destination="JhN-5f-14H" id="meL-GK-6HT"/>
+                        <outlet property="errorLabel" destination="nix-Eu-zKF" id="pYd-dg-7Jz"/>
                         <outlet property="shortcutField" destination="I6O-gQ-WBU" id="DfL-Oc-ynI"/>
                     </connections>
                 </viewController>
