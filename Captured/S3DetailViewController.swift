@@ -9,7 +9,7 @@
 import Cocoa
 
 class S3DetailViewController: AccountDetailViewController {
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do view setup here.
@@ -22,13 +22,11 @@ class S3DetailViewController: AccountDetailViewController {
   @IBOutlet weak var nameLengthBox: NSComboBox!
   @IBOutlet weak var reducedRedundancyStorageButton: NSButton!
 
-  
   @IBAction func testConnectionButton(sender: AnyObject) {
   }
 
   override func saveButton(sender: AnyObject) {
-    
-    if (validateFields()) {
+    if validateFields() {
       if let account = representedObject as? S3Account {
         account.summary = "Upload to S3 Bucket \"\(bucketNameField.stringValue)\""
       }

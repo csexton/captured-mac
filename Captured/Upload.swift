@@ -10,9 +10,9 @@ class Upload {
 
   var path: String?
   var url: String?
-  var account : Account
+  var account: Account
 
-  init(account:Account, path:String) {
+  init(account: Account, path: String) {
     self.account = account
     self.path = path
   }
@@ -20,15 +20,13 @@ class Upload {
   func run(success:(upload:Upload) -> (Void)) {
     let uploader = uploadFactory(account.type)
 
-    if (uploader.upload(path!)) {
+    if uploader.upload(path!) {
       url = uploader.url()
       success(upload: self)
     }
   }
 
-
-  func uploadFactory(type:String) -> (Uploader) {
+  func uploadFactory(type: String) -> (Uploader) {
     return ImgurUploader(account: account)
   }
-  
 }

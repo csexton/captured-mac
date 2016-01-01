@@ -17,13 +17,13 @@ class CapturedState {
     case Error
   }
 
-  var current : CapturedState.States
+  var current: CapturedState.States
 
-  init(state:CapturedState.States) {
+  init(state: CapturedState.States) {
     current = state
   }
 
-  class func broadcastStateChange(state:States){
+  class func broadcastStateChange(state: States) {
     let name = CapturedNotifications.StateDidChange.rawValue
     NSNotificationCenter.defaultCenter().postNotificationName(name, object: self,
       userInfo: ["state": CapturedState(state: state)]

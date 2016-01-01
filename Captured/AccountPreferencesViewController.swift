@@ -8,9 +8,10 @@
 
 import Cocoa
 
-class AccountPreferencesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class AccountPreferencesViewController: NSViewController,
+  NSTableViewDataSource, NSTableViewDelegate {
 
-  enum Segues : String {
+  enum Segues: String {
     case Imgur = "imgurSheetSegue"
     case S3 = "s3SheetSegue"
     case SFTP = "sftpSheetSegue"

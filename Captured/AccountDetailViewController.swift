@@ -14,7 +14,6 @@ class AccountDetailViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
 
   @IBAction func cancelButton(sender: AnyObject) {
     self.dismissController(self)
@@ -24,7 +23,6 @@ class AccountDetailViewController: NSViewController {
     endEditing()
 
 
-    
 
     AccountManager.sharedInstance.update(representedObject as! Account)
     self.dismissController(self)
@@ -40,7 +38,6 @@ class AccountDetailViewController: NSViewController {
         self.dismissController(self)
     }
   }
-  
   func endEditing() {
     // http://pinkstone.co.uk/how-to-remove-focus-from-an-nstextfield/
     //   Give up first repsonder status and therefore end editing
@@ -49,7 +46,7 @@ class AccountDetailViewController: NSViewController {
 
   // MARK: Helpful methods
 
-  func validatePresence(field:NSTextField) -> Bool {
+  func validatePresence(field: NSTextField) -> Bool {
     if field.stringValue.isEmpty {
       field.placeholderAttributedString = NSMutableAttributedString(
         string:"Cannot Be Blank",
@@ -61,12 +58,12 @@ class AccountDetailViewController: NSViewController {
     return true
   }
 
-  
-  func defaults(key:String) -> String {
+  func defaults(key: String) -> String {
     return NSUserDefaults.standardUserDefaults().objectForKey(key) as! String
   }
 
-  func dialogOKCancel(question: String, text: String, buttonOk: String = "OK", buttonCancel: String = "Cancel") -> Bool {
+  func dialogOKCancel(question: String, text: String, buttonOk: String = "OK",
+    buttonCancel: String = "Cancel") -> Bool {
     let myPopup: NSAlert = NSAlert()
     myPopup.messageText = question
     myPopup.informativeText = text
@@ -79,5 +76,4 @@ class AccountDetailViewController: NSViewController {
     }
     return false
   }
-
 }

@@ -15,10 +15,9 @@ class ImgurAccount: Account {
   }
 
   func isAuthenticated() -> Bool {
-    if (options["access_token"] != nil) {
+    if secrets["access_token"] != nil {
       return true
-    }
-    else {
+    } else {
       return false
     }
   }

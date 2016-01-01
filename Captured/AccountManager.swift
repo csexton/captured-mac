@@ -10,7 +10,7 @@ import Cocoa
 
 class AccountManager: NSObject {
 
-  enum AccountTypes : String {
+  enum AccountTypes: String {
     case Imgur = "Imgur"
     case S3 = "Amazon S3"
     case Dropbox = "Dropbox"
@@ -19,9 +19,9 @@ class AccountManager: NSObject {
 
   static let sharedInstance = AccountManager()
 
-  var accounts : [NSMutableDictionary] = Array()
+  var accounts: [NSMutableDictionary] = Array()
   var defaults = NSUserDefaults.standardUserDefaults()
-  
+
   func load() {
     accounts.removeAll()
     if let accts = (defaults.objectForKey("Accounts") as? [NSMutableDictionary]) {
@@ -32,55 +32,55 @@ class AccountManager: NSObject {
       }
     }
   }
-  
+
   func count() -> (Int) {
     return accounts.count
   }
-  
-  func accountAtIndex(i:Int) -> (Account) {
+
+  func accountAtIndex(i: Int) -> (Account) {
     return accountFactory(accounts[i])
   }
-  
-  func update(updated:Account) {
-    
+
+  func update(updated: Account) {
+
     var newRecord: Bool = true
-    
+
     for i in 0...(accounts.count-1) {
       if accounts[i]["Identifier"] as! String == updated.identifier {
         newRecord = false
         accounts[i] = updated.toDict()
       }
     }
-    if (newRecord) {
+    if newRecord {
       accounts.append(updated.toDict())
     }
-    
+
     saveAll()
     notifyUpdates()
   }
-  
-  func delete(updated:Account) {
-    
+
+  func delete(updated: Account) {
+
     var deathRow = [Int]()
-    
+
     for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as! String == updated.identifier {
+      if accounts[i]["Identifier"] as? String == updated.identifier {
         deathRow.append(i)
       }
     }
-    
+
     for i in deathRow {
       accounts.removeAtIndex(i)
     }
-    
+
     saveAll()
     notifyUpdates()
-    
+
   }
 
-  func accountWithIdentifier(id:String) -> (Account?) {
+  func accountWithIdentifier(id: String) -> (Account?) {
     for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as! String == id {
+      if accounts[i]["Identifier"] as? String == id {
         return Account(dictionary: accounts[i])
       }
     }
@@ -88,9 +88,9 @@ class AccountManager: NSObject {
   }
 
 
-  func indexForAccountWithIdentifier(id:String) -> (Int) {
+  func indexForAccountWithIdentifier(id: String) -> (Int) {
     for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as! String == id {
+      if accounts[i]["Identifier"] as? String == id {
         return i
       }
     }
@@ -102,10 +102,10 @@ class AccountManager: NSObject {
       block(Account(dictionary: d))
     }
   }
-  
-  func accountFactory(dictionary:NSMutableDictionary) -> (Account) {
+
+  func accountFactory(dictionary: NSMutableDictionary) -> (Account) {
     if let type = dictionary["Type"] as? String {
-      switch (type) {
+      switch type {
       case "Anonymous Imgur":
         return AnonImgurAccount(dictionary: dictionary)
       case "Imgur":
@@ -120,12 +120,12 @@ class AccountManager: NSObject {
   }
 
   private func saveAll() {
-    defaults.setObject(accounts, forKey: "Accounts");
+    defaults.setObject(accounts, forKey: "Accounts")
   }
-  
+
   private func notifyUpdates() {
     let name = CapturedNotifications.AccountsDidUpdate.rawValue
     NSNotificationCenter.defaultCenter().postNotificationName(name, object: self)
   }
-  
+
 }

@@ -8,10 +8,8 @@
 
 import Foundation
 
-class AnonImgurAccount : Account {
-
+class AnonImgurAccount: Account {
   override func accountType() -> String {
     return "Anonymous Imgur"
   }
-
 }

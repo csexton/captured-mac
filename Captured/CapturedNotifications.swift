@@ -6,7 +6,7 @@
 //  Copyright © 2015 Christopher Sexton. All rights reserved.
 //
 
-enum CapturedNotifications : String {
+enum CapturedNotifications: String {
   case StateDidChange = "StateDidChange"
   case ShortcutsDidUpdate = "ShortcutsDidUpdate"
   case AccountsDidUpdate = "AccountsDidUpdate"

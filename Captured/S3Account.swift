@@ -13,30 +13,29 @@ class S3Account: Account {
     return "Amazon S3"
   }
 
-  dynamic var accessKey : String? {
-    get { return self.options["access_key"] }
-    set { self.options["access_key"] = newValue }
+  dynamic var accessKey: String? {
+    get { return self.secrets["access_key"] }
+    set { self.secrets["access_key"] = newValue }
   }
 
-  dynamic var secretKey : String? {
-    get { return self.options["secret_key"] }
-    set { self.options["secret_key"] = newValue }
+  dynamic var secretKey: String? {
+    get { return self.secrets["secret_key"] }
+    set { self.secrets["secret_key"] = newValue }
   }
 
   dynamic var bucketName: String? {
-    get { return self.options["bucket_name"] }
-    set { self.options["bucket_name"] = newValue }
+    get { return self.secrets["bucket_name"] }
+    set { self.secrets["bucket_name"] = newValue }
   }
 
   dynamic var publicURL: String? {
-    get { return self.options["public_url"] }
-    set { self.options["public_url"] = newValue }
+    get { return self.secrets["public_url"] }
+    set { self.secrets["public_url"] = newValue }
   }
 
   dynamic var fileNameLengthIndex: UInt {
     get {
-
-      if let len = self.options["file_name_length"] {
+      if let len = self.secrets["file_name_length"] {
         switch len {
         case "8":
           return 1
@@ -49,29 +48,25 @@ class S3Account: Account {
       return 0
     }
     set {
-      switch (newValue) {
+      switch newValue {
       case 1:
-        self.options["file_name_length"] = "8"
+        self.secrets["file_name_length"] = "8"
       case 2:
-        self.options["file_name_length"] = "34"
+        self.secrets["file_name_length"] = "34"
       default:
-        self.options["file_name_length"] = "5"
+        self.secrets["file_name_length"] = "5"
       }
-      
     }
   }
 
   dynamic var reducedRedundancyStorage: Bool {
     get {
-      if (self.options["reduced_redundancy_storage"] == "YES") {
+      if self.secrets["reduced_redundancy_storage"] == "YES" {
         return true
-      }
-      else {
+      } else {
         return false
       }
-
     }
-    set { self.options["reduced_redundancy_storage"] = newValue ? "YES" : "NO"}
+    set { self.secrets["reduced_redundancy_storage"] = newValue ? "YES" : "NO"}
   }
-
 }

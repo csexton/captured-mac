@@ -9,17 +9,17 @@
 import Cocoa
 import Just
 
-class ImgurUploader : Uploader {
+class ImgurUploader: Uploader {
 
-  let options : [String:String]
+  let options: [String:String]
 
-  private var linkURL : String?
+  private var linkURL: String?
 
-  required init(account:Account) {
-    options = account.options
+  required init(account: Account) {
+    options = account.secrets
   }
 
-  func upload(path:String) -> Bool {
+  func upload(path: String) -> Bool {
 
     let fileURL = NSURL.fileURLWithPath(path as String)
 
@@ -32,15 +32,14 @@ class ImgurUploader : Uploader {
       ],
       files: ["image": .URL(fileURL, nil)]
     )
-    if (r.ok) {
+    if r.ok {
       CapturedState.broadcastStateChange(.Success)
 
       if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
         linkURL = link
       }
       NSLog("Response from Imgur: \(r.json!)")
-    }
-    else {
+    } else {
       CapturedState.broadcastStateChange(.Error)
       NSLog("Response from Imgur: \(r)")
     }
@@ -54,10 +53,9 @@ class ImgurUploader : Uploader {
 
   func authHeader() -> String {
     var ret = ""
-    if (self.options["access_token"] != nil) {
+    if self.options["access_token"] != nil {
       ret = "Client-Bearer \(options["access_token"]!)"
-    }
-    else {
+    } else {
       if let clientID = options["client_id"] {
         ret = "Client-ID \(clientID)"
       }

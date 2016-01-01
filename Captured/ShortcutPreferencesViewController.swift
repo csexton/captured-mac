@@ -10,7 +10,7 @@ import Cocoa
 import MASShortcut
 
 
-class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+class ShortcutPreferencesViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
 
   var shortcuts = ShortcutManager.sharedInstance
 
@@ -24,7 +24,7 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
   }
 
   // Pragma Mark: View Controller Delegates
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -43,8 +43,7 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
     if let controller = segue.destinationController as? NSViewController {
       if let shortcut = sender as? Shortcut {
         controller.representedObject = shortcut
-      }
-      else {
+      } else {
         controller.representedObject = Shortcut()
       }
     }
@@ -69,5 +68,4 @@ class ShortcutPreferencesViewController : NSViewController, NSTableViewDataSourc
   func selectionShouldChangeInTableView(tableView: NSTableView) -> Bool {
     return false
   }
-  
 }

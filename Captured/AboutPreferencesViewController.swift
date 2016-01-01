@@ -14,7 +14,7 @@ class AboutPreferencesViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
     }
-    
+
   @IBAction func visitWebpageButton(sender: AnyObject) {
     NSWorkspace.sharedWorkspace().openURL(NSURL(string: "http://www.capturedapp.com")!)
   }

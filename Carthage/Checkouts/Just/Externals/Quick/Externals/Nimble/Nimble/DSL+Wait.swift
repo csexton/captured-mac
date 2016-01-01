@@ -15,7 +15,7 @@ internal class NMBWait: NSObject {
             }
             return completed
         }
-        switch (result) {
+        switch result {
         case .Failure:
             let pluralize = (timeout == 1 ? "" : "s")
             fail("Waited more than \(timeout) second\(pluralize)", file: file, line: line)

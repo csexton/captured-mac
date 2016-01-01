@@ -10,7 +10,7 @@ import Cocoa
 import Just
 
 class ImgurDetailViewController: AccountDetailViewController {
-  enum Tabs : Int {
+  enum Tabs: Int {
     case Login = 0
     case Link = 1
     case Spinner = 2
@@ -19,12 +19,11 @@ class ImgurDetailViewController: AccountDetailViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     let a = self.representedObject as! ImgurAccount
-    if (a.isAuthenticated()) {
+    if a.isAuthenticated() {
       showTab(.Edit)
-    }
-    else {
+    } else {
       showTab(.Login)
     }
   }
@@ -55,21 +54,20 @@ class ImgurDetailViewController: AccountDetailViewController {
         "pin": pinField.stringValue,
       ],
       asyncCompletionHandler: { (result: HTTPResult!) -> Void in
-        if (result.ok) {
+        if result.ok {
           if let r = self.representedObject as? ImgurAccount {
             if let jsonData = result.json as? [String:AnyObject] {
-              r.options["account_id"] = jsonData["account_id"] as? String
-              r.options["access_token"] = jsonData["access_token"] as? String
-              r.options["refresh_token"] = jsonData["refresh_token"] as? String
-              r.options["account_username"] = jsonData["account_username"] as? String
-              r.name = "\(r.options["account_username"]!)'s Imgur"
+              r.secrets["account_id"] = jsonData["account_id"] as? String
+              r.secrets["access_token"] = jsonData["access_token"] as? String
+              r.secrets["refresh_token"] = jsonData["refresh_token"] as? String
+              r.secrets["account_username"] = jsonData["account_username"] as? String
+              r.name = "\(jsonData["account_username"]!)'s Imgur"
               dispatch_async(dispatch_get_main_queue()) {
                 self.showTab(.Edit)
               }
             }
           }
-        }
-        else {
+        } else {
           dispatch_async(dispatch_get_main_queue()) {
             self.showTab(.Login)
             self.errorLabel.stringValue = "Error linking Imgur account\n\(result)"
@@ -82,12 +80,11 @@ class ImgurDetailViewController: AccountDetailViewController {
   @IBAction func urlOption(sender: AnyObject) {
   }
 
-  func showTab(index:Tabs) {
-    if (index == .Spinner) {
+  func showTab(index: Tabs) {
+    if index == .Spinner {
       spinner.startAnimation(self)
       spinner.hidden = false
-    }
-    else {
+    } else {
       spinner.hidden = true
       spinner.stopAnimation(self)
     }

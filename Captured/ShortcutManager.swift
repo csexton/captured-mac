@@ -13,7 +13,7 @@ class ShortcutManager: NSObject {
 
   var shortcuts: [NSMutableDictionary] = Array()
   var defaults = NSUserDefaults.standardUserDefaults()
-  
+
   func load() {
     shortcuts.removeAll()
     if let accts = (defaults.objectForKey("Shortcuts") as? [NSMutableDictionary]) {
@@ -24,50 +24,48 @@ class ShortcutManager: NSObject {
       }
     }
   }
-  
+
   func count() -> (Int) {
     return shortcuts.count
   }
-  
-  func shortcutAtIndex(i:Int) -> (Shortcut) {
+
+  func shortcutAtIndex(i: Int) -> (Shortcut) {
     return Shortcut(dictionary: shortcuts[i])
   }
-  
-  func update(updated:Shortcut) {
-    
+
+  func update(updated: Shortcut) {
     var newRecord: Bool = true
-    
+
     for i in 0...(shortcuts.count-1) {
       if shortcuts[i]["Identifier"] as! String == updated.identifier {
         newRecord = false
         shortcuts[i] = updated.toDict()
       }
     }
-    if (newRecord) {
+    if newRecord {
       shortcuts.append(updated.toDict())
     }
-    
+
     saveAll()
     notifyUpdates()
   }
-  
-  func delete(updated:Shortcut) {
-    
+
+  func delete(updated: Shortcut) {
     var deathRow = [Int]()
-    
+
     for i in 0...(shortcuts.count-1) {
       if shortcuts[i]["Identifier"] as! String == updated.identifier {
         deathRow.append(i)
       }
     }
-    
+
     for i in deathRow {
       shortcuts.removeAtIndex(i)
     }
-    
+
     saveAll()
     notifyUpdates()
-    
+
   }
 
   func each(block: (Shortcut) -> (Void)) {
@@ -76,9 +74,9 @@ class ShortcutManager: NSObject {
     }
   }
 
-  
+
   private func saveAll() {
-    defaults.setObject(shortcuts, forKey: "Shortcuts");
+    defaults.setObject(shortcuts, forKey: "Shortcuts")
   }
 
 

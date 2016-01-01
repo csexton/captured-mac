@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
   var shortcutManager = ShortcutManager.sharedInstance
   var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
 
-  var annotatedWindow : AnnotatedImageController?
+  var annotatedWindow: AnnotatedImageController?
   let enabledMenuItem = NSMenuItem()
 
   // The magic tag that is used to denote a menu item is for a "shortcut." This
@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
         return .Copy
       }
     }
-    return .None;
+    return .None
   }
 
   func performDragOperation(sender: NSDraggingInfo) -> Bool {
@@ -85,7 +85,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
 
   // MARK: Notification Delegate
 
-  func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+  func userNotificationCenter(center: NSUserNotificationCenter,
+    didActivateNotification notification: NSUserNotification) {
     if let userInfo = notification.userInfo, let url = userInfo["url"] as? String {
       NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
     }
@@ -96,14 +97,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
 
   var preferencesController: NSWindowController?
 
-  @IBAction func showPreferences(sender : AnyObject) {
-
+  @IBAction func showPreferences(sender: AnyObject) {
     NSApplication.sharedApplication().activateIgnoringOtherApps(true)
-    if (preferencesController == nil) {
+    if preferencesController == nil {
       let storyboard = NSStoryboard(name: "Preferences", bundle: nil)
       preferencesController = storyboard.instantiateInitialController() as? NSWindowController
     }
-    if (preferencesController != nil) {
+    if preferencesController != nil {
       preferencesController!.showWindow(sender)
     }
   }
@@ -117,36 +117,38 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
     let menu = NSMenu()
 
     menu.addItem(NSMenuItem.separatorItem())
-//    enabledMenuItem = NSMenuItem(title: "Enabled", action: Selector("toggleEnabled:"), keyEquivalent: "")
-//    enabledMenuItem!.state = NSUserDefaults.standardUserDefaults().integerForKey("EnableUploads")
+    //    enabledMenuItem = NSMenuItem(title: "Enabled", action: Selector("toggleEnabled:"), keyEquivalent: "")
+    //    enabledMenuItem!.state = NSUserDefaults.standardUserDefaults().integerForKey("EnableUploads")
     let defaults = NSUserDefaults.standardUserDefaults()
 
     enabledMenuItem.title = "Enabled"
     enabledMenuItem.bind("value", toObject: defaults, withKeyPath: "EnableUploads", options: nil)
 
     menu.addItem(enabledMenuItem)
-    menu.addItem(NSMenuItem(title: "Preferences...", action: Selector("showPreferences:"), keyEquivalent: ""))
-    menu.addItem(NSMenuItem(title: "Quit Captured", action: Selector("terminate:"), keyEquivalent: ""))
+    menu.addItem(NSMenuItem(title: "Preferences...",
+      action: Selector("showPreferences:"), keyEquivalent: ""))
+    menu.addItem(NSMenuItem(title: "Quit Captured",
+      action: Selector("terminate:"), keyEquivalent: ""))
 
     if let button = statusItem.button, let window = button.window {
       window.registerForDraggedTypes([NSFilenamesPboardType])
-      window.delegate = self;
+      window.delegate = self
     }
 
     statusItem.menu = menu
   }
 
-  func setGlobalState(state:CapturedState.States) {
+  func setGlobalState(state: CapturedState.States) {
     if let button = statusItem.button {
       let image = imageForState(state)
       button.image = image
     }
   }
 
-  func imageForState(status:CapturedState.States) -> NSImage {
-    var img : NSImage?
+  func imageForState(status: CapturedState.States) -> NSImage {
+    var img: NSImage?
 
-    switch(status) {
+    switch status {
     case .Normal:
       img = NSImage(named: "StatusMenu")!
       img!.template = true
@@ -165,9 +167,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
   }
 
   // MARK: Dock Icon
-  
+
   func setupDockIcon() {
-    if (NSUserDefaults.standardUserDefaults().boolForKey("EnableDockIcon")) {
+    if NSUserDefaults.standardUserDefaults().boolForKey("EnableDockIcon") {
       let transformState = ProcessApplicationTransformState(kProcessTransformToForegroundApplication)
       var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess))
       TransformProcessType(&psn, transformState)
@@ -176,7 +178,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
 
   // MARK: Global App State
 
-  func stateDidChange(state:CapturedState) {
+  func stateDidChange(state: CapturedState) {
     print(state.current)
     setGlobalState(state.current)
 
@@ -188,12 +190,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
     let nc = NSNotificationCenter.defaultCenter()
     let shortcut = CapturedNotifications.ShortcutsDidUpdate.rawValue
     let state = CapturedNotifications.StateDidChange.rawValue
-    
+
     nc.addObserver(self, selector: "registerShortcuts", name: shortcut, object: nil)
     nc.addObserverForName(shortcut, object: nil, queue: nil) { _ in
       self.registerShortcuts()
     }
-    
+
     nc.addObserverForName(state, object: nil, queue: nil) { notification in
       if let info = notification.userInfo as? [String:AnyObject] {
 //        if let s = info["state"] as? Int, newState = CapturedState(rawValue: s) {
@@ -209,7 +211,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
   func registerShortcuts() {
     var items = [NSMenuItem]()
     for item in statusItem.menu!.itemArray {
-      if (item.tag == magicShortcutMenuItemTag) {
+      if item.tag == magicShortcutMenuItemTag {
         items.append(item)
       }
     }
@@ -225,7 +227,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
     }
   }
 
-  private func registerHotKey(shortcut:Shortcut) {
+  private func registerHotKey(shortcut: Shortcut) {
     if let sc = shortcut.shortcutValue {
       shortcutMonitor.registerShortcut(sc) {
         self.runShortcut(shortcut)
@@ -233,7 +235,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
     }
   }
 
-  private func createShortcutMenu(shortcut:Shortcut) {
+  private func createShortcutMenu(shortcut: Shortcut) {
     if let sc = shortcut.shortcutValue {
       let menuItem = NSMenuItem(title: shortcut.name, action: Selector("menuShortcut:"), keyEquivalent: sc.keyCodeString)
       menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
@@ -244,11 +246,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
     }
   }
 
-  private func runShortcut(shortcut:Shortcut) {
+  private func runShortcut(shortcut: Shortcut) {
     Command(shortcut: shortcut).runAsync()
   }
 
-  @IBAction func menuShortcut(sender:NSMenuItem) {
+  @IBAction func menuShortcut(sender: NSMenuItem) {
     print(sender.representedObject)
     if let shortcut = sender.representedObject as? Shortcut {
       runShortcut(shortcut)
@@ -256,4 +258,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNoti
   }
 
 }
-

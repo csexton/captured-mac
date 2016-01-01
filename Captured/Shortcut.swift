@@ -13,11 +13,11 @@ class Shortcut: NSObject {
 
   dynamic var name = ""
   dynamic var summary = ""
-  var action : String = "SelectArea"
-  var identifier : String = NSUUID().UUIDString
-  var accountIdentifier : String = ""
-  var hotkeyFlags : Int = 0
-  var hotkeyCode : Int = 0
+  var action: String = "SelectArea"
+  var identifier: String = NSUUID().UUIDString
+  var accountIdentifier: String = ""
+  var hotkeyFlags: Int = 0
+  var hotkeyCode: Int = 0
   var shortcutValue: MASShortcut?
   dynamic var annotateImage = Bool(false)
   dynamic var playSound = Bool(false)
@@ -44,8 +44,7 @@ class Shortcut: NSObject {
       let flags = UInt((dictionary.objectForKey("HotkeyFlags")?.integerValue)!)
       let code = UInt((dictionary.objectForKey("HotkeyCode")?.integerValue)!)
       shortcutValue = MASShortcut(keyCode: code, modifierFlags: flags)
-    }
-    else {
+    } else {
       shortcutValue = MASShortcut(keyCode: 23, modifierFlags: 1179648)
     }
   }
@@ -69,7 +68,7 @@ class Shortcut: NSObject {
   // MARK: ScreenCapture
 
   func screenCaptureOptions() -> (ScreenCapture.CommandOptions) {
-    switch(action) {
+    switch action {
     case "SelectWindow":
       return .WindowSelection
     default:

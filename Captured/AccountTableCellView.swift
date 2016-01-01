@@ -9,8 +9,6 @@
 import Cocoa
 
 class AccountTableCellView: NSTableCellView {
-
-  
   @IBOutlet weak var image: NSImageView!
   @IBOutlet weak var nameField: NSTextField!
   @IBOutlet weak var typeField: NSTextField!
@@ -19,5 +17,4 @@ class AccountTableCellView: NSTableCellView {
 
         // Drawing code here.
     }
-    
 }

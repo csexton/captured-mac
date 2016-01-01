@@ -11,9 +11,9 @@ import Just
 
 class ImgSafeUploader {
 
-  let options : [String:String]
+  let options: [String:String]
 
-  init(withOptions opts:[String:String]) {
+  init(withOptions opts: [String:String]) {
     options = opts
   }
 
@@ -32,7 +32,9 @@ class ImgSafeUploader {
       files: ["image": .URL(fileURL, nil)]
     )
 
-    if (r.ok) { /* success! */ }
+    if r.ok {
+      /* success! */
+    }
 
     return r.ok
 
