@@ -651,7 +651,7 @@ Gw
                                         <view key="view" ambiguous="YES" id="8b9-ZZ-Mvd">
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
+                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
                                                     <rect key="frame" x="15" y="-168" width="430" height="98"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="jln-do-1SN">
                                                         <font key="font" metaFont="system"/>

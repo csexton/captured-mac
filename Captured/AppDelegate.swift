@@ -14,7 +14,8 @@ import MASShortcut
 
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, NSUserNotificationCenterDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
+  NSUserNotificationCenterDelegate {
 
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance

@@ -88,8 +88,7 @@
   [self lockFocus];
   NSBitmapImageRep *rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect:[self bounds]];
   [self unlockFocus];
-  NSData *data = [rep representationUsingType:(NSBitmapImageFileType)NSPNGFileType
-                                   properties:(NSDictionary *)nil];
+  NSData *data = [rep representationUsingType:(NSBitmapImageFileType)NSPNGFileType properties:@{}];
 
   [data writeToFile:path
          atomically:YES];
