@@ -81,7 +81,7 @@ class AccountManager: NSObject {
   func accountWithIdentifier(id: String) -> (Account?) {
     for i in 0...(accounts.count-1) {
       if accounts[i]["Identifier"] as? String == id {
-        return Account(dictionary: accounts[i])
+        return accountFactory(accounts[i])
       }
     }
     return nil
@@ -99,7 +99,7 @@ class AccountManager: NSObject {
 
   func eachAccount(block: (Account) -> (Void)) {
     for d in accounts {
-      block(Account(dictionary: d))
+      block(accountFactory(d))
     }
   }
 

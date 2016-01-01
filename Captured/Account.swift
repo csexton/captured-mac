@@ -24,6 +24,7 @@ class Account: NSObject {
   override init() {
     super.init()
     type = accountType()
+    loadSecrets()
   }
 
   // MARK: Methods

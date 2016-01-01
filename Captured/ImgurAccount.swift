@@ -21,4 +21,12 @@ class ImgurAccount: Account {
       return false
     }
   }
+
+  override func loadSecrets() {
+    super.loadSecrets()
+
+    if let cid = NSUserDefaults.standardUserDefaults().stringForKey("ImgurClientID") {
+      secrets["client_id"] = cid
+    }
+  }
 }
