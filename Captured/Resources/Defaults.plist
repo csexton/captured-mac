@@ -39,23 +39,6 @@
 			<key>Name</key>
 			<string>Default Imgur</string>
 			<key>Summary</key>
-			<string>Upload to Imgur</string>
-			<key>Type</key>
-			<string>Imgur</string>
-			<key>Identifier</key>
-			<string>E31AA727-7F9E-4B8A-881C-5F91F5BE0189</string>
-			<key>ReadOnly</key>
-			<false/>
-			<key>Options</key>
-			<dict>
-				<key>client_id</key>
-				<string>252eab4a4dee27d</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Default Imgur</string>
-			<key>Summary</key>
 			<string>Anonymously Upload to Imgur</string>
 			<key>Type</key>
 			<string>Imgur</string>
@@ -63,11 +46,18 @@
 			<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 			<key>ReadOnly</key>
 			<true/>
-			<key>Options</key>
-			<dict>
-				<key>client_id</key>
-				<string>252eab4a4dee27d</string>
-			</dict>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Default Imgur</string>
+			<key>Summary</key>
+			<string>Upload to Imgur</string>
+			<key>Type</key>
+			<string>Imgur</string>
+			<key>Identifier</key>
+			<string>E31AA727-7F9E-4B8A-881C-5F91F5BE0189</string>
+			<key>ReadOnly</key>
+			<false/>
 		</dict>
 	</array>
 	<key>NumberOfHistoryItems</key>

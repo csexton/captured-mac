@@ -15,9 +15,15 @@ class Account: NSObject {
   dynamic var summary = ""
   var readOnly = Bool(false)
   var identifier: String = NSUUID().UUIDString
-  var options = [String:String]()
   var secrets = [String:String]()
   var type: String = ""
+
+  private let locksmithService = "Captured"
+  private var locksmithUserAccount: String {
+    get {
+      return "\(type): \(identifier)"
+    }
+  }
 
   // MARK: Initers
 
@@ -28,11 +34,6 @@ class Account: NSObject {
   }
 
   // MARK: Methods
-  func mergeOptions(dict: [String:String]) {
-    for (key, value) in dict {
-      options[key] = value
-    }
-  }
 
   func accountType() -> String {
     return "None"
@@ -48,7 +49,6 @@ class Account: NSObject {
     summary = dictionary.objectForKey("Summary") as! String
     readOnly = dictionary["ReadOnly"] as! Bool
     identifier = dictionary.objectForKey("Identifier") as! String
-    options = dictionary.objectForKey("Options") as! [String:String]
 
     loadSecrets()
   }
@@ -61,23 +61,25 @@ class Account: NSObject {
       "Summary":summary,
       "ReadOnly": Bool(readOnly),
       "Identifier": identifier,
-      "Options": options
     ])
   }
 
   func saveSecrets() {
     do {
-      try Locksmith.updateData(secrets, forUserAccount: identifier, inService: type)
+      try Locksmith.updateData(secrets, forUserAccount: locksmithUserAccount,
+        inService: locksmithService)
     } catch {
       print(error)
     }
   }
 
   func loadSecrets() {
-    if let s = Locksmith.loadDataForUserAccount(identifier, inService: type) as? [String:String] {
+    if let s = Locksmith.loadDataForUserAccount(locksmithUserAccount,
+      inService: locksmithService) as? [String:String] {
       secrets = s
     }
   }
+
 
 
 }
