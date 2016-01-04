@@ -15,9 +15,12 @@ static size_t CHAR_COUNT = 62;
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
 
-@implementation NSData (WithBase64)
 
-- (NSString *)base64EncodedString {
+@implementation CloudUploader
+
+# pragma mark: Imported from Utilities
+
+- (NSString *)base64EncodedString:(NSData *) dataSelf {
   NSMutableString *result;
   unsigned char *raw;
   unsigned long length;
@@ -25,13 +28,13 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   long cursor;
   unsigned char inbytes[3], outbytes[4];
 
-  length = [self length];
+  length = [dataSelf length];
 
   if (length < 1) {
     return @"";
   }
   result = [NSMutableString stringWithCapacity:length];
-  raw = (unsigned char *)[self bytes];
+  raw = (unsigned char *)[dataSelf bytes];
 
   // Take 3 chars at a time, and encode to 4
   for (cursor = 0; cursor < length; cursor += 3) {
@@ -70,13 +73,6 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   return [NSString stringWithString:result]; // convert to immutable string
 }
 
-@end
-
-
-@implementation CloudUploader
-
-# pragma mark: Imported from Utilities
-
 - (NSString *)removeAnyTrailingSlashes:(NSString *)str {
   if (str) {
     if ([str hasSuffix:@"/"]) {
@@ -109,7 +105,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   CCHmacFinal(&context, digestRaw);
   NSData *digestData = [NSData dataWithBytes:digestRaw
                                       length:CC_SHA1_DIGEST_LENGTH];
-  return [digestData base64EncodedString];
+  return [self base64EncodedString:digestData];
 }
 
 - (NSString *)generateS3TempURL:(NSString *)baseUrl bucketName:(NSString *)bucketName objectName:(NSString *)objectName minutesToExpiration:(NSUInteger)minutesToExpiration {
