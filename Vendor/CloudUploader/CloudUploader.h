@@ -14,9 +14,9 @@
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
 
-@property (retain) NSString* filePath;
-@property (retain) NSString* uploadUrl;
-@property (retain) NSString* deleteUrl;
+@property (retain) NSString *filePath;
+@property (retain) NSString *uploadUrl;
+@property (retain) NSString *deleteUrl;
 
 
 @end
