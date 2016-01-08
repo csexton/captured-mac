@@ -14,11 +14,54 @@ static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 static size_t CHAR_COUNT = 62;
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-
-
 @implementation CloudUploader
 
-# pragma mark: Imported from Utilities
+#pragma mark: New init method
+
+- (id)initWithSettings:(NSDictionary*)dict {
+  self = [super init];
+  if (self) {
+    
+    self.accessKey = dict[@"access_key"];
+    self.secretKey = dict[@"secret_key"];
+    self.bucket = dict[@"bucket_name"];
+    self.publicUrl = dict[@"public_url"];
+
+    // TODO Plumb through all the settings!
+
+    if (dict[@"file_name_length"]) {
+      self.nameLength = [dict[@"file_name_length"] integerValue];
+    } else {
+      self.nameLength = 5;
+    }
+
+    if (dict[@"reduced_redundancy_storage"]) {
+      self.reducedRedundancy = [dict[@"reduced_redundancy_storage"] boolValue];
+    } else {
+      self.reducedRedundancy = YES;
+    }
+
+    if (dict[@"privateUpload"]) {
+      self.privateUpload = [dict[@"private_upload"] boolValue];
+    } else {
+      self.privateUpload = NO;
+    }
+
+    if (dict[@"minutesToExpiration"]) {
+      self.minutesToExpiration = [dict[@"minutesToExpiration"] integerValue];
+    } else {
+      self.minutesToExpiration = 20160; // two weeks
+    }
+
+    return self;
+  }
+
+  return nil;
+}
+
+
+
+#pragma mark: Imported from Utilities
 
 - (NSString *)base64EncodedString:(NSData *) dataSelf {
   NSMutableString *result;
@@ -111,68 +154,42 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 - (NSString *)generateS3TempURL:(NSString *)baseUrl bucketName:(NSString *)bucketName objectName:(NSString *)objectName minutesToExpiration:(NSUInteger)minutesToExpiration {
   NSUInteger expirationTime = time(NULL) + 60 * minutesToExpiration;
   NSString *stringToSign = [NSString stringWithFormat:@"GET\n\n\n%ld\n/%@/%@", (long)expirationTime, bucketName, objectName];
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *accessKey = [defaults stringForKey:@"S3AccessKey"];
-  NSString *secretKey = [defaults stringForKey:@"S3SecretKey"];
   NSString *base64String = [self getHmacSha1:stringToSign
-                                   secretKey:secretKey];
-  NSString *url = [NSString stringWithFormat:@"%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", baseUrl, accessKey, base64String, (long)expirationTime];
+                                   secretKey:self.secretKey];
+  NSString *url = [NSString stringWithFormat:@"%@?AWSAccessKeyId=%@&Signature=%@&Expires=%ld", baseUrl, self.accessKey, base64String, (long)expirationTime];
   return url;
-}
-
-#pragma mark Callbacks
-
-
-- (void)uploadFailed:(id)notUsed {
-  NSLog(@"Upload Failed");
-}
-
-- (void)uploadSuccess:(NSDictionary *)dict {
-  NSLog(@"Upload Success: %@", dict);
 }
 
 #pragma mark Original Implementaiton
 
-- (void)uploadFile:(NSString *)sourceFile {
+- (BOOL)uploadFile:(NSString *)sourceFile {
   [self setFilePath:sourceFile];
 
-  // get the aws keys and bucket name from the defaults
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *accessKey = [defaults stringForKey:@"S3AccessKey"];
-  NSString *secretKey = [defaults stringForKey:@"S3SecretKey"];
-  NSString *bucket = [defaults stringForKey:@"S3Bucket"];
-  NSString *publicUrl = [defaults stringForKey:@"S3URL"];
-  NSInteger nameLength = [defaults integerForKey:@"S3FileNameLength"];
-  BOOL reducedRedundancy = [defaults boolForKey:@"S3ReducedRedundancyStorage"];
-  BOOL privateUpload = [defaults boolForKey:@"S3PrivateUpload"];
-  NSInteger minutesToExpiration = [defaults integerForKey:@"S3MinutesToExpiration"];
-
   // validate the inputs
-  if (!accessKey || [accessKey length] == 0 || !secretKey || [secretKey length] == 0 || !bucket || [bucket length] == 0) {
-    [self uploadFailed:nil];
-    return;
+  if (!self.accessKey || [self.accessKey length] == 0 || !self.secretKey || [self.secretKey length] == 0 || !self.bucket || [self.bucket length] == 0) {
+    return false;
   }
   // generate a unique filename
-  NSString *tempNam = [self createUniqueFilename:nameLength];
+  NSString *tempNam = [self createUniqueFilename:self.nameLength];
 
-  if (publicUrl) {
-    publicUrl = [self removeAnyTrailingSlashes:publicUrl];
-    publicUrl = [NSString stringWithFormat:@"%@/%@", publicUrl, tempNam];
+  if (self.publicUrl) {
+    self.publicUrl = [self removeAnyTrailingSlashes:self.publicUrl];
+    self.publicUrl = [NSString stringWithFormat:@"%@/%@", self.publicUrl, tempNam];
   } else {
-    publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam];
+    self.publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", self.bucket, tempNam];
   }
   // if this is a private upload, then we need to generate a URL with query params to allow access
-  if (privateUpload) {
-    publicUrl = [self generateS3TempURL:publicUrl
-                             bucketName:bucket
-                             objectName:tempNam
-                    minutesToExpiration:minutesToExpiration];
+  if (self.privateUpload) {
+    self.publicUrl = [self generateS3TempURL:self.publicUrl
+                                  bucketName:self.bucket
+                                  objectName:tempNam
+                         minutesToExpiration:self.minutesToExpiration];
   }
   // set the upload url for the response
-  [self setUploadUrl:publicUrl];
+  [self setUploadUrl:self.publicUrl];
 
   // format the url
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", bucket, tempNam]];
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", self.bucket, tempNam]];
   [self setDeleteUrl:[url absoluteString]];
 
   // create the request object
@@ -192,28 +209,28 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   [dateFormatter setTimeZone:timeZone];
   NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
   NSString *stringToSign = [NSString stringWithFormat:@"%@\n\n%@\n%@\n", httpVerb, contentType, timestamp];
-  if (!privateUpload) {
+  if (!self.privateUpload) {
     stringToSign = [stringToSign stringByAppendingString:@"x-amz-acl:public-read\n"];
   }
-  if (reducedRedundancy) {
+  if (self.reducedRedundancy) {
     stringToSign = [stringToSign stringByAppendingFormat:@"x-amz-storage-class:REDUCED_REDUNDANCY\n"];
   }
-  stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", bucket, tempNam];
+  stringToSign = [stringToSign stringByAppendingFormat:@"/%@/%@", self.bucket, tempNam];
 
   // create the headers
   NSString *base64String = [self getHmacSha1:stringToSign
-                                   secretKey:secretKey];
-  [request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String]
+                                   secretKey:self.secretKey];
+  [request addValue:[NSString stringWithFormat:@"AWS %@:%@", self.accessKey, base64String]
        forHTTPHeaderField:@"Authorization"];
   [request addValue:contentType
        forHTTPHeaderField:@"Content-Type"];
   [request addValue:timestamp
        forHTTPHeaderField:@"Date"];
-  if (!privateUpload) {
+  if (!self.privateUpload) {
     [request addValue:@"public-read"
            forHTTPHeaderField:@"x-amz-acl"];
   }
-  if (reducedRedundancy) {
+  if (self.reducedRedundancy) {
     [request addValue:@"REDUCED_REDUNDANCY"
            forHTTPHeaderField:@"x-amz-storage-class"];
   }
@@ -222,62 +239,30 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   [request addValue:[NSString stringWithFormat:@"%llu", fileSize]
        forHTTPHeaderField:@"Content-Length"];
 
-  // do the upload
-  [NSURLConnection connectionWithRequest:request
-                                delegate:self];
-}
+  NSError *error = nil;
+  NSURLResponse *response = nil;
+  [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-  NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
-  if ([r statusCode] != 200) {
-    [self uploadFailed:nil];
-  } else {
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"CloudProvider", @"Type",
-                          self.uploadUrl, @"ImageURL",
-                          self.deleteUrl, @"DeleteImageURL",
-                          self.filePath, @"FilePath",
-                          nil];
-    [self uploadSuccess:dict];
-  }
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-  NSString *textResponse = [[NSString alloc] initWithData:data
-                                                 encoding:NSUTF8StringEncoding];
-  if (textResponse) {
-    NSError *error = nil;
-    NSXMLDocument *doc = [[NSXMLDocument alloc] initWithXMLString:textResponse
-                                                          options:NSXMLDocumentTidyXML
-                                                            error:&error];
-    if (!error) {
-      NSArray *nodes = [doc nodesForXPath:@"/Error/Message"
-                                    error:&error];
-      if (!error && [nodes count] > 0) {
-        NSLog(@"Failed to upload file with error: %@", [[nodes objectAtIndex:0] stringValue]);
-      }
+  if(error == nil) {
+    NSHTTPURLResponse *r = (NSHTTPURLResponse *)response;
+    if ([r statusCode] != 200) {
+      NSLog(@"Failed to post to S3. Response from server: %@", response);
     } else {
-      NSLog(@"Failed to parse response: %@", error);
+      return YES;
     }
+    
+  } else {
+    NSLog(@"Failed to post to S3 with error: %@", error);
   }
-}
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-  [self uploadFailed:nil];
-  NSLog(@"Error while uploading to cloud provider: %@", error);
+  return NO;
 }
 
 - (NSString *)testConnection {
   NSString *testResponse = nil;
 
-  // get the aws keys and bucket name from the defaults
-  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-  NSString *bucket = [defaults stringForKey:@"S3Bucket"];
-  NSString *accessKey = [defaults stringForKey:@"S3AccessKey"];
-  NSString *secretKey = [defaults stringForKey:@"S3SecretKey"];
-
   // format the url
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", bucket]];
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", self.bucket]];
 
   // create the request object
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -293,12 +278,12 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   [dateFormatter setTimeZone:timeZone];
   NSString *timestamp = [dateFormatter stringFromDate:[NSDate date]];
   NSString *stringToSign = [NSString stringWithFormat:@"%@\n\n\n%@\n", httpVerb, timestamp];
-  stringToSign = [stringToSign stringByAppendingFormat:@"/%@", bucket];
+  stringToSign = [stringToSign stringByAppendingFormat:@"/%@", self.bucket];
 
   // create the headers
   NSString *base64String = [self getHmacSha1:stringToSign
-                                   secretKey:secretKey];
-  [request addValue:[NSString stringWithFormat:@"AWS %@:%@", accessKey, base64String]
+                                   secretKey:self.secretKey];
+  [request addValue:[NSString stringWithFormat:@"AWS %@:%@", self.accessKey, base64String]
        forHTTPHeaderField:@"Authorization"];
   [request addValue:timestamp
        forHTTPHeaderField:@"Date"];

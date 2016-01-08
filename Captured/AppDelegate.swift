@@ -180,9 +180,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   // MARK: Global App State
 
   func stateDidChange(state: CapturedState) {
-    print(state.current)
     setGlobalState(state.current)
-
   }
 
   // MARK: Manage Global HotKey and Shortcuts
@@ -252,7 +250,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   @IBAction func menuShortcut(sender: NSMenuItem) {
-    print(sender.representedObject)
     if let shortcut = sender.representedObject as? Shortcut {
       runShortcut(shortcut)
     }

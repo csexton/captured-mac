@@ -36,7 +36,7 @@ class Command {
       }
 
       if let account = self.shortcut.getAccount() {
-        Upload(account: account, path: path).run() { upload in
+        UploadManager(account: account, path: path).run() { upload in
           if let url = upload.url {
             self.copyToPasteboard(url)
             self.postUserNotification(account, url: url, path: path)

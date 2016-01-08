@@ -150,8 +150,13 @@
 
 Jorge Velásquez for his contributions to the code, inspiration and motivation.
 
-Jonathan Haggard for this shiny status menu icon.
+Jonathan Haggard for the shiny status menu icon.
 
+Captured makes use of the following open source libraries:
+
+- Matthew Palmer's Locksmith
+- Vadim Shpakovski's MASShortcut
+- Daniel Duan's Just HTTP
 </string>
                                                     <attributes>
                                                         <font key="NSFont" size="12" name="Helvetica"/>
@@ -579,6 +584,16 @@ Gw
                                     <binding destination="9mh-Wm-Shx" name="value" keyPath="representedObject.name" id="fGh-AA-07R"/>
                                 </connections>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9PF-6g-c23">
+                                <rect key="frame" x="134" y="50" width="111" height="18"/>
+                                <buttonCell key="cell" type="check" title="Private Upload" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xZ8-Bt-r3n">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="9mh-Wm-Shx" name="value" keyPath="representedObject.privateUpload" id="7f7-uz-FCw"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -591,6 +606,7 @@ Gw
                 </viewController>
                 <customObject id="RXX-Oi-EgS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="HDd-wm-0S9"/>
+                <userDefaultsController id="j0z-Jr-Lkm"/>
             </objects>
             <point key="canvasLocation" x="199" y="853.5"/>
         </scene>

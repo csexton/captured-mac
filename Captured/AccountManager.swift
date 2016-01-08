@@ -26,8 +26,6 @@ class AccountManager: NSObject {
     accounts.removeAll()
     if let accts = (defaults.objectForKey("Accounts") as? [NSMutableDictionary]) {
       for acct in accts {
-        print("Loading accounts:")
-        print(acct)
         accounts.append(acct)
       }
     }
@@ -55,6 +53,7 @@ class AccountManager: NSObject {
       accounts.append(updated.toDict())
     }
 
+    updated.saveSecrets()
     saveAll()
     notifyUpdates()
   }

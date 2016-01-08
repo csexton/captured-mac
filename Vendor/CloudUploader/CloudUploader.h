@@ -10,19 +10,23 @@
 
 @interface CloudUploader : NSObject
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error;
+- (id)initWithSettings:(NSDictionary*)dict;
 
-// Virtual Interface, these should be be implemented in the subclass
-- (void) uploadFile:(NSString*)filename;
-- (void) deleteImage:(NSString*)deleteImageURL;
+- (BOOL) uploadFile:(NSString*)filename;
 - (NSString*)testConnection;
-
 
 @property (retain) NSString *filePath;
 @property (retain) NSString *uploadUrl;
 @property (retain) NSString *deleteUrl;
+@property BOOL success;
 
+@property NSString *accessKey;
+@property NSString *secretKey;
+@property NSString *bucket;
+@property NSString *publicUrl;
+@property NSInteger nameLength;
+@property BOOL reducedRedundancy;
+@property BOOL privateUpload;
+@property NSInteger minutesToExpiration;
 
 @end

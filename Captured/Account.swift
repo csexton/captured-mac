@@ -15,8 +15,9 @@ class Account: NSObject {
   dynamic var summary = ""
   var readOnly = Bool(false)
   var identifier: String = NSUUID().UUIDString
-  var secrets = [String:String]()
   var type: String = ""
+
+  var secrets = [String:String]()
 
   private let locksmithService = "Captured"
   private var locksmithUserAccount: String {
@@ -29,8 +30,8 @@ class Account: NSObject {
 
   override init() {
     super.init()
-    type = accountType()
     loadSecrets()
+    type = accountType()
   }
 
   // MARK: Methods
@@ -54,7 +55,6 @@ class Account: NSObject {
   }
 
   func toDict() -> NSMutableDictionary {
-    self.saveSecrets()
     return NSMutableDictionary(dictionary: [
       "Type":type,
       "Name":name,
@@ -66,20 +66,20 @@ class Account: NSObject {
 
   func saveSecrets() {
     do {
-      try Locksmith.updateData(secrets, forUserAccount: locksmithUserAccount,
-        inService: locksmithService)
+      if secrets.count > 0 {
+        try Locksmith.updateData(secrets, forUserAccount: locksmithUserAccount,
+          inService: locksmithService)
+      }
     } catch {
-      print(error)
+      NSLog("Locksmith Error: \(error)")
     }
   }
 
   func loadSecrets() {
     if let s = Locksmith.loadDataForUserAccount(locksmithUserAccount,
       inService: locksmithService) as? [String:String] {
-      secrets = s
+        secrets = s
     }
   }
-
-
 
 }

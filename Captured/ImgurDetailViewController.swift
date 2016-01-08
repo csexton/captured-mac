@@ -57,10 +57,10 @@ class ImgurDetailViewController: AccountDetailViewController {
         if result.ok {
           if let r = self.representedObject as? ImgurAccount {
             if let jsonData = result.json as? [String:AnyObject] {
-              r.secrets["account_id"] = jsonData["account_id"] as? String
-              r.secrets["access_token"] = jsonData["access_token"] as? String
-              r.secrets["refresh_token"] = jsonData["refresh_token"] as? String
-              r.secrets["account_username"] = jsonData["account_username"] as? String
+              r.accountID = jsonData["account_id"] as? String
+              r.accessToken = jsonData["access_token"] as? String
+              r.refreshToken = jsonData["refresh_token"] as? String
+              r.accountUsername = jsonData["account_username"] as? String
               r.name = "\(jsonData["account_username"]!)'s Imgur"
               dispatch_async(dispatch_get_main_queue()) {
                 self.showTab(.Edit)

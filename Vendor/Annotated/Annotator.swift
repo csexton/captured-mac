@@ -29,7 +29,6 @@ class Annotator {
     dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
 
     userCanceled = self.annotatedWindow!.userCanceled
-    print("done")
   }
   
 }

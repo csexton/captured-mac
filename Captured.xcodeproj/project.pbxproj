@@ -19,6 +19,8 @@
 		B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9DF1C18B7D70085577D /* S3Account.swift */; };
 		B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */; };
 		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
+		B56E8B1B1C3830C10059C6AC /* CloudUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B56E8B1A1C3830C10059C6AC /* CloudUploader.m */; };
+		B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */; };
 		B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */; };
 		B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */; };
 		B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */; };
@@ -33,7 +35,7 @@
 		B59315B21C24FE3300E7DD86 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B11C24FE3300E7DD86 /* Command.swift */; };
 		B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B51C25AA3F00E7DD86 /* CapturedState.swift */; };
 		B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */; };
-		B59315BA1C265A3200E7DD86 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B91C265A3200E7DD86 /* Upload.swift */; };
+		B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B91C265A3200E7DD86 /* UploadManager.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
 		B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; };
@@ -102,6 +104,9 @@
 		B55BB9DF1C18B7D70085577D /* S3Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Account.swift; sourceTree = "<group>"; };
 		B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3DetailViewController.swift; sourceTree = "<group>"; };
 		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
+		B56E8B191C3830C10059C6AC /* CloudUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CloudUploader.h; path = CloudUploader/CloudUploader.h; sourceTree = "<group>"; };
+		B56E8B1A1C3830C10059C6AC /* CloudUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CloudUploader.m; path = CloudUploader/CloudUploader.m; sourceTree = "<group>"; };
+		B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Uploader.swift; sourceTree = "<group>"; };
 		B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTableCellView.swift; sourceTree = "<group>"; };
 		B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgSafeUploader.swift; sourceTree = "<group>"; };
@@ -122,7 +127,7 @@
 		B59315B11C24FE3300E7DD86 /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		B59315B51C25AA3F00E7DD86 /* CapturedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedState.swift; sourceTree = "<group>"; };
 		B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedNotifications.swift; sourceTree = "<group>"; };
-		B59315B91C265A3200E7DD86 /* Upload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
+		B59315B91C265A3200E7DD86 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
@@ -183,14 +188,14 @@
 		B50F2F711C03FF6B004AB2B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
-				B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */,
 				B5FB987F1C0156B0006BC590 /* Account.swift */,
+				B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */,
 				B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */,
+				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
 				B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */,
+				B55BB9DF1C18B7D70085577D /* S3Account.swift */,
 				B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */,
 				B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */,
-				B55BB9DF1C18B7D70085577D /* S3Account.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -199,8 +204,8 @@
 		B50F2F761C04054F004AB2B1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B5888A761BFFEE7D00DEA068 /* Info.plist */,
 				B50F2F771C04057E004AB2B1 /* Defaults.plist */,
+				B5888A761BFFEE7D00DEA068 /* Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -208,10 +213,11 @@
 		B50F2F791C0513DD004AB2B1 /* Uploaders */ = {
 			isa = PBXGroup;
 			children = (
-				B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */,
-				B50F2F7C1C051415004AB2B1 /* Uploader.swift */,
 				B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */,
-				B59315B91C265A3200E7DD86 /* Upload.swift */,
+				B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */,
+				B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */,
+				B50F2F7C1C051415004AB2B1 /* Uploader.swift */,
+				B59315B91C265A3200E7DD86 /* UploadManager.swift */,
 			);
 			name = Uploaders;
 			path = Captured;
@@ -221,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				B5CD6B171C34432B0035821D /* Annotated */,
+				B56E8B181C3830B30059C6AC /* CloudUploader */,
 				B5CD6B131C3442DE0035821D /* Captured-Bridging-Header.h */,
 			);
 			name = Vendor;
@@ -242,6 +249,15 @@
 			name = Controllers;
 			path = Captured;
 			sourceTree = SOURCE_ROOT;
+		};
+		B56E8B181C3830B30059C6AC /* CloudUploader */ = {
+			isa = PBXGroup;
+			children = (
+				B56E8B191C3830C10059C6AC /* CloudUploader.h */,
+				B56E8B1A1C3830C10059C6AC /* CloudUploader.m */,
+			);
+			name = CloudUploader;
+			sourceTree = "<group>";
 		};
 		B580EA3A1C21EDB800794567 /* Views */ = {
 			isa = PBXGroup;
@@ -520,6 +536,7 @@
 				B5CD6B301C3443400035821D /* GradientView.m in Sources */,
 				B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */,
 				B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */,
+				B56E8B1B1C3830C10059C6AC /* CloudUploader.m in Sources */,
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
 				B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
@@ -534,7 +551,7 @@
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
 				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,
 				B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */,
-				B59315BA1C265A3200E7DD86 /* Upload.swift in Sources */,
+				B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */,
 				B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */,
 				B50F2F751C03FFEB004AB2B1 /* ShortcutManager.swift in Sources */,
 				B5CD6B2D1C3443400035821D /* AnnotatedImageView.m in Sources */,
@@ -543,6 +560,7 @@
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
+				B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */,
 				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,
 				B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */,
 				B5CD6B281C3443400035821D /* AArrow.m in Sources */,

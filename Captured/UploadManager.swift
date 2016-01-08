@@ -6,7 +6,7 @@
 //  Copyright © 2015 Christopher Sexton. All rights reserved.
 //
 
-class Upload {
+class UploadManager {
 
   var path: String?
   var url: String?
@@ -17,7 +17,7 @@ class Upload {
     self.path = path
   }
 
-  func run(success:(upload:Upload) -> (Void)) {
+  func run(success:(upload:UploadManager) -> (Void)) {
     let uploader = uploadFactory(account.type)
 
     if uploader.upload(path!) {
@@ -27,6 +27,14 @@ class Upload {
   }
 
   func uploadFactory(type: String) -> (Uploader) {
-    return ImgurUploader(account: account)
+    switch type {
+    case "Amazon S3":
+      return S3Uploader(account: account)
+    case "Imgur":
+      return ImgurUploader(account: account)
+    default:
+      // TODO: Better Default
+      return ImgurUploader(account: account)
+    }
   }
 }

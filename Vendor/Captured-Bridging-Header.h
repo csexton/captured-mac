@@ -3,3 +3,4 @@
 //
 
 #import "AnnotatedImageController.h"
+#import "CloudUploader.h"

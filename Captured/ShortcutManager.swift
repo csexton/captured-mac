@@ -18,8 +18,6 @@ class ShortcutManager: NSObject {
     shortcuts.removeAll()
     if let accts = (defaults.objectForKey("Shortcuts") as? [NSMutableDictionary]) {
       for acct in accts {
-        print("Loading accounts:")
-        print(acct)
         shortcuts.append(acct)
       }
     }
