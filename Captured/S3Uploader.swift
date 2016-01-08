@@ -20,6 +20,8 @@ class S3Uploader: Uploader {
   func upload(path: String) -> Bool {
     let cloudUploader = CloudUploader(settings: settings)
 
+    print(cloudUploader.testConnection())
+
     if cloudUploader.uploadFile(path) {
       linkURL = cloudUploader.uploadUrl
       CapturedState.broadcastStateChange(.Success)

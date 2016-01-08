@@ -10,20 +10,20 @@
 
 @interface CloudUploader : NSObject
 
-- (id)initWithSettings:(NSDictionary*)dict;
+- (nonnull id)initWithSettings:(NSDictionary* _Nullable)dict;
 
-- (BOOL) uploadFile:(NSString*)filename;
-- (NSString*)testConnection;
+- (BOOL) uploadFile:(NSString * _Nonnull)filename;
+- (NSString * _Nonnull)testConnection;
 
-@property (retain) NSString *filePath;
-@property (retain) NSString *uploadUrl;
-@property (retain) NSString *deleteUrl;
+@property (retain, nullable) NSString *filePath;
+@property (retain, nullable) NSString *uploadUrl;
+@property (retain, nullable) NSString *deleteUrl;
 @property BOOL success;
 
-@property NSString *accessKey;
-@property NSString *secretKey;
-@property NSString *bucket;
-@property NSString *publicUrl;
+@property (nullable) NSString *accessKey;
+@property (nullable) NSString *secretKey;
+@property (nullable) NSString *bucket;
+@property (nullable) NSString *publicUrl;
 @property NSInteger nameLength;
 @property BOOL reducedRedundancy;
 @property BOOL privateUpload;
