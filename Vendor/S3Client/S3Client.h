@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CloudUploader : NSObject
+@interface S3Client : NSObject
 
 - (nonnull id)initWithSettings:(NSDictionary* _Nullable)dict;
 

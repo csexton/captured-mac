@@ -3,4 +3,5 @@
 //
 
 #import "AnnotatedImageController.h"
-#import "CloudUploader.h"
+#import "S3Client.h"
+#import "SFTPClient.h"

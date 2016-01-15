@@ -8,13 +8,13 @@
 
 #import <CommonCrypto/CommonHMAC.h>
 
-#import "CloudUploader.h"
+#import "S3Client.h"
 
 static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 static size_t CHAR_COUNT = 62;
 static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-@implementation CloudUploader
+@implementation S3Client
 
 #pragma mark: New init method
 

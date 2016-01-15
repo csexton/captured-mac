@@ -8,7 +8,6 @@
 
 import Foundation
 
-// This class is just a thin wrapper around the legacy CloudUploader
 class S3Uploader: Uploader {
   var settings: [String:String]
   private var linkURL: String?
@@ -18,12 +17,12 @@ class S3Uploader: Uploader {
 
   }
   func upload(path: String) -> Bool {
-    let cloudUploader = CloudUploader(settings: settings)
+    let s3Client = S3Client(settings: settings)
 
-    print(cloudUploader.testConnection())
+    print(s3Client.testConnection())
 
-    if cloudUploader.uploadFile(path) {
-      linkURL = cloudUploader.uploadUrl
+    if s3Client.uploadFile(path) {
+      linkURL = s3Client.uploadUrl
       CapturedState.broadcastStateChange(.Success)
       return true
     } else {
