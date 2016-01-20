@@ -35,6 +35,8 @@ class AccountPreferencesViewController: NSViewController,
       self.performSegue(.Imgur, sender: account)
     case "Amazon S3":
       self.performSegue(.S3, sender: account)
+    case "SFTP":
+      self.performSegue(.SFTP, sender: account)
     default:
       print("Unknown Account type. Make sure the type field is set for this account.")
     }
@@ -51,7 +53,7 @@ class AccountPreferencesViewController: NSViewController,
     case 2:
       self.performSegue(.Dropbox, sender: nil)
     case 3:
-      self.performSegue(.SFTP, sender: nil)
+      self.performSegue(.SFTP, sender: SFTPAccount())
     case 4:
       self.performSegue(.Imgur, sender: ImgurAccount())
     default:

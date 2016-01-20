@@ -30,6 +30,8 @@ class UploadManager {
     switch type {
     case "Amazon S3":
       return S3Uploader(account: account)
+    case "SFTP":
+      return SFTPUploader(account: account)
     case "Imgur":
       return ImgurUploader(account: account)
     default:

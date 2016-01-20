@@ -10,7 +10,6 @@ import Cocoa
 import Locksmith
 
 class Account: NSObject {
-
   dynamic var name = ""
   dynamic var summary = ""
   var readOnly = Bool(false)

@@ -105,10 +105,10 @@ class AccountManager: NSObject {
   func accountFactory(dictionary: NSMutableDictionary) -> (Account) {
     if let type = dictionary["Type"] as? String {
       switch type {
-      case "Anonymous Imgur":
-        return AnonImgurAccount(dictionary: dictionary)
       case "Imgur":
         return ImgurAccount(dictionary: dictionary)
+      case "SFTP":
+        return SFTPAccount(dictionary: dictionary)
       case "Amazon S3":
         return S3Account(dictionary: dictionary)
       default:

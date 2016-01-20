@@ -23,7 +23,6 @@ class AccountTests: XCTestCase {
   func testInitOverridesType() {
     XCTAssertEqual(Account().type, "None")
     XCTAssertEqual(ImgurAccount().type, "Imgur")
-    XCTAssertEqual(AnonImgurAccount().type, "Anonymous Imgur")
 
   }
   

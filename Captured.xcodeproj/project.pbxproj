@@ -18,6 +18,9 @@
 		B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B51AFF9D1C493FF200B0F200 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B51AFF9C1C493FF200B0F200 /* libcurl.tbd */; };
 		B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */; };
+		B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E51C49A646009E9BF0 /* SFTPUploader.swift */; };
+		B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */; };
+		B54406EA1C49AB1E009E9BF0 /* SFTPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */; };
 		B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9DF1C18B7D70085577D /* S3Account.swift */; };
 		B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */; };
 		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
@@ -52,7 +55,6 @@
 		B5CD6B2E1C3443400035821D /* Annotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B231C3443400035821D /* Annotator.swift */; };
 		B5CD6B2F1C3443400035821D /* APoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B251C3443400035821D /* APoint.m */; };
 		B5CD6B301C3443400035821D /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B271C3443400035821D /* GradientView.m */; };
-		B5E238BE1C10D87D00568742 /* AnonImgurAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */; };
 		B5E238C01C11FDC600568742 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E238BF1C11FDC600568742 /* AccountTests.swift */; };
 		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
 		B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -106,6 +108,9 @@
 		B50F2F7E1C055487004AB2B1 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = SOURCE_ROOT; };
 		B51AFF9C1C493FF200B0F200 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurAccount.swift; sourceTree = "<group>"; };
+		B54406E51C49A646009E9BF0 /* SFTPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPUploader.swift; sourceTree = "<group>"; };
+		B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPDetailViewController.swift; sourceTree = "<group>"; };
+		B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPAccount.swift; sourceTree = "<group>"; };
 		B55BB9DF1C18B7D70085577D /* S3Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Account.swift; sourceTree = "<group>"; };
 		B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3DetailViewController.swift; sourceTree = "<group>"; };
 		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
@@ -154,7 +159,6 @@
 		B5CD6B251C3443400035821D /* APoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APoint.m; path = Annotated/APoint.m; sourceTree = "<group>"; };
 		B5CD6B261C3443400035821D /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientView.h; path = Annotated/GradientView.h; sourceTree = "<group>"; };
 		B5CD6B271C3443400035821D /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientView.m; path = Annotated/GradientView.m; sourceTree = "<group>"; };
-		B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnonImgurAccount.swift; sourceTree = "<group>"; };
 		B5E238BF1C11FDC600568742 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
 		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -205,12 +209,12 @@
 			children = (
 				B5FB987F1C0156B0006BC590 /* Account.swift */,
 				B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */,
-				B5E238BD1C10D87D00568742 /* AnonImgurAccount.swift */,
 				B59315B51C25AA3F00E7DD86 /* CapturedState.swift */,
 				B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */,
 				B55BB9DF1C18B7D70085577D /* S3Account.swift */,
 				B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */,
 				B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */,
+				B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -233,6 +237,7 @@
 				B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */,
 				B50F2F7C1C051415004AB2B1 /* Uploader.swift */,
 				B59315B91C265A3200E7DD86 /* UploadManager.swift */,
+				B54406E51C49A646009E9BF0 /* SFTPUploader.swift */,
 			);
 			name = Uploaders;
 			path = Captured;
@@ -261,6 +266,7 @@
 				B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */,
 				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
 				B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */,
+				B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -562,8 +568,10 @@
 				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
 				B50F2F7B1C051402004AB2B1 /* ImgurUploader.swift in Sources */,
 				B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */,
+				B54406EA1C49AB1E009E9BF0 /* SFTPAccount.swift in Sources */,
 				B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */,
 				B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */,
+				B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */,
 				B5CD6B2A1C3443400035821D /* ADrawable.m in Sources */,
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
 				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,
@@ -574,6 +582,7 @@
 				B5CD6B2D1C3443400035821D /* AnnotatedImageView.m in Sources */,
 				B50481B61C3F527B001B2FDF /* SFTPClient.m in Sources */,
 				B59315B21C24FE3300E7DD86 /* Command.swift in Sources */,
+				B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */,
 				B5CD6B2F1C3443400035821D /* APoint.m in Sources */,
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
@@ -582,7 +591,6 @@
 				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,
 				B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */,
 				B5CD6B281C3443400035821D /* AArrow.m in Sources */,
-				B5E238BE1C10D87D00568742 /* AnonImgurAccount.swift in Sources */,
 				B5CD6B291C3443400035821D /* ABrushStroke.m in Sources */,
 				B50F2F731C03FFB8004AB2B1 /* Shortcut.swift in Sources */,
 			);

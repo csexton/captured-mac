@@ -349,6 +349,7 @@ Captured makes use of the following open source libraries:
                         <outlet property="tableView" destination="Uy7-Lc-Avl" id="0YY-Dz-tS9"/>
                         <segue destination="PXJ-eY-vLX" kind="sheet" identifier="imgurSheetSegue" id="tXr-5p-20S"/>
                         <segue destination="9mh-Wm-Shx" kind="sheet" identifier="s3SheetSegue" id="f9d-Td-McG"/>
+                        <segue destination="RxL-GE-0Wv" kind="sheet" identifier="sftpSheetSegue" id="Mtg-k2-WHd"/>
                     </connections>
                 </viewController>
                 <customObject id="RRh-pT-cbP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -575,7 +576,7 @@ Gw
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUL-JX-eIL">
                                 <rect key="frame" x="136" y="262" width="294" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="td6-D2-pZL">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="My S3 Account" drawsBackground="YES" id="td6-D2-pZL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -609,6 +610,218 @@ Gw
                 <userDefaultsController id="j0z-Jr-Lkm"/>
             </objects>
             <point key="canvasLocation" x="199" y="853.5"/>
+        </scene>
+        <!--SFTP Settings-->
+        <scene sceneID="89g-ik-SP3">
+            <objects>
+                <viewController title="SFTP Settings" id="RxL-GE-0Wv" customClass="SFTPDetailViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Lhm-YL-SXU">
+                        <rect key="frame" x="0.0" y="0.0" width="447" height="347"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3I-qf-v1t">
+                                <rect key="frame" x="365" y="13" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Y8O-cy-y2s">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveButton:" target="RxL-GE-0Wv" id="foW-vn-jNv"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5bE-g3-tl8">
+                                <rect key="frame" x="283" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mgW-z4-z3T">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButton:" target="RxL-GE-0Wv" id="04H-hb-wZq"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ero-2l-7m3">
+                                <rect key="frame" x="18" y="235" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Username:" id="Qec-pj-SrG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L8t-iU-aRk">
+                                <rect key="frame" x="135" y="232" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Username" drawsBackground="YES" id="TPc-qL-1vY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.username" id="osj-dG-y4I"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C1d-fg-GiV">
+                                <rect key="frame" x="18" y="205" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Password:" id="H3D-pQ-cuy">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3u-xu-E15">
+                                <rect key="frame" x="135" y="202" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" id="1EX-xZ-jN1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.password" id="4RH-R3-FZA"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ryM-0w-F1i">
+                                <rect key="frame" x="18" y="175" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Hostname:" id="mX4-q6-aD7">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gnK-qt-7sg">
+                                <rect key="frame" x="135" y="172" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="example.com" drawsBackground="YES" id="M7M-eB-2pu">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.hostname" id="Bo1-hc-q6H"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UJV-Pz-E7K">
+                                <rect key="frame" x="18" y="145" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Path on Server:" id="DOf-3d-vIG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCC-wh-dL5">
+                                <rect key="frame" x="135" y="142" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="path/to/files" drawsBackground="YES" id="DM3-OO-NvP">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.pathOnServer" id="Azi-Rc-1ab"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-UG-GWV">
+                                <rect key="frame" x="18" y="115" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Public URL:" id="TFV-B1-JL9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WCD-ar-Gdf">
+                                <rect key="frame" x="135" y="112" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="http://capturedapp.com/path/to/files" drawsBackground="YES" id="iaN-wq-S3q">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.publicURL" id="jqZ-1G-M8w"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jbs-72-qmA">
+                                <rect key="frame" x="141" y="13" width="139" height="32"/>
+                                <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ncm-y3-Ubm">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="testConnectionButton:" target="9mh-Wm-Shx" id="Ja4-jf-ps7"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N7y-fh-ze0">
+                                <rect key="frame" x="13" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eOS-80-O2u">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="9mh-Wm-Shx" id="ugo-aX-dNN"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C3Y-7Z-TRU">
+                                <rect key="frame" x="17" y="307" width="143" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="SFTP Account" id="z8a-de-tHf">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gHE-LE-Liz">
+                                <rect key="frame" x="18" y="265" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Display Name:" id="X1j-rS-hfC">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Qe-gv-sPX">
+                                <rect key="frame" x="135" y="262" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="My SFTP Account" drawsBackground="YES" id="KBO-EA-lrt">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="value" keyPath="representedObject.name" id="g5U-si-GKs"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tjg-da-SnB">
+                                <rect key="frame" x="16" y="85" width="114" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="File Name Length:" id="sdn-eg-dG3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gx6-hw-wdN">
+                                <rect key="frame" x="134" y="80" width="76" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="GYY-TO-HI8" id="RZC-Kc-E2d">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="WmL-Mx-xLA">
+                                        <items>
+                                            <menuItem title="5" state="on" id="GYY-TO-HI8"/>
+                                            <menuItem title="8" id="JUk-NJ-D4Q"/>
+                                            <menuItem title="34" id="7m1-38-fBc"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="RxL-GE-0Wv" name="selectedIndex" keyPath="representedObject.fileNameLengthIndex" id="lhu-lz-iNQ"/>
+                                </connections>
+                            </popUpButton>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="displayNameField" destination="2Qe-gv-sPX" id="sSm-2p-pt2"/>
+                        <outlet property="hostnameField" destination="gnK-qt-7sg" id="7Oz-c1-9Yc"/>
+                        <outlet property="publicURLField" destination="WCD-ar-Gdf" id="pBY-MZ-ZIw"/>
+                        <outlet property="usernameField" destination="L8t-iU-aRk" id="ZnC-w0-n5m"/>
+                    </connections>
+                </viewController>
+                <customObject id="MCS-FI-rKR" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="sCX-Uh-Esz"/>
+            </objects>
+            <point key="canvasLocation" x="462.5" y="397.5"/>
         </scene>
         <!--Imgur Detail-->
         <scene sceneID="j8E-DI-Mmy">
