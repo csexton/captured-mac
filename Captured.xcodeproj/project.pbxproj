@@ -16,7 +16,9 @@
 		B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7C1C051415004AB2B1 /* Uploader.swift */; };
 		B50F2F7F1C055487004AB2B1 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; };
 		B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
 		B51AFF9D1C493FF200B0F200 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B51AFF9C1C493FF200B0F200 /* libcurl.tbd */; };
+		B5298ABE1C5174DD0093C936 /* CapturedHelper.app in Copy Helper Apps */ = {isa = PBXBuildFile; fileRef = B5298ABC1C51705F0093C936 /* CapturedHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */; };
 		B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E51C49A646009E9BF0 /* SFTPUploader.swift */; };
 		B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */; };
@@ -43,6 +45,8 @@
 		B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B91C265A3200E7DD86 /* UploadManager.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
+		B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */; };
+		B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; };
 		B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B391001C0A68A400E057AF /* ScreenCapture.swift */; };
@@ -64,6 +68,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B5298ABB1C51705F0093C936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5298AB71C51705E0093C936 /* CapturedHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5F8C06C1C51702D007D7201;
+			remoteInfo = CapturedHelper;
+		};
+		B5298AC21C517C060093C936 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5298AB71C51705E0093C936 /* CapturedHelper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B5F8C06B1C51702D007D7201;
+			remoteInfo = CapturedHelper;
+		};
 		B5888A7C1BFFEE7D00DEA068 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B5888A621BFFEE7D00DEA068 /* Project object */;
@@ -81,12 +99,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		B5F06D9B1C50686800DEF787 /* Copy Helper Apps */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				B5298ABE1C5174DD0093C936 /* CapturedHelper.app in Copy Helper Apps */,
+			);
+			name = "Copy Helper Apps";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B5FB987A1C015211006BC590 /* Embedded Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
 				B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */,
 				B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */,
 				B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */,
@@ -106,7 +136,9 @@
 		B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurUploader.swift; sourceTree = "<group>"; };
 		B50F2F7C1C051415004AB2B1 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		B50F2F7E1C055487004AB2B1 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = SOURCE_ROOT; };
+		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		B51AFF9C1C493FF200B0F200 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
+		B5298AB71C51705E0093C936 /* CapturedHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CapturedHelper.xcodeproj; path = Helpers/CapturedHelper.xcodeproj; sourceTree = "<group>"; };
 		B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurAccount.swift; sourceTree = "<group>"; };
 		B54406E51C49A646009E9BF0 /* SFTPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPUploader.swift; sourceTree = "<group>"; };
 		B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPDetailViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +172,7 @@
 		B59315B91C265A3200E7DD86 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartAtLoginController.framework; path = Carthage/Build/Mac/StartAtLoginController.framework; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
 		B5B391001C0A68A400E057AF /* ScreenCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenCapture.swift; sourceTree = "<group>"; };
 		B5CD6B131C3442DE0035821D /* Captured-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Captured-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -160,6 +193,7 @@
 		B5CD6B261C3443400035821D /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientView.h; path = Annotated/GradientView.h; sourceTree = "<group>"; };
 		B5CD6B271C3443400035821D /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientView.m; path = Annotated/GradientView.m; sourceTree = "<group>"; };
 		B5E238BF1C11FDC600568742 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
+		B5F06D9D1C515CEE00DEF787 /* Captured.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Captured.entitlements; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
 		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5FB987F1C0156B0006BC590 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -171,7 +205,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
 				B51AFF9D1C493FF200B0F200 /* libcurl.tbd in Frameworks */,
+				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
 				B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */,
 				B50F2F7F1C055487004AB2B1 /* Just.framework in Frameworks */,
 				B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */,
@@ -255,6 +291,22 @@
 			path = ../Vendor;
 			sourceTree = "<group>";
 		};
+		B5298AB81C51705E0093C936 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5298ABC1C51705F0093C936 /* CapturedHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B5298ABD1C5170660093C936 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B5298AB71C51705E0093C936 /* CapturedHelper.xcodeproj */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		B55BB9E31C18B9E00085577D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,9 +355,9 @@
 		B5888A611BFFEE7D00DEA068 = {
 			isa = PBXGroup;
 			children = (
-				B51AFF9C1C493FF200B0F200 /* libcurl.tbd */,
+				B5298ABD1C5170660093C936 /* Helpers */,
 				B5888A6C1BFFEE7D00DEA068 /* Captured */,
-				B5FB987E1C015378006BC590 /* Carthage */,
+				B5FB987E1C015378006BC590 /* Frameworks */,
 				B5888A7E1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A891BFFEE7D00DEA068 /* CapturedUITests */,
 				B5888A6B1BFFEE7D00DEA068 /* Products */,
@@ -325,6 +377,7 @@
 		B5888A6C1BFFEE7D00DEA068 /* Captured */ = {
 			isa = PBXGroup;
 			children = (
+				B5F06D9D1C515CEE00DEF787 /* Captured.entitlements */,
 				B59315B41C25AA0100E7DD86 /* Enums */,
 				B50F2F811C06000F004AB2B1 /* Vendor */,
 				B50F2F761C04054F004AB2B1 /* Resources */,
@@ -392,14 +445,17 @@
 			name = Annotated;
 			sourceTree = "<group>";
 		};
-		B5FB987E1C015378006BC590 /* Carthage */ = {
+		B5FB987E1C015378006BC590 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */,
+				B51AFF9C1C493FF200B0F200 /* libcurl.tbd */,
+				B51181C51C50673600F9C13E /* ServiceManagement.framework */,
 				B5B11F6E1C0F5468004C0496 /* Locksmith.framework */,
 				B50F2F7E1C055487004AB2B1 /* Just.framework */,
 				B5FB98781C0151A4006BC590 /* MASShortcut.framework */,
 			);
-			name = Carthage;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,10 +470,12 @@
 				B5888A681BFFEE7D00DEA068 /* Resources */,
 				B5FB987A1C015211006BC590 /* Embedded Frameworks */,
 				B56E8B171C36250F0059C6AC /* Swift Lint */,
+				B5F06D9B1C50686800DEF787 /* Copy Helper Apps */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B5298AC31C517C060093C936 /* PBXTargetDependency */,
 			);
 			name = Captured;
 			productName = Captured;
@@ -472,6 +530,12 @@
 				TargetAttributes = {
 					B5888A691BFFEE7D00DEA068 = {
 						CreatedOnToolsVersion = 7.1.1;
+						DevelopmentTeam = TR4G6QS37W;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					B5888A7A1BFFEE7D00DEA068 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -494,6 +558,12 @@
 			mainGroup = B5888A611BFFEE7D00DEA068;
 			productRefGroup = B5888A6B1BFFEE7D00DEA068 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B5298AB81C51705E0093C936 /* Products */;
+					ProjectRef = B5298AB71C51705E0093C936 /* CapturedHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				B5888A691BFFEE7D00DEA068 /* Captured */,
@@ -502,6 +572,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B5298ABC1C51705F0093C936 /* CapturedHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = CapturedHelper.app;
+			remoteRef = B5298ABB1C51705F0093C936 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		B5888A681BFFEE7D00DEA068 /* Resources */ = {
@@ -616,6 +696,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		B5298AC31C517C060093C936 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CapturedHelper;
+			targetProxy = B5298AC21C517C060093C936 /* PBXContainerItemProxy */;
+		};
 		B5888A7D1BFFEE7D00DEA068 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B5888A691BFFEE7D00DEA068 /* Captured */;
@@ -733,6 +818,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Captured/Captured.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -753,6 +840,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Captured/Captured.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

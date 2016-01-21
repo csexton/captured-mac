@@ -10,6 +10,7 @@ import Cocoa
 import AppKit
 import Carbon
 import MASShortcut
+import StartAtLoginController
 
 
 

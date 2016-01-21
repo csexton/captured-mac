@@ -63,12 +63,12 @@
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-f7-djq">
                                 <rect key="frame" x="18" y="164" width="104" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="coZ-EW-3l5">
+                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="coZ-EW-3l5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.StartAtLogin" id="fQc-7g-FFK"/>
+                                    <binding destination="ptq-jG-qbF" name="value" keyPath="startAtLogin" id="6bz-U9-9JV"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
@@ -102,6 +102,11 @@
                     </view>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="ptq-jG-qbF" customClass="StartAtLoginController">
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="identifier" value="com.codeography.Captured.CapturedHelper"/>
+                    </userDefinedRuntimeAttributes>
+                </customObject>
                 <userDefaultsController id="7Q2-kI-bf6"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
