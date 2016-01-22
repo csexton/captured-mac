@@ -68,7 +68,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="ptq-jG-qbF" name="value" keyPath="startAtLogin" id="6bz-U9-9JV"/>
+                                    <binding destination="ptq-jG-qbF" name="value" keyPath="launchAtLogin" id="zuP-ia-HVI"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
@@ -102,11 +102,7 @@
                     </view>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="ptq-jG-qbF" customClass="StartAtLoginController">
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="identifier" value="com.codeography.Captured.CapturedHelper"/>
-                    </userDefinedRuntimeAttributes>
-                </customObject>
+                <customObject id="ptq-jG-qbF" customClass="LaunchAtLoginController"/>
                 <userDefaultsController id="7Q2-kI-bf6"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
