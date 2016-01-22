@@ -141,9 +141,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func setGlobalState(state: CapturedState.States) {
+    playSoundForState(state)
     if let button = statusItem.button {
       let image = imageForState(state)
       button.image = image
+    }
+  }
+
+  func playSoundForState(status: CapturedState.States) {
+    if NSUserDefaults.standardUserDefaults().boolForKey("PlaySoundAfterUpload") {
+      if status == .Success {
+        if let sound = NSSound(named: "Hero") { sound.play() }
+      }
+      if status == .Error {
+        if let sound = NSSound(named: "Sosumi") { sound.play() }
+      }
     }
   }
 

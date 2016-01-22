@@ -27,8 +27,6 @@
 			<integer>23</integer>
 			<key>AnnotateImage</key>
 			<false/>
-			<key>PlaySound</key>
-			<true/>
 			<key>ScaleImage</key>
 			<false/>
 		</dict>
