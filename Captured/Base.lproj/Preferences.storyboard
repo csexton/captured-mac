@@ -63,12 +63,12 @@
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-f7-djq">
                                 <rect key="frame" x="18" y="164" width="104" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="coZ-EW-3l5">
+                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="coZ-EW-3l5">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.StartAtLogin" id="fQc-7g-FFK"/>
+                                    <binding destination="ptq-jG-qbF" name="value" keyPath="launchAtLogin" id="zuP-ia-HVI"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
@@ -102,6 +102,7 @@
                     </view>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="ptq-jG-qbF" customClass="LaunchAtLoginController"/>
                 <userDefaultsController id="7Q2-kI-bf6"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
@@ -1240,16 +1241,6 @@ Gw
                                     <binding destination="fRz-Nk-mgO" name="contentValues" keyPath="values.Accounts" id="nTB-JX-0mL"/>
                                 </connections>
                             </popUpButton>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZf-IA-mtF">
-                                <rect key="frame" x="186" y="134" width="90" height="18"/>
-                                <buttonCell key="cell" type="check" title="Play Sound" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="lpz-Yq-UGd">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.playSound" id="e8A-ak-QKM"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tPT-0E-39g">
                                 <rect key="frame" x="186" y="108" width="151" height="18"/>
                                 <buttonCell key="cell" type="check" title="Scale Images by 50%" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="STL-Br-YRE">
@@ -1268,16 +1259,6 @@ Gw
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-Zy-zFb">
-                                <rect key="frame" x="49" y="134" width="118" height="18"/>
-                                <buttonCell key="cell" type="check" title="Annotate Image" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MKc-lL-nuO">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.annotateImage" id="UPR-rd-Ueb"/>
-                                </connections>
-                            </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nix-Eu-zKF">
                                 <rect key="frame" x="18" y="63" width="414" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="GQA-9l-gRG">
@@ -1294,6 +1275,16 @@ Gw
                                 </buttonCell>
                                 <connections>
                                     <action selector="deleteButton:" target="uwZ-IE-g6F" id="ssk-Zh-vdN"/>
+                                </connections>
+                            </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Qc-Zy-zFb">
+                                <rect key="frame" x="186" y="134" width="118" height="18"/>
+                                <buttonCell key="cell" type="check" title="Annotate Image" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="MKc-lL-nuO">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="uwZ-IE-g6F" name="value" keyPath="representedObject.annotateImage" id="UPR-rd-Ueb"/>
                                 </connections>
                             </button>
                         </subviews>

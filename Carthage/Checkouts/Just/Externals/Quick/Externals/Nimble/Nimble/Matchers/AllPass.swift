@@ -1,11 +1,11 @@
 import Foundation
 
-public func allPass<T, U where U: SequenceType, U.Generator.Element == T>
+public func allPass<T,U where U: SequenceType, U.Generator.Element == T>
     (passFunc: (T?) -> Bool) -> NonNilMatcherFunc<U> {
         return allPass("pass a condition", passFunc)
 }
 
-public func allPass<T, U where U: SequenceType, U.Generator.Element == T>
+public func allPass<T,U where U: SequenceType, U.Generator.Element == T>
     (passName: String, _ passFunc: (T?) -> Bool) -> NonNilMatcherFunc<U> {
         return createAllPassMatcher() {
             expression, failureMessage in
@@ -14,14 +14,14 @@ public func allPass<T, U where U: SequenceType, U.Generator.Element == T>
         }
 }
 
-public func allPass<U, V where U: SequenceType, V: Matcher, U.Generator.Element == V.ValueType>
+public func allPass<U,V where U: SequenceType, V: Matcher, U.Generator.Element == V.ValueType>
     (matcher: V) -> NonNilMatcherFunc<U> {
         return createAllPassMatcher() {
             try matcher.matches($0, failureMessage: $1)
         }
 }
 
-private func createAllPassMatcher<T, U where U: SequenceType, U.Generator.Element == T>
+private func createAllPassMatcher<T,U where U: SequenceType, U.Generator.Element == T>
     (elementEvaluator:(Expression<T>, FailureMessage) throws -> Bool) -> NonNilMatcherFunc<U> {
         return NonNilMatcherFunc { actualExpression, failureMessage in
             failureMessage.actualValue = nil

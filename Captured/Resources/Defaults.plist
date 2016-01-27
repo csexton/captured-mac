@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>EnableDockIcon</key>
-	<true/>
+	<false/>
 	<key>EnableNotifications</key>
 	<true/>
 	<key>EnableUploads</key>
@@ -27,8 +27,6 @@
 			<integer>23</integer>
 			<key>AnnotateImage</key>
 			<false/>
-			<key>PlaySound</key>
-			<true/>
 			<key>ScaleImage</key>
 			<false/>
 		</dict>
