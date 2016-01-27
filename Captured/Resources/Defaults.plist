@@ -45,18 +45,6 @@
 			<key>ReadOnly</key>
 			<true/>
 		</dict>
-		<dict>
-			<key>Name</key>
-			<string>Default Imgur</string>
-			<key>Summary</key>
-			<string>Upload to Imgur</string>
-			<key>Type</key>
-			<string>Imgur</string>
-			<key>Identifier</key>
-			<string>E31AA727-7F9E-4B8A-881C-5F91F5BE0189</string>
-			<key>ReadOnly</key>
-			<false/>
-		</dict>
 	</array>
 	<key>NumberOfHistoryItems</key>
 	<integer>10</integer>
