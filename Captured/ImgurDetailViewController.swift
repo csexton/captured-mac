@@ -62,6 +62,7 @@ class ImgurDetailViewController: AccountDetailViewController {
               r.refreshToken = jsonData["refresh_token"] as? String
               r.accountUsername = jsonData["account_username"] as? String
               r.name = "\(jsonData["account_username"]!)'s Imgur"
+              r.summary = "Upload to \(r.name)"
               dispatch_async(dispatch_get_main_queue()) {
                 self.showTab(.Edit)
               }
