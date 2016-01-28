@@ -878,11 +878,12 @@ Gw
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="2iu-2d-b4U">
-                                        <view key="view" ambiguous="YES" id="8b9-ZZ-Mvd">
+                                        <view key="view" id="8b9-ZZ-Mvd">
+                                            <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
-                                                    <rect key="frame" x="15" y="-168" width="430" height="98"/>
+                                                    <rect key="frame" x="15" y="27" width="430" height="98"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="jln-do-1SN">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -890,7 +891,7 @@ Gw
                                                     </textFieldCell>
                                                 </textField>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uwP-kB-YYH">
-                                                    <rect key="frame" x="160" y="-69" width="141" height="32"/>
+                                                    <rect key="frame" x="160" y="126" width="141" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Login with Imgur" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tX0-Ri-eXZ">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -948,7 +949,7 @@ Gw
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Edit Account" identifier="2" id="0NJ-9g-OAl">
-                                        <view key="view" id="5l4-2o-gFP">
+                                        <view key="view" ambiguous="YES" id="5l4-2o-gFP">
                                             <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
