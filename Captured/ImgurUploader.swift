@@ -53,8 +53,8 @@ class ImgurUploader: Uploader {
 
   func authHeader() -> String {
     var ret = ""
-    if self.options["access_token"] != nil {
-      ret = "Client-Bearer \(options["access_token"]!)"
+    if let accessToken = options["access_token"] {
+      ret = "Client-Bearer \(accessToken)"
     } else {
       if let clientID = options["client_id"] {
         ret = "Client-ID \(clientID)"
