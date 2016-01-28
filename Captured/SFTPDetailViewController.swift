@@ -15,8 +15,6 @@ class SFTPDetailViewController: AccountDetailViewController {
   @IBOutlet weak var hostnameField: NSTextField!
   @IBOutlet weak var publicURLField: NSTextField!
 
-
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do view setup here.

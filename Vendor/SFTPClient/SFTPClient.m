@@ -10,7 +10,6 @@
 
 @implementation SFTPClient
 
-
 #pragma mark: New init method
 - (id)initWithSettings:(NSDictionary*)dict {
   self = [super init];
@@ -36,7 +35,6 @@
 - (NSString *)createUniqueFilename:(NSInteger)numChars {
   static char alNum[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   static size_t CHAR_COUNT = 62;
-  static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
   char buf[64];
   srand((unsigned int)time(NULL));

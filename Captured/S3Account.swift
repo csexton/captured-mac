@@ -92,5 +92,3 @@ class S3Account: Account {
     set { self.secrets[SecretKeys.ReducedRedundancyStorage.rawValue] = newValue ? "YES" : "NO"}
   }
 }
-
-

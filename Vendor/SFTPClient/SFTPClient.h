@@ -13,7 +13,6 @@
 
 - (id)initWithSettings:(NSDictionary *)dict;
 
-- (void)uploadThread:(NSString *)sourceFile;
 - (BOOL)uploadFile:(NSString *)sourceFile;
 - (NSString *)testConnection;
 
