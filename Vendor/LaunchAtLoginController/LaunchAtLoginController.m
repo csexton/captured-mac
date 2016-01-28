@@ -70,8 +70,7 @@ LSSharedFileListItemRef copyItemWithURLinFileList(NSURL* wantedURL, LSSharedFile
     for(NSUInteger i = 0; i< [listSnapshot count]; i++) {
         LSSharedFileListItemRef item = (__bridge LSSharedFileListItemRef)[listSnapshot objectAtIndex:i];
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
-        CFURLRef currentItemURL = NULL;
-        LSSharedFileListItemResolve(item, resolutionFlags, &currentItemURL, NULL);
+        CFURLRef currentItemURL = LSSharedFileListItemCopyResolvedURL(item, resolutionFlags, NULL);
         if (currentItemURL && [(__bridge_transfer NSURL*)currentItemURL isEqual:wantedURL]) {
             CFRetain(item);
             return item;
