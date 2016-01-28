@@ -29,6 +29,7 @@ class SFTPDetailViewController: AccountDetailViewController {
   override func saveButton(sender: AnyObject) {
     if validateFields() {
       if let account = representedObject as? SFTPAccount {
+        account.summary = "Upload to SFTP Server \"\(usernameField.stringValue)@\(hostnameField.stringValue)\""
         print(account)
       }
       super.saveButton(sender)
