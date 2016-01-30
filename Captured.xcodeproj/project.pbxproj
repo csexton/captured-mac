@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; };
+		B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B50481B61C3F527B001B2FDF /* SFTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B50481B51C3F527B001B2FDF /* SFTPClient.m */; };
 		B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */; };
 		B50F2F731C03FFB8004AB2B1 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */; };
@@ -17,7 +19,6 @@
 		B50F2F7F1C055487004AB2B1 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; };
 		B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
-		B51AFF9D1C493FF200B0F200 /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B51AFF9C1C493FF200B0F200 /* libcurl.tbd */; };
 		B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */; };
 		B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E51C49A646009E9BF0 /* SFTPUploader.swift */; };
 		B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */; };
@@ -101,6 +102,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */,
 				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
 				B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */,
 				B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */,
@@ -112,6 +114,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B5010B331C5C66BA00EB2466 /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Vendor/libcurl.framework; sourceTree = "<group>"; };
 		B50481B41C3F527B001B2FDF /* SFTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTPClient.h; path = SFTPClient/SFTPClient.h; sourceTree = "<group>"; };
 		B50481B51C3F527B001B2FDF /* SFTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTPClient.m; path = SFTPClient/SFTPClient.m; sourceTree = "<group>"; };
 		B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
@@ -122,7 +125,6 @@
 		B50F2F7C1C051415004AB2B1 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		B50F2F7E1C055487004AB2B1 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = SOURCE_ROOT; };
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		B51AFF9C1C493FF200B0F200 /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurAccount.swift; sourceTree = "<group>"; };
 		B54406E51C49A646009E9BF0 /* SFTPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPUploader.swift; sourceTree = "<group>"; };
 		B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPDetailViewController.swift; sourceTree = "<group>"; };
@@ -190,8 +192,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */,
 				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
-				B51AFF9D1C493FF200B0F200 /* libcurl.tbd in Frameworks */,
 				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
 				B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */,
 				B50F2F7F1C055487004AB2B1 /* Just.framework in Frameworks */,
@@ -425,8 +427,8 @@
 		B5FB987E1C015378006BC590 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5010B331C5C66BA00EB2466 /* libcurl.framework */,
 				B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */,
-				B51AFF9C1C493FF200B0F200 /* libcurl.tbd */,
 				B51181C51C50673600F9C13E /* ServiceManagement.framework */,
 				B5B11F6E1C0F5468004C0496 /* Locksmith.framework */,
 				B50F2F7E1C055487004AB2B1 /* Just.framework */,
@@ -779,10 +781,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor",
 				);
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
@@ -800,10 +805,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Vendor",
 				);
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";

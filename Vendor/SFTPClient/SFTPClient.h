@@ -22,9 +22,10 @@
 
 @property NSString *host;
 @property NSString *username;
-@property NSString *targetDir;
 @property NSString *publicKeyFile;
 @property NSString *privateKeyFile;
 @property NSString *keyPassword;
+@property NSString *publicURL;
+@property NSString *pathOnServer;
 
 @end
