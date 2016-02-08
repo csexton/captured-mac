@@ -16,6 +16,7 @@ class AccountPreferencesViewController: NSViewController,
     case S3 = "s3SheetSegue"
     case SFTP = "sftpSheetSegue"
     case Dropbox = "dropboxSheetSegue"
+    case PHP = "phpSheetSegue"
   }
 
   var accounts = AccountManager.sharedInstance
@@ -37,6 +38,8 @@ class AccountPreferencesViewController: NSViewController,
       self.performSegue(.S3, sender: account)
     case "SFTP":
       self.performSegue(.SFTP, sender: account)
+    case "Captured PHP":
+      self.performSegue(.PHP, sender: account)
     default:
       print("Unknown Account type. Make sure the type field is set for this account.")
     }
@@ -56,6 +59,8 @@ class AccountPreferencesViewController: NSViewController,
       self.performSegue(.SFTP, sender: SFTPAccount())
     case 4:
       self.performSegue(.Imgur, sender: ImgurAccount())
+    case 5:
+      self.performSegue(.PHP, sender: PHPAccount())
     default:
       print("Unknown Account type. Did you set the tag value on the menu item?")
     }

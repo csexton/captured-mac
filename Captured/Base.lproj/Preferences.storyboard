@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -351,6 +351,7 @@ Captured makes use of the following open source libraries:
                         <segue destination="PXJ-eY-vLX" kind="sheet" identifier="imgurSheetSegue" id="tXr-5p-20S"/>
                         <segue destination="9mh-Wm-Shx" kind="sheet" identifier="s3SheetSegue" id="f9d-Td-McG"/>
                         <segue destination="RxL-GE-0Wv" kind="sheet" identifier="sftpSheetSegue" id="Mtg-k2-WHd"/>
+                        <segue destination="2ah-4b-NHi" kind="sheet" identifier="phpSheetSegue" id="wbj-j1-eAO"/>
                     </connections>
                 </viewController>
                 <customObject id="RRh-pT-cbP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -366,6 +367,12 @@ Captured makes use of the following open source libraries:
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="3mW-pw-M5X"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Captured PHP" tag="5" id="Kgl-9Z-sUb">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="createNewAccountFromMenu:" target="RRh-pT-cbP" id="0J2-TU-SMo"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Dropbox" tag="2" enabled="NO" id="OZN-4e-Eh2">
@@ -388,6 +395,135 @@ Captured makes use of the following open source libraries:
                 </menu>
             </objects>
             <point key="canvasLocation" x="-141" y="-72"/>
+        </scene>
+        <!--Captured PHP-->
+        <scene sceneID="pCB-Fh-E0K">
+            <objects>
+                <viewController title="Captured PHP" id="2ah-4b-NHi" customClass="PHPDetailViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="0ww-E8-XgG">
+                        <rect key="frame" x="0.0" y="0.0" width="451" height="269"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-5t-wI4">
+                                <rect key="frame" x="20" y="157" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="URL:" id="KJo-fP-vmJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QTJ-60-fMc">
+                                <rect key="frame" x="137" y="154" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="http://example.com/captured.php" drawsBackground="YES" id="iXV-xH-vsW">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="2ah-4b-NHi" name="value" keyPath="representedObject.endpointURL" id="qKg-28-T6T"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vco-bM-Jd1">
+                                <rect key="frame" x="20" y="127" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="API Token:" id="Wxk-XZ-XnE">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8K-Ps-lgG">
+                                <rect key="frame" x="137" y="124" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Secret Token" drawsBackground="YES" id="rwL-x8-RWn">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="2ah-4b-NHi" name="value" keyPath="representedObject.apiToken" id="2ke-eM-MJL"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-Qs-mpb">
+                                <rect key="frame" x="19" y="229" width="162" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Captured PHP Account" id="O7L-FX-qIk">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQ4-VU-DI3">
+                                <rect key="frame" x="20" y="187" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Display Name:" id="2ve-jI-rEM">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygs-ef-O1s">
+                                <rect key="frame" x="137" y="184" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="My Captured PHP Server" drawsBackground="YES" id="XTM-0I-vgV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="2ah-4b-NHi" name="value" keyPath="representedObject.name" id="qZn-DE-nIa"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ta7-KZ-iE2">
+                                <rect key="frame" x="365" y="13" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CxX-hw-U6a">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveButton:" target="y4b-qo-OG1" id="ICH-Xk-YVX"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Sr-ld-7nq">
+                                <rect key="frame" x="283" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="psY-v8-7z8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YiT-xh-QGt">
+                                <rect key="frame" x="141" y="13" width="139" height="32"/>
+                                <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zzR-fY-Lxo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="testConnectionButton:" target="2ah-4b-NHi" id="w1U-jj-6oX"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-ii-8Aj">
+                                <rect key="frame" x="13" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rJn-vy-fEQ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="y4b-qo-OG1" id="r0o-IX-TQx"/>
+                                </connections>
+                            </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hzC-L7-XAD">
+                                <rect key="frame" x="123" y="22" width="16" height="16"/>
+                            </progressIndicator>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="apiTokenField" destination="M8K-Ps-lgG" id="WmC-b8-h88"/>
+                        <outlet property="endpointURLField" destination="QTJ-60-fMc" id="UxY-fs-p19"/>
+                        <outlet property="nameField" destination="ygs-ef-O1s" id="Jx5-uU-Kfm"/>
+                        <outlet property="testConnectionSpinner" destination="hzC-L7-XAD" id="Ppp-cm-dVl"/>
+                    </connections>
+                </viewController>
+                <customObject id="y4b-qo-OG1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-553.5" y="454.5"/>
         </scene>
         <!--Amazon S3 Settings-->
         <scene sceneID="sO2-u9-GSc">
