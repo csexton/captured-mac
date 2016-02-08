@@ -401,11 +401,11 @@ Captured makes use of the following open source libraries:
             <objects>
                 <viewController title="Captured PHP" id="2ah-4b-NHi" customClass="PHPDetailViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0ww-E8-XgG">
-                        <rect key="frame" x="0.0" y="0.0" width="451" height="269"/>
+                        <rect key="frame" x="0.0" y="0.0" width="451" height="302"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-5t-wI4">
-                                <rect key="frame" x="20" y="157" width="111" height="17"/>
+                                <rect key="frame" x="18" y="145" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="URL:" id="KJo-fP-vmJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -413,7 +413,7 @@ Captured makes use of the following open source libraries:
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QTJ-60-fMc">
-                                <rect key="frame" x="137" y="154" width="294" height="22"/>
+                                <rect key="frame" x="135" y="142" width="294" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="http://example.com/captured.php" drawsBackground="YES" id="iXV-xH-vsW">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -424,7 +424,7 @@ Captured makes use of the following open source libraries:
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vco-bM-Jd1">
-                                <rect key="frame" x="20" y="127" width="111" height="17"/>
+                                <rect key="frame" x="18" y="115" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="API Token:" id="Wxk-XZ-XnE">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -432,7 +432,7 @@ Captured makes use of the following open source libraries:
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M8K-Ps-lgG">
-                                <rect key="frame" x="137" y="124" width="294" height="22"/>
+                                <rect key="frame" x="135" y="112" width="294" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Secret Token" drawsBackground="YES" id="rwL-x8-RWn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -442,16 +442,8 @@ Captured makes use of the following open source libraries:
                                     <binding destination="2ah-4b-NHi" name="value" keyPath="representedObject.apiToken" id="2ke-eM-MJL"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-Qs-mpb">
-                                <rect key="frame" x="19" y="229" width="162" height="20"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Captured PHP Account" id="O7L-FX-qIk">
-                                    <font key="font" metaFont="system" size="15"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jQ4-VU-DI3">
-                                <rect key="frame" x="20" y="187" width="111" height="17"/>
+                                <rect key="frame" x="18" y="175" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Display Name:" id="2ve-jI-rEM">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -459,7 +451,7 @@ Captured makes use of the following open source libraries:
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygs-ef-O1s">
-                                <rect key="frame" x="137" y="184" width="294" height="22"/>
+                                <rect key="frame" x="135" y="172" width="294" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="My Captured PHP Server" drawsBackground="YES" id="XTM-0I-vgV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -470,7 +462,7 @@ Captured makes use of the following open source libraries:
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ta7-KZ-iE2">
-                                <rect key="frame" x="365" y="13" width="70" height="32"/>
+                                <rect key="frame" x="366" y="13" width="70" height="32"/>
                                 <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CxX-hw-U6a">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -480,7 +472,7 @@ Captured makes use of the following open source libraries:
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Sr-ld-7nq">
-                                <rect key="frame" x="283" y="13" width="82" height="32"/>
+                                <rect key="frame" x="284" y="13" width="82" height="32"/>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="psY-v8-7z8">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -490,7 +482,7 @@ Gw
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YiT-xh-QGt">
-                                <rect key="frame" x="141" y="13" width="139" height="32"/>
+                                <rect key="frame" x="142" y="13" width="139" height="32"/>
                                 <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zzR-fY-Lxo">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -500,7 +492,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cSc-ii-8Aj">
-                                <rect key="frame" x="13" y="13" width="80" height="32"/>
+                                <rect key="frame" x="14" y="13" width="80" height="32"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rJn-vy-fEQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -510,8 +502,34 @@ Gw
                                 </connections>
                             </button>
                             <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hzC-L7-XAD">
-                                <rect key="frame" x="123" y="22" width="16" height="16"/>
+                                <rect key="frame" x="124" y="22" width="16" height="16"/>
                             </progressIndicator>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Ff-M0-AZc">
+                                <rect key="frame" x="129" y="76" width="166" height="32"/>
+                                <buttonCell key="cell" type="push" title="View Documentation" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zt3-Ei-56d">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="helpButton:" target="2ah-4b-NHi" id="Kow-Lb-jIX"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uSw-yC-ECa">
+                                <rect key="frame" x="19" y="216" width="412" height="38"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Captured PHP is a simple PHP script that you can host on your own server. See the documentation for install instructions." id="fkE-R3-z6U">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-Qs-mpb">
+                                <rect key="frame" x="19" y="262" width="162" height="20"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Captured PHP Account" id="O7L-FX-qIk">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
@@ -523,7 +541,7 @@ Gw
                 </viewController>
                 <customObject id="y4b-qo-OG1" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-553.5" y="454.5"/>
+            <point key="canvasLocation" x="-553.5" y="471"/>
         </scene>
         <!--Amazon S3 Settings-->
         <scene sceneID="sO2-u9-GSc">

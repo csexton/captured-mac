@@ -20,6 +20,11 @@ class PHPDetailViewController: AccountDetailViewController {
   @IBOutlet weak var endpointURLField: NSTextField!
   @IBOutlet weak var testConnectionSpinner: NSProgressIndicator!
 
+  @IBAction func helpButton(sender: AnyObject) {
+    let url = "http://capturedapp.com/php"
+    NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
+  }
+
   @IBAction func testConnectionButton(sender: AnyObject) {
     testConnectionSpinner.hidden = false
     testConnectionSpinner.startAnimation(nil)
