@@ -11,7 +11,7 @@
                     <window key="window" title="Captured" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="G9P-5Y-a5f">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="500" y="522" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
                     </window>
                     <connections>
@@ -28,8 +28,8 @@
                 <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="P2R-xK-aOU" customClass="PreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="DZq-Hw-NoI"/>
-                        <tabViewItem identifier="" image="NSUserAccounts" id="H9C-EL-QmK"/>
                         <tabViewItem image="KeyboardPreferences" id="6d3-iR-ck0"/>
+                        <tabViewItem identifier="" image="NSUserAccounts" id="H9C-EL-QmK"/>
                         <tabViewItem image="NSApplicationIcon" id="AOR-7H-gv9"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
@@ -44,8 +44,8 @@
                     </tabView>
                     <connections>
                         <segue destination="a5B-ZA-Ppl" kind="relationship" relationship="tabItems" id="mOY-vP-Gys"/>
-                        <segue destination="yaz-Nj-fpE" kind="relationship" relationship="tabItems" id="cD1-ba-lql"/>
                         <segue destination="rt1-pN-RZt" kind="relationship" relationship="tabItems" id="dWS-8d-idE"/>
+                        <segue destination="yaz-Nj-fpE" kind="relationship" relationship="tabItems" id="cD1-ba-lql"/>
                         <segue destination="rd1-7m-vgG" kind="relationship" relationship="tabItems" id="Zeo-VN-Ahy"/>
                     </connections>
                 </tabViewController>
@@ -317,7 +317,7 @@ Captured makes use of the following open source libraries:
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="NOj-I2-28f">
-                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
+                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="opS-6B-0Gm">
@@ -394,34 +394,11 @@ Captured makes use of the following open source libraries:
             <objects>
                 <viewController title="Amazon S3 Settings" id="9mh-Wm-Shx" customClass="S3DetailViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="3yN-8Y-tM8">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="347"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="419"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNW-1R-4xi">
-                                <rect key="frame" x="366" y="13" width="70" height="32"/>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sq6-O0-smo">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="saveButton:" target="9mh-Wm-Shx" id="G2p-ac-7lR"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0q-KP-JAD">
-                                <rect key="frame" x="284" y="13" width="82" height="32"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cCr-t8-ubh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cancelButton:" target="9mh-Wm-Shx" id="wkj-fk-EON"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjY-KE-zAY">
-                                <rect key="frame" x="19" y="235" width="111" height="17"/>
+                                <rect key="frame" x="19" y="307" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Access Key:" id="zBp-yp-W5b">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -429,8 +406,8 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVz-gD-jAH">
-                                <rect key="frame" x="136" y="232" width="294" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="sEe-HG-tU5">
+                                <rect key="frame" x="136" y="304" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Access Key" drawsBackground="YES" id="sEe-HG-tU5">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -440,7 +417,7 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Amk-fx-aFF">
-                                <rect key="frame" x="19" y="205" width="111" height="17"/>
+                                <rect key="frame" x="19" y="277" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Secret Key:" id="PeQ-0r-yBQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -448,8 +425,8 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pep-kY-YxG">
-                                <rect key="frame" x="136" y="202" width="294" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="qoZ-Cu-Qnh">
+                                <rect key="frame" x="136" y="274" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Secret Key" drawsBackground="YES" id="qoZ-Cu-Qnh">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -459,7 +436,7 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ax8-9F-cTe">
-                                <rect key="frame" x="19" y="175" width="111" height="17"/>
+                                <rect key="frame" x="19" y="247" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Bucket Name:" id="qMJ-A3-gIN">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -467,8 +444,8 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YqB-Ay-CYv">
-                                <rect key="frame" x="136" y="172" width="294" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="eeZ-vb-4mM">
+                                <rect key="frame" x="136" y="244" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="bucketname" drawsBackground="YES" id="eeZ-vb-4mM">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -478,7 +455,7 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pj9-0m-cve">
-                                <rect key="frame" x="19" y="145" width="111" height="17"/>
+                                <rect key="frame" x="19" y="217" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Public URL:" id="wnB-bq-oDz">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -486,7 +463,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSw-M8-DyE">
-                                <rect key="frame" x="16" y="96" width="114" height="17"/>
+                                <rect key="frame" x="16" y="105" width="114" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="File Name Length:" id="hlz-f3-BP3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -494,8 +471,8 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W7M-Gn-ksi">
-                                <rect key="frame" x="136" y="142" width="294" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="fM9-Ed-VvS">
+                                <rect key="frame" x="136" y="214" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="https://s3.amazonaws.com/bucketname/" drawsBackground="YES" id="fM9-Ed-VvS">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -505,15 +482,42 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uI-JI-f9s">
-                                <rect key="frame" x="134" y="122" width="271" height="17"/>
+                                <rect key="frame" x="134" y="194" width="271" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional, leave this blank for default S3 URL" id="mBM-kI-jJe">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2gw-aS-y1U">
+                                <rect key="frame" x="19" y="174" width="111" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="S3 Endpoint:" id="aUe-gS-JnY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lKH-yt-A86">
+                                <rect key="frame" x="136" y="171" width="294" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="https://s3.amazonaws.com" drawsBackground="YES" id="eqm-Um-Kbf">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="9mh-Wm-Shx" name="value" keyPath="representedObject.endpointURL" id="0e5-ck-b2t"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="abz-5Y-cZZ">
+                                <rect key="frame" x="134" y="151" width="271" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Optional, leave this blank for default S3 Endpoint" id="YeD-SH-OJ2">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Myj-Zj-Fyr">
-                                <rect key="frame" x="134" y="70" width="233" height="18"/>
+                                <rect key="frame" x="134" y="79" width="233" height="18"/>
                                 <buttonCell key="cell" type="check" title="Use Reduced Redundency Storage" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="sEh-pR-P3v">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -522,18 +526,8 @@ Gw
                                     <binding destination="9mh-Wm-Shx" name="value" keyPath="representedObject.reducedRedundancyStorage" id="l5U-oF-xum"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ogy-jE-VY6">
-                                <rect key="frame" x="142" y="13" width="139" height="32"/>
-                                <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qck-os-Trz">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="testConnectionButton:" target="9mh-Wm-Shx" id="cna-v0-Cmv"/>
-                                </connections>
-                            </button>
                             <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ykv-g4-NQB">
-                                <rect key="frame" x="134" y="91" width="76" height="26"/>
+                                <rect key="frame" x="134" y="100" width="76" height="26"/>
                                 <popUpButtonCell key="cell" type="push" title="5" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WV8-6H-Fc7" id="jt0-wv-HMt">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -549,18 +543,8 @@ Gw
                                     <binding destination="9mh-Wm-Shx" name="selectedIndex" keyPath="representedObject.fileNameLengthIndex" id="RgS-Qt-GVO"/>
                                 </connections>
                             </popUpButton>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOH-fq-iu5">
-                                <rect key="frame" x="14" y="13" width="80" height="32"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NRL-77-dlz">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteButton:" target="9mh-Wm-Shx" id="8nc-Fs-DZx"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epF-ba-lD7">
-                                <rect key="frame" x="18" y="307" width="143" height="20"/>
+                                <rect key="frame" x="18" y="379" width="143" height="20"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Amazon S3 Account" id="rJZ-4N-RZM">
                                     <font key="font" metaFont="system" size="15"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -568,7 +552,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Oc-I8-wJU">
-                                <rect key="frame" x="19" y="265" width="111" height="17"/>
+                                <rect key="frame" x="19" y="337" width="111" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Display Name:" id="qxd-YU-3Ia">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -576,7 +560,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UUL-JX-eIL">
-                                <rect key="frame" x="136" y="262" width="294" height="22"/>
+                                <rect key="frame" x="136" y="334" width="294" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="My S3 Account" drawsBackground="YES" id="td6-D2-pZL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -587,7 +571,7 @@ Gw
                                 </connections>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9PF-6g-c23">
-                                <rect key="frame" x="134" y="50" width="111" height="18"/>
+                                <rect key="frame" x="134" y="59" width="111" height="18"/>
                                 <buttonCell key="cell" type="check" title="Private Upload" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="xZ8-Bt-r3n">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -596,6 +580,52 @@ Gw
                                     <binding destination="9mh-Wm-Shx" name="value" keyPath="representedObject.privateUpload" id="7f7-uz-FCw"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RNW-1R-4xi">
+                                <rect key="frame" x="364" y="13" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sq6-O0-smo">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveButton:" target="9mh-Wm-Shx" id="G2p-ac-7lR"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X0q-KP-JAD">
+                                <rect key="frame" x="282" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cCr-t8-ubh">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelButton:" target="9mh-Wm-Shx" id="wkj-fk-EON"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ogy-jE-VY6">
+                                <rect key="frame" x="140" y="13" width="139" height="32"/>
+                                <buttonCell key="cell" type="push" title="Test Connection" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qck-os-Trz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="testConnectionButton:" target="9mh-Wm-Shx" id="cna-v0-Cmv"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GOH-fq-iu5">
+                                <rect key="frame" x="12" y="13" width="80" height="32"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NRL-77-dlz">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButton:" target="9mh-Wm-Shx" id="8nc-Fs-DZx"/>
+                                </connections>
+                            </button>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="IGM-Zc-CCK">
+                                <rect key="frame" x="122" y="22" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
@@ -604,13 +634,14 @@ Gw
                         <outlet property="publicURLField" destination="W7M-Gn-ksi" id="RR3-pu-Qzc"/>
                         <outlet property="reducedRedundancyStorageButton" destination="Myj-Zj-Fyr" id="y5b-ev-Czi"/>
                         <outlet property="secretKeyField" destination="pep-kY-YxG" id="bgU-Vr-Qa7"/>
+                        <outlet property="testConnectionSpinner" destination="IGM-Zc-CCK" id="FmA-eN-lFk"/>
                     </connections>
                 </viewController>
                 <customObject id="RXX-Oi-EgS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="HDd-wm-0S9"/>
                 <userDefaultsController id="j0z-Jr-Lkm"/>
             </objects>
-            <point key="canvasLocation" x="199" y="853.5"/>
+            <point key="canvasLocation" x="199" y="889.5"/>
         </scene>
         <!--SFTP Settings-->
         <scene sceneID="89g-ik-SP3">
@@ -878,7 +909,7 @@ Gw
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="2iu-2d-b4U">
-                                        <view key="view" id="8b9-ZZ-Mvd">
+                                        <view key="view" ambiguous="YES" id="8b9-ZZ-Mvd">
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iVV-WN-hpm">
@@ -948,7 +979,7 @@ Gw
                                         </view>
                                     </tabViewItem>
                                     <tabViewItem label="Edit Account" identifier="2" id="0NJ-9g-OAl">
-                                        <view key="view" ambiguous="YES" id="5l4-2o-gFP">
+                                        <view key="view" id="5l4-2o-gFP">
                                             <rect key="frame" x="0.0" y="0.0" width="452" height="195"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -1106,7 +1137,7 @@ Gw
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Vj0-d0-cYJ">
-                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
+                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="9q7-7f-G5A">

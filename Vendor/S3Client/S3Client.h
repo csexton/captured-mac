@@ -24,6 +24,7 @@
 @property (nullable) NSString *secretKey;
 @property (nullable) NSString *bucket;
 @property (nullable) NSString *publicUrl;
+@property (nullable) NSString *endpointUrl;
 @property NSInteger nameLength;
 @property BOOL reducedRedundancy;
 @property BOOL privateUpload;
