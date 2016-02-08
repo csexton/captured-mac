@@ -29,6 +29,17 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 
     // TODO Plumb through all the settings!
 
+    if (dict[@"endpoint_url"]) {
+      self.endpointUrl= [self removeAnyTrailingSlashes: dict[@"endpoint_url"]];
+    }
+
+    // Set the default value for endpointURL. This will check if it's a valid
+    // but empty string (@"") as well as if it's nil, since calling length on
+    // nil will also return 0.
+    if (self.endpointUrl == 0) {
+      self.endpointUrl = @"https://s3.amazonaws.com";
+    }
+
     if (dict[@"file_name_length"]) {
       self.nameLength = [dict[@"file_name_length"] integerValue];
     } else {
@@ -176,7 +187,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     self.publicUrl = [self removeAnyTrailingSlashes:self.publicUrl];
     self.publicUrl = [NSString stringWithFormat:@"%@/%@", self.publicUrl, tempNam];
   } else {
-    self.publicUrl = [NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", self.bucket, tempNam];
+    self.publicUrl = [NSString stringWithFormat:@"%@/%@/%@", self.endpointUrl, self.bucket, tempNam];
   }
   // if this is a private upload, then we need to generate a URL with query params to allow access
   if (self.privateUpload) {
@@ -222,13 +233,10 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
                                    secretKey:self.secretKey];
   [request addValue:[NSString stringWithFormat:@"AWS %@:%@", self.accessKey, base64String]
        forHTTPHeaderField:@"Authorization"];
-  [request addValue:contentType
-       forHTTPHeaderField:@"Content-Type"];
-  [request addValue:timestamp
-       forHTTPHeaderField:@"Date"];
+  [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+  [request addValue:timestamp forHTTPHeaderField:@"Date"];
   if (!self.privateUpload) {
-    [request addValue:@"public-read"
-           forHTTPHeaderField:@"x-amz-acl"];
+    [request addValue:@"public-read" forHTTPHeaderField:@"x-amz-acl"];
   }
   if (self.reducedRedundancy) {
     [request addValue:@"REDUCED_REDUNDANCY"
@@ -236,8 +244,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   }
   unsigned long long fileSize = [[[[[NSFileManager alloc] init] attributesOfItemAtPath:sourceFile
                                                                                  error:nil] objectForKey:NSFileSize] unsignedLongLongValue];
-  [request addValue:[NSString stringWithFormat:@"%llu", fileSize]
-       forHTTPHeaderField:@"Content-Length"];
+  [request addValue:[NSString stringWithFormat:@"%llu", fileSize] forHTTPHeaderField:@"Content-Length"];
 
   NSError *error = nil;
   NSURLResponse *response = nil;
@@ -259,7 +266,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
 }
 
 - (NSString *)testConnection {
-  NSString *testResponse = nil;
+  NSString *testResponse = @"Success, everything looks good.";
 
   // format the url
   NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", self.bucket]];

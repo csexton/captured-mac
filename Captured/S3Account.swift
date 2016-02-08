@@ -15,6 +15,7 @@ class S3Account: Account {
     case SecretKey = "secret_key"
     case BucketName = "bucket_name"
     case PublicURL = "public_url"
+    case EndpointURL = "Endpoint_url"
     case FileNameLength = "file_name_length"
     case PrivateUpload = "private_upload"
     case ReducedRedundancyStorage = "reduced_redundancy_storage"
@@ -42,6 +43,11 @@ class S3Account: Account {
   dynamic var publicURL: String? {
     get { return self.secrets[SecretKeys.PublicURL.rawValue] }
     set { self.secrets[SecretKeys.PublicURL.rawValue] = newValue }
+  }
+
+  dynamic var endpointURL: String? {
+    get { return self.secrets[SecretKeys.EndpointURL.rawValue] }
+    set { self.secrets[SecretKeys.EndpointURL.rawValue] = newValue }
   }
 
   dynamic var fileNameLengthIndex: UInt {

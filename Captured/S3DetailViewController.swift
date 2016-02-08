@@ -21,8 +21,32 @@ class S3DetailViewController: AccountDetailViewController {
   @IBOutlet weak var publicURLField: NSTextField!
   @IBOutlet weak var nameLengthBox: NSComboBox!
   @IBOutlet weak var reducedRedundancyStorageButton: NSButton!
+  @IBOutlet weak var testConnectionSpinner: NSProgressIndicator!
 
   @IBAction func testConnectionButton(sender: AnyObject) {
+    testConnectionSpinner.hidden = false
+    testConnectionSpinner.startAnimation(nil)
+    if validateFields() {
+      if let account = representedObject as? S3Account {
+
+        // Run the upload test in a different thread as to not block the UI
+
+        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
+          let msg = S3Uploader.init(account: account).test()
+
+          dispatch_async(dispatch_get_main_queue()) {
+           self.testConnectionSpinner.hidden = true
+            self.testConnectionSpinner.stopAnimation(nil)
+            let myPopup: NSAlert = NSAlert()
+            myPopup.messageText = "Test S3 Connecton"
+            myPopup.informativeText = msg
+            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.addButtonWithTitle("OK")
+            myPopup.runModal()
+          }
+        }
+      }
+    }
   }
 
   override func saveButton(sender: AnyObject) {

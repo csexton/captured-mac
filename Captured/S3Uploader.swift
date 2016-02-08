@@ -16,10 +16,14 @@ class S3Uploader: Uploader {
     settings = account.secrets
 
   }
+
+  func test() -> String {
+    let s3Client = S3Client(settings: settings)
+    return s3Client.testConnection()
+  }
+
   func upload(path: String) -> Bool {
     let s3Client = S3Client(settings: settings)
-
-    print(s3Client.testConnection())
 
     if s3Client.uploadFile(path) {
       linkURL = s3Client.uploadUrl
