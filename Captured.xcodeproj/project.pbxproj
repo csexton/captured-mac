@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B533A6BD1C6972D800E25283 /* Open in Finder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */;
+			buildPhases = (
+				B533A6C11C6972DF00E25283 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Open in Finder";
+			productName = "Open Build Dir";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; };
 		B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -515,6 +529,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Christopher Sexton";
 				TargetAttributes = {
+					B533A6BD1C6972D800E25283 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					B5888A691BFFEE7D00DEA068 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = TR4G6QS37W;
@@ -550,6 +567,7 @@
 				B5888A691BFFEE7D00DEA068 /* Captured */,
 				B5888A7A1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A851BFFEE7D00DEA068 /* CapturedUITests */,
+				B533A6BD1C6972D800E25283 /* Open in Finder */,
 			);
 		};
 /* End PBXProject section */
@@ -584,6 +602,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B533A6C11C6972DF00E25283 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "open $BUILT_PRODUCTS_DIR";
+		};
 		B56E8B171C36250F0059C6AC /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -703,6 +734,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B533A6BF1C6972D800E25283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B533A6C01C6972D800E25283 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B5888A8D1BFFEE7D00DEA068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -798,7 +843,7 @@
 				);
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -822,7 +867,7 @@
 				);
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -885,6 +930,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B533A6BF1C6972D800E25283 /* Debug */,
+				B533A6C01C6972D800E25283 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B5888A651BFFEE7D00DEA068 /* Build configuration list for PBXProject "Captured" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

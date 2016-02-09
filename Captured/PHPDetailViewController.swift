@@ -54,7 +54,7 @@ class PHPDetailViewController: AccountDetailViewController {
   override func saveButton(sender: AnyObject) {
     if validateFields() {
       if let account = representedObject as? PHPAccount {
-        account.summary = "Upload \"\(endpointURLField.stringValue)\""
+        account.summary = "Upload to \"\(endpointURLField.stringValue)\""
       }
       super.saveButton(sender)
     }
