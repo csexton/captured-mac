@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B533A6BD1C6972D800E25283 /* Open in Finder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */;
+			buildPhases = (
+				B533A6C11C6972DF00E25283 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Open in Finder";
+			productName = "Open Build Dir";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; };
 		B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -19,6 +33,9 @@
 		B50F2F7F1C055487004AB2B1 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; };
 		B50F2F801C055FAC004AB2B1 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B50F2F7E1C055487004AB2B1 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
+		B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B01C68E2FA00E25283 /* PHPAccount.swift */; };
+		B533A6B31C68E41600E25283 /* PHPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */; };
+		B533A6B51C68ECF400E25283 /* PHPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B41C68ECF400E25283 /* PHPUploader.swift */; };
 		B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */; };
 		B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E51C49A646009E9BF0 /* SFTPUploader.swift */; };
 		B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */; };
@@ -125,6 +142,9 @@
 		B50F2F7C1C051415004AB2B1 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		B50F2F7E1C055487004AB2B1 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = SOURCE_ROOT; };
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		B533A6B01C68E2FA00E25283 /* PHPAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPAccount.swift; sourceTree = "<group>"; };
+		B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPDetailViewController.swift; sourceTree = "<group>"; };
+		B533A6B41C68ECF400E25283 /* PHPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPUploader.swift; sourceTree = "<group>"; };
 		B53B45CA1C0FCF7D0067C2D2 /* ImgurAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurAccount.swift; sourceTree = "<group>"; };
 		B54406E51C49A646009E9BF0 /* SFTPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPUploader.swift; sourceTree = "<group>"; };
 		B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPDetailViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +258,7 @@
 				B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */,
 				B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */,
 				B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */,
+				B533A6B01C68E2FA00E25283 /* PHPAccount.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -261,6 +282,7 @@
 				B50F2F7C1C051415004AB2B1 /* Uploader.swift */,
 				B59315B91C265A3200E7DD86 /* UploadManager.swift */,
 				B54406E51C49A646009E9BF0 /* SFTPUploader.swift */,
+				B533A6B41C68ECF400E25283 /* PHPUploader.swift */,
 			);
 			name = Uploaders;
 			path = Captured;
@@ -291,6 +313,7 @@
 				B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */,
 				B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */,
 				B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */,
+				B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -506,6 +529,9 @@
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Christopher Sexton";
 				TargetAttributes = {
+					B533A6BD1C6972D800E25283 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
 					B5888A691BFFEE7D00DEA068 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = TR4G6QS37W;
@@ -541,6 +567,7 @@
 				B5888A691BFFEE7D00DEA068 /* Captured */,
 				B5888A7A1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A851BFFEE7D00DEA068 /* CapturedUITests */,
+				B533A6BD1C6972D800E25283 /* Open in Finder */,
 			);
 		};
 /* End PBXProject section */
@@ -575,6 +602,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B533A6C11C6972DF00E25283 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "open $BUILT_PRODUCTS_DIR";
+		};
 		B56E8B171C36250F0059C6AC /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,6 +636,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B533A6B31C68E41600E25283 /* PHPDetailViewController.swift in Sources */,
 				B5CD6B2E1C3443400035821D /* Annotator.swift in Sources */,
 				B5AFF6271C51C05A00666F17 /* LaunchAtLoginController.m in Sources */,
 				B5CD6B2C1C3443400035821D /* AnnotatedImageController.m in Sources */,
@@ -606,6 +647,7 @@
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
 				B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
+				B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */,
 				B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */,
 				B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */,
 				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
@@ -621,6 +663,7 @@
 				B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */,
 				B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */,
 				B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */,
+				B533A6B51C68ECF400E25283 /* PHPUploader.swift in Sources */,
 				B50F2F751C03FFEB004AB2B1 /* ShortcutManager.swift in Sources */,
 				B5CD6B2D1C3443400035821D /* AnnotatedImageView.m in Sources */,
 				B50481B61C3F527B001B2FDF /* SFTPClient.m in Sources */,
@@ -691,6 +734,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B533A6BF1C6972D800E25283 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B533A6C01C6972D800E25283 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B5888A8D1BFFEE7D00DEA068 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -727,7 +784,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -765,7 +822,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -776,7 +833,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -787,7 +844,7 @@
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
@@ -800,7 +857,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -811,7 +868,7 @@
 				INFOPLIST_FILE = Captured/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				OTHER_CODE_SIGN_FLAGS = "";
+				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
@@ -873,6 +930,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B533A6BF1C6972D800E25283 /* Debug */,
+				B533A6C01C6972D800E25283 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B5888A651BFFEE7D00DEA068 /* Build configuration list for PBXProject "Captured" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

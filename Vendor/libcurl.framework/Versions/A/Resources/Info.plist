@@ -22,5 +22,9 @@
 	<string>libcurl 7.19.7</string>
 	<key>CFBundleGetInfoString</key>
 	<string>libcurl.plist 7.19.7</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
 </dict>
 </plist>

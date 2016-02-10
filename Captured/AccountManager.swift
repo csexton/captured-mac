@@ -111,6 +111,8 @@ class AccountManager: NSObject {
         return SFTPAccount(dictionary: dictionary)
       case "Amazon S3":
         return S3Account(dictionary: dictionary)
+      case "Captured PHP":
+        return PHPAccount(dictionary: dictionary)
       default:
         return Account(dictionary: dictionary)
       }
