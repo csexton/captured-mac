@@ -15,7 +15,7 @@ class S3Account: Account {
     case SecretKey = "secret_key"
     case BucketName = "bucket_name"
     case PublicURL = "public_url"
-    case EndpointURL = "Endpoint_url"
+    case EndpointURL = "endpoint_url"
     case FileNameLength = "file_name_length"
     case PrivateUpload = "private_upload"
     case ReducedRedundancyStorage = "reduced_redundancy_storage"

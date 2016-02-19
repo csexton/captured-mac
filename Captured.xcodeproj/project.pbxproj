@@ -473,6 +473,7 @@
 				B5FB987A1C015211006BC590 /* Embedded Frameworks */,
 				B56E8B171C36250F0059C6AC /* Swift Lint */,
 				B5F06D9B1C50686800DEF787 /* Copy Helper Apps */,
+				B573FAB41C6BFBA4007C3F39 /* Create Info.txt */,
 			);
 			buildRules = (
 			);
@@ -628,6 +629,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\n#echo 'yo'\nelse\n  echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		B573FAB41C6BFBA4007C3F39 /* Create Info.txt */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create Info.txt";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd $SOURCE_ROOT\nSHA=$( git log --pretty=format:'%h' -n 1 )\n\n\ncd $BUILT_PRODUCTS_DIR\necho \"Captured.app\" > Info.txt\necho \"Git: $SHA\" >> Info.txt\n\n\nrm -f Captured*.tar.gz\ntar -cvzf Captured-$SHA.tar.gz Captured.app Info.txt\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -937,6 +952,7 @@
 				B533A6C01C6972D800E25283 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B5888A651BFFEE7D00DEA068 /* Build configuration list for PBXProject "Captured" */ = {
 			isa = XCConfigurationList;

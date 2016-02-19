@@ -25,19 +25,19 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
     self.accessKey = dict[@"access_key"];
     self.secretKey = dict[@"secret_key"];
     self.bucket = dict[@"bucket_name"];
-    self.publicUrl = dict[@"public_url"];
+    self.publicURL = dict[@"public_url"];
 
     // TODO Plumb through all the settings!
 
     if (dict[@"endpoint_url"]) {
-      self.endpointUrl= [self removeAnyTrailingSlashes: dict[@"endpoint_url"]];
+      self.endpointURL= [self removeAnyTrailingSlashes: dict[@"endpoint_url"]];
     }
 
     // Set the default value for endpointURL. This will check if it's a valid
     // but empty string (@"") as well as if it's nil, since calling length on
     // nil will also return 0.
-    if (self.endpointUrl == 0) {
-      self.endpointUrl = @"https://s3.amazonaws.com";
+    if (self.endpointURL == 0) {
+      self.endpointURL = @"https://s3.amazonaws.com";
     }
 
     if (dict[@"file_name_length"]) {
@@ -183,24 +183,24 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   // generate a unique filename
   NSString *tempNam = [self createUniqueFilename:self.nameLength];
 
-  if (self.publicUrl) {
-    self.publicUrl = [self removeAnyTrailingSlashes:self.publicUrl];
-    self.publicUrl = [NSString stringWithFormat:@"%@/%@", self.publicUrl, tempNam];
+  if (self.publicURL) {
+    self.publicURL = [self removeAnyTrailingSlashes:self.publicURL];
+    self.publicURL = [NSString stringWithFormat:@"%@/%@", self.publicURL, tempNam];
   } else {
-    self.publicUrl = [NSString stringWithFormat:@"%@/%@/%@", self.endpointUrl, self.bucket, tempNam];
+    self.publicURL = [NSString stringWithFormat:@"%@/%@/%@", self.endpointURL, self.bucket, tempNam];
   }
   // if this is a private upload, then we need to generate a URL with query params to allow access
   if (self.privateUpload) {
-    self.publicUrl = [self generateS3TempURL:self.publicUrl
+    self.publicURL = [self generateS3TempURL:self.publicURL
                                   bucketName:self.bucket
                                   objectName:tempNam
                          minutesToExpiration:self.minutesToExpiration];
   }
   // set the upload url for the response
-  [self setUploadUrl:self.publicUrl];
+  [self setUploadUrl:self.publicURL];
 
   // format the url
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@/%@", self.bucket, tempNam]];
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@", self.endpointURL, self.bucket, tempNam]];
   [self setDeleteUrl:[url absoluteString]];
 
   // create the request object
@@ -269,7 +269,7 @@ static char base64EncodingTable[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopq
   NSString *testResponse = @"Success, everything looks good.";
 
   // format the url
-  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://s3.amazonaws.com/%@", self.bucket]];
+  NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", self.endpointURL, self.bucket]];
 
   // create the request object
   NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
