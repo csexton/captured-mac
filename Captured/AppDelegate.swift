@@ -38,6 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
+
+
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
