@@ -15,7 +15,7 @@ class S3Account: Account {
     case SecretKey = "secret_key"
     case BucketName = "bucket_name"
     case PublicURL = "public_url"
-    case EndpointURL = "endpoint_url"
+    case RegionName = "region_name"
     case FileNameLength = "file_name_length"
     case PrivateUpload = "private_upload"
     case ReducedRedundancyStorage = "reduced_redundancy_storage"
@@ -45,9 +45,21 @@ class S3Account: Account {
     set { self.secrets[SecretKeys.PublicURL.rawValue] = newValue }
   }
 
-  dynamic var endpointURL: String? {
-    get { return self.secrets[SecretKeys.EndpointURL.rawValue] }
-    set { self.secrets[SecretKeys.EndpointURL.rawValue] = newValue }
+  dynamic var regionName: String? {
+    get { return self.secrets[SecretKeys.RegionName.rawValue] }
+    set { self.secrets[SecretKeys.RegionName.rawValue] = newValue }
+  }
+
+  dynamic var fileNameLength: UInt {
+    get {
+      if let len = self.secrets[SecretKeys.FileNameLength.rawValue] {
+        if let ilen = UInt(len) {
+          return ilen
+        }
+      }
+      return 8
+    }
+    set { self.secrets[SecretKeys.FileNameLength.rawValue] = "\(newValue)" }
   }
 
   dynamic var fileNameLengthIndex: UInt {
