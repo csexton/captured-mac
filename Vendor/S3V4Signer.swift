@@ -38,12 +38,11 @@ class S3V4Signer {
   // MARK: Utilities
 
   private func pathForURL(url: NSURL) -> String {
-    // Nil or empty, default to "/"
-    var path = url.path
-    if (path ?? "").isEmpty {
-      path = "/"
+    if let path = url.path where !path.isEmpty {
+      return path
+    } else {
+      return "/"
     }
-    return path!
   }
   
   func sha256(str: String) -> String {
