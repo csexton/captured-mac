@@ -67,7 +67,7 @@ class S3V4Signer {
     var hex = String()
     let bytes =  UnsafePointer<CUnsignedChar>(data.bytes)
 
-    for (var i: Int=0; i<data.length; ++i) {
+    for i in 0 ..< data.length {
       hex += String(format: "%02x", bytes[i])
     }
     return hex

@@ -31,6 +31,8 @@
 		B50F2F7B1C051402004AB2B1 /* ImgurUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */; };
 		B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7C1C051415004AB2B1 /* Uploader.swift */; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
+		B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; };
+		B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B01C68E2FA00E25283 /* PHPAccount.swift */; };
 		B533A6B31C68E41600E25283 /* PHPDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */; };
 		B533A6B51C68ECF400E25283 /* PHPUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B41C68ECF400E25283 /* PHPUploader.swift */; };
@@ -42,7 +44,6 @@
 		B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */; };
 		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
 		B569B3AC1C9B8192008732F4 /* S3V4SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569B3AB1C9B8192008732F4 /* S3V4SignerTests.swift */; };
-		B569B3AE1C9EDE74008732F4 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B569B3AD1C9EDE74008732F4 /* Just.framework */; };
 		B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */; };
 		B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */; };
 		B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */; };
@@ -120,6 +121,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */,
 				B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */,
 				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
 				B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */,
@@ -141,6 +143,7 @@
 		B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurUploader.swift; sourceTree = "<group>"; };
 		B50F2F7C1C051415004AB2B1 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		B53170E51CA325A600D8EF84 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = "<group>"; };
 		B533A6B01C68E2FA00E25283 /* PHPAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPAccount.swift; sourceTree = "<group>"; };
 		B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPDetailViewController.swift; sourceTree = "<group>"; };
 		B533A6B41C68ECF400E25283 /* PHPUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPUploader.swift; sourceTree = "<group>"; };
@@ -152,7 +155,6 @@
 		B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3DetailViewController.swift; sourceTree = "<group>"; };
 		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
 		B569B3AB1C9B8192008732F4 /* S3V4SignerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3V4SignerTests.swift; sourceTree = "<group>"; };
-		B569B3AD1C9EDE74008732F4 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = "<group>"; };
 		B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Uploader.swift; sourceTree = "<group>"; };
 		B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTableCellView.swift; sourceTree = "<group>"; };
 		B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B569B3AE1C9EDE74008732F4 /* Just.framework in Frameworks */,
+				B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */,
 				B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */,
 				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
 				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
@@ -456,7 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */,
-				B569B3AD1C9EDE74008732F4 /* Just.framework */,
+				B53170E51CA325A600D8EF84 /* Just.framework */,
 				B5010B331C5C66BA00EB2466 /* libcurl.framework */,
 				B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */,
 				B51181C51C50673600F9C13E /* ServiceManagement.framework */,
@@ -807,7 +809,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -845,7 +847,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 			};
@@ -870,7 +872,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -898,7 +900,7 @@
 					"$(inherited)",
 					"$(SDKROOT)/usr/lib/system",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
 				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
 				PRODUCT_NAME = "$(TARGET_NAME)";
