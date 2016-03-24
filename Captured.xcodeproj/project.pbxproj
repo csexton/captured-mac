@@ -649,8 +649,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd $SOURCE_ROOT\nSHA=$( git log --pretty=format:'%h' -n 1 )\n\n\ncd $BUILT_PRODUCTS_DIR\necho \"Captured.app\" > Info.txt\necho \"Git: $SHA\" >> Info.txt\n\n\nrm -f Captured*.tar.gz\ntar -cvzf Captured-$SHA.tar.gz Captured.app Info.txt\n";
+			shellPath = /bin/bash;
+			shellScript = "cd $SOURCE_ROOT\nSHA=$( git log --pretty=format:'%h' -n 1 )\n\n\ncd $BUILT_PRODUCTS_DIR\necho \"Captured.app\" > Info.txt\necho \"Git: $SHA\" >> Info.txt\n\n\nrm -f Captured*.tar.gz\ntar -czvpf Captured-$SHA.tar.gz Captured.app Info.txt\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
