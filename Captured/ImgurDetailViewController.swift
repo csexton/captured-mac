@@ -57,12 +57,7 @@ class ImgurDetailViewController: AccountDetailViewController {
         if result.ok {
           if let r = self.representedObject as? ImgurAccount {
             if let jsonData = result.json as? [String:AnyObject] {
-              r.accountID = jsonData["account_id"] as? String
-              r.accessToken = jsonData["access_token"] as? String
-              r.refreshToken = jsonData["refresh_token"] as? String
-              r.accountUsername = jsonData["account_username"] as? String
-              r.name = "\(jsonData["account_username"]!)'s Imgur"
-              r.summary = "Upload to \(r.name)"
+              r.updateAttributes(jsonData)
               dispatch_async(dispatch_get_main_queue()) {
                 self.showTab(.Edit)
               }

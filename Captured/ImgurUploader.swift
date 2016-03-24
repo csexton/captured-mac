@@ -11,12 +11,13 @@ import Just
 
 class ImgurUploader: Uploader {
 
-  let options: [String:String]
+  let account: Account
+  var retries = 0
 
   private var linkURL: String?
 
   required init(account: Account) {
-    options = account.secrets
+    self.account = account
   }
 
   func upload(path: String) -> Bool {
@@ -38,7 +39,14 @@ class ImgurUploader: Uploader {
       if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
         linkURL = link
       }
+
       NSLog("Response from Imgur: \(r.json!)")
+    } else if r.statusCode == 403 && retries < 1 {
+      NSLog("Response from Imgur: \(r)")
+      retries = retries + 1
+      if requestNewToken() {
+        upload(path)
+      }
     } else {
       CapturedState.broadcastStateChange(.Error)
       NSLog("Response from Imgur: \(r)")
@@ -47,17 +55,26 @@ class ImgurUploader: Uploader {
     return r.ok
   }
 
+  func requestNewToken() -> Bool {
+    if let a = account as? ImgurAccount {
+      return a.requestNewToken()
+    }
+    return false
+  }
+
   func url() -> String? {
     return linkURL
   }
 
   func authHeader() -> String {
     var ret = ""
-    if let accessToken = options["access_token"] {
-      ret = "Client-Bearer \(accessToken)"
-    } else {
-      if let clientID = options["client_id"] {
-        ret = "Client-ID \(clientID)"
+    if let a = account as? ImgurAccount {
+      if let accessToken = a.accessToken {
+        ret = "Client-Bearer \(accessToken)"
+      } else {
+        if let clientID = account.secrets["client_id"] {
+          ret = "Client-ID \(clientID)"
+        }
       }
     }
     return ret
