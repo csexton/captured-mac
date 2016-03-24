@@ -130,9 +130,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
     menu.addItem(enabledMenuItem)
     menu.addItem(NSMenuItem(title: "Preferences...",
-      action: Selector("showPreferences:"), keyEquivalent: ""))
+      action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
     menu.addItem(NSMenuItem(title: "Quit Captured",
-      action: Selector("terminate:"), keyEquivalent: ""))
+      action: #selector(terminate), keyEquivalent: ""))
 
     if let button = statusItem.button, let window = button.window {
       window.registerForDraggedTypes([NSFilenamesPboardType])
@@ -141,6 +141,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
     statusItem.menu = menu
   }
+
+  func terminate() {
+    NSApplication.sharedApplication().terminate(self)
+  }
+
 
   func setGlobalState(state: CapturedState.States) {
     playSoundForState(state)
@@ -205,7 +210,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let shortcut = CapturedNotifications.ShortcutsDidUpdate.rawValue
     let state = CapturedNotifications.StateDidChange.rawValue
 
-    nc.addObserver(self, selector: "registerShortcuts", name: shortcut, object: nil)
+    nc.addObserver(self, selector: #selector(AppDelegate.registerShortcuts), name: shortcut, object: nil)
     nc.addObserverForName(shortcut, object: nil, queue: nil) { _ in
       self.registerShortcuts()
     }
@@ -251,7 +256,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   private func createShortcutMenu(shortcut: Shortcut) {
     if let sc = shortcut.shortcutValue {
-      let menuItem = NSMenuItem(title: shortcut.name, action: Selector("menuShortcut:"), keyEquivalent: sc.keyCodeString)
+      let menuItem = NSMenuItem(title: shortcut.name, action: #selector(AppDelegate.menuShortcut(_:)), keyEquivalent: sc.keyCodeString)
       menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
       menuItem.representedObject = shortcut
       menuItem.tag = magicShortcutMenuItemTag

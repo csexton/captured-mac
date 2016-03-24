@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Just
 
 class ImgurAccount: Account {
 
@@ -55,4 +56,42 @@ class ImgurAccount: Account {
       secrets["client_id"] = cid
     }
   }
+
+  func updateAttributes(jsonData: [String: AnyObject]) {
+    accountID = jsonData["account_id"] as? String
+    accessToken = jsonData["access_token"] as? String
+    refreshToken = jsonData["refresh_token"] as? String
+    accountUsername = jsonData["account_username"] as? String
+    name = "\(jsonData["account_username"]!)'s Imgur"
+    summary = "Upload to \(name)"
+  }
+
+  func requestNewToken() -> Bool {
+    if let t = refreshToken {
+      let r = Just.post(
+        "https://api.imgur.com/oauth2/token",
+        data: [
+          "client_id": defaults("ImgurClientID"),
+          "client_secret": defaults("ImgurClientSecret"),
+          "grant_type": "refresh_token",
+          "refresh_token": t,
+        ]
+      )
+
+      if r.ok {
+        if let jsonData = r.json as? [String:AnyObject] {
+          updateAttributes(jsonData)
+        }
+        AccountManager.sharedInstance.update(self)
+        return true
+      }
+    }
+    return false
+  }
+
+  func defaults(key: String) -> String {
+    return NSUserDefaults.standardUserDefaults().objectForKey(key) as! String
+  }
+
+
 }
