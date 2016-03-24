@@ -36,12 +36,16 @@ class Command {
       }
 
       if let account = self.shortcut.getAccount() {
-        UploadManager(account: account, path: path).run() { upload in
-          if let url = upload.url {
-            self.copyToPasteboard(url)
-            self.postSuccessNotification(account, url: url, path: path)
-          }
-        }
+        UploadManager(account: account, path: path).run({ upload in
+            if let url = upload.url {
+              CapturedState.broadcastStateChange(.Success)
+              self.copyToPasteboard(url)
+              self.postSuccessNotification(account, url: url, path: path)
+            }
+          },
+          error: { upload in
+            CapturedState.broadcastStateChange(.Error)
+        })
       }
       self.resetGlobalStateAfterDelay()
     }

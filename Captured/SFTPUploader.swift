@@ -19,12 +19,9 @@ class SFTPUploader: Uploader {
 
     if client.uploadFile(path) {
       linkURL = client.uploadUrl
-      CapturedState.broadcastStateChange(.Success)
       return true
-    } else {
-      CapturedState.broadcastStateChange(.Error)
-      return false
     }
+    return false
   }
   func url() -> String? {
     return linkURL

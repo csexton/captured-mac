@@ -33,26 +33,20 @@ class ImgurUploader: Uploader {
       ],
       files: ["image": .URL(fileURL, nil)]
     )
+    NSLog("Response from Imgur: \(r.json!)")
     if r.ok {
-      CapturedState.broadcastStateChange(.Success)
-
       if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
         linkURL = link
       }
-
-      NSLog("Response from Imgur: \(r.json!)")
+      return true
     } else if r.statusCode == 403 && retries < 1 {
-      NSLog("Response from Imgur: \(r)")
       retries = retries + 1
       if requestNewToken() {
-        upload(path)
+        return upload(path)
       }
-    } else {
-      CapturedState.broadcastStateChange(.Error)
-      NSLog("Response from Imgur: \(r)")
-    }
 
-    return r.ok
+    }
+    return false
   }
 
   func requestNewToken() -> Bool {

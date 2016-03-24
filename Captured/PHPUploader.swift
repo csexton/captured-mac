@@ -46,19 +46,15 @@ class PHPUploader: Uploader {
       data: [ "token": token ],
       files: ["file": .URL(fileURL, nil)]
     )
+    NSLog("Response from Captured PHP: \(r)")
     if r.ok {
-      CapturedState.broadcastStateChange(.Success)
-
       if let link = r.json!["image_url"] as? String {
         linkURL = link
+        return true
       }
-      NSLog("Response from Captured PHP: \(r.json!)")
-    } else {
-      CapturedState.broadcastStateChange(.Error)
-      NSLog("Response from Captured PHP: \(r)")
     }
 
-    return r.ok
+    return false
   }
 
   func url() -> String? {

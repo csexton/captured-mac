@@ -90,7 +90,6 @@ class S3Uploader: Uploader {
         NSLog("Response from AWS S3: \(httpResponse.description)\n\(text!)")
 
         if httpResponse.statusCode == 200 {
-          CapturedState.broadcastStateChange(.Success)
           linkURL = url.absoluteString
           return true
         }
@@ -98,7 +97,6 @@ class S3Uploader: Uploader {
     } catch (let e) {
       print(e)
     }
-    CapturedState.broadcastStateChange(.Error)
     return false
   }
 
