@@ -4,6 +4,7 @@
 
 #import <CommonCrypto/CommonHMAC.h>
 
+#import "RVNReceiptValidation.h"
 #import "AnnotatedImageController.h"
 #import "SFTPClient.h"
 #import "FileHash.h"
