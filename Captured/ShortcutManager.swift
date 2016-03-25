@@ -27,8 +27,8 @@ class ShortcutManager: NSObject {
     return shortcuts.count
   }
 
-  func shortcutAtIndex(i: Int) -> (Shortcut) {
-    return Shortcut(dictionary: shortcuts[i])
+  func shortcutAtIndex(index: Int) -> (Shortcut) {
+    return Shortcut(dictionary: shortcuts[index])
   }
 
   func update(updated: Shortcut) {

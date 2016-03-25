@@ -7,15 +7,17 @@
 	objects = {
 
 /* Begin PBXAggregateTarget section */
-		B533A6BD1C6972D800E25283 /* Open in Finder */ = {
+		B533A6BD1C6972D800E25283 /* Package */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */;
+			buildConfigurationList = B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Package" */;
 			buildPhases = (
-				B533A6C11C6972DF00E25283 /* ShellScript */,
+				B533A6C11C6972DF00E25283 /* Zip App Bundle */,
+				B5B520E81CA4416B00E4F57C /* Open Build Dir */,
 			);
 			dependencies = (
+				B5B520E71CA436CA00E4F57C /* PBXTargetDependency */,
 			);
-			name = "Open in Finder";
+			name = Package;
 			productName = "Open Build Dir";
 		};
 /* End PBXAggregateTarget section */
@@ -31,6 +33,7 @@
 		B50F2F7B1C051402004AB2B1 /* ImgurUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */; };
 		B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7C1C051415004AB2B1 /* Uploader.swift */; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
+		B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */; };
 		B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; };
 		B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B01C68E2FA00E25283 /* PHPAccount.swift */; };
@@ -102,6 +105,13 @@
 			remoteGlobalIDString = B5888A691BFFEE7D00DEA068;
 			remoteInfo = Captured;
 		};
+		B5B520E61CA436CA00E4F57C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B5888A621BFFEE7D00DEA068 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B5888A691BFFEE7D00DEA068;
+			remoteInfo = Captured;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -143,6 +153,8 @@
 		B50F2F7A1C051402004AB2B1 /* ImgurUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurUploader.swift; sourceTree = "<group>"; };
 		B50F2F7C1C051415004AB2B1 /* Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uploader.swift; sourceTree = "<group>"; };
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		B5186FDF1CA492A100A098BB /* RVNReceiptValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVNReceiptValidation.h; path = RVNReceiptValidation/RVNReceiptValidation.h; sourceTree = "<group>"; };
+		B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVNReceiptValidation.m; path = RVNReceiptValidation/RVNReceiptValidation.m; sourceTree = "<group>"; };
 		B53170E51CA325A600D8EF84 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = "<group>"; };
 		B533A6B01C68E2FA00E25283 /* PHPAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPAccount.swift; sourceTree = "<group>"; };
 		B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPDetailViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +308,7 @@
 		B50F2F811C06000F004AB2B1 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				B5B520E91CA47A2500E4F57C /* RVNReceiptValidation */,
 				B5CD306B1C9B2A3E003059DC /* S3Request */,
 				B5AFF6211C51ADDE00666F17 /* LaunchAtLoginController */,
 				B50481B31C3F526A001B2FDF /* SFTPClient */,
@@ -419,6 +432,15 @@
 				B5AFF6261C51C05A00666F17 /* LaunchAtLoginController.m */,
 			);
 			name = LaunchAtLoginController;
+			sourceTree = "<group>";
+		};
+		B5B520E91CA47A2500E4F57C /* RVNReceiptValidation */ = {
+			isa = PBXGroup;
+			children = (
+				B5186FDF1CA492A100A098BB /* RVNReceiptValidation.h */,
+				B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */,
+			);
+			name = RVNReceiptValidation;
 			sourceTree = "<group>";
 		};
 		B5CD306B1C9B2A3E003059DC /* S3Request */ = {
@@ -576,7 +598,7 @@
 				B5888A691BFFEE7D00DEA068 /* Captured */,
 				B5888A7A1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A851BFFEE7D00DEA068 /* CapturedUITests */,
-				B533A6BD1C6972D800E25283 /* Open in Finder */,
+				B533A6BD1C6972D800E25283 /* Package */,
 			);
 		};
 /* End PBXProject section */
@@ -611,18 +633,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B533A6C11C6972DF00E25283 /* ShellScript */ = {
+		B533A6C11C6972DF00E25283 /* Zip App Bundle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Zip App Bundle";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "open $BUILT_PRODUCTS_DIR";
+			shellPath = /bin/bash;
+			shellScript = "cd $BUILT_PRODUCTS_DIR\n\nSHA=$(ruby -ne 'print $1 if $_  =~ /^Git.*([a-z0-9]{7})/'  Info.txt)\n\nrm -f Captured*.tar.gz\ntar -czvpf Captured-$SHA.tar.gz Captured.app Info.txt\n";
 		};
 		B56E8B171C36250F0059C6AC /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -650,7 +673,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $SOURCE_ROOT\nSHA=$( git log --pretty=format:'%h' -n 1 )\n\n\ncd $BUILT_PRODUCTS_DIR\necho \"Captured.app\" > Info.txt\necho \"Git: $SHA\" >> Info.txt\n\n\nrm -f Captured*.tar.gz\ntar -czvpf Captured-$SHA.tar.gz Captured.app Info.txt\n";
+			shellScript = "cd $SOURCE_ROOT\nSHA=$( git log --pretty=format:'%h' -n 1 )\n\ncd $BUILT_PRODUCTS_DIR\necho \"Captured.app\" > Info.txt\necho \"Git: $SHA\" >> Info.txt\n";
+		};
+		B5B520E81CA4416B00E4F57C /* Open Build Dir */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Open Build Dir";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "open $BUILT_PRODUCTS_DIR";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -696,6 +733,7 @@
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
+				B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */,
 				B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */,
 				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,
 				B5B235691C9B4B90006ADE7B /* FileHash.m in Sources */,
@@ -736,6 +774,11 @@
 			isa = PBXTargetDependency;
 			target = B5888A691BFFEE7D00DEA068 /* Captured */;
 			targetProxy = B5888A871BFFEE7D00DEA068 /* PBXContainerItemProxy */;
+		};
+		B5B520E71CA436CA00E4F57C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B5888A691BFFEE7D00DEA068 /* Captured */;
+			targetProxy = B5B520E61CA436CA00E4F57C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -963,7 +1006,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Open in Finder" */ = {
+		B533A6BE1C6972D800E25283 /* Build configuration list for PBXAggregateTarget "Package" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B533A6BF1C6972D800E25283 /* Debug */,

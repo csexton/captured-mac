@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
-
+    // RVNValidateAndRunApplication(Process.argc, Process.unsafeArgv)
 
     setDefaultDefaults()
     accountManager.load()

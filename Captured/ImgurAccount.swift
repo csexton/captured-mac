@@ -51,10 +51,7 @@ class ImgurAccount: Account {
 
   override func loadSecrets() {
     super.loadSecrets()
-
-    if let cid = NSUserDefaults.standardUserDefaults().stringForKey("ImgurClientID") {
-      secrets["client_id"] = cid
-    }
+    secrets["client_id"] = defaults("ImgurClientID")
   }
 
   func updateAttributes(jsonData: [String: AnyObject]) {

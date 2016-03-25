@@ -35,8 +35,8 @@ class AccountManager: NSObject {
     return accounts.count
   }
 
-  func accountAtIndex(i: Int) -> (Account) {
-    return accountFactory(accounts[i])
+  func accountAtIndex(index: Int) -> (Account) {
+    return accountFactory(accounts[index])
   }
 
   func update(updated: Account) {
