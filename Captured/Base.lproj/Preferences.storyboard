@@ -61,7 +61,7 @@
             <objects>
                 <viewController title="Drag &amp; Drop" id="Py6-Po-Ddx" customClass="MousePreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="33R-RU-Jc6">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="194"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="177"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUR-Lx-Mlx">
@@ -75,9 +75,10 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfM-Oo-BQR">
-                                <rect key="frame" x="18" y="112" width="414" height="62"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="w55-lF-Dgj">
+                                <rect key="frame" x="18" y="112" width="414" height="45"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="w55-lF-Dgj">
                                     <font key="font" metaFont="system"/>
+                                    <string key="title">Drag and drop any file into the Captured       icon in the menu bar. The file will be uploaded and the URL added to the clipboard.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -116,6 +117,10 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4b-RJ-Kjy">
+                                <rect key="frame" x="268" y="139" width="16" height="16"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="StatusMenu" id="1DC-iR-HMw"/>
+                            </imageView>
                         </subviews>
                     </view>
                     <connections>
@@ -125,7 +130,7 @@
                 <customObject id="fl7-Mi-CrQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="tcs-X9-Ifa"/>
             </objects>
-            <point key="canvasLocation" x="297" y="-996"/>
+            <point key="canvasLocation" x="297" y="-1004.5"/>
         </scene>
         <!--General-->
         <scene sceneID="xro-cF-P7H">
@@ -1574,5 +1579,6 @@ Gw
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSUserAccounts" width="32" height="32"/>
+        <image name="StatusMenu" width="21" height="17"/>
     </resources>
 </document>

@@ -72,7 +72,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       if urls.count == 1 {
-        return .Copy
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("EnableDrag") == true {
+          return .Copy
+        }
       }
     }
     return .None
