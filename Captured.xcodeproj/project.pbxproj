@@ -82,6 +82,8 @@
 		B5CD6B2E1C3443400035821D /* Annotator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B231C3443400035821D /* Annotator.swift */; };
 		B5CD6B2F1C3443400035821D /* APoint.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B251C3443400035821D /* APoint.m */; };
 		B5CD6B301C3443400035821D /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5CD6B271C3443400035821D /* GradientView.m */; };
+		B5DE0F281CA71FE700701A14 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */; };
+		B5DE0F2A1CA72D9400701A14 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0F291CA72D9400701A14 /* MimeType.swift */; };
 		B5E238C01C11FDC600568742 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E238BF1C11FDC600568742 /* AccountTests.swift */; };
 		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
 		B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -216,6 +218,8 @@
 		B5CD6B251C3443400035821D /* APoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APoint.m; path = Annotated/APoint.m; sourceTree = "<group>"; };
 		B5CD6B261C3443400035821D /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GradientView.h; path = Annotated/GradientView.h; sourceTree = "<group>"; };
 		B5CD6B271C3443400035821D /* GradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GradientView.m; path = Annotated/GradientView.m; sourceTree = "<group>"; };
+		B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MousePreferencesViewController.swift; sourceTree = "<group>"; };
+		B5DE0F291CA72D9400701A14 /* MimeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MimeType.swift; sourceTree = "<group>"; };
 		B5E238BF1C11FDC600568742 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
@@ -276,6 +280,7 @@
 				B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */,
 				B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */,
 				B533A6B01C68E2FA00E25283 /* PHPAccount.swift */,
+				B5DE0F291CA72D9400701A14 /* MimeType.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -332,6 +337,7 @@
 				B55BB9E11C18B9D00085577D /* S3DetailViewController.swift */,
 				B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */,
 				B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */,
+				B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -720,6 +726,7 @@
 				B5CD6B2A1C3443400035821D /* ADrawable.m in Sources */,
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
 				B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */,
+				B5DE0F2A1CA72D9400701A14 /* MimeType.swift in Sources */,
 				B55BB9E01C18B7D70085577D /* S3Account.swift in Sources */,
 				B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */,
 				B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */,
@@ -733,6 +740,7 @@
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
+				B5DE0F281CA71FE700701A14 /* MousePreferencesViewController.swift in Sources */,
 				B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */,
 				B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */,
 				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,

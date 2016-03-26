@@ -78,7 +78,8 @@ class S3Uploader: Uploader {
     }
 
     request.addValue(sizeForPath(path), forHTTPHeaderField: "Content-Length")
-    request.addValue("image/png", forHTTPHeaderField: "Content-Type")
+    let mime = MimeType(path: path).mimeType
+    request.addValue(mime, forHTTPHeaderField: "Content-Type")
 
     var response: NSURLResponse?
 

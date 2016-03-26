@@ -8,6 +8,12 @@
 	<true/>
 	<key>EnableUploads</key>
 	<true/>
+	<key>EnableSound</key>
+	<true/>
+	<key>EnableDrag</key>
+	<true/>
+	<key>DragAccountIdentifier</key>
+	<string>C93D5479-6BA1-4E04-9C5D-978EF4174B8F</string>
 	<key>Shortcuts</key>
 	<array>
 		<dict>

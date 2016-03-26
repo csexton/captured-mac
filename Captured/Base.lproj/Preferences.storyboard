@@ -26,11 +26,12 @@
         <!--Preferences View Controller-->
         <scene sceneID="FQc-vw-dal">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="P2R-xK-aOU" customClass="PreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="P2R-xK-aOU" customClass="PreferencesViewController" customModule="Captured" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" image="NSPreferencesGeneral" id="DZq-Hw-NoI"/>
-                        <tabViewItem image="KeyboardPreferences" id="6d3-iR-ck0"/>
                         <tabViewItem identifier="" image="NSUserAccounts" id="H9C-EL-QmK"/>
+                        <tabViewItem image="KeyboardPreferences" id="6d3-iR-ck0"/>
+                        <tabViewItem image="MousePreferences" id="LKQ-7E-PjB"/>
                         <tabViewItem image="NSApplicationIcon" id="AOR-7H-gv9"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
@@ -45,14 +46,86 @@
                     </tabView>
                     <connections>
                         <segue destination="a5B-ZA-Ppl" kind="relationship" relationship="tabItems" id="mOY-vP-Gys"/>
-                        <segue destination="rt1-pN-RZt" kind="relationship" relationship="tabItems" id="dWS-8d-idE"/>
                         <segue destination="yaz-Nj-fpE" kind="relationship" relationship="tabItems" id="cD1-ba-lql"/>
+                        <segue destination="rt1-pN-RZt" kind="relationship" relationship="tabItems" id="dWS-8d-idE"/>
+                        <segue destination="Py6-Po-Ddx" kind="relationship" relationship="tabItems" id="IkB-jJ-7I8"/>
                         <segue destination="rd1-7m-vgG" kind="relationship" relationship="tabItems" id="Zeo-VN-Ahy"/>
                     </connections>
                 </tabViewController>
                 <customObject id="gOQ-we-RSq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-278" y="-1073"/>
+        </scene>
+        <!--Drag & Drop-->
+        <scene sceneID="Bhd-bM-Tje">
+            <objects>
+                <viewController title="Drag &amp; Drop" id="Py6-Po-Ddx" customClass="MousePreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="33R-RU-Jc6">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="194"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUR-Lx-Mlx">
+                                <rect key="frame" x="18" y="87" width="259" height="18"/>
+                                <buttonCell key="cell" type="check" title="Enable drag and drop to Menu Bar Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5vn-Rk-cEr">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="tcs-X9-Ifa" name="value" keyPath="values.EnableDrag" id="Qzx-HR-QXH"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfM-Oo-BQR">
+                                <rect key="frame" x="18" y="112" width="414" height="62"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="w55-lF-Dgj">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZlS-ha-YXc">
+                                <rect key="frame" x="18" y="55" width="68" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Account:" id="3EY-z9-lBk">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ign-yB-R2g">
+                                <rect key="frame" x="81" y="49" width="177" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nEb-BH-S5H" id="yZ0-bb-W9O">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="iew-8N-Z2P">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="nEb-BH-S5H"/>
+                                            <menuItem title="Item 2" id="24v-iQ-PQ3"/>
+                                            <menuItem title="Item 3" id="Sr1-K3-b7h"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="tcs-X9-Ifa" name="enabled" keyPath="values.EnableDrag" id="asZ-DH-wJG"/>
+                                    <binding destination="tcs-X9-Ifa" name="selectedObject" keyPath="values.DragAccountIdentifier" id="fSv-8m-ILx"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLK-d8-6lJ">
+                                <rect key="frame" x="18" y="20" width="302" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note: Some accounts only support uploading image files" id="JbD-7J-3IR">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="accountPopUp" destination="ign-yB-R2g" id="sA2-0b-ZXn"/>
+                    </connections>
+                </viewController>
+                <customObject id="fl7-Mi-CrQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="tcs-X9-Ifa"/>
+            </objects>
+            <point key="canvasLocation" x="297" y="-996"/>
         </scene>
         <!--General-->
         <scene sceneID="xro-cF-P7H">
@@ -78,6 +151,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="tcs-X9-Ifa" name="value" keyPath="values.EnableSound" id="qWI-M9-Xp6"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1HE-WN-NqF">
                                 <rect key="frame" x="18" y="104" width="71" height="18"/>
@@ -1494,6 +1570,7 @@ Gw
     </scenes>
     <resources>
         <image name="KeyboardPreferences" width="32" height="32"/>
+        <image name="MousePreferences" width="32" height="32"/>
         <image name="NSApplicationIcon" width="128" height="128"/>
         <image name="NSPreferencesGeneral" width="32" height="32"/>
         <image name="NSUserAccounts" width="32" height="32"/>

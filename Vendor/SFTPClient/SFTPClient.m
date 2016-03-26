@@ -39,7 +39,7 @@
     buf[i] = alNum[rand() % CHAR_COUNT];
   }
   buf[numChars] = 0;
-  strcat(buf, ".png");
+//  strcat(buf, ".png");
   return [NSString stringWithCString:buf
                             encoding:NSASCIIStringEncoding];
 }
@@ -83,7 +83,9 @@
 - (BOOL)uploadFile:(NSString *)sourceFile {
   self.success = NO;
   // generate a unique filename
-  NSString *tempNam = [self createUniqueFilename:5];
+  NSString *tempNum = [self createUniqueFilename:5];
+  NSString *ext = [NSURL URLWithString:sourceFile].pathExtension;
+  NSString *tempNam = [NSString stringWithFormat:@"%@.%@", tempNum, ext];
 
   // get host, username and target directory options from user preferences
   NSString *targetDir = [self removeAnyTrailingSlashes:self.pathOnServer];

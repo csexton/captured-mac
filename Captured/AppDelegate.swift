@@ -84,12 +84,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       for url in urls {
 
         let path = url.relativePath!!
-        let amanager = AccountManager()
-        amanager.load()
-        let account = AccountManager.sharedInstance.accountWithIdentifier("C93D5479-6BA1-4E04-9C5D-978EF4174B8F")!
 
-        dispatch_async(queue) {
-          Command().run(account, path:path)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let identifier = defaults.objectForKey("DragAccountIdentifier") as? String {
+
+          let account = AccountManager.sharedInstance.accountWithIdentifier(identifier)!
+          
+          dispatch_async(queue) {
+            Command().run(account, path:path)
+          }
         }
 
         print("Dragged URLS: \(url.relativePath)")
