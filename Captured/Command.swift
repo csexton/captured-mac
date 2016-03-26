@@ -16,8 +16,7 @@ class Command {
   func run(account: Account, path: String) {
     CapturedState.broadcastStateChange(.Active)
 
-    UploadManager(account: account, path: path).run(
-      { upload in
+    UploadManager(account: account, path: path).run({ upload in
         if let url = upload.url {
           CapturedState.broadcastStateChange(.Success)
           self.copyToPasteboard(url)
@@ -45,7 +44,7 @@ class Command {
 
         self.run(shortcut.getAccount()!, path: path)
       }
-    
+
   }
 
   private func resetGlobalStateAfterDelay() {
