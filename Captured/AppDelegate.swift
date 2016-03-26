@@ -25,6 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   var annotatedWindow: AnnotatedImageController?
   let enabledMenuItem = NSMenuItem()
 
+  private let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
+
   // The magic tag that is used to denote a menu item is for a "shortcut." This
   // is used to remove all menu items associated with a tag.
   let magicShortcutMenuItemTag = 13
@@ -80,7 +82,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       for url in urls {
+
+        let path = url.relativePath!!
+        let amanager = AccountManager()
+        amanager.load()
+        let account = AccountManager.sharedInstance.accountWithIdentifier("C93D5479-6BA1-4E04-9C5D-978EF4174B8F")!
+
+        dispatch_async(queue) {
+          Command().run(account, path:path)
+        }
+
         print("Dragged URLS: \(url.relativePath)")
+
         return true
       }
     }
@@ -266,7 +279,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   private func runShortcut(shortcut: Shortcut) {
-    Command(shortcut: shortcut).runAsync()
+    dispatch_async(queue) {
+      Command().run(shortcut)
+    }
   }
 
   @IBAction func menuShortcut(sender: NSMenuItem) {

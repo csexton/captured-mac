@@ -13,48 +13,39 @@ import ImageIO
 
 class Command {
 
-  var shortcut: Shortcut
+  func run(account: Account, path: String) {
+    CapturedState.broadcastStateChange(.Active)
 
-
-  init(shortcut: Shortcut) {
-    self.shortcut = shortcut
+    UploadManager(account: account, path: path).run(
+      { upload in
+        if let url = upload.url {
+          CapturedState.broadcastStateChange(.Success)
+          self.copyToPasteboard(url)
+          self.postSuccessNotification(account, url: url, path: path)
+        }
+      },
+      error: { upload in
+      CapturedState.broadcastStateChange(.Error)
+      })
+    self.resetGlobalStateAfterDelay()
   }
+  func run(shortcut: Shortcut) {
+      ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
+        if shortcut.annotateImage {
+          let a = Annotator()
+          a.annotateImageFileInPlace(path)
+          if a.userCanceled { return }
+        }
 
-  private func run() {
-    ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
-      if self.shortcut.annotateImage {
-        let a = Annotator()
-        a.annotateImageFileInPlace(path)
-        if a.userCanceled { return }
+
+
+        if shortcut.scaleImage {
+          self.scaleImageFileInPlace(path)
+        }
+
+        self.run(shortcut.getAccount()!, path: path)
       }
-
-      CapturedState.broadcastStateChange(.Active)
-
-
-      if self.shortcut.scaleImage {
-        self.scaleImageFileInPlace(path)
-      }
-
-      if let account = self.shortcut.getAccount() {
-        UploadManager(account: account, path: path).run({ upload in
-            if let url = upload.url {
-              CapturedState.broadcastStateChange(.Success)
-              self.copyToPasteboard(url)
-              self.postSuccessNotification(account, url: url, path: path)
-            }
-          },
-          error: { upload in
-            CapturedState.broadcastStateChange(.Error)
-        })
-      }
-      self.resetGlobalStateAfterDelay()
-    }
-  }
-
-  func runAsync() {
-    dispatch_async(dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)) {
-      self.run()
-    }
+    
   }
 
   private func resetGlobalStateAfterDelay() {
