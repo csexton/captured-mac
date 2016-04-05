@@ -41,6 +41,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
     // RVNValidateAndRunApplication(Process.argc, Process.unsafeArgv)
+//    let session = DBSession(appKey: "4zwv9noh6qesnob", appSecret: "folukm6dwd1l93r", root: kDBRootAppFolder)
+//    DBSession.setSharedSession(session)
+//    session.unlinkAll()
+//    print(session)
+//    DBAuthHelperOSX.sharedHelper().authenticate()
+
+    //DBSession *session = [[DBSession alloc] initWithAppKey:appKey appSecret:appSecret root:root];
+    //    [DBSession setSharedSession:session];
 
     setDefaultDefaults()
     accountManager.load()
@@ -50,6 +58,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
+    registerCustomURL()
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
 
@@ -220,6 +229,27 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func stateDidChange(state: CapturedState) {
     setGlobalState(state.current)
+  }
+
+  // MARK: Custom URL Scheme
+
+  func registerCustomURL() {
+    let appleEventManager: NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
+    appleEventManager.setEventHandler(self, andSelector: #selector(AppDelegate.handleURLEvent(_:withReply:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+
+  }
+
+  func handleURLEvent(event: NSAppleEventDescriptor, withReply reply: NSAppleEventDescriptor) {
+    print("yay!")
+    if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
+      if let url = NSURL(string: urlString) where "captured" == url.scheme && "oauth" == url.host {
+        print(url)
+//        NSNotificationCenter.defaultCenter().postNotificationName(OAuth2AppDidReceiveCallbackNotification, object: url)
+      }
+    }
+    else {
+      NSLog("No valid URL to handle")
+    }
   }
 
   // MARK: Manage Global HotKey and Shortcuts

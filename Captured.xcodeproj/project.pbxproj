@@ -90,6 +90,8 @@
 		B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */; };
 		B5FB98801C0156B0006BC590 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987F1C0156B0006BC590 /* Account.swift */; };
 		B5FB98821C028578006BC590 /* ShortcutDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */; };
+		B5FD17601CB010D3009DF68C /* DropboxOSX.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD175F1CB010D3009DF68C /* DropboxOSX.framework */; };
+		B5FD17611CB40777009DF68C /* DropboxOSX.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FD175F1CB010D3009DF68C /* DropboxOSX.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +135,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B5FD17611CB40777009DF68C /* DropboxOSX.framework in Embedded Frameworks */,
 				B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */,
 				B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */,
 				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
@@ -226,6 +229,7 @@
 		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5FB987F1C0156B0006BC590 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		B5FB98811C028578006BC590 /* ShortcutDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutDetailViewController.swift; sourceTree = "<group>"; };
+		B5FD175F1CB010D3009DF68C /* DropboxOSX.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DropboxOSX.framework; path = Vendor/DropboxOSX.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +239,7 @@
 			files = (
 				B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */,
 				B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */,
+				B5FD17601CB010D3009DF68C /* DropboxOSX.framework in Frameworks */,
 				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
 				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
 				B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */,
@@ -485,6 +490,7 @@
 		B5FB987E1C015378006BC590 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5FD175F1CB010D3009DF68C /* DropboxOSX.framework */,
 				B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */,
 				B53170E51CA325A600D8EF84 /* Just.framework */,
 				B5010B331C5C66BA00EB2466 /* libcurl.framework */,

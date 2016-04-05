@@ -105,8 +105,8 @@
                                     </menu>
                                 </popUpButtonCell>
                                 <connections>
-                                    <binding destination="tcs-X9-Ifa" name="enabled" keyPath="values.EnableDrag" id="asZ-DH-wJG"/>
                                     <binding destination="tcs-X9-Ifa" name="selectedObject" keyPath="values.DragAccountIdentifier" id="fSv-8m-ILx"/>
+                                    <binding destination="tcs-X9-Ifa" name="enabled" keyPath="values.EnableDrag" id="asZ-DH-wJG"/>
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLK-d8-6lJ">
@@ -457,7 +457,7 @@ Captured makes use of the following open source libraries:
                                 <action selector="createNewAccountFromMenu:" target="RRh-pT-cbP" id="0J2-TU-SMo"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Dropbox" tag="2" hidden="YES" enabled="NO" id="OZN-4e-Eh2">
+                        <menuItem title="Dropbox" tag="2" id="OZN-4e-Eh2">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="37u-dC-uTU"/>
