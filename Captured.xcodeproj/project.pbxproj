@@ -48,6 +48,9 @@
 		B55E8BF01C02C18100945434 /* ImgurDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */; };
 		B569B3AC1C9B8192008732F4 /* S3V4SignerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B569B3AB1C9B8192008732F4 /* S3V4SignerTests.swift */; };
 		B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */; };
+		B57597FF1CB440B9002C5F45 /* DropboxAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57597FE1CB440B9002C5F45 /* DropboxAccount.swift */; };
+		B57598011CB44135002C5F45 /* DropboxSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57598001CB44135002C5F45 /* DropboxSessionManager.swift */; };
+		B57598031CB44AD9002C5F45 /* DropboxDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57598021CB44AD9002C5F45 /* DropboxDetailViewController.swift */; };
 		B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */; };
 		B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */; };
 		B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */; };
@@ -173,6 +176,9 @@
 		B55E8BEF1C02C18100945434 /* ImgurDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgurDetailViewController.swift; sourceTree = "<group>"; };
 		B569B3AB1C9B8192008732F4 /* S3V4SignerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3V4SignerTests.swift; sourceTree = "<group>"; };
 		B56E8B1C1C3AB4D70059C6AC /* S3Uploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = S3Uploader.swift; sourceTree = "<group>"; };
+		B57597FE1CB440B9002C5F45 /* DropboxAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxAccount.swift; sourceTree = "<group>"; };
+		B57598001CB44135002C5F45 /* DropboxSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxSessionManager.swift; sourceTree = "<group>"; };
+		B57598021CB44AD9002C5F45 /* DropboxDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropboxDetailViewController.swift; sourceTree = "<group>"; };
 		B580EA361C1C8AAC00794567 /* ShortcutTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTableCellView.swift; sourceTree = "<group>"; };
 		B580EA381C20B08800794567 /* AboutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5813EE51C066D70003A2D9C /* ImgSafeUploader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImgSafeUploader.swift; sourceTree = "<group>"; };
@@ -286,6 +292,8 @@
 				B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */,
 				B533A6B01C68E2FA00E25283 /* PHPAccount.swift */,
 				B5DE0F291CA72D9400701A14 /* MimeType.swift */,
+				B57597FE1CB440B9002C5F45 /* DropboxAccount.swift */,
+				B57598001CB44135002C5F45 /* DropboxSessionManager.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -343,6 +351,7 @@
 				B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */,
 				B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */,
 				B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */,
+				B57598021CB44AD9002C5F45 /* DropboxDetailViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -720,6 +729,7 @@
 				B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
 				B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */,
+				B57598031CB44AD9002C5F45 /* DropboxDetailViewController.swift in Sources */,
 				B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */,
 				B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */,
 				B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */,
@@ -727,6 +737,7 @@
 				B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */,
 				B54406EA1C49AB1E009E9BF0 /* SFTPAccount.swift in Sources */,
 				B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */,
+				B57598011CB44135002C5F45 /* DropboxSessionManager.swift in Sources */,
 				B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */,
 				B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */,
 				B5CD6B2A1C3443400035821D /* ADrawable.m in Sources */,
@@ -750,6 +761,7 @@
 				B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */,
 				B56E8B1D1C3AB4D70059C6AC /* S3Uploader.swift in Sources */,
 				B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */,
+				B57597FF1CB440B9002C5F45 /* DropboxAccount.swift in Sources */,
 				B5B235691C9B4B90006ADE7B /* FileHash.m in Sources */,
 				B5813EE61C066D70003A2D9C /* ImgSafeUploader.swift in Sources */,
 				B5CD6B281C3443400035821D /* AArrow.m in Sources */,
@@ -931,7 +943,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codeography.captured-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -959,7 +971,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
-				PRODUCT_BUNDLE_IDENTIFIER = com.codeography.Captured;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codeography.captured-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
 			};

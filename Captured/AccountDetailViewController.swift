@@ -32,12 +32,16 @@ class AccountDetailViewController: NSViewController {
       text: "Are you sure you want to delete this account?",
       buttonOk: "Yep, delete it.",
       buttonCancel: "Nevermind") {
-        if let account = representedObject as? Account {
-          AccountManager.sharedInstance.delete(account)
-        }
-        self.dismissController(self)
+        self.performDelete()
     }
   }
+  func performDelete() {
+    if let account = representedObject as? Account {
+      AccountManager.sharedInstance.delete(account)
+    }
+    dismissController(self)
+  }
+  
   func endEditing() {
     // http://pinkstone.co.uk/how-to-remove-focus-from-an-nstextfield/
     //   Give up first repsonder status and therefore end editing

@@ -40,17 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
-    // RVNValidateAndRunApplication(Process.argc, Process.unsafeArgv)
-//    let session = DBSession(appKey: "4zwv9noh6qesnob", appSecret: "folukm6dwd1l93r", root: kDBRootAppFolder)
-//    DBSession.setSharedSession(session)
-//    session.unlinkAll()
-//    print(session)
-//    DBAuthHelperOSX.sharedHelper().authenticate()
-
-    //DBSession *session = [[DBSession alloc] initWithAppKey:appKey appSecret:appSecret root:root];
-    //    [DBSession setSharedSession:session];
-
     setDefaultDefaults()
+    DropboxSessionManager.setGlobalSession()
     accountManager.load()
     shortcutManager.load()
     createStatusMenu()
@@ -62,6 +53,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
 
+    //DropboxSessionManager.init().unlink()
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
@@ -240,14 +232,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func handleURLEvent(event: NSAppleEventDescriptor, withReply reply: NSAppleEventDescriptor) {
-    print("yay!")
     if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
       if let url = NSURL(string: urlString) where "captured" == url.scheme && "oauth" == url.host {
         print(url)
 //        NSNotificationCenter.defaultCenter().postNotificationName(OAuth2AppDidReceiveCallbackNotification, object: url)
       }
-    }
-    else {
+      showPreferences(self)
+    } else {
       NSLog("No valid URL to handle")
     }
   }
