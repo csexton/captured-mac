@@ -459,7 +459,7 @@ Captured makes use of the following open source libraries:
                                 <action selector="createNewAccountFromMenu:" target="RRh-pT-cbP" id="0J2-TU-SMo"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Dropbox" tag="2" id="OZN-4e-Eh2">
+                        <menuItem title="Dropbox" tag="2" hidden="YES" id="OZN-4e-Eh2">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="37u-dC-uTU"/>
@@ -1630,7 +1630,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="30F-NU-PML">
-                                <rect key="frame" x="-8" y="41" width="466" height="127"/>
+                                <rect key="frame" x="-1" y="51" width="452" height="111"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="0uw-Kr-OWf">

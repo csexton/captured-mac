@@ -17,7 +17,7 @@ class UploadManager {
     self.path = path
   }
 
-  func run(success:(upload: UploadManager) -> (Void), error:(upload:UploadManager) -> (Void)) {
+  func run(success:(upload: UploadManager) -> (Void), error:(upload: UploadManager) -> (Void)) {
     let uploader = uploadFactory(account.type)
 
     if uploader.upload(path!) {
@@ -38,6 +38,8 @@ class UploadManager {
       return ImgurUploader(account: account)
     case "Captured PHP":
       return PHPUploader(account: account)
+    case "Dropbox":
+      return DropboxUploader(account: account)
     default:
       // TODO: Better Default
       return ImgurUploader(account: account)
