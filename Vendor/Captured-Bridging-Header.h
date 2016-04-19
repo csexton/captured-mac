@@ -8,3 +8,4 @@
 #import "AnnotatedImageController.h"
 #import "SFTPClient.h"
 #import "FileHash.h"
+#import <DropboxOSX/DropboxOSX.h>

@@ -40,6 +40,8 @@ class AccountPreferencesViewController: NSViewController,
       self.performSegue(.SFTP, sender: account)
     case "Captured PHP":
       self.performSegue(.PHP, sender: account)
+    case "Dropbox":
+      self.performSegue(.Dropbox, sender: account)
     default:
       print("Unknown Account type. Make sure the type field is set for this account.")
     }
@@ -54,7 +56,7 @@ class AccountPreferencesViewController: NSViewController,
     case 1:
       self.performSegue(.S3, sender: S3Account())
     case 2:
-      self.performSegue(.Dropbox, sender: nil)
+      self.performSegue(.Dropbox, sender: DropboxAccount())
     case 3:
       self.performSegue(.SFTP, sender: SFTPAccount())
     case 4:

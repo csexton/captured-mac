@@ -48,7 +48,7 @@ class PHPUploader: Uploader {
     )
     NSLog("Response from Captured PHP: \(r)")
     if r.ok {
-      if let link = r.json!["image_url"] as? String {
+      if let link = r.json!["public_url"] as? String {
         linkURL = link
         return true
       }

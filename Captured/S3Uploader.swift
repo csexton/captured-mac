@@ -22,9 +22,10 @@ class S3Uploader: Uploader {
       accessKey = s3.accessKey!
       secretKey = s3.secretKey!
       bucketName = s3.bucketName!
-      regionName = s3.regionName!
-      if (regionName ?? "").isEmpty {
+      if (s3.regionName ?? "").isEmpty {
         regionName = "us-east-1"
+      } else {
+        regionName = s3.regionName!
       }
       fileNameLength = Int(s3.fileNameLength)
     }
@@ -32,7 +33,7 @@ class S3Uploader: Uploader {
 
   func test() -> String {
     let bodyDigest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let url = NSURL(string: "https://\(bucketName!).s3-\(regionName!).amazonaws.com")!
+    let url = NSURL(string: "http://\(bucketName!).s3.amazonaws.com")!
 
     let signer = S3V4Signer(accessKey: accessKey!, secretKey: secretKey!, regionName: regionName!)
     let headers = signer.signedHeaders(url, bodyDigest: bodyDigest, httpMethod: "GET")
@@ -63,7 +64,7 @@ class S3Uploader: Uploader {
   func upload(path: String) -> Bool {
     let bodyDigest = FileHash.sha256HashOfFileAtPath(path)!
     let resourcePath = "/\(randomStringWithLength(fileNameLength!))"
-    let url = NSURL(string: "https://\(bucketName!).s3-\(regionName!).amazonaws.com\(resourcePath)")!
+    let url = NSURL(string: "http://\(bucketName!).s3.amazonaws.com\(resourcePath)")!
     let request = NSMutableURLRequest(URL: url)
     let fileStream = NSInputStream(fileAtPath: path)!
 
@@ -78,7 +79,8 @@ class S3Uploader: Uploader {
     }
 
     request.addValue(sizeForPath(path), forHTTPHeaderField: "Content-Length")
-    request.addValue("image/png", forHTTPHeaderField: "Content-Type")
+    let mime = MimeType(path: path).mimeType
+    request.addValue(mime, forHTTPHeaderField: "Content-Type")
 
     var response: NSURLResponse?
 

@@ -77,9 +77,9 @@ class AccountManager: NSObject {
 
   }
 
-  func accountWithIdentifier(id: String) -> (Account?) {
+  func accountWithIdentifier(identifier: String) -> (Account?) {
     for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as? String == id {
+      if accounts[i]["Identifier"] as? String == identifier {
         return accountFactory(accounts[i])
       }
     }
@@ -87,9 +87,9 @@ class AccountManager: NSObject {
   }
 
 
-  func indexForAccountWithIdentifier(id: String) -> (Int) {
+  func indexForAccountWithIdentifier(identifier: String) -> (Int) {
     for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as? String == id {
+      if accounts[i]["Identifier"] as? String == identifier {
         return i
       }
     }

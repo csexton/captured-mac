@@ -25,6 +25,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   var annotatedWindow: AnnotatedImageController?
   let enabledMenuItem = NSMenuItem()
 
+  private let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
+
   // The magic tag that is used to denote a menu item is for a "shortcut." This
   // is used to remove all menu items associated with a tag.
   let magicShortcutMenuItemTag = 13
@@ -38,9 +40,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
-    // RVNValidateAndRunApplication(Process.argc, Process.unsafeArgv)
-
     setDefaultDefaults()
+    DropboxSessionManager.setGlobalSession()
     accountManager.load()
     shortcutManager.load()
     createStatusMenu()
@@ -48,9 +49,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
+    registerCustomURL()
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
 
+    //DropboxSessionManager.init().unlink()
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
@@ -70,7 +73,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       if urls.count == 1 {
-        return .Copy
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if defaults.boolForKey("EnableDrag") == true {
+          return .Copy
+        }
       }
     }
     return .None
@@ -80,7 +86,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       for url in urls {
+
+        let path = url.relativePath!!
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let identifier = defaults.objectForKey("DragAccountIdentifier") as? String {
+
+          let account = AccountManager.sharedInstance.accountWithIdentifier(identifier)!
+          
+          dispatch_async(queue) {
+            Command().run(account, path:path)
+          }
+        }
+
         print("Dragged URLS: \(url.relativePath)")
+
         return true
       }
     }
@@ -203,6 +223,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     setGlobalState(state.current)
   }
 
+  // MARK: Custom URL Scheme
+
+  func registerCustomURL() {
+    let appleEventManager: NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
+    appleEventManager.setEventHandler(self, andSelector: #selector(AppDelegate.handleURLEvent(_:withReply:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
+
+  }
+
+  func handleURLEvent(event: NSAppleEventDescriptor, withReply reply: NSAppleEventDescriptor) {
+    if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
+      if let url = NSURL(string: urlString) where "captured" == url.scheme && "oauth" == url.host {
+        print(url)
+//        NSNotificationCenter.defaultCenter().postNotificationName(OAuth2AppDidReceiveCallbackNotification, object: url)
+      }
+      showPreferences(self)
+    } else {
+      NSLog("No valid URL to handle")
+    }
+  }
+
   // MARK: Manage Global HotKey and Shortcuts
 
   private func setupNotificationListeners() {
@@ -266,7 +306,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   private func runShortcut(shortcut: Shortcut) {
-    Command(shortcut: shortcut).runAsync()
+    dispatch_async(queue) {
+      Command().run(shortcut)
+    }
   }
 
   @IBAction func menuShortcut(sender: NSMenuItem) {
