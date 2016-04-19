@@ -144,7 +144,7 @@
 }
 
 - (NSString *)testConnection {
-  NSString *testResponse = nil;
+  NSString *testResponse = @"Success!";
 
   // set the url to just do an ls of the target dir
   NSString *url = [NSString stringWithFormat:@"sftp://%@%@", self.host, [self formatPath:self.pathOnServer]];

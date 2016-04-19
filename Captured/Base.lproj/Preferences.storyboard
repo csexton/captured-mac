@@ -1023,7 +1023,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="testConnectionButton:" target="9mh-Wm-Shx" id="Ja4-jf-ps7"/>
+                                    <action selector="testConnectionButton:" target="RxL-GE-0Wv" id="mrL-gS-EWK"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N7y-fh-ze0">
@@ -1088,12 +1088,16 @@ Gw
                                     <binding destination="RxL-GE-0Wv" name="selectedIndex" keyPath="representedObject.fileNameLengthIndex" id="lhu-lz-iNQ"/>
                                 </connections>
                             </popUpButton>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tma-GT-MFG">
+                                <rect key="frame" x="123" y="22" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="displayNameField" destination="2Qe-gv-sPX" id="sSm-2p-pt2"/>
                         <outlet property="hostnameField" destination="gnK-qt-7sg" id="7Oz-c1-9Yc"/>
                         <outlet property="publicURLField" destination="WCD-ar-Gdf" id="pBY-MZ-ZIw"/>
+                        <outlet property="spinner" destination="tma-GT-MFG" id="2xc-An-j2z"/>
                         <outlet property="usernameField" destination="L8t-iU-aRk" id="ZnC-w0-n5m"/>
                     </connections>
                 </viewController>
@@ -1635,11 +1639,10 @@ Gw
                                 <tabViewItems>
                                     <tabViewItem label="Login" identifier="1" id="0uw-Kr-OWf">
                                         <view key="view" ambiguous="YES" id="UQY-xK-X0F">
-                                            <rect key="frame" x="0.0" y="0.0" width="452" height="111"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6p-fp-qsv">
-                                                    <rect key="frame" x="170" y="63" width="120" height="32"/>
+                                                    <rect key="frame" x="170" y="-48" width="120" height="32"/>
                                                     <buttonCell key="cell" type="push" title="Link Dropbox" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ylm-Hp-n5W">
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="system"/>
@@ -1649,7 +1652,7 @@ Gw
                                                     </connections>
                                                 </button>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnT-Ne-1WV">
-                                                    <rect key="frame" x="89" y="48" width="288" height="17"/>
+                                                    <rect key="frame" x="89" y="-63" width="288" height="17"/>
                                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note: You can only link one Dropbox account at a time" id="YgZ-50-1av">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1657,7 +1660,7 @@ Gw
                                                     </textFieldCell>
                                                 </textField>
                                                 <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXF-Ys-tRM">
-                                                    <rect key="frame" x="15" y="4" width="430" height="42"/>
+                                                    <rect key="frame" x="15" y="-107" width="430" height="42"/>
                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="ElZ-xg-Uba">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
