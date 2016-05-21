@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="hJN-nS-tkV">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -434,11 +434,9 @@ Captured makes use of the following open source libraries:
                         <segue destination="9mh-Wm-Shx" kind="sheet" identifier="s3SheetSegue" id="f9d-Td-McG"/>
                         <segue destination="RxL-GE-0Wv" kind="sheet" identifier="sftpSheetSegue" id="Mtg-k2-WHd"/>
                         <segue destination="2ah-4b-NHi" kind="sheet" identifier="phpSheetSegue" id="wbj-j1-eAO"/>
-                        <segue destination="tti-YL-phA" kind="sheet" identifier="dropboxSheetSegue" id="ZgE-kW-YOM"/>
                     </connections>
                 </viewController>
                 <customObject id="RRh-pT-cbP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="3Kg-do-SIB" customClass="DropboxSessionManager" customModule="Captured" customModuleProvider="target"/>
                 <menu id="oFb-KM-b8b">
                     <items>
                         <menuItem title="Imgur" tag="4" id="SGy-jC-7vE">
@@ -453,21 +451,10 @@ Captured makes use of the following open source libraries:
                                 <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="3mW-pw-M5X"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Captured PHP" tag="5" id="Kgl-9Z-sUb">
+                        <menuItem title="Captured PHP" tag="2" id="Kgl-9Z-sUb">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="createNewAccountFromMenu:" target="RRh-pT-cbP" id="0J2-TU-SMo"/>
-                            </connections>
-                        </menuItem>
-                        <menuItem title="Dropbox" tag="2" hidden="YES" id="OZN-4e-Eh2">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                            <connections>
-                                <action selector="createNewAccountFromMenu:" target="yaz-Nj-fpE" id="37u-dC-uTU"/>
-                                <binding destination="3Kg-do-SIB" name="enabled" keyPath="self.isLinked" id="xoK-ko-uQN">
-                                    <dictionary key="options">
-                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                    </dictionary>
-                                </binding>
                             </connections>
                         </menuItem>
                         <menuItem title="SFTP" tag="3" id="Bkv-Vj-yln">
@@ -1583,171 +1570,6 @@ Gw
                 <tabViewItem identifier="" image="NSPreferencesGeneral" id="vhg-8s-Uca"/>
             </objects>
             <point key="canvasLocation" x="-1018" y="355"/>
-        </scene>
-        <!--Dropbox Detail-->
-        <scene sceneID="NDM-IA-4B6">
-            <objects>
-                <viewController title="Dropbox Settings" id="tti-YL-phA" userLabel="Dropbox Detail" customClass="DropboxDetailViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="uv6-Cp-QNk">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="210"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLF-2N-tm2">
-                                <rect key="frame" x="366" y="13" width="70" height="32"/>
-                                <buttonCell key="cell" type="push" title="Save" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5MT-Bs-XaX">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="saveButton:" target="tti-YL-phA" id="Oem-A9-cMm"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jm1-BT-Wss">
-                                <rect key="frame" x="284" y="13" width="82" height="32"/>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jJc-Rz-SPg">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="cancelButton:" target="tti-YL-phA" id="CuM-zI-o3L"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svc-Zu-AGO">
-                                <rect key="frame" x="14" y="13" width="80" height="32"/>
-                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ROV-3x-96C">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="deleteButton:" target="tti-YL-phA" id="Yh3-dk-CGd"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vWP-pw-jZe">
-                                <rect key="frame" x="18" y="170" width="143" height="20"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Dropbox Account" id="7pf-6U-5bY">
-                                    <font key="font" metaFont="system" size="15"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <tabView fixedFrame="YES" drawsBackground="NO" type="noTabsNoBorder" translatesAutoresizingMaskIntoConstraints="NO" id="30F-NU-PML">
-                                <rect key="frame" x="-1" y="51" width="452" height="111"/>
-                                <font key="font" metaFont="system"/>
-                                <tabViewItems>
-                                    <tabViewItem label="Login" identifier="1" id="0uw-Kr-OWf">
-                                        <view key="view" ambiguous="YES" id="UQY-xK-X0F">
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6p-fp-qsv">
-                                                    <rect key="frame" x="170" y="-48" width="120" height="32"/>
-                                                    <buttonCell key="cell" type="push" title="Link Dropbox" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ylm-Hp-n5W">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="linkAccount:" target="tti-YL-phA" id="Mga-au-7x1"/>
-                                                    </connections>
-                                                </button>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pnT-Ne-1WV">
-                                                    <rect key="frame" x="89" y="-63" width="288" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note: You can only link one Dropbox account at a time" id="YgZ-50-1av">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField hidden="YES" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WXF-Ys-tRM">
-                                                    <rect key="frame" x="15" y="-107" width="430" height="42"/>
-                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Multiline Label" id="ElZ-xg-Uba">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" red="0.90588235289999997" green="0.01176470588" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                            </subviews>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="Spinner" identifier="2" id="LXr-dq-qVH">
-                                        <view key="view" id="dIq-PJ-fsS">
-                                            <rect key="frame" x="0.0" y="0.0" width="452" height="111"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDb-Q5-tMO">
-                                                    <rect key="frame" x="13" y="43" width="421" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Requesting Dropbox Access Token" id="erV-yy-a8a">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="uJE-Rl-5GN">
-                                                    <rect key="frame" x="207" y="68" width="32" height="32"/>
-                                                </progressIndicator>
-                                            </subviews>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="Edit Account" identifier="3" id="vKq-8N-xvC">
-                                        <view key="view" id="Xbd-LM-SbS">
-                                            <rect key="frame" x="0.0" y="0.0" width="452" height="111"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoB-6O-RF2">
-                                                    <rect key="frame" x="146" y="86" width="219" height="22"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ngA-r7-7R4">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="tti-YL-phA" name="value" keyPath="representedObject.name" id="2y5-p0-Pzd"/>
-                                                    </connections>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="30N-cp-MUU">
-                                                    <rect key="frame" x="29" y="89" width="111" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name:" id="0Ia-20-kYL">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hga-8a-yQS">
-                                                    <rect key="frame" x="79" y="32" width="288" height="17"/>
-                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note: You can only link one Dropbox account at a time" id="HeI-12-PRF">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lXD-6N-Sod">
-                                                    <rect key="frame" x="140" y="50" width="132" height="32"/>
-                                                    <buttonCell key="cell" type="push" title="Unlink Account" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ilt-cQ-slq">
-                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                        <font key="font" metaFont="system"/>
-                                                    </buttonCell>
-                                                    <connections>
-                                                        <action selector="unlinkAccount:" target="tti-YL-phA" id="g21-Ds-5hb"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </view>
-                                    </tabViewItem>
-                                </tabViewItems>
-                            </tabView>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="errorLabel" destination="WXF-Ys-tRM" id="MMd-rC-ikn"/>
-                        <outlet property="spinner" destination="uJE-Rl-5GN" id="hS1-M1-SU3"/>
-                        <outlet property="tabView" destination="30F-NU-PML" id="wFC-7i-dLI"/>
-                    </connections>
-                </viewController>
-                <customObject id="0j1-vt-QcL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="wU5-ox-i6r"/>
-            </objects>
-            <point key="canvasLocation" x="469" y="-136"/>
         </scene>
     </scenes>
     <resources>

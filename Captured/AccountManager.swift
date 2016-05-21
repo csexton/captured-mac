@@ -13,7 +13,6 @@ class AccountManager: NSObject {
   enum AccountTypes: String {
     case Imgur = "Imgur"
     case S3 = "Amazon S3"
-    case Dropbox = "Dropbox"
     case AnonImgur = "anonymous Imgur"
   }
 

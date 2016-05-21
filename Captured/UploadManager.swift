@@ -38,8 +38,6 @@ class UploadManager {
       return ImgurUploader(account: account)
     case "Captured PHP":
       return PHPUploader(account: account)
-    case "Dropbox":
-      return DropboxUploader(account: account)
     default:
       // TODO: Better Default
       return ImgurUploader(account: account)

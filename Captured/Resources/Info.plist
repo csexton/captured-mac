@@ -24,22 +24,6 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>Captured for Mac 4 Dropbox URL</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>db-sdwn0x826rg36vi</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>Captured for Mac Dropbox URL</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>db-4zwv9noh6qesnob</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLName</key>
 			<string>Captured App URL</string>
 			<key>CFBundleURLSchemes</key>
 			<array>

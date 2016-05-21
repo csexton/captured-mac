@@ -41,7 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   func applicationDidFinishLaunching(aNotification: NSNotification) {
 
     setDefaultDefaults()
-    DropboxSessionManager.setGlobalSession()
     accountManager.load()
     shortcutManager.load()
     createStatusMenu()
@@ -52,8 +51,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerCustomURL()
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-
-    //DropboxSessionManager.init().unlink()
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
