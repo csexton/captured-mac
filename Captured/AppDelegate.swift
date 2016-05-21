@@ -90,7 +90,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
         if let identifier = defaults.objectForKey("DragAccountIdentifier") as? String {
 
           let account = AccountManager.sharedInstance.accountWithIdentifier(identifier)!
-          
+
           dispatch_async(queue) {
             Command().run(account, path:path)
           }
@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func userNotificationCenter(center: NSUserNotificationCenter,
     didActivateNotification notification: NSUserNotification) {
-    if let userInfo = notification.userInfo, let url = userInfo["url"] as? String {
+    if let userInfo = notification.userInfo, url = userInfo["url"] as? String {
       NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
     }
 
@@ -151,7 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     menu.addItem(NSMenuItem(title: "Quit Captured",
       action: #selector(terminate), keyEquivalent: ""))
 
-    if let button = statusItem.button, let window = button.window {
+    if let button = statusItem.button, window = button.window {
       window.registerForDraggedTypes([NSFilenamesPboardType])
       window.delegate = self
     }

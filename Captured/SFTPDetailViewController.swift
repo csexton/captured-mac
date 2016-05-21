@@ -15,7 +15,7 @@ class SFTPDetailViewController: AccountDetailViewController {
   @IBOutlet weak var hostnameField: NSTextField!
   @IBOutlet weak var publicURLField: NSTextField!
   @IBOutlet weak var spinner: NSProgressIndicator!
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     // Do view setup here.
@@ -29,7 +29,7 @@ class SFTPDetailViewController: AccountDetailViewController {
       if let account = representedObject as? SFTPAccount {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) {
           let msg = SFTPUploader.init(account: account).test()
-          
+
           dispatch_async(dispatch_get_main_queue()) {
             self.spinner.hidden = true
             self.spinner.stopAnimation(nil)

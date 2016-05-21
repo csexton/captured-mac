@@ -108,7 +108,7 @@ class Command {
     CGContextSetInterpolationQuality(context, .High)
 
     // draw image to context, effectively resizing it
-    CGContextDrawImage(context, CGRectMake(0, 0, CGFloat(width), CGFloat(height)), imageRef)
+    CGContextDrawImage(context, CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)), imageRef)
 
     // extract resulting image from context
     let imgRef = CGBitmapContextCreateImage(context)

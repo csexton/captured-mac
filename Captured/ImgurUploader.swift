@@ -35,7 +35,7 @@ class ImgurUploader: Uploader {
     )
     NSLog("Response from Imgur: \(r.json!)")
     if r.ok {
-      if let data = r.json!["data"] as? [String:AnyObject], let link = data["link"] as? String {
+      if let data = r.json!["data"] as? [String:AnyObject], link = data["link"] as? String {
         linkURL = link
       }
       return true

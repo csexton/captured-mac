@@ -41,7 +41,7 @@ class AccountDetailViewController: NSViewController {
     }
     dismissController(self)
   }
-  
+
   func endEditing() {
     // http://pinkstone.co.uk/how-to-remove-focus-from-an-nstextfield/
     //   Give up first repsonder status and therefore end editing
