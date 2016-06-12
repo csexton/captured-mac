@@ -43,22 +43,15 @@ class ShortcutsDetailViewController: NSViewController {
     self.dismissController(self)
   }
   @IBAction func saveButton(sender: AnyObject) {
-
-    // TODO: Validate:
-    //  - shortcutValue
-    //  - action
-    //  - uploader
     if !validateForm() {
       return
     }
 
     if let shortcut = representedObject as? Shortcut {
-
       shortcut.shortcutValue = shortcutField.shortcutValue
-
       shortcut.action = actionTypeForTag(actionPopUp.selectedItem!.tag)
-
       shortcut.name = actionPopUp.selectedItem!.title
+
       if let account = accountPopUp.selectedItem?.representedObject as? Account {
         shortcut.accountIdentifier = account.identifier
         shortcut.name = "\(shortcut.name) - \(account.name)"
