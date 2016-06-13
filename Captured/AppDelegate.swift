@@ -24,6 +24,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   var annotatedWindow: AnnotatedImageController?
   let enabledMenuItem = NSMenuItem()
+  let firstRunPopover = NSPopover()
+  var firstRunTimer = NSTimer()
+  var eventMonitor: EventMonitor?
+
+  //let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+  let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
+
 
   private let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
 
@@ -43,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
+
     createStatusMenu()
 
     registerShortcuts()
@@ -51,6 +59,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerCustomURL()
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
+
+    showPopoverOnFirstRun()
+
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
@@ -131,8 +142,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   // MARK: Status Menu
 
-  let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-
   func createStatusMenu() {
     setGlobalState(.Normal)
     let menu = NSMenu()
@@ -148,15 +157,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     menu.addItem(enabledMenuItem)
     menu.addItem(NSMenuItem(title: "Preferences...",
       action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
+    #if DEBUG
+    menu.addItem(NSMenuItem.separatorItem())
+    menu.addItem(NSMenuItem(title: "First Run...",
+      action: #selector(togglePopover), keyEquivalent: ""))
+    #endif
+    menu.addItem(NSMenuItem.separatorItem())
     menu.addItem(NSMenuItem(title: "Quit Captured",
       action: #selector(terminate), keyEquivalent: ""))
+
+    statusItem.menu = menu
 
     if let button = statusItem.button, window = button.window {
       window.registerForDraggedTypes([NSFilenamesPboardType])
       window.delegate = self
     }
 
-    statusItem.menu = menu
+  }
+
+  func statusMenuClicked(sender: AnyObject?) {
+    closePopover(sender)
+    let menu = statusItem.menu!
+    statusItem.popUpStatusItemMenu(menu)
   }
 
   func terminate() {
@@ -202,6 +224,42 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     }
 
     return img!
+  }
+
+  // MARK: First Run
+
+  func showPopoverOnFirstRun() {
+    if NSUserDefaults.standardUserDefaults().boolForKey("FirstRun") {
+    firstRunTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector: #selector(showPopover), userInfo: nil, repeats: false)
+    }
+  }
+
+  func showPopover(sender: AnyObject?) {
+    if firstRunPopover.contentViewController == nil {
+      firstRunPopover.contentViewController = FirstRunViewController(nibName: "FirstRunViewController", bundle: nil)
+    }
+    if let button = statusItem.button {
+      firstRunPopover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
+    }
+
+//    eventMonitor = EventMonitor(mask: [.LeftMouseDownMask, .RightMouseDownMask]) { [unowned self] event in
+//      if self.firstRunPopover.shown {
+//        self.closePopover(event)
+//      }
+//    }
+//    eventMonitor?.start()
+  }
+  func closePopover(sender: AnyObject?) {
+    firstRunPopover.performClose(sender)
+    NSUserDefaults.standardUserDefaults().setValue(false, forKey: "FirstRun")
+  }
+
+  func togglePopover(sender: AnyObject?) {
+    if firstRunPopover.shown {
+      closePopover(sender)
+    } else {
+      showPopover(sender)
+    }
   }
 
   // MARK: Dock Icon
