@@ -12,8 +12,6 @@ import Carbon
 import MASShortcut
 import StartAtLoginController
 
-
-
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   NSUserNotificationCenterDelegate {
@@ -46,22 +44,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
 
     createStatusMenu()
-
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
     registerCustomURL()
-
-    NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
-
     showPopoverOnFirstRun()
 
+    NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
   }
 
   func applicationWillTerminate(aNotification: NSNotification) {
