@@ -63,6 +63,9 @@
 		B59315B61C25AA3F00E7DD86 /* CapturedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B51C25AA3F00E7DD86 /* CapturedState.swift */; };
 		B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */; };
 		B59315BA1C265A3200E7DD86 /* UploadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B59315B91C265A3200E7DD86 /* UploadManager.swift */; };
+		B599E3E71D0DCB2D006936B0 /* FirstRunViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599E3E51D0DCB2D006936B0 /* FirstRunViewController.swift */; };
+		B599E3E81D0DCB2D006936B0 /* FirstRunViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B599E3E61D0DCB2D006936B0 /* FirstRunViewController.xib */; };
+		B599E3EA1D0DDE3F006936B0 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
 		B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */; };
@@ -191,6 +194,9 @@
 		B59315B51C25AA3F00E7DD86 /* CapturedState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedState.swift; sourceTree = "<group>"; };
 		B59315B71C25AA6700E7DD86 /* CapturedNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CapturedNotifications.swift; sourceTree = "<group>"; };
 		B59315B91C265A3200E7DD86 /* UploadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadManager.swift; sourceTree = "<group>"; };
+		B599E3E51D0DCB2D006936B0 /* FirstRunViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstRunViewController.swift; sourceTree = "<group>"; };
+		B599E3E61D0DCB2D006936B0 /* FirstRunViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstRunViewController.xib; sourceTree = "<group>"; };
+		B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
 		B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartAtLoginController.framework; path = Carthage/Build/Mac/StartAtLoginController.framework; sourceTree = "<group>"; };
@@ -338,6 +344,7 @@
 				B54406E71C49A9ED009E9BF0 /* SFTPDetailViewController.swift */,
 				B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */,
 				B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */,
+				B599E3E51D0DCB2D006936B0 /* FirstRunViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -356,6 +363,7 @@
 		B580EA3B1C21EE0100794567 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				B599E3E61D0DCB2D006936B0 /* FirstRunViewController.xib */,
 				B5888A731BFFEE7D00DEA068 /* Main.storyboard */,
 				B5888A981BFFF72200DEA068 /* Preferences.storyboard */,
 			);
@@ -398,6 +406,7 @@
 				B59315B11C24FE3300E7DD86 /* Command.swift */,
 				B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */,
 				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
+				B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -617,6 +626,7 @@
 				B50F2F781C04057E004AB2B1 /* Defaults.plist in Resources */,
 				B5888A9A1BFFF72200DEA068 /* Preferences.storyboard in Resources */,
 				B5888A721BFFEE7D00DEA068 /* Assets.xcassets in Resources */,
+				B599E3E81D0DCB2D006936B0 /* FirstRunViewController.xib in Resources */,
 				B5888A751BFFEE7D00DEA068 /* Main.storyboard in Resources */,
 				B5CD6B2B1C3443400035821D /* AnnotatedImage.xib in Resources */,
 			);
@@ -713,6 +723,7 @@
 				B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */,
 				B580EA391C20B08800794567 /* AboutPreferencesViewController.swift in Sources */,
 				B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */,
+				B599E3EA1D0DDE3F006936B0 /* EventMonitor.swift in Sources */,
 				B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */,
 				B580EA371C1C8AAC00794567 /* ShortcutTableCellView.swift in Sources */,
 				B5888A6E1BFFEE7D00DEA068 /* AppDelegate.swift in Sources */,
@@ -737,6 +748,7 @@
 				B59315B21C24FE3300E7DD86 /* Command.swift in Sources */,
 				B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */,
 				B5CD6B2F1C3443400035821D /* APoint.m in Sources */,
+				B599E3E71D0DCB2D006936B0 /* FirstRunViewController.swift in Sources */,
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
@@ -925,6 +937,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CODE_SIGN_FLAGS = "--deep";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.codeography.captured-mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Vendor/Captured-Bridging-Header.h";
