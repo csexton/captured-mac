@@ -63,7 +63,8 @@ class S3Uploader: Uploader {
 
   func upload(path: String) -> Bool {
     let bodyDigest = FileHash.sha256HashOfFileAtPath(path)!
-    let resourcePath = "/\(randomStringWithLength(fileNameLength!))"
+    let fileExt = NSURL(fileURLWithPath: path).pathExtension!
+    let resourcePath = "/\(randomStringWithLength(fileNameLength!)).\(fileExt)"
     let url = NSURL(string: "http://\(bucketName!).s3.amazonaws.com\(resourcePath)")!
     let request = NSMutableURLRequest(URL: url)
     let fileStream = NSInputStream(fileAtPath: path)!
