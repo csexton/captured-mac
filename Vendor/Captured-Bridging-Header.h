@@ -6,5 +6,5 @@
 
 #import "RVNReceiptValidation.h"
 #import "AnnotatedImageController.h"
-#import "SFTPClient.h"
 #import "FileHash.h"
+#import <NMSSH/NMSSH.h>

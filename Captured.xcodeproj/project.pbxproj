@@ -23,9 +23,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; };
-		B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5010B331C5C66BA00EB2466 /* libcurl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B50481B61C3F527B001B2FDF /* SFTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = B50481B51C3F527B001B2FDF /* SFTPClient.m */; };
+		B50CD9901D22BD34006FDAB6 /* NMSSH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B50CD98F1D22BD34006FDAB6 /* NMSSH.framework */; };
+		B50CD9911D22BEAA006FDAB6 /* NMSSH.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B50CD98F1D22BD34006FDAB6 /* NMSSH.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B50F2F6E1C03FBE6004AB2B1 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */; };
 		B50F2F731C03FFB8004AB2B1 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */; };
 		B50F2F751C03FFEB004AB2B1 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */; };
@@ -136,8 +135,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				B50CD9911D22BEAA006FDAB6 /* NMSSH.framework in Embedded Frameworks */,
 				B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */,
-				B5010B351C5C66CB00EB2466 /* libcurl.framework in Embedded Frameworks */,
 				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
 				B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */,
 				B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */,
@@ -148,9 +147,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5010B331C5C66BA00EB2466 /* libcurl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libcurl.framework; path = Vendor/libcurl.framework; sourceTree = "<group>"; };
-		B50481B41C3F527B001B2FDF /* SFTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTPClient.h; path = SFTPClient/SFTPClient.h; sourceTree = "<group>"; };
-		B50481B51C3F527B001B2FDF /* SFTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTPClient.m; path = SFTPClient/SFTPClient.m; sourceTree = "<group>"; };
+		B50CD98F1D22BD34006FDAB6 /* NMSSH.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NMSSH.framework; path = Carthage/Build/Mac/NMSSH.framework; sourceTree = "<group>"; };
 		B50F2F6D1C03FBE6004AB2B1 /* AccountManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
 		B50F2F721C03FFB8004AB2B1 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		B50F2F741C03FFEB004AB2B1 /* ShortcutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
@@ -240,8 +237,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */,
-				B5010B341C5C66BA00EB2466 /* libcurl.framework in Frameworks */,
 				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
+				B50CD9901D22BD34006FDAB6 /* NMSSH.framework in Frameworks */,
 				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
 				B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */,
 				B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */,
@@ -265,15 +262,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B50481B31C3F526A001B2FDF /* SFTPClient */ = {
-			isa = PBXGroup;
-			children = (
-				B50481B41C3F527B001B2FDF /* SFTPClient.h */,
-				B50481B51C3F527B001B2FDF /* SFTPClient.m */,
-			);
-			name = SFTPClient;
-			sourceTree = "<group>";
-		};
 		B50F2F711C03FF6B004AB2B1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,7 +310,6 @@
 				B5B520E91CA47A2500E4F57C /* RVNReceiptValidation */,
 				B5CD306B1C9B2A3E003059DC /* S3Request */,
 				B5AFF6211C51ADDE00666F17 /* LaunchAtLoginController */,
-				B50481B31C3F526A001B2FDF /* SFTPClient */,
 				B5CD6B171C34432B0035821D /* Annotated */,
 				B5CD6B131C3442DE0035821D /* Captured-Bridging-Header.h */,
 			);
@@ -495,8 +482,8 @@
 			isa = PBXGroup;
 			children = (
 				B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */,
+				B50CD98F1D22BD34006FDAB6 /* NMSSH.framework */,
 				B53170E51CA325A600D8EF84 /* Just.framework */,
-				B5010B331C5C66BA00EB2466 /* libcurl.framework */,
 				B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */,
 				B51181C51C50673600F9C13E /* ServiceManagement.framework */,
 				B5B11F6E1C0F5468004C0496 /* Locksmith.framework */,
@@ -744,7 +731,6 @@
 				B533A6B51C68ECF400E25283 /* PHPUploader.swift in Sources */,
 				B50F2F751C03FFEB004AB2B1 /* ShortcutManager.swift in Sources */,
 				B5CD6B2D1C3443400035821D /* AnnotatedImageView.m in Sources */,
-				B50481B61C3F527B001B2FDF /* SFTPClient.m in Sources */,
 				B59315B21C24FE3300E7DD86 /* Command.swift in Sources */,
 				B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */,
 				B5CD6B2F1C3443400035821D /* APoint.m in Sources */,
