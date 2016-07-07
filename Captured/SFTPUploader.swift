@@ -21,23 +21,24 @@ class SFTPUploader: Uploader {
     let username = settings["username"]
     let session = NMSSHSession(host: host, andUsername: username)
 
-    if session.connect() {
-      session.authenticateByPassword(settings["password"]!)
+    if settings["password"] != nil {
+      if session.connect() {
+        session.authenticateByPassword(settings["password"]!)
 
-      if session.authorized {
-        let ftp = NMSFTP.connectWithSession(session)
-        let name = createFileName(path, length: 8)
-        let pathOnServer = settings["path_on_server"]!
-        let publicURL = settings["public_url"]!
-        let pathWithName = joinPathSegments(pathOnServer, part2: name)
+        if session.authorized {
+          let ftp = NMSFTP.connectWithSession(session)
+          let name = createFileName(path, length: 8)
+          let pathOnServer = settings["path_on_server"]!
+          let publicURL = settings["public_url"]!
+          let pathWithName = joinPathSegments(pathOnServer, part2: name)
 
-        ftp.createDirectoryAtPath(pathOnServer)
-        success = ftp.writeFileAtPath(path, toFileAtPath: pathWithName)
-        linkURL = joinPathSegments(publicURL, part2: name)
+          ftp.createDirectoryAtPath(pathOnServer)
+          success = ftp.writeFileAtPath(path, toFileAtPath: pathWithName)
+          linkURL = joinPathSegments(publicURL, part2: name)
+        }
       }
+      session.disconnect()
     }
-
-    session.disconnect()
     return success
   }
 
