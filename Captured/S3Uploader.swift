@@ -15,6 +15,8 @@ class S3Uploader: Uploader {
   private var secretKey: String?
   private var bucketName: String?
   private var regionName: String?
+  private var bucketURL: String?
+  private var publicURL: String?
   private var fileNameLength: Int?
 
   required init(account: Account) {
@@ -22,10 +24,16 @@ class S3Uploader: Uploader {
       accessKey = s3.accessKey!
       secretKey = s3.secretKey!
       bucketName = s3.bucketName!
+      bucketURL = "http://\(bucketName!).s3.amazonaws.com"
       if (s3.regionName ?? "").isEmpty {
         regionName = "us-east-1"
       } else {
         regionName = s3.regionName!
+      }
+      if (s3.publicURL ?? "").isEmpty {
+        publicURL = bucketURL
+      } else {
+        publicURL = s3.publicURL
       }
       fileNameLength = Int(s3.fileNameLength)
     }
@@ -33,7 +41,7 @@ class S3Uploader: Uploader {
 
   func test() -> String {
     let bodyDigest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-    let url = NSURL(string: "http://\(bucketName!).s3.amazonaws.com")!
+    let url = NSURL(string: bucketURL!)!
 
     let signer = S3V4Signer(accessKey: accessKey!, secretKey: secretKey!, regionName: regionName!)
     let headers = signer.signedHeaders(url, bodyDigest: bodyDigest, httpMethod: "GET")
@@ -67,8 +75,9 @@ class S3Uploader: Uploader {
     if !fileExt.isEmpty {
       fileExt = ".\(fileExt)"
     }
-    let resourcePath = "/\(randomStringWithLength(fileNameLength!))\(fileExt)"
-    let url = NSURL(string: "http://\(bucketName!).s3.amazonaws.com\(resourcePath)")!
+    let resourcePath = "\(randomStringWithLength(fileNameLength!))\(fileExt)"
+    let url = NSURL(string: joinPathSegments(bucketURL!, part2: resourcePath))!
+    let publicLink = NSURL(string: joinPathSegments(publicURL!, part2: resourcePath))!
     let request = NSMutableURLRequest(URL: url)
     let fileStream = NSInputStream(fileAtPath: path)!
 
@@ -96,7 +105,7 @@ class S3Uploader: Uploader {
         NSLog("Response from AWS S3: \(httpResponse.description)\n\(text!)")
 
         if httpResponse.statusCode == 200 {
-          linkURL = url.absoluteString
+          linkURL = publicLink.absoluteString
           return true
         }
       }
@@ -136,6 +145,11 @@ class S3Uploader: Uploader {
       print("Failed to get file attributes for local path: \(filePath) with error: \(error)")
     }
     return "\(size)"
+  }
+
+  private func joinPathSegments(part1: String, part2: String) -> String {
+    let token = (part1.characters.last! == "/") ? "" : "/"
+    return "\(part1)\(token)\(part2)"
   }
 
 }
