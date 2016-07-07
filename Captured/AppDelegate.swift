@@ -151,11 +151,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     menu.addItem(enabledMenuItem)
     menu.addItem(NSMenuItem(title: "Preferences...",
       action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
-    #if DEBUG
-    menu.addItem(NSMenuItem.separatorItem())
-    menu.addItem(NSMenuItem(title: "First Run...",
-      action: #selector(togglePopover), keyEquivalent: ""))
-    #endif
+    if NSProcessInfo.processInfo().environment["CAPTURED_DEBUG"] != nil {
+      menu.addItem(NSMenuItem.separatorItem())
+      menu.addItem(NSMenuItem(title: "First Run...",
+        action: #selector(togglePopover), keyEquivalent: ""))
+    }
     menu.addItem(NSMenuItem.separatorItem())
     menu.addItem(NSMenuItem(title: "Quit Captured",
       action: #selector(terminate), keyEquivalent: ""))
@@ -166,7 +166,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       window.registerForDraggedTypes([NSFilenamesPboardType])
       window.delegate = self
     }
-
   }
 
   func statusMenuClicked(sender: AnyObject?) {
