@@ -1083,6 +1083,7 @@ Gw
                     <connections>
                         <outlet property="displayNameField" destination="2Qe-gv-sPX" id="sSm-2p-pt2"/>
                         <outlet property="hostnameField" destination="gnK-qt-7sg" id="7Oz-c1-9Yc"/>
+                        <outlet property="passwordField" destination="H3u-xu-E15" id="4Rg-vb-uET"/>
                         <outlet property="publicURLField" destination="WCD-ar-Gdf" id="pBY-MZ-ZIw"/>
                         <outlet property="spinner" destination="tma-GT-MFG" id="2xc-An-j2z"/>
                         <outlet property="usernameField" destination="L8t-iU-aRk" id="ZnC-w0-n5m"/>

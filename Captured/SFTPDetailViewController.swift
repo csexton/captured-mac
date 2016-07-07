@@ -12,6 +12,7 @@ class SFTPDetailViewController: AccountDetailViewController {
 
   @IBOutlet weak var displayNameField: NSTextField!
   @IBOutlet weak var usernameField: NSTextField!
+  @IBOutlet weak var passwordField: NSTextField!
   @IBOutlet weak var hostnameField: NSTextField!
   @IBOutlet weak var publicURLField: NSTextField!
   @IBOutlet weak var spinner: NSProgressIndicator!
@@ -61,6 +62,8 @@ class SFTPDetailViewController: AccountDetailViewController {
       validatePresence(displayNameField)
       &&
       validatePresence(usernameField)
+      &&
+      validatePresence(passwordField)
       &&
       validatePresence(hostnameField)
       &&
