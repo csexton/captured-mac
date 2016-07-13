@@ -25,7 +25,7 @@ class ScreenShot {
 //    image = CGDisplayCreateImage(displays[displaysIndex])
   }
 
-  func writeToDisk(image: CGImageRef?){
+  func writeToDisk(image: CGImageRef?) {
 
     let url = NSURL.fileURLWithPath("/Users/csexton/Desktop/blargle.png")
     let destination = CGImageDestinationCreateWithURL(url, kUTTypePNG, 1, nil)
@@ -53,4 +53,3 @@ class ScreenShot {
 //    }
   }
 }
-
