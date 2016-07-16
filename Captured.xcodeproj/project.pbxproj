@@ -650,7 +650,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "cd $BUILT_PRODUCTS_DIR\n\nSHA=$(ruby -ne 'print $1 if $_  =~ /^Git.*([a-z0-9]{7})/'  Info.txt)\n\nrm -f Captured*.tar.gz\ntar -czvpf Captured-$SHA.tar.gz Captured.app Info.txt\n";
+			shellScript = "cd $BUILT_PRODUCTS_DIR\n\nSHA=$(ruby -ne 'print $1 if $_  =~ /^Git.*([a-z0-9]{7})/'  Info.txt)\n\nrm -f Captured*.tar.gz\ntar -czvpf Captured-$SHA.tar.gz Captured.app Info.txt\nditto -ck --rsrc --sequesterRsrc --keepParent Captured.app Captured-$SHA.zip\n\n";
 		};
 		B56E8B171C36250F0059C6AC /* Swift Lint */ = {
 			isa = PBXShellScriptBuildPhase;
