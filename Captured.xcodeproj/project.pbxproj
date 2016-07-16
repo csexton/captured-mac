@@ -33,6 +33,8 @@
 		B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7C1C051415004AB2B1 /* Uploader.swift */; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
 		B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */; };
+		B52661921D3AA88C00295349 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52661911D3AA88C00295349 /* GeneralPreferencesViewController.swift */; };
+		B52661941D3AAA8600295349 /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52661931D3AAA8600295349 /* LoginItem.swift */; };
 		B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; };
 		B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B533A6B11C68E2FA00E25283 /* PHPAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = B533A6B01C68E2FA00E25283 /* PHPAccount.swift */; };
@@ -67,9 +69,6 @@
 		B599E3EA1D0DDE3F006936B0 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */; };
 		B5A8481D1C00E9C6000B5490 /* AccountTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */; };
 		B5A8481F1C00F2D6000B5490 /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */; };
-		B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */; };
-		B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		B5AFF6271C51C05A00666F17 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFF6261C51C05A00666F17 /* LaunchAtLoginController.m */; };
 		B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; };
 		B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5B11F6E1C0F5468004C0496 /* Locksmith.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5B235691C9B4B90006ADE7B /* FileHash.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B235641C9B4B90006ADE7B /* FileHash.m */; };
@@ -87,6 +86,10 @@
 		B5DE0F281CA71FE700701A14 /* MousePreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */; };
 		B5DE0F2A1CA72D9400701A14 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0F291CA72D9400701A14 /* MimeType.swift */; };
 		B5E238C01C11FDC600568742 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E238BF1C11FDC600568742 /* AccountTests.swift */; };
+		B5ED4D721D3A79B600817800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED4D711D3A79B600817800 /* AppDelegate.swift */; };
+		B5ED4D741D3A79B600817800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ED4D731D3A79B600817800 /* Assets.xcassets */; };
+		B5ED4D771D3A79B600817800 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5ED4D751D3A79B600817800 /* MainMenu.xib */; };
+		B5ED4D7C1D3A7A9400817800 /* Captured Helper.app in Copy Helper Apps */ = {isa = PBXBuildFile; fileRef = B5ED4D6F1D3A79B600817800 /* Captured Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
 		B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B5FB987D1C01530D006BC590 /* ShortcutPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */; };
@@ -125,6 +128,7 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
+				B5ED4D7C1D3A7A9400817800 /* Captured Helper.app in Copy Helper Apps */,
 			);
 			name = "Copy Helper Apps";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +141,6 @@
 			files = (
 				B50CD9911D22BEAA006FDAB6 /* NMSSH.framework in Embedded Frameworks */,
 				B53170E71CA325BA00D8EF84 /* Just.framework in Embedded Frameworks */,
-				B5AFF61F1C51974E00666F17 /* StartAtLoginController.framework in Embedded Frameworks */,
 				B5B11F701C0F5477004C0496 /* Locksmith.framework in Embedded Frameworks */,
 				B5FB987B1C015262006BC590 /* MASShortcut.framework in Embedded Frameworks */,
 			);
@@ -157,6 +160,8 @@
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		B5186FDF1CA492A100A098BB /* RVNReceiptValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVNReceiptValidation.h; path = RVNReceiptValidation/RVNReceiptValidation.h; sourceTree = "<group>"; };
 		B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVNReceiptValidation.m; path = RVNReceiptValidation/RVNReceiptValidation.m; sourceTree = "<group>"; };
+		B52661911D3AA88C00295349 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
+		B52661931D3AAA8600295349 /* LoginItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		B53170E51CA325A600D8EF84 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = "<group>"; };
 		B533A6B01C68E2FA00E25283 /* PHPAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPAccount.swift; sourceTree = "<group>"; };
 		B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PHPDetailViewController.swift; sourceTree = "<group>"; };
@@ -196,9 +201,6 @@
 		B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		B5A8481C1C00E9C6000B5490 /* AccountTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableCellView.swift; sourceTree = "<group>"; };
 		B5A8481E1C00F2D6000B5490 /* AccountDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
-		B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StartAtLoginController.framework; path = Carthage/Build/Mac/StartAtLoginController.framework; sourceTree = "<group>"; };
-		B5AFF6251C51C05A00666F17 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
-		B5AFF6261C51C05A00666F17 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
 		B5B11F6E1C0F5468004C0496 /* Locksmith.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Locksmith.framework; path = Carthage/Build/Mac/Locksmith.framework; sourceTree = "<group>"; };
 		B5B235631C9B4B90006ADE7B /* FileHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHash.h; path = S3Request/FileHash.h; sourceTree = "<group>"; };
 		B5B235641C9B4B90006ADE7B /* FileHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileHash.m; path = S3Request/FileHash.m; sourceTree = "<group>"; };
@@ -226,6 +228,11 @@
 		B5E238BF1C11FDC600568742 /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcommonCrypto.tbd; path = usr/lib/system/libcommonCrypto.tbd; sourceTree = SDKROOT; };
 		B5E96E831D240A7100F8D206 /* Captured.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Captured.entitlements; sourceTree = "<group>"; };
+		B5ED4D6F1D3A79B600817800 /* Captured Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Captured Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5ED4D711D3A79B600817800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B5ED4D731D3A79B600817800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B5ED4D761D3A79B600817800 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B5ED4D781D3A79B600817800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
 		B5FB987C1C01530D006BC590 /* ShortcutPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutPreferencesViewController.swift; sourceTree = "<group>"; };
 		B5FB987F1C0156B0006BC590 /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -240,7 +247,6 @@
 				B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */,
 				B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */,
 				B50CD9901D22BD34006FDAB6 /* NMSSH.framework in Frameworks */,
-				B5AFF61E1C51971700666F17 /* StartAtLoginController.framework in Frameworks */,
 				B5B11F6F1C0F5468004C0496 /* Locksmith.framework in Frameworks */,
 				B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */,
 			);
@@ -254,6 +260,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B5888A831BFFEE7D00DEA068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ED4D6C1D3A79B600817800 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -276,6 +289,7 @@
 				B54406E91C49AB1E009E9BF0 /* SFTPAccount.swift */,
 				B533A6B01C68E2FA00E25283 /* PHPAccount.swift */,
 				B5DE0F291CA72D9400701A14 /* MimeType.swift */,
+				B52661931D3AAA8600295349 /* LoginItem.swift */,
 			);
 			name = Models;
 			path = Captured;
@@ -310,7 +324,6 @@
 			children = (
 				B5B520E91CA47A2500E4F57C /* RVNReceiptValidation */,
 				B5CD306B1C9B2A3E003059DC /* S3Request */,
-				B5AFF6211C51ADDE00666F17 /* LaunchAtLoginController */,
 				B5CD6B171C34432B0035821D /* Annotated */,
 				B5CD6B131C3442DE0035821D /* Captured-Bridging-Header.h */,
 			);
@@ -333,6 +346,7 @@
 				B533A6B21C68E41600E25283 /* PHPDetailViewController.swift */,
 				B5DE0F271CA71FE700701A14 /* MousePreferencesViewController.swift */,
 				B599E3E51D0DCB2D006936B0 /* FirstRunViewController.swift */,
+				B52661911D3AA88C00295349 /* GeneralPreferencesViewController.swift */,
 			);
 			name = Controllers;
 			path = Captured;
@@ -362,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				B5888A6C1BFFEE7D00DEA068 /* Captured */,
+				B5ED4D701D3A79B600817800 /* Captured Helper */,
 				B5FB987E1C015378006BC590 /* Frameworks */,
 				B5888A7E1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A891BFFEE7D00DEA068 /* CapturedUITests */,
@@ -375,6 +390,7 @@
 				B5888A6A1BFFEE7D00DEA068 /* Captured.app */,
 				B5888A7B1BFFEE7D00DEA068 /* CapturedTests.xctest */,
 				B5888A861BFFEE7D00DEA068 /* CapturedUITests.xctest */,
+				B5ED4D6F1D3A79B600817800 /* Captured Helper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -429,15 +445,6 @@
 			path = Captured;
 			sourceTree = SOURCE_ROOT;
 		};
-		B5AFF6211C51ADDE00666F17 /* LaunchAtLoginController */ = {
-			isa = PBXGroup;
-			children = (
-				B5AFF6251C51C05A00666F17 /* LaunchAtLoginController.h */,
-				B5AFF6261C51C05A00666F17 /* LaunchAtLoginController.m */,
-			);
-			name = LaunchAtLoginController;
-			sourceTree = "<group>";
-		};
 		B5B520E91CA47A2500E4F57C /* RVNReceiptValidation */ = {
 			isa = PBXGroup;
 			children = (
@@ -480,13 +487,23 @@
 			name = Annotated;
 			sourceTree = "<group>";
 		};
+		B5ED4D701D3A79B600817800 /* Captured Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B5ED4D711D3A79B600817800 /* AppDelegate.swift */,
+				B5ED4D731D3A79B600817800 /* Assets.xcassets */,
+				B5ED4D751D3A79B600817800 /* MainMenu.xib */,
+				B5ED4D781D3A79B600817800 /* Info.plist */,
+			);
+			path = "Captured Helper";
+			sourceTree = "<group>";
+		};
 		B5FB987E1C015378006BC590 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				B5E4B4701C77E6DB00154BDC /* libcommonCrypto.tbd */,
 				B50CD98F1D22BD34006FDAB6 /* NMSSH.framework */,
 				B53170E51CA325A600D8EF84 /* Just.framework */,
-				B5AFF61D1C51971700666F17 /* StartAtLoginController.framework */,
 				B51181C51C50673600F9C13E /* ServiceManagement.framework */,
 				B5B11F6E1C0F5468004C0496 /* Locksmith.framework */,
 				B5FB98781C0151A4006BC590 /* MASShortcut.framework */,
@@ -554,13 +571,30 @@
 			productReference = B5888A861BFFEE7D00DEA068 /* CapturedUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B5ED4D6E1D3A79B600817800 /* Captured Helper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5ED4D791D3A79B600817800 /* Build configuration list for PBXNativeTarget "Captured Helper" */;
+			buildPhases = (
+				B5ED4D6B1D3A79B600817800 /* Sources */,
+				B5ED4D6C1D3A79B600817800 /* Frameworks */,
+				B5ED4D6D1D3A79B600817800 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Captured Helper";
+			productName = "Captured Helper";
+			productReference = B5ED4D6F1D3A79B600817800 /* Captured Helper.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		B5888A621BFFEE7D00DEA068 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Christopher Sexton";
 				TargetAttributes = {
@@ -584,6 +618,10 @@
 						CreatedOnToolsVersion = 7.1.1;
 						TestTargetID = B5888A691BFFEE7D00DEA068;
 					};
+					B5ED4D6E1D3A79B600817800 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = TR4G6QS37W;
+					};
 				};
 			};
 			buildConfigurationList = B5888A651BFFEE7D00DEA068 /* Build configuration list for PBXProject "Captured" */;
@@ -600,6 +638,7 @@
 			projectRoot = "";
 			targets = (
 				B5888A691BFFEE7D00DEA068 /* Captured */,
+				B5ED4D6E1D3A79B600817800 /* Captured Helper */,
 				B5888A7A1BFFEE7D00DEA068 /* CapturedTests */,
 				B5888A851BFFEE7D00DEA068 /* CapturedUITests */,
 				B533A6BD1C6972D800E25283 /* Package */,
@@ -632,6 +671,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ED4D6D1D3A79B600817800 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ED4D741D3A79B600817800 /* Assets.xcassets in Resources */,
+				B5ED4D771D3A79B600817800 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +752,6 @@
 				B5B2356D1C9B4C0E006ADE7B /* S3V4Signer.swift in Sources */,
 				B533A6B31C68E41600E25283 /* PHPDetailViewController.swift in Sources */,
 				B5CD6B2E1C3443400035821D /* Annotator.swift in Sources */,
-				B5AFF6271C51C05A00666F17 /* LaunchAtLoginController.m in Sources */,
 				B5CD6B2C1C3443400035821D /* AnnotatedImageController.m in Sources */,
 				B5CD6B301C3443400035821D /* GradientView.m in Sources */,
 				B5B391011C0A68A400E057AF /* ScreenCapture.swift in Sources */,
@@ -737,6 +784,8 @@
 				B54406E81C49A9ED009E9BF0 /* SFTPDetailViewController.swift in Sources */,
 				B5CD6B2F1C3443400035821D /* APoint.m in Sources */,
 				B599E3E71D0DCB2D006936B0 /* FirstRunViewController.swift in Sources */,
+				B52661921D3AA88C00295349 /* GeneralPreferencesViewController.swift in Sources */,
+				B52661941D3AAA8600295349 /* LoginItem.swift in Sources */,
 				B53B45CB1C0FCF7D0067C2D2 /* ImgurAccount.swift in Sources */,
 				B5FB98801C0156B0006BC590 /* Account.swift in Sources */,
 				B5888A9E1C001E2600DEA068 /* AccountPreferencesViewController.swift in Sources */,
@@ -767,6 +816,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B5888A8B1BFFEE7D00DEA068 /* CapturedUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B5ED4D6B1D3A79B600817800 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5ED4D721D3A79B600817800 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +862,14 @@
 				B5888A991BFFF72200DEA068 /* Base */,
 			);
 			name = Preferences.storyboard;
+			sourceTree = "<group>";
+		};
+		B5ED4D751D3A79B600817800 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5ED4D761D3A79B600817800 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1014,6 +1079,38 @@
 			};
 			name = Release;
 		};
+		B5ED4D7A1D3A79B600817800 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Captured Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codeography.captured-mac.helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B5ED4D7B1D3A79B600817800 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Captured Helper/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.codeography.captured-mac.helper";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1058,6 +1155,15 @@
 			buildConfigurations = (
 				B5888A961BFFEE7D00DEA068 /* Debug */,
 				B5888A971BFFEE7D00DEA068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5ED4D791D3A79B600817800 /* Build configuration list for PBXNativeTarget "Captured Helper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5ED4D7A1D3A79B600817800 /* Debug */,
+				B5ED4D7B1D3A79B600817800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

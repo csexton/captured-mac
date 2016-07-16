@@ -10,7 +10,6 @@ import Cocoa
 import AppKit
 import Carbon
 import MASShortcut
-import StartAtLoginController
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
@@ -29,7 +28,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   //let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
   let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
 
-
   private let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
 
   // The magic tag that is used to denote a menu item is for a "shortcut." This
@@ -44,6 +42,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
+    checkForRunningInstance()
+
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
@@ -66,6 +66,30 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     if let path = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist") {
       let defaultDict: [String : AnyObject] = NSDictionary(contentsOfFile: path)! as! [String : AnyObject]
       NSUserDefaults.standardUserDefaults().registerDefaults(defaultDict)
+    }
+  }
+
+  func checkForRunningInstance() {
+    let bundleID = NSBundle.mainBundle().bundleIdentifier!
+    if NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID).count > 1 {
+      /* Show alert. */
+      let alert = NSAlert()
+      alert.addButtonWithTitle("OK")
+      let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as String) as! String
+      alert.messageText = "Another copy of \(appName) is already running."
+      alert.informativeText = "This copy will now quit."
+      alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+      alert.runModal()
+
+      /* Activate the other instance and terminate this instance. */
+      let apps = NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID)
+      for app in apps {
+        if app != NSRunningApplication.currentApplication() {
+          app.activateWithOptions([.ActivateAllWindows, .ActivateIgnoringOtherApps])
+          break
+        }
+      }
+      NSApp.terminate(nil)
     }
   }
 
@@ -101,7 +125,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
           }
         }
 
-        print("Dragged URLS: \(url.relativePath)")
+        NSLog("Dragged URLS: \(url.relativePath)")
 
         return true
       }
@@ -153,6 +177,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
     if NSProcessInfo.processInfo().environment["CAPTURED_DEBUG"] != nil {
       menu.addItem(NSMenuItem.separatorItem())
+      menu.addItem(NSMenuItem(title: "Debug Mode",
+        action: nil, keyEquivalent: ""))
       menu.addItem(NSMenuItem(title: "First Run...",
         action: #selector(togglePopover), keyEquivalent: ""))
     }
@@ -282,7 +308,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   func handleURLEvent(event: NSAppleEventDescriptor, withReply reply: NSAppleEventDescriptor) {
     if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
       if let url = NSURL(string: urlString) where "captured" == url.scheme && "oauth" == url.host {
-        print(url)
+        NSLog("Handle URL: \(url)")
 //        NSNotificationCenter.defaultCenter().postNotificationName(OAuth2AppDidReceiveCallbackNotification, object: url)
       }
       showPreferences(self)
@@ -305,9 +331,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
     nc.addObserverForName(state, object: nil, queue: nil) { notification in
       if let info = notification.userInfo as? [String:AnyObject] {
-//        if let s = info["state"] as? Int, newState = CapturedState(rawValue: s) {
-//          self.stateDidChange(newState)
-//        }
         if let s = info["state"] as? CapturedState {
           self.stateDidChange(s)
         }
@@ -364,5 +387,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       runShortcut(shortcut)
     }
   }
-
 }

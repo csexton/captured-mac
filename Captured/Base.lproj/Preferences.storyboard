@@ -135,21 +135,11 @@
         <!--General-->
         <scene sceneID="xro-cF-P7H">
             <objects>
-                <viewController title="General" id="a5B-ZA-Ppl" sceneMemberID="viewController">
+                <viewController title="General" id="a5B-ZA-Ppl" customClass="GeneralPreferencesViewController" customModule="Captured" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Tlh-fH-F9r">
                         <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Anj-f7-djq">
-                                <rect key="frame" x="18" y="164" width="104" height="18"/>
-                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="coZ-EW-3l5">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <binding destination="ptq-jG-qbF" name="value" keyPath="launchAtLogin" id="zuP-ia-HVI"/>
-                                </connections>
-                            </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LuZ-Ps-wCF">
                                 <rect key="frame" x="18" y="135" width="169" height="18"/>
                                 <buttonCell key="cell" type="check" title="Play Sound after Upload" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rdO-zv-EKx">
@@ -180,11 +170,23 @@
                                     <binding destination="7Q2-kI-bf6" name="value" keyPath="values.EnableNotifications" id="0Je-Ja-xZ3"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6it-UL-snk">
+                                <rect key="frame" x="18" y="164" width="104" height="18"/>
+                                <buttonCell key="cell" type="check" title="Start at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="cmK-4O-5Te">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="startAtLoginChanged:" target="a5B-ZA-Ppl" id="pyg-1O-sQl"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="startAtLoginCheckBox" destination="6it-UL-snk" id="Koo-9I-SDQ"/>
+                    </connections>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="ptq-jG-qbF" customClass="LaunchAtLoginController"/>
                 <userDefaultsController id="7Q2-kI-bf6"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>

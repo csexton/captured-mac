@@ -1,4 +1,4 @@
-github "JustHTTP/Just" "v0.4.7"
+github "JustHTTP/Just" "v0.4.8"
 github "matthewpalmer/Locksmith" "2.0.8"
 github "shpakovski/MASShortcut" "2.3.3"
 github "NMSSH/NMSSH" "2.2.5"
