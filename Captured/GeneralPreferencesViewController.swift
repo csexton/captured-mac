@@ -19,7 +19,7 @@ class GeneralPreferencesViewController: NSViewController {
     // Check if we are running in debug mode (e.g. from Xcode) disable the
     // "start at login box" since it won't work properly anyway due to
     // SMLoginItemSetEnabled requirements
-    if NSProcessInfo.processInfo().environment["CAPTURED_DEBUG"] != nil {
+    if AppMode.debug() {
       startAtLoginCheckBox.enabled = false
       startAtLoginCheckBox.state = NSOffState
     } else {

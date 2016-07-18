@@ -175,12 +175,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     menu.addItem(enabledMenuItem)
     menu.addItem(NSMenuItem(title: "Preferences...",
       action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
-    if NSProcessInfo.processInfo().environment["CAPTURED_DEBUG"] != nil {
+    if AppMode.debug() {
       menu.addItem(NSMenuItem.separatorItem())
       menu.addItem(NSMenuItem(title: "Debug Mode",
         action: nil, keyEquivalent: ""))
       menu.addItem(NSMenuItem(title: "First Run...",
-        action: #selector(togglePopover), keyEquivalent: ""))
+        action: #selector(self.togglePopover), keyEquivalent: ""))
     }
     menu.addItem(NSMenuItem.separatorItem())
     menu.addItem(NSMenuItem(title: "Quit Captured",

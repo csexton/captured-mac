@@ -33,6 +33,7 @@
 		B50F2F7D1C051415004AB2B1 /* Uploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50F2F7C1C051415004AB2B1 /* Uploader.swift */; };
 		B51181C61C50673600F9C13E /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B51181C51C50673600F9C13E /* ServiceManagement.framework */; };
 		B5186FE11CA492A100A098BB /* RVNReceiptValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */; };
+		B51C103E1D3D5CA20045D816 /* AppMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B51C103D1D3D5CA20045D816 /* AppMode.swift */; };
 		B52661921D3AA88C00295349 /* GeneralPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52661911D3AA88C00295349 /* GeneralPreferencesViewController.swift */; };
 		B52661941D3AAA8600295349 /* LoginItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52661931D3AAA8600295349 /* LoginItem.swift */; };
 		B53170E61CA325A600D8EF84 /* Just.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53170E51CA325A600D8EF84 /* Just.framework */; };
@@ -160,6 +161,7 @@
 		B51181C51C50673600F9C13E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		B5186FDF1CA492A100A098BB /* RVNReceiptValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RVNReceiptValidation.h; path = RVNReceiptValidation/RVNReceiptValidation.h; sourceTree = "<group>"; };
 		B5186FE01CA492A100A098BB /* RVNReceiptValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RVNReceiptValidation.m; path = RVNReceiptValidation/RVNReceiptValidation.m; sourceTree = "<group>"; };
+		B51C103D1D3D5CA20045D816 /* AppMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppMode.swift; sourceTree = "<group>"; };
 		B52661911D3AA88C00295349 /* GeneralPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralPreferencesViewController.swift; sourceTree = "<group>"; };
 		B52661931D3AAA8600295349 /* LoginItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginItem.swift; sourceTree = "<group>"; };
 		B53170E51CA325A600D8EF84 /* Just.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Just.framework; path = Carthage/Build/Mac/Just.framework; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 				B5888A6D1BFFEE7D00DEA068 /* AppDelegate.swift */,
 				B5B391001C0A68A400E057AF /* ScreenCapture.swift */,
 				B599E3E91D0DDE3F006936B0 /* EventMonitor.swift */,
+				B51C103D1D3D5CA20045D816 /* AppMode.swift */,
 			);
 			path = Captured;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				B54406EA1C49AB1E009E9BF0 /* SFTPAccount.swift in Sources */,
 				B59315B81C25AA6700E7DD86 /* CapturedNotifications.swift in Sources */,
 				B55BB9E21C18B9D00085577D /* S3DetailViewController.swift in Sources */,
+				B51C103E1D3D5CA20045D816 /* AppMode.swift in Sources */,
 				B54406E61C49A646009E9BF0 /* SFTPUploader.swift in Sources */,
 				B5CD6B2A1C3443400035821D /* ADrawable.m in Sources */,
 				B5888A9C1C00183700DEA068 /* PreferencesViewController.swift in Sources */,
