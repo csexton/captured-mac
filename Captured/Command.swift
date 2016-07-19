@@ -24,27 +24,25 @@ class Command {
         }
       },
       error: { upload in
-      CapturedState.broadcastStateChange(.Error)
+        CapturedState.broadcastStateChange(.Error)
       })
     self.resetGlobalStateAfterDelay()
   }
+
   func run(shortcut: Shortcut) {
-      ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
-        if shortcut.annotateImage {
-          let a = Annotator()
-          a.annotateImageFileInPlace(path)
-          if a.userCanceled { return }
-        }
-
-
-
-        if shortcut.scaleImage {
-          self.scaleImageFileInPlace(path)
-        }
-
-        self.run(shortcut.getAccount()!, path: path)
+    ScreenCapture().run(shortcut.screenCaptureOptions()) { path in
+      if shortcut.annotateImage {
+        let a = Annotator()
+        a.annotateImageFileInPlace(path)
+        if a.userCanceled { return }
       }
 
+      if shortcut.scaleImage {
+        self.scaleImageFileInPlace(path)
+      }
+
+      self.run(shortcut.getAccount()!, path: path)
+    }
   }
 
   private func resetGlobalStateAfterDelay() {
@@ -57,9 +55,9 @@ class Command {
   }
 
   private func copyToPasteboard(text: String) {
-      let pasteboard = NSPasteboard.generalPasteboard()
-      pasteboard.clearContents()
-      pasteboard.setString(text, forType: NSPasteboardTypeString)
+    let pasteboard = NSPasteboard.generalPasteboard()
+    pasteboard.clearContents()
+    pasteboard.setString(text, forType: NSPasteboardTypeString)
   }
 
   private func postSuccessNotification(account: Account, url: String, path: String) {
@@ -86,7 +84,7 @@ class Command {
     let dataProvider = CGDataProviderCreateWithFilename(path)
 
     let imageRef = CGImageCreateWithPNGDataProvider(dataProvider,
-      nil, false, .RenderingIntentDefault)
+                                                    nil, false, .RenderingIntentDefault)
 
     // Calculate the new size
     let width = CGImageGetWidth(imageRef) / 2
@@ -94,10 +92,10 @@ class Command {
 
     // Create a new context for the resized image
     let context = CGBitmapContextCreate(nil, width, height,
-      CGImageGetBitsPerComponent(imageRef),
-      CGImageGetBytesPerRow(imageRef),
-      CGImageGetColorSpace(imageRef),
-      CGImageAlphaInfo.PremultipliedLast.rawValue)
+                                        CGImageGetBitsPerComponent(imageRef),
+                                        CGImageGetBytesPerRow(imageRef),
+                                        CGImageGetColorSpace(imageRef),
+                                        CGImageAlphaInfo.PremultipliedLast.rawValue)
 
     // if the above step failed, we're done
     if context == nil {
