@@ -88,7 +88,6 @@
 		B5DE0F2A1CA72D9400701A14 /* MimeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DE0F291CA72D9400701A14 /* MimeType.swift */; };
 		B5E238C01C11FDC600568742 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5E238BF1C11FDC600568742 /* AccountTests.swift */; };
 		B5ED4D721D3A79B600817800 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5ED4D711D3A79B600817800 /* AppDelegate.swift */; };
-		B5ED4D741D3A79B600817800 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5ED4D731D3A79B600817800 /* Assets.xcassets */; };
 		B5ED4D771D3A79B600817800 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5ED4D751D3A79B600817800 /* MainMenu.xib */; };
 		B5ED4D7C1D3A7A9400817800 /* Captured Helper.app in Copy Helper Apps */ = {isa = PBXBuildFile; fileRef = B5ED4D6F1D3A79B600817800 /* Captured Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B5FB98791C0151A4006BC590 /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5FB98781C0151A4006BC590 /* MASShortcut.framework */; };
@@ -232,7 +231,6 @@
 		B5E96E831D240A7100F8D206 /* Captured.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Captured.entitlements; sourceTree = "<group>"; };
 		B5ED4D6F1D3A79B600817800 /* Captured Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Captured Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5ED4D711D3A79B600817800 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B5ED4D731D3A79B600817800 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5ED4D761D3A79B600817800 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		B5ED4D781D3A79B600817800 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B5FB98781C0151A4006BC590 /* MASShortcut.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MASShortcut.framework; path = Carthage/Build/Mac/MASShortcut.framework; sourceTree = SOURCE_ROOT; };
@@ -494,7 +492,6 @@
 			isa = PBXGroup;
 			children = (
 				B5ED4D711D3A79B600817800 /* AppDelegate.swift */,
-				B5ED4D731D3A79B600817800 /* Assets.xcassets */,
 				B5ED4D751D3A79B600817800 /* MainMenu.xib */,
 				B5ED4D781D3A79B600817800 /* Info.plist */,
 			);
@@ -681,7 +678,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5ED4D741D3A79B600817800 /* Assets.xcassets in Resources */,
 				B5ED4D771D3A79B600817800 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
