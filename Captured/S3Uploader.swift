@@ -10,7 +10,6 @@ import Foundation
 
 class S3Uploader: Uploader {
   private var linkURL: String?
-
   private var accessKey: String?
   private var secretKey: String?
   private var bucketName: String?
@@ -42,6 +41,7 @@ class S3Uploader: Uploader {
   func test() -> String {
     let bodyDigest = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     let url = NSURL(string: bucketURL!)!
+    let semaphore = dispatch_semaphore_create(0)
 
     let signer = S3V4Signer(accessKey: accessKey!, secretKey: secretKey!, regionName: regionName!)
     let headers = signer.signedHeaders(url, bodyDigest: bodyDigest, httpMethod: "GET")
@@ -52,21 +52,26 @@ class S3Uploader: Uploader {
       request.addValue(value, forHTTPHeaderField: key)
     }
 
-    do {
-      var response: NSURLResponse?
-      try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-      print(response?.description)
-      if let httpResponse = response as? NSHTTPURLResponse {
-        if httpResponse.statusCode == 200 {
-          return "Success!"
-        } else {
-          return "Failed with HTTP status code \(httpResponse.statusCode)"
+    let session = NSURLSession.sharedSession()
+    var statusMessage = "Unknown Error."
+    let task = session.dataTaskWithRequest(request) {data, response, error -> Void in
+      if error != nil {
+        statusMessage = (error?.localizedDescription)!
+      } else {
+        if let httpResponse = response as? NSHTTPURLResponse {
+          if httpResponse.statusCode == 200 {
+            statusMessage = "Success!"
+          } else {
+            statusMessage = "Failed with HTTP status code \(httpResponse.statusCode)"
+          }
         }
       }
-    } catch (let e) {
-      return "Failed with error \(e)"
+      dispatch_semaphore_signal(semaphore)
     }
-    return "Error Connecting to \(bucketName)"
+
+    task.resume()
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+    return statusMessage
   }
 
   func upload(path: String) -> Bool {
@@ -80,6 +85,7 @@ class S3Uploader: Uploader {
     let publicLink = NSURL(string: joinPathSegments(publicURL!, part2: resourcePath))!
     let request = NSMutableURLRequest(URL: url)
     let fileStream = NSInputStream(fileAtPath: path)!
+
 
     request.HTTPMethod = "PUT"
     request.HTTPBodyStream = fileStream
@@ -95,24 +101,26 @@ class S3Uploader: Uploader {
     let mime = MimeType(path: path).mimeType
     request.addValue(mime, forHTTPHeaderField: "Content-Type")
 
-    var response: NSURLResponse?
-
-    do {
-      let data = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
-      print(response?.description)
+    let session = NSURLSession.sharedSession()
+    let semaphore = dispatch_semaphore_create(0)
+    var status = false
+    let task = session.dataTaskWithRequest(request) {data, response, error -> Void in
       if let httpResponse = response as? NSHTTPURLResponse {
-        let text = NSString(data:data, encoding:NSUTF8StringEncoding) as? String
+        let text = NSString(data:data!, encoding:NSUTF8StringEncoding) as? String
         NSLog("Response from AWS S3: \(httpResponse.description)\n\(text!)")
 
         if httpResponse.statusCode == 200 {
-          linkURL = publicLink.absoluteString
-          return true
+          self.linkURL = publicLink.absoluteString
+          status = true
         }
       }
-    } catch (let e) {
-      print(e)
+      dispatch_semaphore_signal(semaphore)
     }
-    return false
+
+    task.resume()
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+
+    return status
   }
 
   func url() -> String? {
@@ -139,10 +147,10 @@ class S3Uploader: Uploader {
       if let fileSize = fileAttributes[NSFileSize] {
         size = (fileSize as! NSNumber).unsignedLongLongValue
       } else {
-        print("Failed to get a size attribute from path: \(filePath)")
+        NSLog("Failed to get a size attribute from path: \(filePath)")
       }
     } catch {
-      print("Failed to get file attributes for local path: \(filePath) with error: \(error)")
+      NSLog("Failed to get file attributes for local path: \(filePath) with error: \(error)")
     }
     return "\(size)"
   }
@@ -151,5 +159,4 @@ class S3Uploader: Uploader {
     let token = (part1.characters.last! == "/") ? "" : "/"
     return "\(part1)\(token)\(part2)"
   }
-
 }
