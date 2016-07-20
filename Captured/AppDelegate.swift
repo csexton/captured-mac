@@ -15,6 +15,7 @@ import MASShortcut
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   NSUserNotificationCenterDelegate {
 
+  let defaults = NSUserDefaults.standardUserDefaults()
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance
   var shortcutMonitor = MASShortcutMonitor.sharedMonitor()
@@ -25,15 +26,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   var firstRunTimer = NSTimer()
   var eventMonitor: EventMonitor?
 
-  //let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
-  let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
+  var statusItem: NSStatusItem?
+  let statusMenu = NSMenu()
 
   private let queue = dispatch_get_global_queue(Int(QOS_CLASS_USER_INITIATED.rawValue), 0)
 
   // The magic tag that is used to denote a menu item is for a "shortcut." This
   // is used to remove all menu items associated with a tag.
   let magicShortcutMenuItemTag = 13
-  let magicEnabledMenuItemTag = 13
+//  let magicEnabledMenuItemTag = 13
 
   // MARK: App Delegates
 
@@ -42,18 +43,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-    checkForRunningInstance()
-
+//    checkForRunningInstance()
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
 
-    createStatusMenu()
+    setupStatusMenu()
+    setupStatusItem()
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
     registerCustomURL()
     showPopoverOnFirstRun()
+
+//    if let statusItem = statusItem {
+//      NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
+//    }
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
   }
@@ -65,33 +70,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   func setDefaultDefaults() {
     if let path = NSBundle.mainBundle().pathForResource("Defaults", ofType: "plist") {
       let defaultDict: [String : AnyObject] = NSDictionary(contentsOfFile: path)! as! [String : AnyObject]
-      NSUserDefaults.standardUserDefaults().registerDefaults(defaultDict)
+      defaults.registerDefaults(defaultDict)
     }
   }
 
-  func checkForRunningInstance() {
-    let bundleID = NSBundle.mainBundle().bundleIdentifier!
-    if NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID).count > 1 {
-      /* Show alert. */
-      let alert = NSAlert()
-      alert.addButtonWithTitle("OK")
-      let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as String) as! String
-      alert.messageText = "Another copy of \(appName) is already running."
-      alert.informativeText = "This copy will now quit."
-      alert.alertStyle = NSAlertStyle.CriticalAlertStyle
-      alert.runModal()
-
-      /* Activate the other instance and terminate this instance. */
-      let apps = NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID)
-      for app in apps {
-        if app != NSRunningApplication.currentApplication() {
-          app.activateWithOptions([.ActivateAllWindows, .ActivateIgnoringOtherApps])
-          break
-        }
-      }
-      NSApp.terminate(nil)
-    }
-  }
+//  func checkForRunningInstance() {
+//    let bundleID = NSBundle.mainBundle().bundleIdentifier!
+//    if NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID).count > 1 {
+//      /* Show alert. */
+//      let alert = NSAlert()
+//      alert.addButtonWithTitle("OK")
+//      let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as String) as! String
+//      alert.messageText = "Another copy of \(appName) is already running."
+//      alert.informativeText = "This copy will now quit."
+//      alert.alertStyle = NSAlertStyle.CriticalAlertStyle
+//      alert.runModal()
+//
+//      /* Activate the other instance and terminate this instance. */
+//      let apps = NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID)
+//      for app in apps {
+//        if app != NSRunningApplication.currentApplication() {
+//          app.activateWithOptions([.ActivateAllWindows, .ActivateIgnoringOtherApps])
+//          break
+//        }
+//      }
+//      NSApp.terminate(nil)
+//    }
+//  }
 
   // MARK: Drag and Drop
 
@@ -99,7 +104,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       if urls.count == 1 {
-        let defaults = NSUserDefaults.standardUserDefaults()
         if defaults.boolForKey("EnableDrag") == true {
           return .Copy
         }
@@ -112,21 +116,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     let pboard = sender.draggingPasteboard()
     if let urls = pboard.readObjectsForClasses([NSURL.self], options:nil) {
       for url in urls {
-
         let path = url.relativePath!!
-
-        let defaults = NSUserDefaults.standardUserDefaults()
         if let identifier = defaults.objectForKey("DragAccountIdentifier") as? String {
-
           let account = AccountManager.sharedInstance.accountWithIdentifier(identifier)!
-
           dispatch_async(queue) {
             Command().run(account, path:path)
           }
         }
 
         NSLog("Dragged URLS: \(url.relativePath)")
-
         return true
       }
     }
@@ -140,7 +138,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     if let userInfo = notification.userInfo, url = userInfo["url"] as? String {
       NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
     }
-
   }
 
   // MARK: Preferences Window
@@ -160,61 +157,68 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   // MARK: Status Menu
 
-  func createStatusMenu() {
-    setGlobalState(.Normal)
-    let menu = NSMenu()
+  func setupStatusMenu() {
 
-    menu.addItem(NSMenuItem.separatorItem())
-    //    enabledMenuItem = NSMenuItem(title: "Enabled", action: Selector("toggleEnabled:"), keyEquivalent: "")
-    //    enabledMenuItem!.state = NSUserDefaults.standardUserDefaults().integerForKey("EnableUploads")
-    let defaults = NSUserDefaults.standardUserDefaults()
-
+    statusMenu.addItem(NSMenuItem.separatorItem())
     enabledMenuItem.title = "Enabled"
     enabledMenuItem.bind("value", toObject: defaults, withKeyPath: "EnableUploads", options: nil)
 
-    menu.addItem(enabledMenuItem)
-    menu.addItem(NSMenuItem(title: "Preferences...",
+    statusMenu.addItem(enabledMenuItem)
+    statusMenu.addItem(NSMenuItem(title: "Preferences...",
       action: #selector(AppDelegate.showPreferences(_:)), keyEquivalent: ""))
     if AppMode.debug() {
-      menu.addItem(NSMenuItem.separatorItem())
-      menu.addItem(NSMenuItem(title: "Debug Mode",
+      statusMenu.addItem(NSMenuItem.separatorItem())
+      statusMenu.addItem(NSMenuItem(title: "Debug Mode",
         action: nil, keyEquivalent: ""))
-      menu.addItem(NSMenuItem(title: "First Run...",
+      statusMenu.addItem(NSMenuItem(title: "First Run...",
         action: #selector(self.togglePopover), keyEquivalent: ""))
     }
-    menu.addItem(NSMenuItem.separatorItem())
-    menu.addItem(NSMenuItem(title: "Quit Captured",
+    statusMenu.addItem(NSMenuItem.separatorItem())
+    statusMenu.addItem(NSMenuItem(title: "Quit Captured",
       action: #selector(terminate), keyEquivalent: ""))
 
-    statusItem.menu = menu
+  }
 
-    if let button = statusItem.button, window = button.window {
-      window.registerForDraggedTypes([NSFilenamesPboardType])
-      window.delegate = self
+  func setupStatusItem() {
+    if defaults.boolForKey("EnableMenuBarIcon") {
+      statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSSquareStatusItemLength)
+      statusItem!.menu = statusMenu
+      setGlobalState(.Normal)
+
+      if let button = statusItem!.button, window = button.window {
+        window.registerForDraggedTypes([NSFilenamesPboardType])
+        window.delegate = self
+      }
+    } else {
+      if let statusItem = statusItem {
+        NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
+      }
     }
   }
 
   func statusMenuClicked(sender: AnyObject?) {
     closePopover(sender)
-    let menu = statusItem.menu!
-    statusItem.popUpStatusItemMenu(menu)
+    if let statusItem = statusItem {
+      statusItem.popUpStatusItemMenu(statusMenu)
+    }
   }
 
   func terminate() {
     NSApplication.sharedApplication().terminate(self)
   }
 
-
   func setGlobalState(state: CapturedState.States) {
     playSoundForState(state)
-    if let button = statusItem.button {
-      let image = imageForState(state)
-      button.image = image
+    if let statusItem = statusItem {
+      if let button = statusItem.button {
+        let image = imageForState(state)
+        button.image = image
+      }
     }
   }
 
   func playSoundForState(status: CapturedState.States) {
-    if NSUserDefaults.standardUserDefaults().boolForKey("PlaySoundAfterUpload") {
+    if defaults.boolForKey("PlaySoundAfterUpload") {
       if status == .Success {
         if let sound = NSSound(named: "Hero") { sound.play() }
       }
@@ -248,7 +252,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   // MARK: First Run
 
   func showPopoverOnFirstRun() {
-    if NSUserDefaults.standardUserDefaults().boolForKey("FirstRun") {
+    if defaults.boolForKey("FirstRun") {
     firstRunTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target:self, selector: #selector(showPopover), userInfo: nil, repeats: false)
     }
   }
@@ -257,7 +261,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     if firstRunPopover.contentViewController == nil {
       firstRunPopover.contentViewController = FirstRunViewController(nibName: "FirstRunViewController", bundle: nil)
     }
-    if let button = statusItem.button {
+    if let statusItem = statusItem, button = statusItem.button {
       firstRunPopover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
     }
 
@@ -270,7 +274,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
   func closePopover(sender: AnyObject?) {
     firstRunPopover.performClose(sender)
-    NSUserDefaults.standardUserDefaults().setValue(false, forKey: "FirstRun")
+    defaults.setValue(false, forKey: "FirstRun")
   }
 
   func togglePopover(sender: AnyObject?) {
@@ -284,7 +288,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   // MARK: Dock Icon
 
   func setupDockIcon() {
-    if NSUserDefaults.standardUserDefaults().boolForKey("EnableDockIcon") {
+    if defaults.boolForKey("EnableDockIcon") {
       let transformState = ProcessApplicationTransformState(kProcessTransformToForegroundApplication)
       var psn = ProcessSerialNumber(highLongOfPSN: 0, lowLongOfPSN: UInt32(kCurrentProcess))
       TransformProcessType(&psn, transformState)
@@ -340,14 +344,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func registerShortcuts() {
     var items = [NSMenuItem]()
-    for item in statusItem.menu!.itemArray {
+    for item in statusMenu.itemArray {
       if item.tag == magicShortcutMenuItemTag {
         items.append(item)
       }
     }
 
     for item in items {
-      statusItem.menu!.removeItem(item)
+      statusMenu.removeItem(item)
     }
 
     shortcutMonitor.unregisterAllShortcuts()
@@ -372,7 +376,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       menuItem.representedObject = shortcut
       menuItem.tag = magicShortcutMenuItemTag
 
-      statusItem.menu!.insertItem(menuItem, atIndex: 0)
+      statusMenu.insertItem(menuItem, atIndex: 0)
     }
   }
 

@@ -10,4 +10,5 @@ enum CapturedNotifications: String {
   case StateDidChange = "StateDidChange"
   case ShortcutsDidUpdate = "ShortcutsDidUpdate"
   case AccountsDidUpdate = "AccountsDidUpdate"
+  case StatusMenuConfigChanged = "StatusMenuConfigChanged"
 }

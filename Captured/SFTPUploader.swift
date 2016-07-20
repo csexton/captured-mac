@@ -15,7 +15,6 @@ class SFTPUploader: Uploader {
   }
 
   func upload(path: String) -> Bool {
-
     var success = false
     let host = settings["hostname"]!
     let username = settings["username"]

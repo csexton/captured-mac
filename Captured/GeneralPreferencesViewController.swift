@@ -10,8 +10,10 @@ import Cocoa
 
 class GeneralPreferencesViewController: NSViewController {
   @IBOutlet weak var startAtLoginCheckBox: NSButton!
+  @IBOutlet weak var showMenuBarIconCheckBox: NSButton!
 
   let loginItem = LoginItem(identifier: "com.codeography.captured-mac.helper")
+  let defaults = NSUserDefaults.standardUserDefaults()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -23,7 +25,6 @@ class GeneralPreferencesViewController: NSViewController {
       startAtLoginCheckBox.enabled = false
       startAtLoginCheckBox.state = NSOffState
     } else {
-
       // TODO: If validate fails (returns false) it means that we were unable to
       // call `SMLoginItemSetEnabled` successfully. This probably means we are
       // not running sandboxed.
@@ -34,6 +35,13 @@ class GeneralPreferencesViewController: NSViewController {
         startAtLoginCheckBox.state = NSOffState
       }
     }
+
+    if defaults.boolForKey("EnableMenuBarIcon") {
+      showMenuBarIconCheckBox.state = NSOnState
+    } else {
+      showMenuBarIconCheckBox.state = NSOffState
+    }
+
   }
 
   @IBAction func startAtLoginChanged(sender: NSButton) {
@@ -41,4 +49,15 @@ class GeneralPreferencesViewController: NSViewController {
     loginItem.setEnabled(newState)
   }
 
+  @IBAction func showMenuBarIconChanged(sender: NSButton) {
+    if let delegate = NSApplication.sharedApplication().delegate as? AppDelegate {
+      if sender.state == NSOnState {
+        defaults.setBool(true, forKey: "EnableMenuBarIcon")
+        delegate.setupStatusItem()
+      } else {
+        defaults.setBool(false, forKey: "EnableMenuBarIcon")
+        delegate.setupStatusItem()
+      }
+    }
+  }
 }

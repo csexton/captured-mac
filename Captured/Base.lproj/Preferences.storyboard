@@ -180,14 +180,26 @@
                                     <action selector="startAtLoginChanged:" target="a5B-ZA-Ppl" id="pyg-1O-sQl"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nXS-Cs-BKf">
+                                <rect key="frame" x="18" y="48" width="146" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show Menu Bar Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="jDP-jp-q8b">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="showMenuBarIconChanged:" target="a5B-ZA-Ppl" id="fmx-aK-Crb"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="showMenuBarIconCheckBox" destination="nXS-Cs-BKf" id="2Jw-6g-LMa"/>
                         <outlet property="startAtLoginCheckBox" destination="6it-UL-snk" id="Koo-9I-SDQ"/>
                     </connections>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="7Q2-kI-bf6"/>
+                <userDefaultsController id="Jzk-6Q-nuR"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
         </scene>
