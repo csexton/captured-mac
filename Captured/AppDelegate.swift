@@ -167,9 +167,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func statusMenuClicked(sender: AnyObject?) {
     closePopover(sender)
-    if let statusItem = statusItem {
-      statusItem.popUpStatusItemMenu(statusMenu)
-    }
+    statusItem?.popUpStatusItemMenu(statusMenu)
   }
 
   func terminate() {
