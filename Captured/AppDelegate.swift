@@ -178,11 +178,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func setGlobalState(state: CapturedState.States) {
     playSoundForState(state)
-    if let statusItem = statusItem {
-      if let button = statusItem.button {
-        let image = imageForState(state)
-        button.image = image
-      }
+    if let statusItem = statusItem, button = statusItem.button {
+      let image = imageForState(state)
+      button.image = image
     }
   }
 
