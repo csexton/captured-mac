@@ -147,7 +147,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="tcs-X9-Ifa" name="value" keyPath="values.EnableSound" id="qWI-M9-Xp6"/>
+                                    <binding destination="giR-Ph-f5B" name="value" keyPath="values.EnableSound" id="Ltz-O0-VHf"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1HE-WN-NqF">
@@ -157,7 +157,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.EnableUploads" id="hXR-4c-ZIo"/>
+                                    <binding destination="giR-Ph-f5B" name="value" keyPath="values.EnableUploads" id="kg6-Ie-LIC"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8dF-LA-nsK">
@@ -167,7 +167,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="7Q2-kI-bf6" name="value" keyPath="values.EnableNotifications" id="0Je-Ja-xZ3"/>
+                                    <binding destination="giR-Ph-f5B" name="value" keyPath="values.EnableNotifications" id="6Bw-GB-yDg"/>
                                 </connections>
                             </button>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6it-UL-snk">
@@ -190,6 +190,16 @@
                                     <action selector="showMenuBarIconChanged:" target="a5B-ZA-Ppl" id="fmx-aK-Crb"/>
                                 </connections>
                             </button>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bz2-5N-F57">
+                                <rect key="frame" x="18" y="20" width="120" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show Dock Icon" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="djL-E7-I9g">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="giR-Ph-f5B" name="value" keyPath="values.EnableDockIcon" id="HAk-en-upr"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -198,8 +208,7 @@
                     </connections>
                 </viewController>
                 <customObject id="Nra-Wb-oHw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="7Q2-kI-bf6"/>
-                <userDefaultsController id="Jzk-6Q-nuR"/>
+                <userDefaultsController id="giR-Ph-f5B"/>
             </objects>
             <point key="canvasLocation" x="-1516" y="-110"/>
         </scene>
