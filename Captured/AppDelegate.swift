@@ -34,7 +34,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   // The magic tag that is used to denote a menu item is for a "shortcut." This
   // is used to remove all menu items associated with a tag.
   let magicShortcutMenuItemTag = 13
-//  let magicEnabledMenuItemTag = 13
 
   // MARK: App Delegates
 
@@ -43,7 +42,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   }
 
   func applicationDidFinishLaunching(aNotification: NSNotification) {
-//    checkForRunningInstance()
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
@@ -73,30 +71,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       defaults.registerDefaults(defaultDict)
     }
   }
-
-//  func checkForRunningInstance() {
-//    let bundleID = NSBundle.mainBundle().bundleIdentifier!
-//    if NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID).count > 1 {
-//      /* Show alert. */
-//      let alert = NSAlert()
-//      alert.addButtonWithTitle("OK")
-//      let appName = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleNameKey as String) as! String
-//      alert.messageText = "Another copy of \(appName) is already running."
-//      alert.informativeText = "This copy will now quit."
-//      alert.alertStyle = NSAlertStyle.CriticalAlertStyle
-//      alert.runModal()
-//
-//      /* Activate the other instance and terminate this instance. */
-//      let apps = NSRunningApplication.runningApplicationsWithBundleIdentifier(bundleID)
-//      for app in apps {
-//        if app != NSRunningApplication.currentApplication() {
-//          app.activateWithOptions([.ActivateAllWindows, .ActivateIgnoringOtherApps])
-//          break
-//        }
-//      }
-//      NSApp.terminate(nil)
-//    }
-//  }
 
   // MARK: Drag and Drop
 
