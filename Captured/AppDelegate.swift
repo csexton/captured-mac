@@ -54,10 +54,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerCustomURL()
     showPopoverOnFirstRun()
 
-//    if let statusItem = statusItem {
-//      NSStatusBar.systemStatusBar().removeStatusItem(statusItem)
-//    }
-
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
   }
 
@@ -238,13 +234,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     if let statusItem = statusItem, button = statusItem.button {
       firstRunPopover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
     }
-
-//    eventMonitor = EventMonitor(mask: [.LeftMouseDownMask, .RightMouseDownMask]) { [unowned self] event in
-//      if self.firstRunPopover.shown {
-//        self.closePopover(event)
-//      }
-//    }
-//    eventMonitor?.start()
   }
   func closePopover(sender: AnyObject?) {
     firstRunPopover.performClose(sender)
