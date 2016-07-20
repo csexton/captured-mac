@@ -51,7 +51,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
-    registerCustomURL()
     showPopoverOnFirstRun()
 
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
@@ -262,26 +261,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func stateDidChange(state: CapturedState) {
     setGlobalState(state.current)
-  }
-
-  // MARK: Custom URL Scheme
-
-  func registerCustomURL() {
-    let appleEventManager: NSAppleEventManager = NSAppleEventManager.sharedAppleEventManager()
-    appleEventManager.setEventHandler(self, andSelector: #selector(AppDelegate.handleURLEvent(_:withReply:)), forEventClass: AEEventClass(kInternetEventClass), andEventID: AEEventID(kAEGetURL))
-
-  }
-
-  func handleURLEvent(event: NSAppleEventDescriptor, withReply reply: NSAppleEventDescriptor) {
-    if let urlString = event.paramDescriptorForKeyword(AEKeyword(keyDirectObject))?.stringValue {
-      if let url = NSURL(string: urlString) where "captured" == url.scheme && "oauth" == url.host {
-        NSLog("Handle URL: \(url)")
-//        NSNotificationCenter.defaultCenter().postNotificationName(OAuth2AppDidReceiveCallbackNotification, object: url)
-      }
-      showPreferences(self)
-    } else {
-      NSLog("No valid URL to handle")
-    }
   }
 
   // MARK: Manage Global HotKey and Shortcuts
