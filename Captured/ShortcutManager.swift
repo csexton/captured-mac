@@ -34,10 +34,12 @@ class ShortcutManager: NSObject {
   func update(updated: Shortcut) {
     var newRecord: Bool = true
 
-    for i in 0...(shortcuts.count-1) {
-      if shortcuts[i]["Identifier"] as! String == updated.identifier {
-        newRecord = false
-        shortcuts[i] = updated.toDict()
+    if shortcuts.count > 0 {
+      for i in 0...(shortcuts.count-1) {
+        if shortcuts[i]["Identifier"] as! String == updated.identifier {
+          newRecord = false
+          shortcuts[i] = updated.toDict()
+        }
       }
     }
     if newRecord {

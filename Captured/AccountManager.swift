@@ -42,10 +42,12 @@ class AccountManager: NSObject {
 
     var newRecord: Bool = true
 
-    for i in 0...(accounts.count-1) {
-      if accounts[i]["Identifier"] as! String == updated.identifier {
-        newRecord = false
-        accounts[i] = updated.toDict()
+    if accounts.count > 0 {
+      for i in 0...(accounts.count-1) {
+        if accounts[i]["Identifier"] as! String == updated.identifier {
+          newRecord = false
+          accounts[i] = updated.toDict()
+        }
       }
     }
     if newRecord {
