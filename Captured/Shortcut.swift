@@ -66,6 +66,8 @@ class Shortcut: NSObject {
 
   func screenCaptureOptions() -> (ScreenCapture.CommandOptions) {
     switch action {
+    case "FullScreen":
+      return .FullScreen
     case "SelectWindow":
       return .WindowSelection
     default:

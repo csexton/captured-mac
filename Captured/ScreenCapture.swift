@@ -12,6 +12,7 @@ class ScreenCapture {
   enum CommandOptions: String {
     case MouseSelection = "-i"
     case WindowSelection = "-W"
+    case FullScreen = ""
   }
 
   var path: String?

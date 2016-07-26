@@ -109,6 +109,8 @@ class ShortcutsDetailViewController: NSViewController {
 
   func actionTypeForTag(tag: Int) -> String {
     switch tag {
+    case 2:
+      return "FullScreen"
     case 1:
       return "SelectWindow"
     default:
@@ -117,6 +119,8 @@ class ShortcutsDetailViewController: NSViewController {
   }
   func tagForActionType(type: String) -> Int {
     switch type {
+    case "FullScreen":
+      return 2
     case "SelectWindow":
       return 1
     default:
