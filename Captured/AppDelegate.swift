@@ -14,7 +14,6 @@ import MASShortcut
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   NSUserNotificationCenterDelegate {
-
   let defaults = NSUserDefaults.standardUserDefaults()
   var accountManager = AccountManager.sharedInstance
   var shortcutManager = ShortcutManager.sharedInstance
@@ -38,21 +37,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   // MARK: App Delegates
 
   func applicationWillFinishLaunching(notification: NSNotification) {
-    // Prevent launching and process the command line
-  }
-
-  func applicationDidFinishLaunching(aNotification: NSNotification) {
     setDefaultDefaults()
     accountManager.load()
     shortcutManager.load()
 
+    // Prevent launching and process the command line
+    CLI.run_and_terminate(Process.arguments)
+  }
+
+  func applicationDidFinishLaunching(aNotification: NSNotification) {
     setupStatusMenu()
     setupStatusItem()
     registerShortcuts()
     setupNotificationListeners()
     setupDockIcon()
     showPopoverOnFirstRun()
-
     NSUserNotificationCenter.defaultUserNotificationCenter().delegate = self
   }
 
