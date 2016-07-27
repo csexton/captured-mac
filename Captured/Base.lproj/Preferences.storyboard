@@ -430,7 +430,7 @@ Captured makes use of the following open source libraries:
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="NOj-I2-28f">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="opS-6B-0Gm">
@@ -1407,7 +1407,7 @@ Gw
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Vj0-d0-cYJ">
-                                    <rect key="frame" x="1" y="-15" width="0.0" height="16"/>
+                                    <rect key="frame" x="1" y="248" width="398" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="9q7-7f-G5A">
