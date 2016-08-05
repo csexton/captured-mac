@@ -26,7 +26,7 @@ class SFTPUploader: Uploader {
 
         if session.authorized {
           let ftp = NMSFTP.connectWithSession(session)
-          let name = createFileName(path, length: 8)
+          let name = createFileName(path, length: fileNameLength())
           let pathOnServer = settings["path_on_server"]!
           let publicURL = settings["public_url"]!
           let pathWithName = joinPathSegments(pathOnServer, part2: name)
@@ -88,5 +88,16 @@ class SFTPUploader: Uploader {
     }
 
     return randomString
+  }
+
+  private func fileNameLength() -> Int {
+    var value = 5
+    if let lengthStr = settings["file_name_length"], lengthInt = Int(lengthStr) {
+      if lengthInt > 0 {
+        value = lengthInt
+      }
+    }
+
+    return value
   }
 }
