@@ -7,28 +7,28 @@
 //
 
 class SFTPUploader: Uploader {
-  var settings: [String:String]
+  let account: SFTPAccount
   private var linkURL: String?
 
-  required init(account: Account) {
-    settings = account.secrets
+  required init(account: SFTPAccount) {
+    self.account = account
   }
 
   func upload(path: String) -> Bool {
     var success = false
-    let host = settings["hostname"]!
-    let username = settings["username"]
+    let host = account.hostname!
+    let username = account.username!
     let session = NMSSHSession(host: host, andUsername: username)
 
-    if settings["password"] != nil {
+    if account.password != nil {
       if session.connect() {
-        session.authenticateByPassword(settings["password"]!)
+        session.authenticateByPassword(account.password!)
 
         if session.authorized {
           let ftp = NMSFTP.connectWithSession(session)
-          let name = createFileName(path, length: fileNameLength())
-          let pathOnServer = settings["path_on_server"]!
-          let publicURL = settings["public_url"]!
+          let name = createFileName(path, length: account.fileNameLength)
+          let pathOnServer = account.pathOnServer!
+          let publicURL = account.publicURL!
           let pathWithName = joinPathSegments(pathOnServer, part2: name)
 
           ftp.createDirectoryAtPath(pathOnServer)
@@ -43,12 +43,12 @@ class SFTPUploader: Uploader {
 
   func test() -> String {
     var message = "Success!"
-    let host = settings["hostname"]!
-    let username = settings["username"]
+    let host = account.hostname!
+    let username = account.username!
     let session = NMSSHSession(host: host, andUsername: username)
 
     if session.connect() {
-      if !session.authenticateByPassword(settings["password"]!) {
+      if !session.authenticateByPassword(account.password!) {
         message = "Invalid credentials for \(username)"
       }
     } else {
@@ -90,14 +90,4 @@ class SFTPUploader: Uploader {
     return randomString
   }
 
-  private func fileNameLength() -> Int {
-    var value = 5
-    if let lengthStr = settings["file_name_length"], lengthInt = Int(lengthStr) {
-      if lengthInt > 0 {
-        value = lengthInt
-      }
-    }
-
-    return value
-  }
 }

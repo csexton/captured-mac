@@ -9,7 +9,6 @@
 import Cocoa
 
 protocol Uploader {
-  init(account: Account)
   func upload(path: String) -> Bool
   func url() -> String?
 }

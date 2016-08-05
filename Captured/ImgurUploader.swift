@@ -11,12 +11,12 @@ import Just
 
 class ImgurUploader: Uploader {
 
-  let account: Account
+  let account: ImgurAccount
   var retries = 0
 
   private var linkURL: String?
 
-  required init(account: Account) {
+  required init(account: ImgurAccount) {
     self.account = account
   }
 
@@ -50,10 +50,7 @@ class ImgurUploader: Uploader {
   }
 
   func requestNewToken() -> Bool {
-    if let a = account as? ImgurAccount {
-      return a.requestNewToken()
-    }
-    return false
+    return account.requestNewToken()
   }
 
   func url() -> String? {
@@ -61,17 +58,12 @@ class ImgurUploader: Uploader {
   }
 
   func authHeader() -> String {
-    var ret = ""
-    if let a = account as? ImgurAccount {
-      if let accessToken = a.accessToken {
-        ret = "Client-Bearer \(accessToken)"
-      } else {
-        if let clientID = account.secrets["client_id"] {
-          ret = "Client-ID \(clientID)"
-        }
-      }
+    if let accessToken = account.accessToken {
+      return "Client-Bearer \(accessToken)"
+    } else if let clientID = account.secrets["client_id"] {
+      return "Client-ID \(clientID)"
     }
-    return ret
+    return ""
   }
 
 

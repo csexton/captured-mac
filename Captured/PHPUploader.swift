@@ -11,16 +11,16 @@ import Just
 
 class PHPUploader: Uploader {
 
-  let options: [String:String]
+  let account: PHPAccount
 
   private var linkURL: String?
 
-  required init(account: Account) {
-    options = account.secrets
+  required init(account: PHPAccount) {
+    self.account = account
   }
   func test() -> String {
-    let token = options["api_token"]!
-    let endpoint = options["endpoint_url"]!
+    let token = account.apiToken!
+    let endpoint = account.endpointURL!
 
     let r = Just.post(endpoint, data: ["token": token, "test": "true"])
     if r.ok {
@@ -38,8 +38,8 @@ class PHPUploader: Uploader {
 
   func upload(path: String) -> Bool {
     let fileURL = NSURL.fileURLWithPath(path as String)
-    let token = options["api_token"]!
-    let endpoint = options["endpoint_url"]!
+    let token = account.apiToken!
+    let endpoint = account.endpointURL!
 
     let r = Just.post(
       endpoint,

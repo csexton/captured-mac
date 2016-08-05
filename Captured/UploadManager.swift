@@ -17,10 +17,8 @@ class UploadManager {
     self.path = path
   }
 
-  func run(success:(upload: UploadManager) -> (Void), error:(upload: UploadManager) -> (Void)) {
-    let uploader = uploadFactory(account.type)
-
-    if uploader.upload(path!) {
+  func run(success:(upload: UploadManager) -> (Void), error:(upload: UploadManager) -> Void) {
+    if let uploader = uploadFactory(account) where uploader.upload(path!) {
       url = uploader.url()
       success(upload: self)
     } else {
@@ -28,19 +26,18 @@ class UploadManager {
     }
   }
 
-  func uploadFactory(type: String) -> (Uploader) {
+  func uploadFactory(type: Account) -> Uploader? {
     switch type {
-    case "Amazon S3":
-      return S3Uploader(account: account)
-    case "SFTP":
-      return SFTPUploader(account: account)
-    case "Imgur":
-      return ImgurUploader(account: account)
-    case "Captured PHP":
-      return PHPUploader(account: account)
+    case let amazon as S3Account:
+      return S3Uploader(account: amazon)
+    case let sftp as SFTPAccount:
+      return SFTPUploader(account: sftp)
+    case let imgur as ImgurAccount:
+      return ImgurUploader(account: imgur)
+    case let php as PHPAccount:
+      return PHPUploader(account: php)
     default:
-      // TODO: Better Default
-      return ImgurUploader(account: account)
+      return nil
     }
   }
 }

@@ -18,24 +18,22 @@ class S3Uploader: Uploader {
   private var publicURL: String?
   private var fileNameLength: Int?
 
-  required init(account: Account) {
-    if let s3 = account as? S3Account {
-      accessKey = s3.accessKey!
-      secretKey = s3.secretKey!
-      bucketName = s3.bucketName!
-      bucketURL = "http://\(bucketName!).s3.amazonaws.com"
-      if (s3.regionName ?? "").isEmpty {
-        regionName = "us-east-1"
-      } else {
-        regionName = s3.regionName!
-      }
-      if (s3.publicURL ?? "").isEmpty {
-        publicURL = bucketURL
-      } else {
-        publicURL = s3.publicURL
-      }
-      fileNameLength = Int(s3.fileNameLength)
+  required init(account: S3Account) {
+    accessKey = account.accessKey!
+    secretKey = account.secretKey!
+    bucketName = account.bucketName!
+    bucketURL = "http://\(bucketName!).account.amazonaws.com"
+    if (account.regionName ?? "").isEmpty {
+      regionName = "us-east-1"
+    } else {
+      regionName = account.regionName!
     }
+    if (account.publicURL ?? "").isEmpty {
+      publicURL = bucketURL
+    } else {
+      publicURL = account.publicURL
+    }
+    fileNameLength = Int(account.fileNameLength)
   }
 
   func test() -> String {
