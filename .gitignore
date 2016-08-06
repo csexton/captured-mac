@@ -5,7 +5,6 @@ config.status
 nobuagent
 .deps
 autom4te.cache
-Makefile
 
 # xcode noise
 build/*
