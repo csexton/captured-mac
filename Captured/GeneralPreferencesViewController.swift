@@ -28,7 +28,10 @@ class GeneralPreferencesViewController: NSViewController {
       // TODO: If validate fails (returns false) it means that we were unable to
       // call `SMLoginItemSetEnabled` successfully. This probably means we are
       // not running sandboxed.
-      loginItem.validate()
+      if loginItem.validate() {
+        startAtLoginCheckBox.enabled = false
+        startAtLoginCheckBox.state = NSOffState
+      }
       if loginItem.enabled {
         startAtLoginCheckBox.state = NSOnState
       } else {
