@@ -133,7 +133,7 @@ class ShortcutsDetailViewController: NSViewController {
     let myPopup: NSAlert = NSAlert()
     myPopup.messageText = question
     myPopup.informativeText = text
-    myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+    myPopup.alertStyle = NSAlertStyle.Warning
     myPopup.addButtonWithTitle(buttonOk)
     myPopup.addButtonWithTitle(buttonCancel)
     let res = myPopup.runModal()

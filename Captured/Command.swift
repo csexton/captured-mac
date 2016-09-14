@@ -83,18 +83,18 @@ class Command {
     // Get an image ref for the existing file
     let dataProvider = CGDataProviderCreateWithFilename(path)
 
-    let imageRef = CGImageCreateWithPNGDataProvider(dataProvider,
+    let imageRef = CGImageCreateWithPNGDataProvider(dataProvider!,
                                                     nil, false, .RenderingIntentDefault)
 
     // Calculate the new size
-    let width = CGImageGetWidth(imageRef) / 2
-    let height = CGImageGetHeight(imageRef) / 2
+    let width = CGImageGetWidth(imageRef!) / 2
+    let height = CGImageGetHeight(imageRef!) / 2
 
     // Create a new context for the resized image
     let context = CGBitmapContextCreate(nil, width, height,
-                                        CGImageGetBitsPerComponent(imageRef),
-                                        CGImageGetBytesPerRow(imageRef),
-                                        CGImageGetColorSpace(imageRef),
+                                        CGImageGetBitsPerComponent(imageRef!),
+                                        CGImageGetBytesPerRow(imageRef!),
+                                        CGImageGetColorSpace(imageRef!)!,
                                         CGImageAlphaInfo.PremultipliedLast.rawValue)
 
     // if the above step failed, we're done
@@ -103,13 +103,13 @@ class Command {
       return false
     }
 
-    CGContextSetInterpolationQuality(context, .High)
+    CGContextSetInterpolationQuality(context!, .High)
 
     // draw image to context, effectively resizing it
-    CGContextDrawImage(context, CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)), imageRef)
+    CGContextDrawImage(context!, CGRect(x: 0, y: 0, width: CGFloat(width), height: CGFloat(height)), imageRef!)
 
     // extract resulting image from context
-    let imgRef = CGBitmapContextCreateImage(context)
+    let imgRef = CGBitmapContextCreateImage(context!)
 
     // write it out to png
     let url = NSURL(fileURLWithPath: path)
