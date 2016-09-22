@@ -1,4 +1,4 @@
 github "shpakovski/MASShortcut"
-github "JustHTTP/Just"
-github "matthewpalmer/Locksmith"
+github "JustHTTP/Just" "swift-2.3"
+github "matthewpalmer/Locksmith" "swift-2.3"
 github "NMSSH/NMSSH"

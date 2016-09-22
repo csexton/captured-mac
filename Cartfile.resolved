@@ -1,5 +1,4 @@
-github "JustHTTP/Just" "v0.4.8"
-github "matthewpalmer/Locksmith" "2.0.8"
-github "shpakovski/MASShortcut" "2.3.3"
+github "JustHTTP/Just" "65721a2767bcb208c7f7cc7a4c48005a41aa83dc"
+github "matthewpalmer/Locksmith" "49da6a45e753e314c7a48d729e2f39944c545844"
+github "shpakovski/MASShortcut" "2.3.5"
 github "NMSSH/NMSSH" "2.2.5"
-github "csexton/StartAtLoginController" "0.0.1"
