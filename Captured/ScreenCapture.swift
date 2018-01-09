@@ -17,7 +17,7 @@ class ScreenCapture {
 
   var path: String?
 
-  func run(option: CommandOptions, success:(path: String) -> (Void)) {
+  func run(option: CommandOptions, success:(_ path: String) -> (Void)) {
     NSLog("%@", "Start Capture Screen")
     let dateFormat: NSDateFormatter = NSDateFormatter()
     dateFormat.dateFormat = "yyyy-MM-dd-HH-mm-ss-SSSSSS"

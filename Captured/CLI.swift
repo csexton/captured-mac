@@ -72,7 +72,7 @@ class CLI {
     accountManager.load()
 
     if let accountID = defaults.stringForKey("account"),
-      account = accountManager.accountWithIdentifier(accountID) {
+      let account = accountManager.accountWithIdentifier(accountID) {
       print(account)
 
       let shortcut = Shortcut()

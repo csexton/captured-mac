@@ -17,8 +17,8 @@ class UploadManager {
     self.path = path
   }
 
-  func run(success:(upload: UploadManager) -> (Void), error:(upload: UploadManager) -> Void) {
-    if let uploader = uploadFactory(account) where uploader.upload(path!) {
+  func run(success:(_ upload: UploadManager) -> (Void), error:(_ upload: UploadManager) -> Void) {
+    if let uploader = uploadFactory(account), uploader.upload(path!) {
       url = uploader.url()
       success(upload: self)
     } else {

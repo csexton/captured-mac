@@ -76,7 +76,7 @@ class SFTPAccount: Account {
 
   dynamic var fileNameLength: Int {
     get {
-      if let lengthStr = self.secrets[SecretKeys.FileNameLength.rawValue], lengthInt = Int(lengthStr) where lengthInt > 0 {
+        if let lengthStr = self.secrets[SecretKeys.FileNameLength.rawValue], let lengthInt = Int(lengthStr), lengthInt > 0 {
         return lengthInt
       } else {
         return 5

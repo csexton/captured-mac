@@ -22,17 +22,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     //
     // Then just hope it is something we can launch with the workspace.
     //
-    NSLog("Running Helper for \(NSBundle.mainBundle().bundlePath)")
-    var pathToMainApp: NSURL? = NSURL(fileURLWithPath: NSBundle.mainBundle().bundlePath)
+    NSLog("Running Helper for \(Bundle.main.bundlePath)")
+    var pathToMainApp: URL? = URL(fileURLWithPath: Bundle.main.bundlePath)
     for _ in 1...4 {
-      pathToMainApp = pathToMainApp?.URLByDeletingLastPathComponent
+      pathToMainApp = pathToMainApp?.deletingLastPathComponent()
     }
-    if let appPath = pathToMainApp!.path {
+    let appPath = pathToMainApp!.path
+    if appPath == pathToMainApp!.path {
       NSLog("Launching Application at \(appPath)")
-      NSWorkspace.sharedWorkspace().launchApplication(appPath)
+      NSWorkspace.shared.launchApplication(appPath)
     }
 
-    NSApplication.sharedApplication().terminate(self)
+    NSApplication.shared.terminate(self)
   }
 }
 

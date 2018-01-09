@@ -38,7 +38,7 @@ class S3V4Signer {
   // MARK: Utilities
 
   private func pathForURL(url: NSURL) -> String {
-    if let path = url.path where !path.isEmpty {
+    if let path = url.path, !path.isEmpty {
       return path
     } else {
       return "/"

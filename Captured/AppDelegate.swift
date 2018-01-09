@@ -103,7 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func userNotificationCenter(center: NSUserNotificationCenter,
     didActivateNotification notification: NSUserNotification) {
-    if let userInfo = notification.userInfo, url = userInfo["url"] as? String {
+    if let userInfo = notification.userInfo, let url = userInfo["url"] as? String {
       NSWorkspace.sharedWorkspace().openURL(NSURL(string: url)!)
     }
   }
@@ -153,7 +153,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
       statusItem!.menu = statusMenu
       setGlobalState(.Normal)
 
-      if let button = statusItem!.button, window = button.window {
+      if let button = statusItem!.button, let window = button.window {
         window.registerForDraggedTypes([NSFilenamesPboardType])
         window.delegate = self
       }
@@ -175,7 +175,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
 
   func setGlobalState(state: CapturedState.States) {
     playSoundForState(state)
-    if let statusItem = statusItem, button = statusItem.button {
+    if let statusItem = statusItem, let button = statusItem.button {
       let image = imageForState(state)
       button.image = image
     }
@@ -225,7 +225,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
     if firstRunPopover.contentViewController == nil {
       firstRunPopover.contentViewController = FirstRunViewController(nibName: "FirstRunViewController", bundle: nil)
     }
-    if let statusItem = statusItem, button = statusItem.button {
+    if let statusItem = statusItem, let button = statusItem.button {
       firstRunPopover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
     }
   }
