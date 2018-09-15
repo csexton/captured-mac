@@ -37,7 +37,7 @@ class SFTPDetailViewController: AccountDetailViewController {
             let myPopup: NSAlert = NSAlert()
             myPopup.messageText = "Test SFTP Connecton"
             myPopup.informativeText = msg
-            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.alertStyle = NSAlertStyle.Warning
             myPopup.addButtonWithTitle("OK")
             myPopup.runModal()
           }

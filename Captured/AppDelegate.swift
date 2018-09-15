@@ -309,7 +309,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate,
   private func createShortcutMenu(shortcut: Shortcut) {
     if let sc = shortcut.shortcutValue {
       let menuItem = NSMenuItem(title: shortcut.name, action: #selector(AppDelegate.menuShortcut(_:)), keyEquivalent: sc.keyCodeString)
-      menuItem.keyEquivalentModifierMask = Int(sc.modifierFlags)
+//TODO:      menuItem.keyEquivalentModifierMask = UInt16(sc.modifierFlags)
       menuItem.representedObject = shortcut
       menuItem.tag = magicShortcutMenuItemTag
 

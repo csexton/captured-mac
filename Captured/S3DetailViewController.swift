@@ -40,7 +40,7 @@ class S3DetailViewController: AccountDetailViewController {
             let myPopup: NSAlert = NSAlert()
             myPopup.messageText = "Test S3 Connecton"
             myPopup.informativeText = msg
-            myPopup.alertStyle = NSAlertStyle.WarningAlertStyle
+            myPopup.alertStyle = NSAlertStyle.Warning
             myPopup.addButtonWithTitle("OK")
             myPopup.runModal()
           }

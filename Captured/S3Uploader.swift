@@ -22,7 +22,7 @@ class S3Uploader: Uploader {
     accessKey = account.accessKey!
     secretKey = account.secretKey!
     bucketName = account.bucketName!
-    bucketURL = "http://\(bucketName!).account.amazonaws.com"
+    bucketURL = "http://\(bucketName!).s3.amazonaws.com"
     if (account.regionName ?? "").isEmpty {
       regionName = "us-east-1"
     } else {
