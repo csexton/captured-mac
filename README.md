@@ -18,6 +18,12 @@ To create a pre-release use the `Package` target, which will build and tar and g
 
 ## Build for the App Store
 
+Build dependencies
+
+```
+carthage update --platform macos
+```
+
 TODO: Describe this one.
 
 ## License
