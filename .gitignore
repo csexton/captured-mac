@@ -22,3 +22,6 @@ shared/version.h
 *.perspectivev3
 xcuserdata
 project.xcworkspace
+
+# Carthage
+Carthage
