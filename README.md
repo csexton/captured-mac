@@ -4,22 +4,27 @@
 
 Screen Capture Sharing for Mac
 
+Interested in contributing? Awesome. You'll wanna start out at
+[CONTRIBUTING](/CONTRIBUTING.md).
+
 ## Building
 
-Captured uses [SwiftLint](https://github.com/realm/SwiftLint) as part of the build step, so you need to have that installed. If you are using homebrew:
+Captured uses [SwiftLint](https://github.com/realm/SwiftLint) as part of the
+build step, so you need to have that installed. If you are using homebrew:
 
 ```
 brew install swiftlint
 ```
 
-## Build a pre-release
+### Code Signing
 
-To create a pre-release use the `Package` target, which will build and tar and gzip everything. This `.tar.gz` file can then be shared with beta testers. There is a `make upload` task that can be run from the command line that will `scp` the file to the captured web server.
+TODO
 
-## Build for the App Store
+### Carthage
 
-TODO: Describe this one.
+TODO
 
 ## License
 
-This repo is MIT License unless otherwise noted. See [LICENSE](LICENSE) for details.
+This repo is Licensed under the MIT License unless otherwise noted. See
+[LICENSE](LICENSE) for details.
